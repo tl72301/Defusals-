@@ -18,7 +18,7 @@ moving and each request has 1.5 s. Paused: the belt waits. Text only; bin order 
   of Cold). 15 more missed the 1.5 s request limit (latency p50 0.56 s, p95 0.77 s realtime).
 - Calibration: answers given at 80% confidence or more (977 of 985) were all correct.
 - Held-out items (never seen while designing the baselines): 98-99%, the same as the rest.
-- Cost: 1,000 requests, about 270,000 input tokens, $0.027 in total.
+- Cost: 1,000 requests, about 270,000 input tokens: $0.027 reported by the API, $0.041 counting the conservative reservations held for the 15 timed-out requests.
 
 ## What this shows, next to Defuse
 
