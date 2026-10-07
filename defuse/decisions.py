@@ -38,6 +38,18 @@ def validate_endpoint(endpoint):
         raise ValueError('Endpoint overrides must be loopback HTTP(S) URLs without credentials, query, or fragment')
     return True
 
+MAX_QUESTIONS=200
+
+def build_many(view,questions):
+    """One shared text and several named choice questions: [(name, instructions, options), ...]."""
+    if not 1<=len(questions)<=MAX_QUESTIONS: raise ValueError(f'1..{MAX_QUESTIONS} questions per request')
+    names=[q[0] for q in questions]
+    if len(set(names))!=len(names): raise ValueError('question names must be unique')
+    if any(not 2<=len(q[2])<=8 for q in questions): raise ValueError('Each decision needs 2..8 options')
+    return {'model':MODEL,'input':[{'role':'user','type':'message','content':[{'type':'input_text','text':view}]}],
+            'questions':[{'type':'choice','name':n,'instructions':i,'choices':[{'value':o['value'],'description':o['description']} for o in opts]}
+                         for n,i,opts in questions]}
+
 def build_request(view,options,instructions=None):
     if not 2<=len(options)<=8: raise ValueError('Each decision needs 2..8 options')
     text=view if isinstance(view,str) else json.dumps(view,sort_keys=True,ensure_ascii=False)
@@ -52,6 +64,10 @@ def parse_response(data,allowed):
     a=answers[0]
     if not isinstance(a,dict): raise ValueError('answer is not an object')
     if a.get('name')!='action': raise ValueError('wrong question name')
+    return parse_answer(a,allowed)
+
+def parse_answer(a,allowed):
+    if not isinstance(a,dict): raise ValueError('answer is not an object')
     if a['type']=='refusal': return Answer(error='refusal')
     if a['type']!='choice' or a['choice'] not in allowed: raise ValueError('invalid choice')
     c=a['confidence']; probs=a['probabilities']
@@ -71,7 +87,32 @@ class Decisions:
         if not math.isfinite(timeout) or timeout<=0: raise ValueError('positive finite timeout required')
         self.endpoint,self.timeout,self.budget,self.category,self.batch=endpoint,timeout,budget or Budget(),category,batch
     def ask(self,view,options,instructions=None):
-        body=build_request(view,options,instructions)
+        answer,data=self._exchange(build_request(view,options,instructions))
+        if data is None: return answer
+        try:
+            parsed=parse_response(data,[o['value'] for o in options])
+            answer.choice,answer.confidence,answer.probabilities,answer.error=parsed.choice,parsed.confidence,parsed.probabilities,parsed.error
+        except (KeyError,ValueError,TypeError,AttributeError): answer.error='invalid_answer'; answer.request_id=None
+        return answer
+
+    def ask_many(self,view,questions):
+        """Several named questions in one request. Returns (shared Answer with latency/usage/error, {name: Answer})."""
+        shared,data=self._exchange(build_many(view,questions))
+        out={}
+        if data is None: return shared,out
+        answers=data.get('answers') if isinstance(data,dict) else None
+        by_name={a.get('name'):a for a in answers if isinstance(a,dict)} if isinstance(answers,list) else {}
+        for name,_,opts in questions:
+            a=Answer(latency=shared.latency)
+            try:
+                parsed=parse_answer(by_name[name],[o['value'] for o in opts])
+                a.choice,a.confidence,a.probabilities,a.error=parsed.choice,parsed.confidence,parsed.probabilities,parsed.error
+            except (KeyError,ValueError,TypeError,AttributeError): a.error='invalid_answer'
+            out[name]=a
+        return shared,out
+
+    def _exchange(self,body):
+        """Send one request under the budget. Returns (Answer with latency/usage/error, response data or None)."""
         encoded=json.dumps(body,ensure_ascii=False).encode('utf8')
         key='local-test-no-credential' if self.stub else os.environ.get('OPENAI_API_KEY')
         if not key: raise ValueError('OPENAI_API_KEY is missing; add it securely before live runs')
@@ -96,7 +137,7 @@ class Decisions:
         except queue.Empty: result=('error','timeout')
         latency=time.monotonic()-started
         answer=Answer(latency=latency,reservation_id=reservation,billing_unknown=not self.stub)
-        if result[0]=='error': answer.error=result[1]; return answer
+        if result[0]=='error': answer.error=result[1]; return answer,None
         data,request_id=result[1:]
         request_id=request_id if request_id and key not in request_id else None
         # Usage is accounted even for a refusal or malformed answer.
@@ -107,13 +148,9 @@ class Decisions:
             answer.billing_unknown=False
             if reservation: self.budget.settle(reservation,tokens,request_id)
         except BudgetError:
-            answer.error='budget_estimate_exceeded'; return answer
+            answer.error='budget_estimate_exceeded'; return answer,None
         except (KeyError,TypeError,ValueError):
-            answer.error='invalid_usage'; return answer
-        try:
-            parsed=parse_response(data,[o['value'] for o in options])
-            answer.choice,answer.confidence,answer.probabilities,answer.error=parsed.choice,parsed.confidence,parsed.probabilities,parsed.error
-            # IDs are opaque metadata; disallow an API key reflected as an ID.
-            answer.request_id=request_id
-        except (KeyError,ValueError,TypeError,AttributeError): answer.error='invalid_answer'
-        return answer
+            answer.error='invalid_usage'; return answer,None
+        # IDs are opaque metadata; disallow an API key reflected as an ID.
+        answer.request_id=request_id
+        return answer,data

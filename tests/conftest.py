@@ -24,13 +24,16 @@ def stub():
             body=json.loads(self.rfile.read(int(self.headers['Content-Length'])))
             config['requests'].append(body); config['headers'].append(dict(self.headers))
             time.sleep(config['delay'])
-            choices=body['questions'][0]['choices']; n=len(choices)
-            if config['mode']=='refusal': answer={'type':'refusal','name':'action'}
-            else:
-                answer={'type':'choice','name':'action','choice':choices[0]['value'],'confidence':.75,
-                        'probabilities':[{'value':c['value'],'probability':1/n} for c in choices]}
-                if config['mode']=='invalid': answer['choice']='OUTSIDE_OPTIONS'
-            response={'model':'gpt-6-luna','answers':[answer],'usage':{'input_tokens':config['tokens'],
+            answers=[]
+            for q in body['questions']:
+                choices=q['choices']; n=len(choices)
+                if config['mode']=='refusal': answer={'type':'refusal','name':q['name']}
+                else:
+                    answer={'type':'choice','name':q['name'],'choice':choices[0]['value'],'confidence':.75,
+                            'probabilities':[{'value':c['value'],'probability':1/n} for c in choices]}
+                    if config['mode']=='invalid': answer['choice']='OUTSIDE_OPTIONS'
+                answers.append(answer)
+            response={'model':'gpt-6-luna','answers':answers,'usage':{'input_tokens':config['tokens'],
                      'input_tokens_details':{'cached_tokens':0,'cache_write_tokens':0},'output_tokens':0,
                      'output_tokens_details':{'reasoning_tokens':0},'total_tokens':config['tokens']}}
             self.send_response(config['status']); self.send_header('Content-Type','application/json'); self.send_header('x-request-id','stub-request'); self.end_headers()
