@@ -15,7 +15,9 @@ BIN_NAMES = {**CONTENT_BINS, **CONTINENT_BINS}
 PER_ROUND = 20
 SWITCH_AT = 10          # round 4 changes its rule after this many packages
 RECENT = 6              # round 5 shows this many recent packages
-CONVEYOR_SECONDS = 3.0  # realtime: a package not sorted in time falls off the belt
+DEADLINES = {'realtime': 1.5, 'paused': 10.0}   # seconds per package: the belt in realtime; effectively no limit when paused
+PRECEDENCE = ('If more than one bin could apply, use the first that fits in this order: Hazardous, Cold, Fragile, '
+              'Everything else.')
 ROUNDS = [
     ('know', 'Know it', 'Sort each package by what is inside.'),
     ('read', 'Read it', 'Labels may be misspelled, abbreviated or in another language. Sort by what is inside.'),
@@ -23,17 +25,24 @@ ROUNDS = [
                                'whatever is inside. Sort all other packages by what is inside.'),
     ('switch', 'New rule', 'Sort each package by what is inside. Partway through the round the rule changes; '
                            'always follow the rule shown now.'),
-    ('remember', 'Remember', 'Sort each package by what is inside. A smudged label that says "same bin as the last '
-                             'package from <city>" goes wherever that package went (see recent packages).'),
+    ('remember', 'Read the recent list', 'Sort each package by what is inside. A smudged label that says "same bin as the '
+                             'last package from <city>" goes wherever that package went: look it up in the recent list.'),
 ]
 SWITCH_RULE = 'New rule: sort each package by the continent of its destination, whatever is inside.'
 INSTRUCTIONS = 'Which bin does this package go into?'
 
 
-def load_bank():
-    contents = json.loads((BANK / 'contents.json').read_text())
-    messy = json.loads((BANK / 'messy.json').read_text())
-    cities = json.loads((BANK / 'cities.json').read_text())
+def bank_dir(bank='v1'):
+    if bank not in ('v1', 'v2'):
+        raise ValueError('bank must be v1 (development) or v2 (test)')
+    return BANK if bank == 'v1' else BANK / 'v2'
+
+
+def load_bank(bank='v1'):
+    folder = bank_dir(bank)
+    contents = json.loads((folder / 'contents.json').read_text())
+    messy = json.loads((folder / 'messy.json').read_text())
+    cities = json.loads((BANK / 'cities.json').read_text())   # one shared gazetteer
     return contents, messy, cities
 
 
@@ -56,10 +65,10 @@ def explanation(pkg):
 
 
 class Depot:
-    def __init__(self, seed, rounds=None):
-        self.seed = seed
+    def __init__(self, seed, rounds=None, bank='v1'):
+        self.seed, self.bank = seed, bank
         r = random.Random(f'depot:{seed}')
-        contents, messy, cities = load_bank()
+        contents, messy, cities = load_bank(bank)
         self.city_continent = {c: k for k, v in cities.items() for c in v}
         all_cities = sorted(self.city_continent)
         pool = contents[:]; r.shuffle(pool)
@@ -150,7 +159,7 @@ class Depot:
         bins = self.bins(pkg)
         if bins is CONTENT_BINS:
             lines.append('Bins: ' + '; '.join(f'{CONTENT_BINS[b]} = {CONTENT_MEANING[b]}' for b in CONTENT_BINS)
-                         + '. Each package belongs in exactly one bin.')
+                         + '. ' + PRECEDENCE)
         else:
             lines.append('Bins: ' + ', '.join(CONTINENT_BINS.values()) + '.')
         if pkg['round'] == 'list':

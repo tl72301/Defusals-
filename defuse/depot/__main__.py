@@ -18,11 +18,12 @@ def main(argv=None):
             a.add_argument('--timing', choices=TIMINGS, default='realtime')
         else:
             a.add_argument('--seeds', type=int, nargs='+', required=True)
-            a.add_argument('--controllers', choices=CONTROLLERS, nargs='+', default=['oracle', 'keyword', 'random', 'first_option'])
+            a.add_argument('--controllers', choices=CONTROLLERS, nargs='+', default=['oracle', 'keyword', 'dictionary', 'random', 'first_option'])
             a.add_argument('--timings', choices=TIMINGS, nargs='+', default=['realtime'])
         a.add_argument('--output', type=Path, default=Path('data/depot'))
         a.add_argument('--endpoint', default=API_URL)
-        a.add_argument('--timeout', type=float, default=1.5)
+        a.add_argument('--timeout', type=float, default=None, help='Request deadline; default 1.5 s realtime, 10 s paused')
+        a.add_argument('--bank', choices=['v1', 'v2'], default='v1', help='v1: development bank; v2: separately authored test bank')
         a.add_argument('--budget-dir', type=Path, default=DEFAULT_DIR)
         a.add_argument('--no-video', action='store_true')
         a.add_argument('--dwell', type=float, default=0.6, help='Pause after each package (paces the video)')
@@ -37,7 +38,7 @@ def main(argv=None):
         from defuse.depot.report import clips
         print(f'{len(clips(args.runs, args.output))} review copies'); return 0
     common = dict(output=args.output, endpoint=args.endpoint, timeout=args.timeout, budget=Budget(args.budget_dir),
-                  video=not args.no_video, dwell=args.dwell, intro=args.intro)
+                  video=not args.no_video, dwell=args.dwell, intro=args.intro, bank=args.bank)
     if args.command == 'run':
         folder, r = run_game(args.seed, args.controller, args.timing, **common)
         print(summary_line(folder, r)); return 0 if not r['errors'] else 2

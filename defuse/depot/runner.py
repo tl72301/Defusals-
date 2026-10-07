@@ -1,18 +1,18 @@
 """Run one Sorting Depot game: every package's prompt, options, answer and verdict is logged for replay."""
+import hashlib
 import json
 import random
-import re
 import time
 import uuid
 from pathlib import Path
 from defuse.budget import append_json, BudgetError
 from defuse.decisions import Decisions, API_URL, Answer
 from defuse.runner import code_revision, shuffle_options
-from defuse.depot.game import Depot, BANK, CONVEYOR_SECONDS, INSTRUCTIONS, ROUNDS, BIN_NAMES
+from defuse.depot.game import Depot, BANK, DEADLINES, INSTRUCTIONS, ROUNDS, BIN_NAMES, bank_dir
+from defuse.depot import baselines
 
-CONTROLLERS = ('oracle', 'keyword', 'random', 'first_option', 'decisions')
+CONTROLLERS = ('oracle', 'keyword', 'dictionary', 'random', 'first_option', 'decisions')
 TIMINGS = ('realtime', 'paused')
-SMUDGED = re.compile(r'same bin as the last package from (.+)$')
 
 
 class _Option:
@@ -21,37 +21,30 @@ class _Option:
 
 
 def keyword_choice(depot, pkg):
-    """Plain code: fixed keyword lists and a small city list, written before the item bank (see bank/keyword_baseline.json)."""
-    vocab = json.loads((BANK / 'keyword_baseline.json').read_text())
-    if pkg['rule'] == 'continent':
-        city = (pkg.get('destination') or '').lower()
-        return next((k for k, v in vocab['cities'].items() if city in v), 'europe')
-    if pkg.get('destination') in depot.manifest:
-        return depot.manifest[pkg['destination']]
-    match = SMUDGED.search(pkg['label'])
-    if match:
-        recent = [p for p in depot.recent(pkg) if p['origin'] == match.group(1)]
-        if recent:
-            return recent[-1]['bin']
-    label = pkg['label'].lower()
-    for b in ('cold', 'hazardous', 'fragile'):
-        if any(word in label for word in vocab[b]):
-            return b
-    return 'other'
+    """Kept for compatibility: the fixed keyword baseline applied to this package's prompt."""
+    return baselines.keyword(depot.prompt(pkg))
 
 
-def run_game(seed, controller='oracle', timing='realtime', output=Path('data/depot'), endpoint=API_URL, timeout=1.5,
-             budget=None, batch=False, video=True, dwell=0.6, intro=2.0, rounds=None):
+def bank_hashes(bank):
+    folder = bank_dir(bank)
+    files = [folder / 'contents.json', folder / 'messy.json', BANK / 'cities.json', BANK / 'keyword_baseline.json',
+             Path(baselines.__file__)]
+    return {str(f.relative_to(BANK.parent)): hashlib.sha256(f.read_bytes()).hexdigest() for f in files}
+
+
+def run_game(seed, controller='oracle', timing='realtime', output=Path('data/depot'), endpoint=API_URL, timeout=None,
+             budget=None, batch=False, video=True, dwell=0.6, intro=2.0, rounds=None, bank='v1'):
     if controller not in CONTROLLERS or timing not in TIMINGS:
         raise ValueError('invalid controller or timing')
-    depot = Depot(seed, rounds)
+    timeout = timeout or DEADLINES[timing]   # realtime: the belt's 1.5 s; paused: 10 s, effectively unlimited
+    depot = Depot(seed, rounds, bank)
     run_id = f'{seed}-{controller}-{timing}-{uuid.uuid4().hex[:8]}'
     folder = Path(output) / run_id; folder.mkdir(parents=True, exist_ok=False)
     api = Decisions(endpoint, timeout, budget, 'attempt', batch) if controller == 'decisions' else None
     manifest = {'schema_version': 1, 'game': 'sorting_depot', 'run_id': run_id, 'seed': seed, 'controller': controller,
                 'timing': timing, 'code_revision': code_revision(), 'model': 'gpt-6-luna' if api else None,
-                'stub': api.stub if api else False, 'limits': {'timeout': timeout, 'conveyor_seconds': CONVEYOR_SECONDS,
-                'dwell_seconds': dwell, 'intro_seconds': intro}, 'manifest_rules': depot.manifest,
+                'stub': api.stub if api else False, 'limits': {'timeout': timeout, 'dwell_seconds': dwell, 'intro_seconds': intro},
+                'bank': bank, 'bank_sha256': bank_hashes(bank), 'round_keys': rounds, 'manifest_rules': depot.manifest,
                 'rounds': [r for r in ROUNDS if any(p['round'] == r[0] for p in depot.packages)],
                 'created_unix': time.time(), 'video': {'enabled': video}}
     (folder / 'manifest.json').write_text(json.dumps(manifest, indent=2))
@@ -75,7 +68,8 @@ def run_game(seed, controller='oracle', timing='realtime', output=Path('data/dep
                 chosen = next((o['id'] for o in options if o['value'] == answer.choice), None)
             else:
                 t = time.monotonic()
-                chosen = {'oracle': lambda: pkg['bin'], 'keyword': lambda: keyword_choice(depot, pkg),
+                chosen = {'oracle': lambda: pkg['bin'], 'keyword': lambda: baselines.keyword(prompt),
+                          'dictionary': lambda: baselines.dictionary(prompt),
                           'random': lambda: rng.choice(options)['id'], 'first_option': lambda: options[0]['id']}[controller]()
                 answer.choice = next(o['value'] for o in options if o['id'] == chosen)
                 answer.latency = time.monotonic() - t
@@ -85,9 +79,8 @@ def run_game(seed, controller='oracle', timing='realtime', output=Path('data/dep
             break
         decision_at = time.monotonic() - start
         took = decision_at - request_at
-        fell = timing == 'realtime' and took > CONVEYOR_SECONDS
-        correct = chosen == pkg['bin'] and not fell
-        verdict = 'correct' if correct else ('fell_off' if fell else ('no_answer' if chosen is None else 'wrong'))
+        correct = chosen == pkg['bin']
+        verdict = 'correct' if correct else ('no_answer' if chosen is None else 'wrong')
         if api:
             append_json(folder / 'api-usage.jsonl', {**answer.as_dict(), 'index': pkg['index'], 'stub': api.stub})
             tokens += answer.input_tokens or 0; cost += answer.cost_usd; unknown += int(answer.billing_unknown); errors += bool(answer.error)
@@ -105,7 +98,7 @@ def run_game(seed, controller='oracle', timing='realtime', output=Path('data/dep
     result = {'game': 'sorting_depot', 'run_id': run_id, 'seed': seed, 'controller': controller, 'timing': timing,
               'stub': api.stub if api else False, 'packages': len(actions), 'correct': sum(a['correct'] for a in actions),
               'by_round': {k: {'correct': v[0], 'total': v[1]} for k, v in by_round.items()},
-              'fell_off': sum(a['verdict'] == 'fell_off' for a in actions), 'no_answer': sum(a['verdict'] == 'no_answer' for a in actions),
+              'bank': bank, 'timeout': timeout, 'no_answer': sum(a['verdict'] == 'no_answer' for a in actions),
               'requests': len(actions) if api else 0, 'input_tokens': tokens, 'cost_usd': cost, 'billing_unknown_requests': unknown,
               'errors': errors, 'end_reason': reason or 'complete', 'wall_duration': wall, 'video_status': 'pending' if video else 'disabled'}
     (folder / 'results.json').write_text(json.dumps(result, indent=2))

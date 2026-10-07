@@ -65,9 +65,9 @@ def test_offline_baselines_and_stubbed_decisions(tmp_path, stub):
     assert (folder / 'captions.srt').read_text().count('-->') == 100
     assert len((folder / 'transcript.tsv').read_text().splitlines()) == 101
     folder, r = run_game(4, 'decisions', 'paused', output=tmp_path, endpoint=stub['url'], video=False, dwell=0, intro=0)
-    assert r['requests'] == 100 and r['cost_usd'] == 0 and r['fell_off'] == 0
+    assert r['requests'] == 100 and r['cost_usd'] == 0 and r['timeout'] == 10.0
     body = stub['requests'][0]
-    assert body['input'][0]['content'][0]['text'].startswith('Sorting depot, round 1 of 5')
+    assert body['input'][0]['content'][0]['text'].startswith('Sorting depot, round 1 of 5') and 'Hazardous, Cold, Fragile' in body['input'][0]['content'][0]['text']
     assert body['questions'][0]['instructions'] == 'Which bin does this package go into?'
     assert len(body['questions'][0]['choices']) == 4
     stub['delay'] = 0.3
@@ -86,3 +86,16 @@ def test_short_video_renders_with_captions(tmp_path):
 def test_palette_is_readable():
     assert all(contrast(fg, bg) >= 4.5 for fg, bg in TEXT_PAIRS)
     assert all(contrast(c, CARD) >= 3.0 for c in BIN_COLOR.values())   # icons and outlines: non-text contrast
+
+
+def test_frozen_baselines_read_only_the_prompt_and_keep_the_manifest_in_its_round():
+    from defuse.depot import baselines
+    d = Depot(103)
+    tea = next(p for p in d.packages if p['label'] == 'ceramic tea set')   # switch round, destination on the manifest
+    assert tea['round'] == 'switch' and baselines.keyword(d.prompt(tea)) == 'fragile'
+    for p in d.packages:
+        prompt = d.prompt(p)
+        assert p['bin'] not in prompt.splitlines()[-1].split('"')[1:2] or p['rule'] == 'memory'
+    scores = {name: sum(f(Depot(s).prompt(p)) == p['bin'] for s in range(101, 106) for p in Depot(s).packages)
+              for name, f in baselines.CONTROLLERS.items()}
+    assert scores == {'keyword': 350, 'dictionary': 493}   # the review's published numbers, plus the manifest fix
