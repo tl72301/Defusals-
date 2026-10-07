@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+data/
+*.egg-info/
+
+# Local credentials and key material
+.env
+.env.*
+.secrets
+.secrets.*
+secrets/
+credentials.json
+credentials.*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Build outputs
+build/
+dist/

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "defuse-decisions"
+version = "0.1.0"
+description = "An original text-first timed reasoning benchmark with recorded experiments"
+requires-python = ">=3.11"
+license = "MIT"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = ["defuse*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["media: video integration tests"]

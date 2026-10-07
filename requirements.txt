@@ -1,0 +1,4 @@
+Pillow==11.3.0
+numpy==2.2.6
+imageio-ffmpeg==0.6.0
+httpx==0.28.1
