@@ -126,7 +126,7 @@ def frame(manifest, rows, events, t, total):
     n = [x[0] for x in ROUNDS].index(row['round'])
     rule = ROUNDS[n][2] if row['rule'] != 'continent' else 'New rule: sort by the continent of the destination.'
     say(d, (32, 112), f'Round {n + 1}: {ROUNDS[n][1]}', 24, TEXT)
-    for i, line in enumerate(wrap(d, rule, 20, 820)):
+    for i, line in enumerate(wrap(d, rule, 20, 800)):
         say(d, (32, 146 + i * 26), line, 20, MUTED)
     # context panel: manifest or recent packages
     if row['round'] == 'list' and manifest.get('manifest_rules'):
@@ -135,12 +135,14 @@ def frame(manifest, rows, events, t, total):
         for i, (city, b) in enumerate(manifest['manifest_rules'].items()):
             say(d, (916, 156 + i * 32), f'{city} → {BIN_NAMES[b]}', 20, MUTED)
     if row['round'] == 'remember':
-        d.rectangle((900, 110, WIDTH - 24, 330), fill=PANEL)
-        say(d, (916, 120), 'Recent packages', 22)
+        d.rectangle((860, 104, WIDTH - 16, 400), fill=PANEL)
+        say(d, (876, 112), 'Recent packages', 22)
         earlier = [r for r in rows if r['round'] == 'remember' and r['index'] < row['index']][-6:]
         for i, r in enumerate(earlier):
-            label = r['label'] if len(r['label']) < 22 else r['label'][:20] + '…'
-            say(d, (916, 154 + i * 28), f'{r["origin"]}: {label} → {BIN_NAMES[r["right"]]}', 16, MUTED)
+            label = 'smudged label' if r['rule'] == 'memory' else r['label']
+            label = label if len(label) <= 24 else label[:22] + '…'
+            say(d, (876, 148 + i * 42), f'{r["origin"]} → {BIN_NAMES[r["right"]]}', 20, TEXT)
+            say(d, (876, 170 + i * 42), label, 18, MUTED)
     # bins
     bins = CONTINENT_BINS if row['rule'] == 'continent' else CONTENT_BINS
     boxes = bin_boxes(bins)
@@ -158,14 +160,19 @@ def frame(manifest, rows, events, t, total):
     label = row['label']
     size = 40 if len(label) <= 24 else (32 if len(label) <= 34 else 26)
     width = min(760, int(d.textlength(label, font=font(size))) + 60)
+    mid = 430 if row['round'] == 'remember' else WIDTH // 2   # keep clear of the recent-packages panel
+    if row['round'] == 'remember':
+        while size > 20 and d.textlength(label, font=font(size)) + 60 > 2 * (845 - mid):
+            size -= 1
+        width = min(2 * (845 - mid), int(d.textlength(label, font=font(size))) + 60)
     if not decided:
         p = min(1.0, (t - row['request_at']) / SLIDE)
-        cx, cy = int(-width + p * (WIDTH // 2 + width)), 360
+        cx, cy = int(-width + p * (mid + width)), 360
     else:
         p = min(1.0, (t - row['decision_at']) / DROP)
         target = boxes.get(row['chosen'])
-        tx, ty = ((target[0] + target[2]) // 2, (target[1] + target[3]) // 2) if target else (WIDTH // 2, 470)
-        cx, cy = int(WIDTH // 2 + p * (tx - WIDTH // 2)), int(360 + p * (ty - 360))
+        tx, ty = ((target[0] + target[2]) // 2, (target[1] + target[3]) // 2) if target else (mid, 470)
+        cx, cy = int(mid + p * (tx - mid)), int(360 + p * (ty - 360))
     d.rounded_rectangle((cx - width // 2, cy - 44, cx + width // 2, cy + 44), 10, fill='#8A6A44', outline='#5C452B', width=3)
     say(d, (cx, cy), label, size, '#FFFFFF', 'mm')
     where = (f'to {row["destination"]}' if row.get('destination') else '') or (f'from {row["origin"]}' if row.get('origin') else '')
@@ -184,7 +191,7 @@ def frame(manifest, rows, events, t, total):
         say(d, (32, HEIGHT - 46), f'{who} chose {choice}{conf} in {row["seconds"]:.2f} s: {verdict}', 24,
             RIGHT_COLOR if row['correct'] else WRONG_COLOR)
         if row['correct']:
-            say(d, (WIDTH // 2, 300), '✓', 64, RIGHT_COLOR, 'mm')
+            say(d, (mid, 290), '✓', 64, RIGHT_COLOR, 'mm')
         else:
             for i, line in enumerate(wrap(d, '✗  ' + row['explanation'], 24, 1100)[:2]):
                 say(d, (WIDTH // 2, 272 + i * 32), line, 24, WRONG_COLOR, 'mm')
