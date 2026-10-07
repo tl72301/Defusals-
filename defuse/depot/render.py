@@ -179,7 +179,7 @@ def frame(manifest, rows, events, t, total):
     label = row['label']
     size = 40 if len(label) <= 24 else (32 if len(label) <= 34 else 26)
     width = min(760, int(d.textlength(label, font=tfont(label, size))) + 60)
-    mid = 430 if row['round'] == 'remember' else WIDTH // 2   # keep clear of the recent-packages panel
+    mid = 430 if row['round'] in ('remember', 'list') else WIDTH // 2   # keep clear of the side panel
     if row['round'] == 'remember':
         while size > 20 and d.textlength(label, font=tfont(label, size)) + 60 > 2 * (845 - mid):
             size -= 1
@@ -212,8 +212,9 @@ def frame(manifest, rows, events, t, total):
         if row['correct']:
             say(d, (mid, 290), '✓', 64, RIGHT_COLOR, 'mm')
         else:
-            for i, line in enumerate(wrap(d, '✗  ' + row['explanation'], 24, 1100)[:2]):
-                say(d, (WIDTH // 2, 272 + i * 32), line, 24, WRONG_COLOR, 'mm')
+            span = 780 if mid != WIDTH // 2 else 1100
+            for i, line in enumerate(wrap(d, '✗  ' + row['explanation'], 24, span)[:2]):
+                say(d, (mid, 262 + i * 32), line, 24, WRONG_COLOR, 'mm')
     return img
 
 
