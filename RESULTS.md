@@ -44,9 +44,30 @@ With the dial letters stated outright (`showing`), Word Loom went from 0/5 to 1/
 
 At chance even for a single arithmetic step.
 
+## Redo: a strike replaces the puzzle with a new layout (`--fresh-on-strike`)
+
+Full bombs, seeds 50001-50010: **0/20 defused** (realtime and paused), mean 1.75 puzzles solved (first run: 1.0-1.1).
+
+Single-puzzle probes, seeds 60001-60005, up to 20 strikes:
+
+| Puzzle | Decisions | Random | Solved (Decisions · random) |
+|---|---:|---:|---:|
+| Thread Array (wires) | 36% | 33% | 5/5 · 5/5 |
+| Pulse Seal (timed button) | 83% | 50% | 5/5 · 5/5 |
+| Sigil Rack (glyph order) | 62% | 21% | 4/5 · 0/5 |
+| Tint Echo (color table) | 29% | 30% | 0/5 · 0/5 |
+| Ledger Keys (memory) | 66% | 22% | 3/5 · 0/5 |
+| Word Loom (letter dials) | 52% | 45% | 0/5 · 0/5 |
+| Keystone (multi-step arithmetic) | 25% | 34% | 5/5 · 5/5 |
+| Labyrinth (legal moves) | 57% | 53% | 0/5 · 0/5 |
+
+Without repeated prompts, memory (Ledger Keys) and Word Loom rise well above the first run, and lookups (button,
+glyphs) stay clearly above random. Multi-condition rules (wires, color table) and arithmetic stay at chance.
+A bomb needs about 25 correct moves with at most 2 mistakes (~95% per move), so whole bombs remain out of reach.
+
 ## Spend
 
-1,035 billed requests, about $0.104 (conservative: unresolved timeouts counted at their reservation).
+About 2,000 billed requests, about $0.19 in total (conservative: unresolved timeouts counted at their reservation).
 
 ## Changes made during the live run
 
