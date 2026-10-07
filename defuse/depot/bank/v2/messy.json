@@ -1,0 +1,962 @@
+[
+  {
+    "id": "t-m000",
+    "label": "納豆",
+    "bin": "cold",
+    "meaning": "natto, fermented soybeans sold refrigerated (Japanese)"
+  },
+  {
+    "id": "t-m001",
+    "label": "明太子",
+    "bin": "cold",
+    "meaning": "mentaiko, salted pollock roe (Japanese)"
+  },
+  {
+    "id": "t-m002",
+    "label": "鲜奶油蛋糕",
+    "bin": "cold",
+    "meaning": "fresh cream cake (Chinese)"
+  },
+  {
+    "id": "t-m003",
+    "label": "冷冻汤圆",
+    "bin": "cold",
+    "meaning": "frozen glutinous rice balls (Chinese)"
+  },
+  {
+    "id": "t-m004",
+    "label": "생오징어",
+    "bin": "cold",
+    "meaning": "raw squid (Korean)"
+  },
+  {
+    "id": "t-m005",
+    "label": "한우 생고기",
+    "bin": "cold",
+    "meaning": "raw Hanwoo beef (Korean)"
+  },
+  {
+    "id": "t-m006",
+    "label": "холодец",
+    "bin": "cold",
+    "meaning": "kholodets, meat aspic (Russian)"
+  },
+  {
+    "id": "t-m007",
+    "label": "τυρί φέτα",
+    "bin": "cold",
+    "meaning": "feta cheese (Greek)"
+  },
+  {
+    "id": "t-m008",
+    "label": "ωμό χταπόδι",
+    "bin": "cold",
+    "meaning": "raw octopus (Greek)"
+  },
+  {
+    "id": "t-m009",
+    "label": "لبنة",
+    "bin": "cold",
+    "meaning": "labneh, strained yogurt cheese (Arabic)"
+  },
+  {
+    "id": "t-m010",
+    "label": "لحم جمل نيء",
+    "bin": "cold",
+    "meaning": "raw camel meat (Arabic)"
+  },
+  {
+    "id": "t-m011",
+    "label": "पनीर",
+    "bin": "cold",
+    "meaning": "paneer, fresh cheese (Hindi)"
+  },
+  {
+    "id": "t-m012",
+    "label": "कच्चा मटन",
+    "bin": "cold",
+    "meaning": "raw mutton (Hindi)"
+  },
+  {
+    "id": "t-m013",
+    "label": "çiğ alabalık",
+    "bin": "cold",
+    "meaning": "raw trout (Turkish)"
+  },
+  {
+    "id": "t-m014",
+    "label": "śledzie w śmietanie",
+    "bin": "cold",
+    "meaning": "herring in cream (Polish)"
+  },
+  {
+    "id": "t-m015",
+    "label": "surowy dorsz",
+    "bin": "cold",
+    "meaning": "raw cod (Polish)"
+  },
+  {
+    "id": "t-m016",
+    "label": "vanillevla",
+    "bin": "cold",
+    "meaning": "vanilla custard dessert (Dutch)"
+  },
+  {
+    "id": "t-m017",
+    "label": "rå älgfilé",
+    "bin": "cold",
+    "meaning": "raw moose fillet (Swedish)"
+  },
+  {
+    "id": "t-m018",
+    "label": "ốc sống",
+    "bin": "cold",
+    "meaning": "live sea snails (Vietnamese)"
+  },
+  {
+    "id": "t-m019",
+    "label": "daging kambing mentah",
+    "bin": "cold",
+    "meaning": "raw goat meat (Indonesian)"
+  },
+  {
+    "id": "t-m020",
+    "label": "bacon uncookd 1lb",
+    "bin": "cold",
+    "meaning": "uncooked bacon, 1 lb (misspelling, unit code)"
+  },
+  {
+    "id": "t-m021",
+    "label": "hotdogs 8ct",
+    "bin": "cold",
+    "meaning": "hot dogs, 8 count (run-together, count code)"
+  },
+  {
+    "id": "t-m022",
+    "label": "frz spinach 10oz",
+    "bin": "cold",
+    "meaning": "frozen spinach, 10 oz (abbreviation)"
+  },
+  {
+    "id": "t-m023",
+    "label": "provolne slices 12ct",
+    "bin": "cold",
+    "meaning": "provolone cheese slices, 12 count (misspelling)"
+  },
+  {
+    "id": "t-m024",
+    "label": "goat cheez log",
+    "bin": "cold",
+    "meaning": "goat cheese log (phonetic spelling)"
+  },
+  {
+    "id": "t-m025",
+    "label": "tilapia filets raw x4",
+    "bin": "cold",
+    "meaning": "four raw tilapia fillets (shorthand)"
+  },
+  {
+    "id": "t-m026",
+    "label": "turky burgers raw 4pk",
+    "bin": "cold",
+    "meaning": "raw turkey burgers, 4-pack (misspelling)"
+  },
+  {
+    "id": "t-m027",
+    "label": "frzn meetballs 2lb",
+    "bin": "cold",
+    "meaning": "frozen meatballs, 2 lb (dropped vowels, misspelling)"
+  },
+  {
+    "id": "t-m028",
+    "label": "frzn burittos x6",
+    "bin": "cold",
+    "meaning": "six frozen burritos (dropped vowels, misspelling)"
+  },
+  {
+    "id": "t-m029",
+    "label": "pimento cheez tub",
+    "bin": "cold",
+    "meaning": "pimento cheese spread (phonetic spelling)"
+  },
+  {
+    "id": "t-m030",
+    "label": "banana crm pie",
+    "bin": "cold",
+    "meaning": "banana cream pie (dropped vowels)"
+  },
+  {
+    "id": "t-m031",
+    "label": "deviled egs tray",
+    "bin": "cold",
+    "meaning": "tray of deviled eggs (misspelling)"
+  },
+  {
+    "id": "t-m032",
+    "label": "potatoe salad 2lb deli",
+    "bin": "cold",
+    "meaning": "deli potato salad, 2 lb (misspelling)"
+  },
+  {
+    "id": "t-m033",
+    "label": "lqd egg whites 32oz",
+    "bin": "cold",
+    "meaning": "liquid egg whites, 32 oz (dropped vowels)"
+  },
+  {
+    "id": "t-m034",
+    "label": "bison stks raw x2",
+    "bin": "cold",
+    "meaning": "two raw bison steaks (dropped vowels)"
+  },
+  {
+    "id": "t-m035",
+    "label": "lasagna frz fam sz",
+    "bin": "cold",
+    "meaning": "frozen family-size lasagna (abbreviations)"
+  },
+  {
+    "id": "t-m036",
+    "label": "strng chz 24ct",
+    "bin": "cold",
+    "meaning": "string cheese, 24 count (dropped vowels)"
+  },
+  {
+    "id": "t-m037",
+    "label": "tamales frzn dz",
+    "bin": "cold",
+    "meaning": "a dozen frozen tamales (abbreviations)"
+  },
+  {
+    "id": "t-m038",
+    "label": "colslaw 1qt deli",
+    "bin": "cold",
+    "meaning": "deli coleslaw, 1 quart (misspelling)"
+  },
+  {
+    "id": "t-m039",
+    "label": "liverwurst chub 1lb",
+    "bin": "cold",
+    "meaning": "1 lb chub of liverwurst (trade shorthand)"
+  },
+  {
+    "id": "t-m040",
+    "label": "使い捨てライター",
+    "bin": "hazardous",
+    "meaning": "disposable lighters (Japanese)"
+  },
+  {
+    "id": "t-m041",
+    "label": "農薬",
+    "bin": "hazardous",
+    "meaning": "agricultural pesticide (Japanese)"
+  },
+  {
+    "id": "t-m042",
+    "label": "スプレー缶",
+    "bin": "hazardous",
+    "meaning": "aerosol spray cans (Japanese)"
+  },
+  {
+    "id": "t-m043",
+    "label": "工业炸药",
+    "bin": "hazardous",
+    "meaning": "industrial explosives (Chinese)"
+  },
+  {
+    "id": "t-m044",
+    "label": "氯气钢瓶",
+    "bin": "hazardous",
+    "meaning": "chlorine gas cylinder (Chinese)"
+  },
+  {
+    "id": "t-m045",
+    "label": "질소 가스 실린더",
+    "bin": "hazardous",
+    "meaning": "nitrogen gas cylinder (Korean)"
+  },
+  {
+    "id": "t-m046",
+    "label": "연막탄",
+    "bin": "hazardous",
+    "meaning": "smoke bombs (Korean)"
+  },
+  {
+    "id": "t-m047",
+    "label": "уксусная эссенция 70%",
+    "bin": "hazardous",
+    "meaning": "70% acetic acid essence (Russian)"
+  },
+  {
+    "id": "t-m048",
+    "label": "дихлофос",
+    "bin": "hazardous",
+    "meaning": "dichlorvos aerosol insecticide (Russian)"
+  },
+  {
+    "id": "t-m049",
+    "label": "φιάλη αργού",
+    "bin": "hazardous",
+    "meaning": "argon gas cylinder (Greek)"
+  },
+  {
+    "id": "t-m050",
+    "label": "مبيد حشري",
+    "bin": "hazardous",
+    "meaning": "insecticide (Arabic)"
+  },
+  {
+    "id": "t-m051",
+    "label": "तेज़ाब की बोतल",
+    "bin": "hazardous",
+    "meaning": "bottle of acid (Hindi)"
+  },
+  {
+    "id": "t-m052",
+    "label": "सीएनजी सिलेंडर",
+    "bin": "hazardous",
+    "meaning": "compressed natural gas cylinder (Hindi)"
+  },
+  {
+    "id": "t-m053",
+    "label": "kezzap",
+    "bin": "hazardous",
+    "meaning": "nitric acid (Turkish)"
+  },
+  {
+    "id": "t-m054",
+    "label": "spirytus 95%",
+    "bin": "hazardous",
+    "meaning": "95% rectified spirit, flammable (Polish)"
+  },
+  {
+    "id": "t-m055",
+    "label": "aanmaakblokjes",
+    "bin": "hazardous",
+    "meaning": "firelighter cubes (Dutch)"
+  },
+  {
+    "id": "t-m056",
+    "label": "carbid (calciumcarbide)",
+    "bin": "hazardous",
+    "meaning": "calcium carbide, releases flammable gas with water (Dutch)"
+  },
+  {
+    "id": "t-m057",
+    "label": "myrsyra 85%",
+    "bin": "hazardous",
+    "meaning": "85% formic acid (Swedish)"
+  },
+  {
+    "id": "t-m058",
+    "label": "cồn khô",
+    "bin": "hazardous",
+    "meaning": "solid alcohol fuel (Vietnamese)"
+  },
+  {
+    "id": "t-m059",
+    "label": "air keras",
+    "bin": "hazardous",
+    "meaning": "strong acid, literally 'hard water' (Indonesian)"
+  },
+  {
+    "id": "t-m060",
+    "label": "R134a refrig can 12oz",
+    "bin": "hazardous",
+    "meaning": "R-134a refrigerant can, pressurized (abbreviation; 'refrig' is not food)"
+  },
+  {
+    "id": "t-m061",
+    "label": "lipo pk 3S 5000mAh x2",
+    "bin": "hazardous",
+    "meaning": "two lithium-polymer battery packs (trade shorthand)"
+  },
+  {
+    "id": "t-m062",
+    "label": "Li-ion 21700 cells x10",
+    "bin": "hazardous",
+    "meaning": "ten lithium-ion 21700 cells (unit code)"
+  },
+  {
+    "id": "t-m063",
+    "label": "brake clnr aerosol 14oz",
+    "bin": "hazardous",
+    "meaning": "aerosol brake cleaner, 14 oz (dropped vowels)"
+  },
+  {
+    "id": "t-m064",
+    "label": "startng fluid (ether) 11oz",
+    "bin": "hazardous",
+    "meaning": "ether engine starting fluid (misspelling)"
+  },
+  {
+    "id": "t-m065",
+    "label": "MEK solvnt 1qt",
+    "bin": "hazardous",
+    "meaning": "methyl ethyl ketone solvent, 1 quart (abbreviation)"
+  },
+  {
+    "id": "t-m066",
+    "label": "wasp killr can 14oz",
+    "bin": "hazardous",
+    "meaning": "wasp killer aerosol can (misspelling)"
+  },
+  {
+    "id": "t-m067",
+    "label": "binary explsv targets 1lb",
+    "bin": "hazardous",
+    "meaning": "binary exploding rifle targets (dropped vowels)"
+  },
+  {
+    "id": "t-m068",
+    "label": "nitro fuel 20% 1gal",
+    "bin": "hazardous",
+    "meaning": "20% nitromethane model-engine fuel (shorthand)"
+  },
+  {
+    "id": "t-m069",
+    "label": "fiberglas resin qt (styrene)",
+    "bin": "hazardous",
+    "meaning": "polyester fiberglass resin, flammable (misspelling)"
+  },
+  {
+    "id": "t-m070",
+    "label": "pvc cemnt 8oz",
+    "bin": "hazardous",
+    "meaning": "PVC solvent cement, flammable (misspelling)"
+  },
+  {
+    "id": "t-m071",
+    "label": "tolune 1gal",
+    "bin": "hazardous",
+    "meaning": "toluene solvent, 1 gallon (misspelling)"
+  },
+  {
+    "id": "t-m072",
+    "label": "thermite pwdr 1lb",
+    "bin": "hazardous",
+    "meaning": "thermite powder, incendiary (dropped vowels)"
+  },
+  {
+    "id": "t-m073",
+    "label": "Mg ribbon 25g",
+    "bin": "hazardous",
+    "meaning": "magnesium ribbon, flammable metal (chemical symbol)"
+  },
+  {
+    "id": "t-m074",
+    "label": "spray foam insulatn 12oz",
+    "bin": "hazardous",
+    "meaning": "aerosol spray foam insulation (dropped letters)"
+  },
+  {
+    "id": "t-m075",
+    "label": "tire inflatr aerosol",
+    "bin": "hazardous",
+    "meaning": "aerosol tire inflator (misspelling)"
+  },
+  {
+    "id": "t-m076",
+    "label": "marine air horn cn",
+    "bin": "hazardous",
+    "meaning": "compressed-gas boat horn can (abbreviation)"
+  },
+  {
+    "id": "t-m077",
+    "label": "co2 tnk 20oz paintbal",
+    "bin": "hazardous",
+    "meaning": "20 oz paintball CO2 tank (dropped vowels)"
+  },
+  {
+    "id": "t-m078",
+    "label": "firestartr gel 8oz",
+    "bin": "hazardous",
+    "meaning": "flammable fire starter gel (run-together)"
+  },
+  {
+    "id": "t-m079",
+    "label": "organophos insectcd conc 1qt",
+    "bin": "hazardous",
+    "meaning": "organophosphate insecticide concentrate (abbreviations)"
+  },
+  {
+    "id": "t-m080",
+    "label": "盆栽鉢（陶器）",
+    "bin": "fragile",
+    "meaning": "ceramic bonsai pot (Japanese)"
+  },
+  {
+    "id": "t-m081",
+    "label": "ガラス細工",
+    "bin": "fragile",
+    "meaning": "glass craftwork ornaments (Japanese)"
+  },
+  {
+    "id": "t-m082",
+    "label": "琉璃摆件",
+    "bin": "fragile",
+    "meaning": "art-glass ornament (Chinese)"
+  },
+  {
+    "id": "t-m083",
+    "label": "空玻璃药瓶",
+    "bin": "fragile",
+    "meaning": "empty glass medicine bottles (Chinese)"
+  },
+  {
+    "id": "t-m084",
+    "label": "백자 달항아리",
+    "bin": "fragile",
+    "meaning": "white porcelain moon jar (Korean)"
+  },
+  {
+    "id": "t-m085",
+    "label": "유리 진열장 문",
+    "bin": "fragile",
+    "meaning": "glass display-cabinet door (Korean)"
+  },
+  {
+    "id": "t-m086",
+    "label": "стеклянная дверь для душа",
+    "bin": "fragile",
+    "meaning": "glass shower door (Russian)"
+  },
+  {
+    "id": "t-m087",
+    "label": "фарфоровая шкатулка",
+    "bin": "fragile",
+    "meaning": "porcelain trinket box (Russian)"
+  },
+  {
+    "id": "t-m088",
+    "label": "πήλινος αμφορέας",
+    "bin": "fragile",
+    "meaning": "clay amphora (Greek)"
+  },
+  {
+    "id": "t-m089",
+    "label": "فانوس زجاجي",
+    "bin": "fragile",
+    "meaning": "glass lantern (Arabic)"
+  },
+  {
+    "id": "t-m090",
+    "label": "نرجيلة زجاجية",
+    "bin": "fragile",
+    "meaning": "glass hookah (Arabic)"
+  },
+  {
+    "id": "t-m091",
+    "label": "कांच की चूड़ियाँ",
+    "bin": "fragile",
+    "meaning": "glass bangles (Hindi)"
+  },
+  {
+    "id": "t-m092",
+    "label": "मिट्टी के दीये",
+    "bin": "fragile",
+    "meaning": "clay oil-lamp diyas (Hindi)"
+  },
+  {
+    "id": "t-m093",
+    "label": "nazar boncuğu",
+    "bin": "fragile",
+    "meaning": "glass evil-eye beads (Turkish)"
+  },
+  {
+    "id": "t-m094",
+    "label": "mozaik cam lamba",
+    "bin": "fragile",
+    "meaning": "mosaic glass lamp (Turkish)"
+  },
+  {
+    "id": "t-m095",
+    "label": "ceramika bolesławiecka (dzbanek)",
+    "bin": "fragile",
+    "meaning": "Bolesławiec pottery jug (Polish)"
+  },
+  {
+    "id": "t-m096",
+    "label": "aardewerken schaal",
+    "bin": "fragile",
+    "meaning": "earthenware dish (Dutch)"
+  },
+  {
+    "id": "t-m097",
+    "label": "glasskulptur",
+    "bin": "fragile",
+    "meaning": "glass sculpture (Swedish)"
+  },
+  {
+    "id": "t-m098",
+    "label": "chén sứ",
+    "bin": "fragile",
+    "meaning": "porcelain rice bowls (Vietnamese)"
+  },
+  {
+    "id": "t-m099",
+    "label": "guci keramik",
+    "bin": "fragile",
+    "meaning": "ceramic urn (Indonesian)"
+  },
+  {
+    "id": "t-m100",
+    "label": "glss measuring cup 2c",
+    "bin": "fragile",
+    "meaning": "glass 2-cup measuring cup (dropped vowel)"
+  },
+  {
+    "id": "t-m101",
+    "label": "stonewr beer stein",
+    "bin": "fragile",
+    "meaning": "stoneware beer stein (dropped vowels)"
+  },
+  {
+    "id": "t-m102",
+    "label": "vntg perfume bttl EMPTY",
+    "bin": "fragile",
+    "meaning": "empty vintage glass perfume bottle (abbreviations)"
+  },
+  {
+    "id": "t-m103",
+    "label": "glss pot lid 10in",
+    "bin": "fragile",
+    "meaning": "glass 10-inch pot lid (dropped vowel)"
+  },
+  {
+    "id": "t-m104",
+    "label": "glss bakng dish 9x13",
+    "bin": "fragile",
+    "meaning": "glass 9x13 baking dish (dropped vowels)"
+  },
+  {
+    "id": "t-m105",
+    "label": "crockpot insrt (stoneware)",
+    "bin": "fragile",
+    "meaning": "slow-cooker stoneware insert (shorthand)"
+  },
+  {
+    "id": "t-m106",
+    "label": "fondue pot ceramc",
+    "bin": "fragile",
+    "meaning": "ceramic fondue pot (misspelling)"
+  },
+  {
+    "id": "t-m107",
+    "label": "ramkins x6 porc",
+    "bin": "fragile",
+    "meaning": "six porcelain ramekins (misspelling, abbreviation)"
+  },
+  {
+    "id": "t-m108",
+    "label": "glss cake stnd",
+    "bin": "fragile",
+    "meaning": "glass cake stand (dropped vowels)"
+  },
+  {
+    "id": "t-m109",
+    "label": "sconce glss shades x2",
+    "bin": "fragile",
+    "meaning": "two glass wall-light shades (dropped vowel)"
+  },
+  {
+    "id": "t-m110",
+    "label": "microwv turntable glss plate",
+    "bin": "fragile",
+    "meaning": "glass microwave turntable plate (dropped vowels)"
+  },
+  {
+    "id": "t-m111",
+    "label": "oil & vinegr cruets glss",
+    "bin": "fragile",
+    "meaning": "empty glass oil and vinegar cruets (misspelling)"
+  },
+  {
+    "id": "t-m112",
+    "label": "toilet tnk lid porc",
+    "bin": "fragile",
+    "meaning": "porcelain toilet tank lid (abbreviations)"
+  },
+  {
+    "id": "t-m113",
+    "label": "glss door knbs x4",
+    "bin": "fragile",
+    "meaning": "four glass doorknobs (dropped vowels)"
+  },
+  {
+    "id": "t-m114",
+    "label": "porcln dinner bell",
+    "bin": "fragile",
+    "meaning": "porcelain dinner bell (dropped vowels)"
+  },
+  {
+    "id": "t-m115",
+    "label": "glss straws 8pk",
+    "bin": "fragile",
+    "meaning": "glass drinking straws, 8-pack (dropped vowel)"
+  },
+  {
+    "id": "t-m116",
+    "label": "glss water bttl 500ml",
+    "bin": "fragile",
+    "meaning": "glass 500 ml water bottle (dropped vowels)"
+  },
+  {
+    "id": "t-m117",
+    "label": "hndmd pottry bowl",
+    "bin": "fragile",
+    "meaning": "handmade pottery bowl (dropped vowels)"
+  },
+  {
+    "id": "t-m118",
+    "label": "glss suncatcher",
+    "bin": "fragile",
+    "meaning": "glass window sun catcher (dropped vowel)"
+  },
+  {
+    "id": "t-m119",
+    "label": "cermc coasters x4",
+    "bin": "fragile",
+    "meaning": "four ceramic coasters (dropped vowels)"
+  },
+  {
+    "id": "t-m120",
+    "label": "木の箸",
+    "bin": "other",
+    "meaning": "wooden chopsticks (Japanese)"
+  },
+  {
+    "id": "t-m121",
+    "label": "布団",
+    "bin": "other",
+    "meaning": "futon bedding (Japanese)"
+  },
+  {
+    "id": "t-m122",
+    "label": "拖鞋",
+    "bin": "other",
+    "meaning": "slippers (Chinese)"
+  },
+  {
+    "id": "t-m123",
+    "label": "竹席",
+    "bin": "other",
+    "meaning": "bamboo sleeping mat (Chinese)"
+  },
+  {
+    "id": "t-m124",
+    "label": "고무장갑",
+    "bin": "other",
+    "meaning": "rubber gloves (Korean)"
+  },
+  {
+    "id": "t-m125",
+    "label": "마른 김",
+    "bin": "other",
+    "meaning": "dried laver seaweed sheets (Korean)"
+  },
+  {
+    "id": "t-m126",
+    "label": "матрёшка",
+    "bin": "other",
+    "meaning": "wooden nesting doll (Russian)"
+  },
+  {
+    "id": "t-m127",
+    "label": "гречка",
+    "bin": "other",
+    "meaning": "buckwheat groats (Russian)"
+  },
+  {
+    "id": "t-m128",
+    "label": "θαλάσσιο σφουγγάρι",
+    "bin": "other",
+    "meaning": "natural sea sponge (Greek)"
+  },
+  {
+    "id": "t-m129",
+    "label": "سجادة صلاة",
+    "bin": "other",
+    "meaning": "prayer rug (Arabic)"
+  },
+  {
+    "id": "t-m130",
+    "label": "सूती कुर्ता",
+    "bin": "other",
+    "meaning": "cotton kurta shirt (Hindi)"
+  },
+  {
+    "id": "t-m131",
+    "label": "मसूर दाल",
+    "bin": "other",
+    "meaning": "red lentils (Hindi)"
+  },
+  {
+    "id": "t-m132",
+    "label": "lokum",
+    "bin": "other",
+    "meaning": "Turkish delight (Turkish)"
+  },
+  {
+    "id": "t-m133",
+    "label": "el yapımı halı",
+    "bin": "other",
+    "meaning": "handmade carpet (Turkish)"
+  },
+  {
+    "id": "t-m134",
+    "label": "drewniane łyżki",
+    "bin": "other",
+    "meaning": "wooden spoons (Polish)"
+  },
+  {
+    "id": "t-m135",
+    "label": "klompen",
+    "bin": "other",
+    "meaning": "wooden clogs (Dutch)"
+  },
+  {
+    "id": "t-m136",
+    "label": "stroopwafels",
+    "bin": "other",
+    "meaning": "syrup waffle cookies (Dutch)"
+  },
+  {
+    "id": "t-m137",
+    "label": "knäckebröd",
+    "bin": "other",
+    "meaning": "crispbread (Swedish)"
+  },
+  {
+    "id": "t-m138",
+    "label": "nón lá",
+    "bin": "other",
+    "meaning": "conical palm-leaf hat (Vietnamese)"
+  },
+  {
+    "id": "t-m139",
+    "label": "kain batik",
+    "bin": "other",
+    "meaning": "batik cloth (Indonesian)"
+  },
+  {
+    "id": "t-m140",
+    "label": "flanel shirts M x3",
+    "bin": "other",
+    "meaning": "three medium flannel shirts (misspelling)"
+  },
+  {
+    "id": "t-m141",
+    "label": "canvs tote bgs x10",
+    "bin": "other",
+    "meaning": "ten canvas tote bags (dropped vowels)"
+  },
+  {
+    "id": "t-m142",
+    "label": "rubbr door mat",
+    "bin": "other",
+    "meaning": "rubber door mat (dropped vowel)"
+  },
+  {
+    "id": "t-m143",
+    "label": "bsktball sz7",
+    "bin": "other",
+    "meaning": "size 7 basketball (dropped vowels)"
+  },
+  {
+    "id": "t-m144",
+    "label": "golf bals 1dz",
+    "bin": "other",
+    "meaning": "a dozen golf balls (misspelling)"
+  },
+  {
+    "id": "t-m145",
+    "label": "almnds 3lb",
+    "bin": "other",
+    "meaning": "3 lb of almonds (dropped vowel)"
+  },
+  {
+    "id": "t-m146",
+    "label": "pancke mix 2lb",
+    "bin": "other",
+    "meaning": "2 lb pancake mix (misspelling)"
+  },
+  {
+    "id": "t-m147",
+    "label": "choc chps 12oz",
+    "bin": "other",
+    "meaning": "12 oz chocolate chips (abbreviations)"
+  },
+  {
+    "id": "t-m148",
+    "label": "kids rain jackt sz6",
+    "bin": "other",
+    "meaning": "child's rain jacket, size 6 (misspelling)"
+  },
+  {
+    "id": "t-m149",
+    "label": "silicne phone case",
+    "bin": "other",
+    "meaning": "silicone phone case (misspelling)"
+  },
+  {
+    "id": "t-m150",
+    "label": "usb-c cbl 6ft x3",
+    "bin": "other",
+    "meaning": "three 6-foot USB-C cables (dropped vowels)"
+  },
+  {
+    "id": "t-m151",
+    "label": "dry dog fd 30lb",
+    "bin": "other",
+    "meaning": "30 lb of dry dog food (abbreviation)"
+  },
+  {
+    "id": "t-m152",
+    "label": "alum lawn chr x2",
+    "bin": "other",
+    "meaning": "two aluminum lawn chairs (abbreviations)"
+  },
+  {
+    "id": "t-m153",
+    "label": "extnsn cord 25ft",
+    "bin": "other",
+    "meaning": "25-foot extension cord (dropped vowels)"
+  },
+  {
+    "id": "t-m154",
+    "label": "memry foam toppr Q",
+    "bin": "other",
+    "meaning": "queen memory-foam mattress topper (misspelling, size code)"
+  },
+  {
+    "id": "t-m155",
+    "label": "lthr work glvs L",
+    "bin": "other",
+    "meaning": "large leather work gloves (dropped vowels)"
+  },
+  {
+    "id": "t-m156",
+    "label": "diprs sz3 120ct",
+    "bin": "other",
+    "meaning": "size 3 diapers, 120 count (dropped vowels)"
+  },
+  {
+    "id": "t-m157",
+    "label": "zip ties 100ct",
+    "bin": "other",
+    "meaning": "100 cable zip ties (count code)"
+  },
+  {
+    "id": "t-m158",
+    "label": "tuperware set 10pc",
+    "bin": "other",
+    "meaning": "10-piece plastic food storage set (misspelling)"
+  },
+  {
+    "id": "t-m159",
+    "label": "cardbrd boxes flat x25",
+    "bin": "other",
+    "meaning": "25 flat-packed cardboard boxes (dropped vowels)"
+  }
+]
