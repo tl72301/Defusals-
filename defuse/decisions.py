@@ -38,10 +38,11 @@ def validate_endpoint(endpoint):
         raise ValueError('Endpoint overrides must be loopback HTTP(S) URLs without credentials, query, or fragment')
     return True
 
-def build_request(view,options):
+def build_request(view,options,instructions=None):
     if not 2<=len(options)<=8: raise ValueError('Each decision needs 2..8 options')
-    return {'model':MODEL,'input':[{'role':'user','type':'message','content':[{'type':'input_text','text':json.dumps(view,sort_keys=True,ensure_ascii=False)}]}],
-            'questions':[{'type':'choice','name':'action','instructions':'Apply the supplied manual to the visible state. Choose one literal action to perform now.',
+    text=view if isinstance(view,str) else json.dumps(view,sort_keys=True,ensure_ascii=False)
+    return {'model':MODEL,'input':[{'role':'user','type':'message','content':[{'type':'input_text','text':text}]}],
+            'questions':[{'type':'choice','name':'action','instructions':instructions or 'Apply the supplied manual to the visible state. Choose one literal action to perform now.',
                           'choices':[{'value':o['value'],'description':o['description']} for o in options]}]}
 
 def parse_response(data,allowed):
@@ -66,8 +67,8 @@ class Decisions:
         self.stub=validate_endpoint(endpoint)
         if not math.isfinite(timeout) or timeout<=0: raise ValueError('positive finite timeout required')
         self.endpoint,self.timeout,self.budget,self.category,self.batch=endpoint,timeout,budget or Budget(),category,batch
-    def ask(self,view,options):
-        body=build_request(view,options)
+    def ask(self,view,options,instructions=None):
+        body=build_request(view,options,instructions)
         encoded=json.dumps(body,ensure_ascii=False).encode('utf8')
         key='local-test-no-credential' if self.stub else os.environ.get('OPENAI_API_KEY')
         if not key: raise ValueError('OPENAI_API_KEY is missing; add it securely before live runs')

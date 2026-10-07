@@ -150,3 +150,33 @@ Tests prohibit remote socket connections. They include 1,000 deterministic rando
 Direct runtime dependencies are Pillow, numpy, httpx, and imageio-ffmpeg. Pytest and coverage are development dependencies. `requirements.lock` pins transitive dependencies too. Refresh pins deliberately and retest on supported Python/Linux before changing the lock.
 
 MIT licensed; see [LICENSE](LICENSE).
+
+## Sorting Depot (a second game)
+
+A plain, accessible game that tests what a language model should be good at: general knowledge and understanding
+messy language. A package rolls in with a short label; the player picks one of four bins: Cold, Hazardous, Fragile,
+Everything else. Five rounds of 20 packages, each announced with one sentence:
+
+1. **Know it**: sort by what is inside.
+2. **Read it**: labels may be misspelled, abbreviated or in another language.
+3. **Check the list**: a manifest sends some destinations to a fixed bin.
+4. **New rule**: halfway through, sort by the destination's continent instead.
+5. **Remember**: a smudged label says "same bin as the last package from Lisbon".
+
+Mistakes cost a point, never the game. Every package is new, so a wrong answer is never repeated. In realtime the
+belt keeps moving (3 s per package); in paused mode it waits.
+
+Players: `oracle` (the answer key), `keyword` (plain code: fixed keyword lists written before the item bank, see
+`defuse/depot/bank/keyword_baseline.json`), `random`, `first_option`, and `decisions`.
+
+The video shows bins by color, icon and word together (colorblind-safe colors), large text, no flashing, a caption
+for every decision and a one-line explanation for every mistake. Each run also writes `captions.srt` and
+`transcript.tsv`. The report adds accuracy per round, held-out items, calibration and a plain-language summary
+generated from the numbers.
+
+```bash
+python -m defuse.depot batch --seeds 1 2 3 --controllers oracle keyword random first_option --output data/depot
+python -m defuse.depot batch --seeds 101 102 103 --controllers decisions --timings realtime paused --output data/depot
+python -m defuse.depot report --runs data/depot
+python -m defuse.depot clips --runs data/depot
+```

@@ -1,0 +1,770 @@
+[
+ {
+  "id": "m000",
+  "label": "helado de vainilla",
+  "bin": "cold",
+  "meaning": "vanilla ice cream (Spanish)"
+ },
+ {
+  "id": "m001",
+  "label": "lait frais",
+  "bin": "cold",
+  "meaning": "fresh milk (French)"
+ },
+ {
+  "id": "m002",
+  "label": "tiefgekühlte Erbsen",
+  "bin": "cold",
+  "meaning": "frozen peas (German)"
+ },
+ {
+  "id": "m003",
+  "label": "frango cru",
+  "bin": "cold",
+  "meaning": "raw chicken (Portuguese)"
+ },
+ {
+  "id": "m004",
+  "label": "mozzarella di bufala",
+  "bin": "cold",
+  "meaning": "buffalo mozzarella (Italian)"
+ },
+ {
+  "id": "m005",
+  "label": "salmone fresco",
+  "bin": "cold",
+  "meaning": "fresh salmon (Italian)"
+ },
+ {
+  "id": "m006",
+  "label": "froze piza x2",
+  "bin": "cold",
+  "meaning": "two frozen pizzas (typo)"
+ },
+ {
+  "id": "m007",
+  "label": "chikn breasts raw",
+  "bin": "cold",
+  "meaning": "raw chicken breasts (typos)"
+ },
+ {
+  "id": "m008",
+  "label": "vacunas contra la gripe",
+  "bin": "cold",
+  "meaning": "flu vaccines (Spanish)"
+ },
+ {
+  "id": "m009",
+  "label": "yaourt nature",
+  "bin": "cold",
+  "meaning": "plain yogurt (French)"
+ },
+ {
+  "id": "m010",
+  "label": "Schlagsahne",
+  "bin": "cold",
+  "meaning": "whipping cream (German)"
+ },
+ {
+  "id": "m011",
+  "label": "queso fresco",
+  "bin": "cold",
+  "meaning": "fresh cheese (Spanish)"
+ },
+ {
+  "id": "m012",
+  "label": "gambas crudas",
+  "bin": "cold",
+  "meaning": "raw prawns (Spanish)"
+ },
+ {
+  "id": "m013",
+  "label": "manteiga sem sal",
+  "bin": "cold",
+  "meaning": "unsalted butter (Portuguese)"
+ },
+ {
+  "id": "m014",
+  "label": "Hackfleisch 1 kg",
+  "bin": "cold",
+  "meaning": "minced meat (German)"
+ },
+ {
+  "id": "m015",
+  "label": "glace à la fraise",
+  "bin": "cold",
+  "meaning": "strawberry ice cream (French)"
+ },
+ {
+  "id": "m016",
+  "label": "carne picada",
+  "bin": "cold",
+  "meaning": "minced meat (Spanish)"
+ },
+ {
+  "id": "m017",
+  "label": "huîtres fraîches",
+  "bin": "cold",
+  "meaning": "fresh oysters (French)"
+ },
+ {
+  "id": "m018",
+  "label": "ice crem tub",
+  "bin": "cold",
+  "meaning": "tub of ice cream (typo)"
+ },
+ {
+  "id": "m019",
+  "label": "yoghrt cups",
+  "bin": "cold",
+  "meaning": "yogurt cups (typo)"
+ },
+ {
+  "id": "m020",
+  "label": "frzn dumplngs",
+  "bin": "cold",
+  "meaning": "frozen dumplings (abbreviated)"
+ },
+ {
+  "id": "m021",
+  "label": "beef mince 1kg",
+  "bin": "cold",
+  "meaning": "minced beef (British)"
+ },
+ {
+  "id": "m022",
+  "label": "crème fraîche",
+  "bin": "cold",
+  "meaning": "cultured cream (French)"
+ },
+ {
+  "id": "m023",
+  "label": "requeijão",
+  "bin": "cold",
+  "meaning": "cream cheese spread (Portuguese)"
+ },
+ {
+  "id": "m024",
+  "label": "Joghurt Natur",
+  "bin": "cold",
+  "meaning": "plain yogurt (German)"
+ },
+ {
+  "id": "m025",
+  "label": "pescado fresco",
+  "bin": "cold",
+  "meaning": "fresh fish (Spanish)"
+ },
+ {
+  "id": "m026",
+  "label": "popsicels",
+  "bin": "cold",
+  "meaning": "popsicles (typo)"
+ },
+ {
+  "id": "m027",
+  "label": "gelatto x6",
+  "bin": "cold",
+  "meaning": "six gelatos (typo)"
+ },
+ {
+  "id": "m028",
+  "label": "Insulin-Pens",
+  "bin": "cold",
+  "meaning": "insulin pens (German)"
+ },
+ {
+  "id": "m029",
+  "label": "Lachsfilet frisch",
+  "bin": "cold",
+  "meaning": "fresh salmon fillet (German)"
+ },
+ {
+  "id": "m030",
+  "label": "gamberi surgelati",
+  "bin": "cold",
+  "meaning": "frozen shrimp (Italian)"
+ },
+ {
+  "id": "m031",
+  "label": "poulet cru",
+  "bin": "cold",
+  "meaning": "raw chicken (French)"
+ },
+ {
+  "id": "m032",
+  "label": "gasolina 5 L",
+  "bin": "hazardous",
+  "meaning": "gasoline (Spanish)"
+ },
+ {
+  "id": "m033",
+  "label": "allumettes",
+  "bin": "hazardous",
+  "meaning": "matches (French)"
+ },
+ {
+  "id": "m034",
+  "label": "Feuerwerk",
+  "bin": "hazardous",
+  "meaning": "fireworks (German)"
+ },
+ {
+  "id": "m035",
+  "label": "lejía",
+  "bin": "hazardous",
+  "meaning": "bleach (Spanish)"
+ },
+ {
+  "id": "m036",
+  "label": "eau de Javel",
+  "bin": "hazardous",
+  "meaning": "bleach (French)"
+ },
+ {
+  "id": "m037",
+  "label": "batería de litio",
+  "bin": "hazardous",
+  "meaning": "lithium battery (Spanish)"
+ },
+ {
+  "id": "m038",
+  "label": "pila al litio",
+  "bin": "hazardous",
+  "meaning": "lithium battery (Italian)"
+ },
+ {
+  "id": "m039",
+  "label": "bombola del gas",
+  "bin": "hazardous",
+  "meaning": "gas cylinder (Italian)"
+ },
+ {
+  "id": "m040",
+  "label": "Rattengift",
+  "bin": "hazardous",
+  "meaning": "rat poison (German)"
+ },
+ {
+  "id": "m041",
+  "label": "acide chlorhydrique",
+  "bin": "hazardous",
+  "meaning": "hydrochloric acid (French)"
+ },
+ {
+  "id": "m042",
+  "label": "diluant pour peinture",
+  "bin": "hazardous",
+  "meaning": "paint thinner (French)"
+ },
+ {
+  "id": "m043",
+  "label": "fuegos artificiales",
+  "bin": "hazardous",
+  "meaning": "fireworks (Spanish)"
+ },
+ {
+  "id": "m044",
+  "label": "munición calibre 22",
+  "bin": "hazardous",
+  "meaning": "ammunition (Spanish)"
+ },
+ {
+  "id": "m045",
+  "label": "lithum bateries",
+  "bin": "hazardous",
+  "meaning": "lithium batteries (typo)"
+ },
+ {
+  "id": "m046",
+  "label": "gasolene can 5L",
+  "bin": "hazardous",
+  "meaning": "gasoline can (typo)"
+ },
+ {
+  "id": "m047",
+  "label": "propain tank",
+  "bin": "hazardous",
+  "meaning": "propane tank (typo)"
+ },
+ {
+  "id": "m048",
+  "label": "fireworx",
+  "bin": "hazardous",
+  "meaning": "fireworks (slang spelling)"
+ },
+ {
+  "id": "m049",
+  "label": "bleech 2 gal",
+  "bin": "hazardous",
+  "meaning": "bleach (typo)"
+ },
+ {
+  "id": "m050",
+  "label": "lighter fluuid",
+  "bin": "hazardous",
+  "meaning": "lighter fluid (typo)"
+ },
+ {
+  "id": "m051",
+  "label": "ammo .22 box",
+  "bin": "hazardous",
+  "meaning": "ammunition (slang)"
+ },
+ {
+  "id": "m052",
+  "label": "spray paint cns",
+  "bin": "hazardous",
+  "meaning": "spray paint cans (abbreviated)"
+ },
+ {
+  "id": "m053",
+  "label": "drain cleanr (lye)",
+  "bin": "hazardous",
+  "meaning": "lye drain cleaner (typo)"
+ },
+ {
+  "id": "m054",
+  "label": "acetone polsh remover",
+  "bin": "hazardous",
+  "meaning": "acetone nail polish remover (typo)"
+ },
+ {
+  "id": "m055",
+  "label": "weedkiller concentrat",
+  "bin": "hazardous",
+  "meaning": "weed killer (typo)"
+ },
+ {
+  "id": "m056",
+  "label": "kerosine",
+  "bin": "hazardous",
+  "meaning": "kerosene (typo)"
+ },
+ {
+  "id": "m057",
+  "label": "Unkrautvernichter",
+  "bin": "hazardous",
+  "meaning": "weed killer (German)"
+ },
+ {
+  "id": "m058",
+  "label": "álcool combustível",
+  "bin": "hazardous",
+  "meaning": "fuel alcohol (Portuguese)"
+ },
+ {
+  "id": "m059",
+  "label": "soda caustica",
+  "bin": "hazardous",
+  "meaning": "caustic soda (Italian)"
+ },
+ {
+  "id": "m060",
+  "label": "Benzinkanister",
+  "bin": "hazardous",
+  "meaning": "gasoline can (German)"
+ },
+ {
+  "id": "m061",
+  "label": "veleno per topi",
+  "bin": "hazardous",
+  "meaning": "rat poison (Italian)"
+ },
+ {
+  "id": "m062",
+  "label": "fogos de artifício",
+  "bin": "hazardous",
+  "meaning": "fireworks (Portuguese)"
+ },
+ {
+  "id": "m063",
+  "label": "powerbank 20000mAh",
+  "bin": "hazardous",
+  "meaning": "lithium power bank (product jargon)"
+ },
+ {
+  "id": "m064",
+  "label": "copas de vino",
+  "bin": "fragile",
+  "meaning": "wine glasses (Spanish)"
+ },
+ {
+  "id": "m065",
+  "label": "vasos de vidrio",
+  "bin": "fragile",
+  "meaning": "drinking glasses (Spanish)"
+ },
+ {
+  "id": "m066",
+  "label": "assiettes en porcelaine",
+  "bin": "fragile",
+  "meaning": "porcelain plates (French)"
+ },
+ {
+  "id": "m067",
+  "label": "miroir mural",
+  "bin": "fragile",
+  "meaning": "wall mirror (French)"
+ },
+ {
+  "id": "m068",
+  "label": "Spiegel 60 cm",
+  "bin": "fragile",
+  "meaning": "mirror (German)"
+ },
+ {
+  "id": "m069",
+  "label": "Kristallvase",
+  "bin": "fragile",
+  "meaning": "crystal vase (German)"
+ },
+ {
+  "id": "m070",
+  "label": "bicchieri di vetro",
+  "bin": "fragile",
+  "meaning": "drinking glasses (Italian)"
+ },
+ {
+  "id": "m071",
+  "label": "lâmpadas incandescentes",
+  "bin": "fragile",
+  "meaning": "light bulbs (Portuguese)"
+ },
+ {
+  "id": "m072",
+  "label": "tazze di ceramica",
+  "bin": "fragile",
+  "meaning": "ceramic cups (Italian)"
+ },
+ {
+  "id": "m073",
+  "label": "espelho de parede",
+  "bin": "fragile",
+  "meaning": "wall mirror (Portuguese)"
+ },
+ {
+  "id": "m074",
+  "label": "figurine en céramique",
+  "bin": "fragile",
+  "meaning": "ceramic figurine (French)"
+ },
+ {
+  "id": "m075",
+  "label": "Weingläser",
+  "bin": "fragile",
+  "meaning": "wine glasses (German)"
+ },
+ {
+  "id": "m076",
+  "label": "jarrón de cerámica",
+  "bin": "fragile",
+  "meaning": "ceramic vase (Spanish)"
+ },
+ {
+  "id": "m077",
+  "label": "wine glsses",
+  "bin": "fragile",
+  "meaning": "wine glasses (typo)"
+ },
+ {
+  "id": "m078",
+  "label": "porcelin tea set",
+  "bin": "fragile",
+  "meaning": "porcelain tea set (typo)"
+ },
+ {
+  "id": "m079",
+  "label": "crystl vase",
+  "bin": "fragile",
+  "meaning": "crystal vase (typo)"
+ },
+ {
+  "id": "m080",
+  "label": "mirrer 60cm",
+  "bin": "fragile",
+  "meaning": "mirror (typo)"
+ },
+ {
+  "id": "m081",
+  "label": "lite bulbs 4pk",
+  "bin": "fragile",
+  "meaning": "light bulbs (abbreviated)"
+ },
+ {
+  "id": "m082",
+  "label": "glas jars (empty)",
+  "bin": "fragile",
+  "meaning": "glass jars (typo)"
+ },
+ {
+  "id": "m083",
+  "label": "champain flutes",
+  "bin": "fragile",
+  "meaning": "champagne flutes (typo)"
+ },
+ {
+  "id": "m084",
+  "label": "snowglobe",
+  "bin": "fragile",
+  "meaning": "snow globe (run together)"
+ },
+ {
+  "id": "m085",
+  "label": "teracotta pots",
+  "bin": "fragile",
+  "meaning": "terracotta pots (typo)"
+ },
+ {
+  "id": "m086",
+  "label": "fish tank (glass)",
+  "bin": "fragile",
+  "meaning": "glass aquarium"
+ },
+ {
+  "id": "m087",
+  "label": "ceramic plats",
+  "bin": "fragile",
+  "meaning": "ceramic plates (typo)"
+ },
+ {
+  "id": "m088",
+  "label": "Porzellanteller",
+  "bin": "fragile",
+  "meaning": "porcelain plates (German)"
+ },
+ {
+  "id": "m089",
+  "label": "verres à pied",
+  "bin": "fragile",
+  "meaning": "stemmed glasses (French)"
+ },
+ {
+  "id": "m090",
+  "label": "lustre en cristal",
+  "bin": "fragile",
+  "meaning": "crystal chandelier (French)"
+ },
+ {
+  "id": "m091",
+  "label": "piatti di porcellana",
+  "bin": "fragile",
+  "meaning": "porcelain plates (Italian)"
+ },
+ {
+  "id": "m092",
+  "label": "taças de cristal",
+  "bin": "fragile",
+  "meaning": "crystal glasses (Portuguese)"
+ },
+ {
+  "id": "m093",
+  "label": "Glasvase",
+  "bin": "fragile",
+  "meaning": "glass vase (German)"
+ },
+ {
+  "id": "m094",
+  "label": "vajilla de porcelana",
+  "bin": "fragile",
+  "meaning": "porcelain tableware (Spanish)"
+ },
+ {
+  "id": "m095",
+  "label": "xmas glass baubles",
+  "bin": "fragile",
+  "meaning": "glass ornaments (slang)"
+ },
+ {
+  "id": "m096",
+  "label": "pull en laine",
+  "bin": "other",
+  "meaning": "wool sweater (French)"
+ },
+ {
+  "id": "m097",
+  "label": "libros de bolsillo",
+  "bin": "other",
+  "meaning": "paperback books (Spanish)"
+ },
+ {
+  "id": "m098",
+  "label": "Handtücher",
+  "bin": "other",
+  "meaning": "towels (German)"
+ },
+ {
+  "id": "m099",
+  "label": "botas de montaña",
+  "bin": "other",
+  "meaning": "hiking boots (Spanish)"
+ },
+ {
+  "id": "m100",
+  "label": "jouets en plastique",
+  "bin": "other",
+  "meaning": "plastic toys (French)"
+ },
+ {
+  "id": "m101",
+  "label": "calcetines",
+  "bin": "other",
+  "meaning": "socks (Spanish)"
+ },
+ {
+  "id": "m102",
+  "label": "mochila escolar",
+  "bin": "other",
+  "meaning": "school backpack (Spanish)"
+ },
+ {
+  "id": "m103",
+  "label": "frijoles enlatados",
+  "bin": "other",
+  "meaning": "canned beans (Spanish)"
+ },
+ {
+  "id": "m104",
+  "label": "riso 5 kg",
+  "bin": "other",
+  "meaning": "rice (Italian)"
+ },
+ {
+  "id": "m105",
+  "label": "Nudeln (trocken)",
+  "bin": "other",
+  "meaning": "dry noodles (German)"
+ },
+ {
+  "id": "m106",
+  "label": "chiave inglese",
+  "bin": "other",
+  "meaning": "wrench (Italian)"
+ },
+ {
+  "id": "m107",
+  "label": "pelota de fútbol",
+  "bin": "other",
+  "meaning": "soccer ball (Spanish)"
+ },
+ {
+  "id": "m108",
+  "label": "lençóis de algodão",
+  "bin": "other",
+  "meaning": "cotton bed sheets (Portuguese)"
+ },
+ {
+  "id": "m109",
+  "label": "Regenschirm",
+  "bin": "other",
+  "meaning": "umbrella (German)"
+ },
+ {
+  "id": "m110",
+  "label": "jeu de société",
+  "bin": "other",
+  "meaning": "board game (French)"
+ },
+ {
+  "id": "m111",
+  "label": "wool swetter",
+  "bin": "other",
+  "meaning": "wool sweater (typo)"
+ },
+ {
+  "id": "m112",
+  "label": "paprback books",
+  "bin": "other",
+  "meaning": "paperback books (typo)"
+ },
+ {
+  "id": "m113",
+  "label": "yoga matt",
+  "bin": "other",
+  "meaning": "yoga mat (typo)"
+ },
+ {
+  "id": "m114",
+  "label": "hikng boots",
+  "bin": "other",
+  "meaning": "hiking boots (typo)"
+ },
+ {
+  "id": "m115",
+  "label": "tennis rackts",
+  "bin": "other",
+  "meaning": "tennis rackets (typo)"
+ },
+ {
+  "id": "m116",
+  "label": "plastc bins",
+  "bin": "other",
+  "meaning": "plastic bins (typo)"
+ },
+ {
+  "id": "m117",
+  "label": "teddy bare",
+  "bin": "other",
+  "meaning": "teddy bear (typo)"
+ },
+ {
+  "id": "m118",
+  "label": "cereal boxs",
+  "bin": "other",
+  "meaning": "cereal boxes (typo)"
+ },
+ {
+  "id": "m119",
+  "label": "socs x10",
+  "bin": "other",
+  "meaning": "ten pairs of socks (typo)"
+ },
+ {
+  "id": "m120",
+  "label": "umbrela",
+  "bin": "other",
+  "meaning": "umbrella (typo)"
+ },
+ {
+  "id": "m121",
+  "label": "jigsaw puzle 1000pc",
+  "bin": "other",
+  "meaning": "jigsaw puzzle (typo)"
+ },
+ {
+  "id": "m122",
+  "label": "Wollpullover",
+  "bin": "other",
+  "meaning": "wool sweater (German)"
+ },
+ {
+  "id": "m123",
+  "label": "zaino",
+  "bin": "other",
+  "meaning": "backpack (Italian)"
+ },
+ {
+  "id": "m124",
+  "label": "livres de poche",
+  "bin": "other",
+  "meaning": "paperback books (French)"
+ },
+ {
+  "id": "m125",
+  "label": "feijão enlatado",
+  "bin": "other",
+  "meaning": "canned beans (Portuguese)"
+ },
+ {
+  "id": "m126",
+  "label": "Kochtopf aus Edelstahl",
+  "bin": "other",
+  "meaning": "stainless steel pot (German)"
+ },
+ {
+  "id": "m127",
+  "label": "sneaks sz 10",
+  "bin": "other",
+  "meaning": "sneakers, size 10 (slang)"
+ }
+]

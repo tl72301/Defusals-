@@ -1,0 +1,962 @@
+[
+ {
+  "id": "c000",
+  "label": "frozen peas",
+  "bin": "cold",
+  "why": "frozen food must stay frozen"
+ },
+ {
+  "id": "c001",
+  "label": "tub of ice cream",
+  "bin": "cold",
+  "why": "ice cream melts unless kept frozen"
+ },
+ {
+  "id": "c002",
+  "label": "fresh salmon fillets",
+  "bin": "cold",
+  "why": "raw fish must stay chilled"
+ },
+ {
+  "id": "c003",
+  "label": "raw chicken breasts",
+  "bin": "cold",
+  "why": "raw meat must stay chilled"
+ },
+ {
+  "id": "c004",
+  "label": "gallon of whole milk",
+  "bin": "cold",
+  "why": "milk spoils unless refrigerated"
+ },
+ {
+  "id": "c005",
+  "label": "block of cheddar cheese",
+  "bin": "cold",
+  "why": "cheese needs refrigeration"
+ },
+ {
+  "id": "c006",
+  "label": "Greek yogurt cups",
+  "bin": "cold",
+  "why": "yogurt needs refrigeration"
+ },
+ {
+  "id": "c007",
+  "label": "unsalted butter",
+  "bin": "cold",
+  "why": "butter needs refrigeration"
+ },
+ {
+  "id": "c008",
+  "label": "carton of heavy cream",
+  "bin": "cold",
+  "why": "cream spoils unless refrigerated"
+ },
+ {
+  "id": "c009",
+  "label": "frozen pizzas",
+  "bin": "cold",
+  "why": "frozen food must stay frozen"
+ },
+ {
+  "id": "c010",
+  "label": "box of popsicles",
+  "bin": "cold",
+  "why": "popsicles melt unless kept frozen"
+ },
+ {
+  "id": "c011",
+  "label": "fresh oysters",
+  "bin": "cold",
+  "why": "live shellfish must stay chilled"
+ },
+ {
+  "id": "c012",
+  "label": "raw shrimp",
+  "bin": "cold",
+  "why": "raw seafood must stay chilled"
+ },
+ {
+  "id": "c013",
+  "label": "ground beef",
+  "bin": "cold",
+  "why": "raw meat must stay chilled"
+ },
+ {
+  "id": "c014",
+  "label": "flu vaccine vials",
+  "bin": "cold",
+  "why": "vaccines must be kept refrigerated"
+ },
+ {
+  "id": "c015",
+  "label": "insulin pens",
+  "bin": "cold",
+  "why": "insulin must be kept refrigerated"
+ },
+ {
+  "id": "c016",
+  "label": "sushi platter",
+  "bin": "cold",
+  "why": "raw fish must stay chilled"
+ },
+ {
+  "id": "c017",
+  "label": "smoked salmon",
+  "bin": "cold",
+  "why": "smoked fish needs refrigeration"
+ },
+ {
+  "id": "c018",
+  "label": "fresh tofu",
+  "bin": "cold",
+  "why": "fresh tofu needs refrigeration"
+ },
+ {
+  "id": "c019",
+  "label": "fresh egg pasta",
+  "bin": "cold",
+  "why": "fresh pasta needs refrigeration"
+ },
+ {
+  "id": "c020",
+  "label": "cream cheese",
+  "bin": "cold",
+  "why": "soft cheese needs refrigeration"
+ },
+ {
+  "id": "c021",
+  "label": "sour cream",
+  "bin": "cold",
+  "why": "sour cream needs refrigeration"
+ },
+ {
+  "id": "c022",
+  "label": "bottle of kefir",
+  "bin": "cold",
+  "why": "kefir needs refrigeration"
+ },
+ {
+  "id": "c023",
+  "label": "mozzarella balls",
+  "bin": "cold",
+  "why": "fresh cheese needs refrigeration"
+ },
+ {
+  "id": "c024",
+  "label": "frozen blueberries",
+  "bin": "cold",
+  "why": "frozen fruit must stay frozen"
+ },
+ {
+  "id": "c025",
+  "label": "pistachio gelato",
+  "bin": "cold",
+  "why": "gelato melts unless kept frozen"
+ },
+ {
+  "id": "c026",
+  "label": "live lobsters on ice",
+  "bin": "cold",
+  "why": "live seafood must stay chilled"
+ },
+ {
+  "id": "c027",
+  "label": "fresh scallops",
+  "bin": "cold",
+  "why": "raw seafood must stay chilled"
+ },
+ {
+  "id": "c028",
+  "label": "sliced deli ham",
+  "bin": "cold",
+  "why": "deli meat needs refrigeration"
+ },
+ {
+  "id": "c029",
+  "label": "pork chops",
+  "bin": "cold",
+  "why": "raw meat must stay chilled"
+ },
+ {
+  "id": "c030",
+  "label": "lamb shanks",
+  "bin": "cold",
+  "why": "raw meat must stay chilled"
+ },
+ {
+  "id": "c031",
+  "label": "frozen dumplings",
+  "bin": "cold",
+  "why": "frozen food must stay frozen"
+ },
+ {
+  "id": "c032",
+  "label": "frozen waffles",
+  "bin": "cold",
+  "why": "frozen food must stay frozen"
+ },
+ {
+  "id": "c033",
+  "label": "carton of eggnog",
+  "bin": "cold",
+  "why": "eggnog needs refrigeration"
+ },
+ {
+  "id": "c034",
+  "label": "chocolate mousse cups",
+  "bin": "cold",
+  "why": "dairy desserts need refrigeration"
+ },
+ {
+  "id": "c035",
+  "label": "fresh-squeezed orange juice",
+  "bin": "cold",
+  "why": "fresh juice needs refrigeration"
+ },
+ {
+  "id": "c036",
+  "label": "tub of hummus",
+  "bin": "cold",
+  "why": "hummus needs refrigeration"
+ },
+ {
+  "id": "c037",
+  "label": "cottage cheese",
+  "bin": "cold",
+  "why": "soft cheese needs refrigeration"
+ },
+ {
+  "id": "c038",
+  "label": "king crab legs",
+  "bin": "cold",
+  "why": "seafood must stay chilled"
+ },
+ {
+  "id": "c039",
+  "label": "tuna steaks",
+  "bin": "cold",
+  "why": "raw fish must stay chilled"
+ },
+ {
+  "id": "c040",
+  "label": "spare lithium battery pack",
+  "bin": "hazardous",
+  "why": "loose lithium batteries can catch fire"
+ },
+ {
+  "id": "c041",
+  "label": "car battery",
+  "bin": "hazardous",
+  "why": "car batteries contain acid"
+ },
+ {
+  "id": "c042",
+  "label": "can of gasoline",
+  "bin": "hazardous",
+  "why": "gasoline is flammable"
+ },
+ {
+  "id": "c043",
+  "label": "propane tank",
+  "bin": "hazardous",
+  "why": "propane is a flammable pressurized gas"
+ },
+ {
+  "id": "c044",
+  "label": "butane lighter refills",
+  "bin": "hazardous",
+  "why": "butane is flammable"
+ },
+ {
+  "id": "c045",
+  "label": "strike-anywhere matches",
+  "bin": "hazardous",
+  "why": "matches can ignite"
+ },
+ {
+  "id": "c046",
+  "label": "cans of spray paint",
+  "bin": "hazardous",
+  "why": "aerosol paint is flammable and pressurized"
+ },
+ {
+  "id": "c047",
+  "label": "acetone nail polish remover",
+  "bin": "hazardous",
+  "why": "acetone is flammable"
+ },
+ {
+  "id": "c048",
+  "label": "paint thinner",
+  "bin": "hazardous",
+  "why": "paint thinner is flammable"
+ },
+ {
+  "id": "c049",
+  "label": "jug of bleach",
+  "bin": "hazardous",
+  "why": "bleach is corrosive"
+ },
+ {
+  "id": "c050",
+  "label": "drain cleaner",
+  "bin": "hazardous",
+  "why": "drain cleaner is corrosive"
+ },
+ {
+  "id": "c051",
+  "label": "rat poison",
+  "bin": "hazardous",
+  "why": "rat poison is toxic"
+ },
+ {
+  "id": "c052",
+  "label": "weed killer",
+  "bin": "hazardous",
+  "why": "weed killer is toxic"
+ },
+ {
+  "id": "c053",
+  "label": "box of fireworks",
+  "bin": "hazardous",
+  "why": "fireworks are explosive"
+ },
+ {
+  "id": "c054",
+  "label": "sparklers",
+  "bin": "hazardous",
+  "why": "sparklers are flammable"
+ },
+ {
+  "id": "c055",
+  "label": "road flares",
+  "bin": "hazardous",
+  "why": "flares burn and are flammable"
+ },
+ {
+  "id": "c056",
+  "label": "box of rifle ammunition",
+  "bin": "hazardous",
+  "why": "ammunition is explosive"
+ },
+ {
+  "id": "c057",
+  "label": "lamp oil",
+  "bin": "hazardous",
+  "why": "lamp oil is flammable"
+ },
+ {
+  "id": "c058",
+  "label": "charcoal lighter fluid",
+  "bin": "hazardous",
+  "why": "lighter fluid is flammable"
+ },
+ {
+  "id": "c059",
+  "label": "rubbing alcohol",
+  "bin": "hazardous",
+  "why": "rubbing alcohol is flammable"
+ },
+ {
+  "id": "c060",
+  "label": "pool chlorine tablets",
+  "bin": "hazardous",
+  "why": "pool chlorine is a strong oxidizer"
+ },
+ {
+  "id": "c061",
+  "label": "oven cleaner",
+  "bin": "hazardous",
+  "why": "oven cleaner is corrosive"
+ },
+ {
+  "id": "c062",
+  "label": "fire extinguisher",
+  "bin": "hazardous",
+  "why": "fire extinguishers are pressurized"
+ },
+ {
+  "id": "c063",
+  "label": "scuba air tank",
+  "bin": "hazardous",
+  "why": "scuba tanks are high-pressure cylinders"
+ },
+ {
+  "id": "c064",
+  "label": "oxygen cylinder",
+  "bin": "hazardous",
+  "why": "oxygen cylinders are pressurized and feed fires"
+ },
+ {
+  "id": "c065",
+  "label": "camping gas canister",
+  "bin": "hazardous",
+  "why": "camping gas is flammable"
+ },
+ {
+  "id": "c066",
+  "label": "kerosene",
+  "bin": "hazardous",
+  "why": "kerosene is flammable"
+ },
+ {
+  "id": "c067",
+  "label": "turpentine",
+  "bin": "hazardous",
+  "why": "turpentine is flammable"
+ },
+ {
+  "id": "c068",
+  "label": "mothballs",
+  "bin": "hazardous",
+  "why": "mothballs are toxic"
+ },
+ {
+  "id": "c069",
+  "label": "ant killer bait",
+  "bin": "hazardous",
+  "why": "ant killer is toxic"
+ },
+ {
+  "id": "c070",
+  "label": "battery acid",
+  "bin": "hazardous",
+  "why": "battery acid is corrosive"
+ },
+ {
+  "id": "c071",
+  "label": "muriatic acid",
+  "bin": "hazardous",
+  "why": "muriatic acid is corrosive"
+ },
+ {
+  "id": "c072",
+  "label": "bottle of ethanol fuel",
+  "bin": "hazardous",
+  "why": "ethanol fuel is flammable"
+ },
+ {
+  "id": "c073",
+  "label": "whipped cream chargers",
+  "bin": "hazardous",
+  "why": "nitrous oxide chargers are pressurized"
+ },
+ {
+  "id": "c074",
+  "label": "portable power bank",
+  "bin": "hazardous",
+  "why": "power banks contain lithium batteries"
+ },
+ {
+  "id": "c075",
+  "label": "e-bike battery",
+  "bin": "hazardous",
+  "why": "e-bike batteries are large lithium batteries"
+ },
+ {
+  "id": "c076",
+  "label": "bear spray",
+  "bin": "hazardous",
+  "why": "bear spray is a pressurized irritant"
+ },
+ {
+  "id": "c077",
+  "label": "pepper spray",
+  "bin": "hazardous",
+  "why": "pepper spray is a pressurized irritant"
+ },
+ {
+  "id": "c078",
+  "label": "tin of black powder",
+  "bin": "hazardous",
+  "why": "black powder is explosive"
+ },
+ {
+  "id": "c079",
+  "label": "jerry can of diesel",
+  "bin": "hazardous",
+  "why": "diesel is flammable"
+ },
+ {
+  "id": "c080",
+  "label": "set of wine glasses",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c081",
+  "label": "porcelain teacups",
+  "bin": "fragile",
+  "why": "porcelain breaks easily"
+ },
+ {
+  "id": "c082",
+  "label": "crystal vase",
+  "bin": "fragile",
+  "why": "crystal breaks easily"
+ },
+ {
+  "id": "c083",
+  "label": "bathroom mirror",
+  "bin": "fragile",
+  "why": "mirrors are glass and break easily"
+ },
+ {
+  "id": "c084",
+  "label": "ceramic dinner plates",
+  "bin": "fragile",
+  "why": "ceramic breaks easily"
+ },
+ {
+  "id": "c085",
+  "label": "glass picture frame",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c086",
+  "label": "snow globe",
+  "bin": "fragile",
+  "why": "snow globes are glass and break easily"
+ },
+ {
+  "id": "c087",
+  "label": "stained-glass lampshade",
+  "bin": "fragile",
+  "why": "stained glass breaks easily"
+ },
+ {
+  "id": "c088",
+  "label": "box of light bulbs",
+  "bin": "fragile",
+  "why": "light bulbs are thin glass"
+ },
+ {
+  "id": "c089",
+  "label": "empty mason jars",
+  "bin": "fragile",
+  "why": "glass jars break easily"
+ },
+ {
+  "id": "c090",
+  "label": "champagne flutes",
+  "bin": "fragile",
+  "why": "thin glass breaks easily"
+ },
+ {
+  "id": "c091",
+  "label": "glass aquarium",
+  "bin": "fragile",
+  "why": "glass tanks break easily"
+ },
+ {
+  "id": "c092",
+  "label": "ceramic figurine",
+  "bin": "fragile",
+  "why": "ceramic breaks easily"
+ },
+ {
+  "id": "c093",
+  "label": "antique porcelain doll",
+  "bin": "fragile",
+  "why": "porcelain breaks easily"
+ },
+ {
+  "id": "c094",
+  "label": "terracotta flower pots",
+  "bin": "fragile",
+  "why": "terracotta cracks easily"
+ },
+ {
+  "id": "c095",
+  "label": "whiskey decanter (empty)",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c096",
+  "label": "glass Christmas ornaments",
+  "bin": "fragile",
+  "why": "thin glass breaks easily"
+ },
+ {
+  "id": "c097",
+  "label": "glass hourglass",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c098",
+  "label": "glass test tubes",
+  "bin": "fragile",
+  "why": "glass labware breaks easily"
+ },
+ {
+  "id": "c099",
+  "label": "window pane",
+  "bin": "fragile",
+  "why": "window glass breaks easily"
+ },
+ {
+  "id": "c100",
+  "label": "glass coffee table top",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c101",
+  "label": "bone china dinner set",
+  "bin": "fragile",
+  "why": "bone china breaks easily"
+ },
+ {
+  "id": "c102",
+  "label": "crystal chandelier",
+  "bin": "fragile",
+  "why": "crystal breaks easily"
+ },
+ {
+  "id": "c103",
+  "label": "porcelain floor tiles",
+  "bin": "fragile",
+  "why": "porcelain tiles crack easily"
+ },
+ {
+  "id": "c104",
+  "label": "glass candle holders",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c105",
+  "label": "ceramic coffee mugs",
+  "bin": "fragile",
+  "why": "ceramic breaks easily"
+ },
+ {
+  "id": "c106",
+  "label": "magnifying glass",
+  "bin": "fragile",
+  "why": "the lens is glass"
+ },
+ {
+  "id": "c107",
+  "label": "glass mixing bowls",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c108",
+  "label": "hand-thrown pottery vase",
+  "bin": "fragile",
+  "why": "pottery breaks easily"
+ },
+ {
+  "id": "c109",
+  "label": "glass shelves",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c110",
+  "label": "glass carafe",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c111",
+  "label": "glass teapot",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c112",
+  "label": "ceramic soup tureen",
+  "bin": "fragile",
+  "why": "ceramic breaks easily"
+ },
+ {
+  "id": "c113",
+  "label": "porcelain sink",
+  "bin": "fragile",
+  "why": "porcelain cracks easily"
+ },
+ {
+  "id": "c114",
+  "label": "framed glass diploma",
+  "bin": "fragile",
+  "why": "the glass breaks easily"
+ },
+ {
+  "id": "c115",
+  "label": "glass baby bottles",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c116",
+  "label": "crystal whiskey tumblers",
+  "bin": "fragile",
+  "why": "crystal breaks easily"
+ },
+ {
+  "id": "c117",
+  "label": "ceramic tea set",
+  "bin": "fragile",
+  "why": "ceramic breaks easily"
+ },
+ {
+  "id": "c118",
+  "label": "glass terrarium",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c119",
+  "label": "Murano glass bowl",
+  "bin": "fragile",
+  "why": "glass breaks easily"
+ },
+ {
+  "id": "c120",
+  "label": "wool sweater",
+  "bin": "other",
+  "why": "clothing is sturdy and safe"
+ },
+ {
+  "id": "c121",
+  "label": "paperback books",
+  "bin": "other",
+  "why": "books are sturdy and safe"
+ },
+ {
+  "id": "c122",
+  "label": "cotton bath towels",
+  "bin": "other",
+  "why": "towels are sturdy and safe"
+ },
+ {
+  "id": "c123",
+  "label": "hiking boots",
+  "bin": "other",
+  "why": "shoes are sturdy and safe"
+ },
+ {
+  "id": "c124",
+  "label": "plastic building blocks",
+  "bin": "other",
+  "why": "plastic toys are sturdy and safe"
+ },
+ {
+  "id": "c125",
+  "label": "yoga mat",
+  "bin": "other",
+  "why": "a yoga mat is sturdy and safe"
+ },
+ {
+  "id": "c126",
+  "label": "rubber ducks",
+  "bin": "other",
+  "why": "rubber toys are sturdy and safe"
+ },
+ {
+  "id": "c127",
+  "label": "pack of socks",
+  "bin": "other",
+  "why": "clothing is sturdy and safe"
+ },
+ {
+  "id": "c128",
+  "label": "school backpack",
+  "bin": "other",
+  "why": "a backpack is sturdy and safe"
+ },
+ {
+  "id": "c129",
+  "label": "canned beans",
+  "bin": "other",
+  "why": "canned food keeps without refrigeration"
+ },
+ {
+  "id": "c130",
+  "label": "bag of dry pasta",
+  "bin": "other",
+  "why": "dry pasta keeps without refrigeration"
+ },
+ {
+  "id": "c131",
+  "label": "sack of rice",
+  "bin": "other",
+  "why": "rice keeps without refrigeration"
+ },
+ {
+  "id": "c132",
+  "label": "steel wrench set",
+  "bin": "other",
+  "why": "steel tools are sturdy and safe"
+ },
+ {
+  "id": "c133",
+  "label": "garden hose",
+  "bin": "other",
+  "why": "a hose is sturdy and safe"
+ },
+ {
+  "id": "c134",
+  "label": "soccer ball",
+  "bin": "other",
+  "why": "a ball is sturdy and safe"
+ },
+ {
+  "id": "c135",
+  "label": "denim jeans",
+  "bin": "other",
+  "why": "clothing is sturdy and safe"
+ },
+ {
+  "id": "c136",
+  "label": "bed sheets",
+  "bin": "other",
+  "why": "bedding is sturdy and safe"
+ },
+ {
+  "id": "c137",
+  "label": "plastic storage bins",
+  "bin": "other",
+  "why": "plastic bins are sturdy and safe"
+ },
+ {
+  "id": "c138",
+  "label": "wooden cutting board",
+  "bin": "other",
+  "why": "wood is sturdy and safe"
+ },
+ {
+  "id": "c139",
+  "label": "stuffed teddy bear",
+  "bin": "other",
+  "why": "soft toys are sturdy and safe"
+ },
+ {
+  "id": "c140",
+  "label": "folding umbrella",
+  "bin": "other",
+  "why": "an umbrella is sturdy and safe"
+ },
+ {
+  "id": "c141",
+  "label": "tennis rackets",
+  "bin": "other",
+  "why": "rackets are sturdy and safe"
+ },
+ {
+  "id": "c142",
+  "label": "board game",
+  "bin": "other",
+  "why": "board games are sturdy and safe"
+ },
+ {
+  "id": "c143",
+  "label": "bag of coffee beans",
+  "bin": "other",
+  "why": "coffee beans keep without refrigeration"
+ },
+ {
+  "id": "c144",
+  "label": "box of tea bags",
+  "bin": "other",
+  "why": "tea keeps without refrigeration"
+ },
+ {
+  "id": "c145",
+  "label": "boxes of cereal",
+  "bin": "other",
+  "why": "cereal keeps without refrigeration"
+ },
+ {
+  "id": "c146",
+  "label": "running sneakers",
+  "bin": "other",
+  "why": "shoes are sturdy and safe"
+ },
+ {
+  "id": "c147",
+  "label": "leather belt",
+  "bin": "other",
+  "why": "a belt is sturdy and safe"
+ },
+ {
+  "id": "c148",
+  "label": "wooden kitchen chair",
+  "bin": "other",
+  "why": "wooden furniture is sturdy and safe"
+ },
+ {
+  "id": "c149",
+  "label": "ream of printer paper",
+  "bin": "other",
+  "why": "paper is sturdy and safe"
+ },
+ {
+  "id": "c150",
+  "label": "box of pencils",
+  "bin": "other",
+  "why": "pencils are sturdy and safe"
+ },
+ {
+  "id": "c151",
+  "label": "cast-iron skillet",
+  "bin": "other",
+  "why": "cast iron is sturdy and safe"
+ },
+ {
+  "id": "c152",
+  "label": "stainless steel pots",
+  "bin": "other",
+  "why": "steel cookware is sturdy and safe"
+ },
+ {
+  "id": "c153",
+  "label": "dog leash",
+  "bin": "other",
+  "why": "a leash is sturdy and safe"
+ },
+ {
+  "id": "c154",
+  "label": "plastic frisbee",
+  "bin": "other",
+  "why": "a frisbee is sturdy and safe"
+ },
+ {
+  "id": "c155",
+  "label": "1000-piece jigsaw puzzle",
+  "bin": "other",
+  "why": "a puzzle is sturdy and safe"
+ },
+ {
+  "id": "c156",
+  "label": "linen curtains",
+  "bin": "other",
+  "why": "curtains are sturdy and safe"
+ },
+ {
+  "id": "c157",
+  "label": "plastic clothes hangers",
+  "bin": "other",
+  "why": "hangers are sturdy and safe"
+ },
+ {
+  "id": "c158",
+  "label": "sack of flour",
+  "bin": "other",
+  "why": "flour keeps without refrigeration"
+ },
+ {
+  "id": "c159",
+  "label": "bag of dried apricots",
+  "bin": "other",
+  "why": "dried fruit keeps without refrigeration"
+ }
+]
