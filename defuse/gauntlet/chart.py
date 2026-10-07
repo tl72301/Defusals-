@@ -24,8 +24,13 @@ def frontier(report_path, out_path):
         table = data.get(ladder, {})
         rungs = sorted(int(k) for k in next(iter(table.values()), {}))
         xs = list(range(len(rungs)))
-        ax.axhline(25, color=MUTED, lw=1, ls=(0, (4, 3)))
-        ax.text(xs[-1] + 0.15 if xs else 0, 25, 'chance', color=MUTED, va='center', fontsize=9)
+        if ladder == 'B' and 'random' in table:      # code players had a perfect rule parser, so their floor is random + parser
+            ys = [100 * table['random'][str(k)]['accuracy'] for k in rungs]
+            ax.plot(xs, ys, color=MUTED, lw=1, ls=(0, (4, 3)))
+            ax.text(xs[0], ys[0] - 5, 'random guess + rule parser', color=MUTED, va='top', fontsize=9)
+        else:
+            ax.axhline(25, color=MUTED, lw=1, ls=(0, (4, 3)))
+            ax.text(xs[0] if xs else 0, 22, 'chance', color=MUTED, va='top', fontsize=9)
         ends = []
         for player, (color, name, lw) in STYLE.items():
             if player not in table:
@@ -52,7 +57,8 @@ def frontier(report_path, out_path):
         ax.set_title(f'{ladder}. {LADDER_NAMES[ladder]}', loc='left', fontsize=12.5, color=INK, fontweight='bold')
     fig.suptitle('Depot Gauntlet: where each player breaks (accuracy per rung, harder to the right)', x=0.02, ha='left',
                  fontsize=15, color=INK, fontweight='bold')
-    fig.text(0.02, 0.925, 'Shaded band: Decisions 95% interval. Code players run locally and never miss a deadline.',
+    fig.text(0.02, 0.925, 'Shaded band: Decisions 95% interval. Code players run locally and never miss a deadline; on rule load '
+             'every code player is given a perfect rule parser.',
              fontsize=10, color=MUTED)
     fig.tight_layout(rect=(0, 0, 1, 0.91))
     fig.savefig(out_path, dpi=150, facecolor=SURFACE)
@@ -65,7 +71,7 @@ def throughput(report_path, out_path):
     vals = [tp[s]['packages_per_second'] for s in sizes]
     bars = ax.bar(range(len(sizes)), vals, color='#2a78d6', width=0.6)
     for b, s in zip(bars, sizes):
-        ax.text(b.get_x() + b.get_width() / 2, b.get_height(), f'{tp[s]["packages_per_second"]:.0f}/s\n{100 * tp[s]["accuracy"]:.0f}% correct',
+        ax.text(b.get_x() + b.get_width() / 2, b.get_height(), f'{tp[s]["packages_per_second"]:.0f}/s\n{100 * tp[s]["accuracy"]:.0f}% correct' + (f'\n({tp[s]["no_answer"]} unanswered: server error)' if tp[s]['no_answer'] else ''),
                 ha='center', va='bottom', fontsize=10, color=INK)
     ax.set_xticks(range(len(sizes)), [f'{s} per request' for s in sizes], fontsize=10, color=INK)
     ax.set_ylim(0, max(vals) * 1.3); ax.set_yticks([])

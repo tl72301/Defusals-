@@ -201,3 +201,20 @@ def ladder_d_tasks():
 RUNG_NAMES = {'A': [f'{d} s deadline' for d in DEADLINES], 'B': [f'{o} rules' + (f' + {e} exceptions' if e else '') for o, e in B_RUNGS],
               'C': C_RUNGS, 'D': D_RUNGS}
 LADDERS = {'A': ladder_a_deadline_tasks, 'B': ladder_b_tasks, 'C': ladder_c_tasks, 'D': ladder_d_tasks}
+
+
+# ---- Post-hoc diagnostic: the same tasks with precedence and rule order written as explicit steps ----
+STEPS = ('Decide in steps. 1: Is it flammable, explosive, toxic, corrosive, pressurized or a lithium battery? Then Hazardous. '
+         '2: Otherwise, is it food or medicine that must be kept refrigerated or frozen (even if its container is breakable)? Then Cold. '
+         '3: Otherwise, does it break easily? Then Fragile. 4: Otherwise, Everything else.')
+RULE_STEPS = ('Work it out in steps. Step 1: find the bin by what is inside. Step 2: if that bin and the destination region '
+              'match an exception, the answer is the exception\'s bin; stop. Step 3: otherwise, if the destination city has a '
+              'destination rule, use that bin, even if the contents are hazardous. Step 4: otherwise, use the bin from step 1.')
+
+
+def stepwise(t):
+    from defuse.depot.game import PRECEDENCE
+    prompt = t['prompt'].replace(PRECEDENCE, STEPS)
+    if 'Order of rules:' in prompt:
+        prompt = prompt.replace('Order of rules: exceptions first, then the destination list, then what is inside.', RULE_STEPS)
+    return {**t, 'prompt': prompt, 'id': t['id'] + '-steps'}

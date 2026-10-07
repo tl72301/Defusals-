@@ -186,3 +186,19 @@ python -m defuse.depot batch --bank v2 --seeds 201 202 203 --controllers decisio
 python -m defuse.depot report --runs data/depot
 python -m defuse.depot clips --runs data/depot
 ```
+
+## Depot Gauntlet (pushing Decisions until it breaks)
+
+Four ladders, each harder rung by rung: **speed** (deadlines from 1.5 s down to 0.5 s, then up to 200 packages in
+one request), **rule load** (1 to 20 destination rules, then stacked exceptions), **knowledge depth** (everyday to
+expert, then misleading labels and two-bin precedence) and **messy input** (typos, scanner errors, transliteration
+and mixed scripts, extreme damage). Opponents were frozen before any new item was written: the two Depot programs
+and a multilingual embedding classifier trained on the development bank. On the rule ladder every program also
+gets a perfect rule parser. Results and the frontier map: GAUNTLET_RESULTS.md.
+
+```bash
+python -m defuse.gauntlet run --ladder C --player classifier          # free: keyword, dictionary, classifier, random, oracle
+python -m defuse.gauntlet run --ladder C --player decisions           # live; needs OPENAI_API_KEY and a budget approval
+python -m defuse.gauntlet throughput --player decisions --sizes 1 10 50 200
+python -m defuse.gauntlet report && python -m defuse.gauntlet.chart && python -m defuse.gauntlet.clip
+```

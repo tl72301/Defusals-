@@ -1,0 +1,962 @@
+[
+ {
+  "id": "D3-9ce3610fd4",
+  "decoded": "kettlebell",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-ef42a135b0",
+  "decoded": "bar of dark chocolate",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-2f173662c5",
+  "decoded": "trifle in a glass serving bowl",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-a8485a1951",
+  "decoded": "pysanky (decorated blown eggshells)",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-5645db87b1",
+  "decoded": "raw calf liver",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-a7a823508c",
+  "decoded": "box of microscope slides",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-bec4beadc0",
+  "decoded": "raw pork belly",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-5fda604692",
+  "decoded": "cylinder of acetylene",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-41e9b84c9f",
+  "decoded": "handmade clay incense burner",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-6c7b10f520",
+  "decoded": "tub of tzatziki",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-fadb5d0ed7",
+  "decoded": "pysanky (decorated blown eggshells)",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-0b2b9bdfe2",
+  "decoded": "empty picnic cooler",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-ddec424549",
+  "decoded": "live littleneck clams",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-d530b5408a",
+  "decoded": "set of glass coasters",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-82036dd212",
+  "decoded": "sodium cyanide pellets",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-dc9fabe46e",
+  "decoded": "fiberglass step ladder",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-e5fa4df123",
+  "decoded": "whole raw rabbit",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-0e88ef4d10",
+  "decoded": "stoneware cookie jar",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-bafe0b74dd",
+  "decoded": "bar of dark chocolate",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-841ea83873",
+  "decoded": "bag of beef jerky",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-adb8bd544c",
+  "decoded": "cylinder of hydrogen",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-37781c478c",
+  "decoded": "earthenware plate",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-1f2aa5c4b8",
+  "decoded": "raku tea bowl",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-1de297c5c4",
+  "decoded": "raw beef tenderloin",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-af6c55e0b3",
+  "decoded": "wall clock with a glass face",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-1c0df2242a",
+  "decoded": "baseball glove",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-0f9e7ac96f",
+  "decoded": "raw duck breast",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-940a13c041",
+  "decoded": "pint of lemon sorbet",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-41f5b78348",
+  "decoded": "tub of mascarpone",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-921f2d054d",
+  "decoded": "tube of refrigerated cookie dough",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-6792e15d23",
+  "decoded": "neon sign with real neon tubes",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-b6375798f7",
+  "decoded": "glass cooktop panel",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-c8375ec528",
+  "decoded": "glass jar of white phosphorus",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-115bf25560",
+  "decoded": "bottle of hydrofluoric acid",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-57d17ea582",
+  "decoded": "container of ceviche",
+  "bin": "cold",
+  "confidence": "low"
+ },
+ {
+  "id": "D1-3a1e77785f",
+  "decoded": "bell jar cloche",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-d4d595c993",
+  "decoded": "tub of prepared guacamole",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-b17267cbbc",
+  "decoded": "carton of half-and-half",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-75814d083e",
+  "decoded": "sleeping bag",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-ba87f5c1d3",
+  "decoded": "can of nitrocellulose lacquer",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-1e920f992c",
+  "decoded": "glass bottle of nitric acid",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-98e2f833e1",
+  "decoded": "crystal candy dish",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-5dce31fc8a",
+  "decoded": "pack of 18650 cells",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-856a74218e",
+  "decoded": "fortune-teller's crystal ball",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-f4b7141cbc",
+  "decoded": "jug of formalin",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-b1b2344466",
+  "decoded": "arsenic trioxide powder",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-339b572f13",
+  "decoded": "unfired clay sculpture",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-283f19bc14",
+  "decoded": "can of fly spray",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-e52389cce4",
+  "decoded": "tube of refrigerated cookie dough",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-be653b2b3d",
+  "decoded": "cylinder of acetylene",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-5b91e44610",
+  "decoded": "silicone baking mat",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-28b0b213de",
+  "decoded": "tray of sea urchin roe",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-9f6d50bd6f",
+  "decoded": "raw pork belly",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-5d22498c9e",
+  "decoded": "dried porcini mushrooms",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-cd61a5f397",
+  "decoded": "bottle of sulfuric acid",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-20425bb160",
+  "decoded": "wheel of brie",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-db888cb59a",
+  "decoded": "ceramic spoon rest",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-257acefccb",
+  "decoded": "crystal candy dish",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-f7893840e3",
+  "decoded": "plastic squeeze bottle of honey",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-0bb22fb66e",
+  "decoded": "frozen hash browns",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-f5c912084f",
+  "decoded": "box of plastic cutlery",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-6f790167a0",
+  "decoded": "ceramic piggy bank",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-df7dbac3f6",
+  "decoded": "acid-free archival paper",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-181957d256",
+  "decoded": "glass bottle of nitric acid",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-92b7fd39a9",
+  "decoded": "wall clock with a glass face",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-364877253c",
+  "decoded": "box of dried sand dollars",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-2e415413ea",
+  "decoded": "stoneware ramen bowls",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-8dd413326b",
+  "decoded": "bag of uninflated latex balloons",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-768097b4e7",
+  "decoded": "tear gas canister",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-875c855fe1",
+  "decoded": "unopened carton of UHT milk",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-a6c6a77c21",
+  "decoded": "padlock",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-e40fa2b4a8",
+  "decoded": "jug of benzene",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-fdc24f5fa9",
+  "decoded": "plaster bust",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-20ad2bdbe1",
+  "decoded": "unopened can of (food, unknown)",
+  "bin": "other",
+  "confidence": "low"
+ },
+ {
+  "id": "D5-cfd0a2f703",
+  "decoded": "empty stainless steel water bottle",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-321048aa6e",
+  "decoded": "Talavera serving bowl",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-512ac2c55d",
+  "decoded": "handmade clay incense burner",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-690a61829c",
+  "decoded": "crystal candy dish",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-1079a632ab",
+  "decoded": "raw pork sausages",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-33e01c89fe",
+  "decoded": "compressed-air duster can",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-8a775ee934",
+  "decoded": "frozen fish sticks",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-9127de46f5",
+  "decoded": "tear gas canister",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-46934cb3c2",
+  "decoded": "empty decorative ostrich eggshell",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-3b886551d6",
+  "decoded": "panna cotta cups",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-5210573b26",
+  "decoded": "pack of 18650 cells",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-2f9d11290c",
+  "decoded": "box of dried sand dollars",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-9802478c45",
+  "decoded": "whole raw rabbit",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-65508c0054",
+  "decoded": "tin of shortbread cookies",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-54b4fc3216",
+  "decoded": "bar of dark chocolate",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-99c11a16df",
+  "decoded": "can of solvent-based contact cement",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-ffbe62ff02",
+  "decoded": "china gravy boat",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-09698b48ac",
+  "decoded": "wheel of brie",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-b4cb58299f",
+  "decoded": "kintsugi bowl",
+  "bin": "fragile",
+  "confidence": "medium"
+ },
+ {
+  "id": "D3-a2f8632680",
+  "decoded": "china gravy boat",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-67db06186a",
+  "decoded": "skateboard",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-afb239df11",
+  "decoded": "instant ramen packets",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-94264f65d8",
+  "decoded": "plastic jar of peanut butter",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-0e5d69f41d",
+  "decoded": "crystal candy dish",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-5bbcbca651",
+  "decoded": "raw quail",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-d0aed4f0ca",
+  "decoded": "deli tub of chicken liver pâté",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-e06c16b6e0",
+  "decoded": "gallon of xylene",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-0b403adc6b",
+  "decoded": "box of blasting caps",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-ded6d2d644",
+  "decoded": "arsenic trioxide powder",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-371eefce26",
+  "decoded": "raw quail",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-18da472034",
+  "decoded": "fleece blanket",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-c974d5f7da",
+  "decoded": "panna cotta cups",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-c70abeca3a",
+  "decoded": "can of solvent-based contact cement",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-a4d02bc8af",
+  "decoded": "helium tank for party balloons",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-02b486c5e1",
+  "decoded": "tub of egg salad",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-370fa5ff2c",
+  "decoded": "deli tub of chicken liver pâté",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-9739fd0dd0",
+  "decoded": "pot of clotted cream",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-9cfd0f4eec",
+  "decoded": "carton of half-and-half",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-d1ec83959d",
+  "decoded": "sodium cyanide pellets",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-111f334f77",
+  "decoded": "bag of beef jerky",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-7b808c2f25",
+  "decoded": "MAPP gas cylinder for a torch",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-f45f523a04",
+  "decoded": "cut-glass punch bowl",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-7c5372f87e",
+  "decoded": "helium tank for party balloons",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-3478d6bcd2",
+  "decoded": "pint of frozen yogurt",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-9fd7039f03",
+  "decoded": "tray of tiramisu",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-c6527dd077",
+  "decoded": "bar of soap",
+  "bin": "other",
+  "confidence": "medium"
+ },
+ {
+  "id": "D3-c93357a69e",
+  "decoded": "raw pork belly",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-364ef548df",
+  "decoded": "clay tagine",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-40d030eb4c",
+  "decoded": "wall clock with a glass face",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-97d1225a17",
+  "decoded": "crème brûlée in ceramic ramekins",
+  "bin": "cold",
+  "confidence": "medium"
+ },
+ {
+  "id": "D3-055112bae8",
+  "decoded": "empty picnic cooler",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-169149401a",
+  "decoded": "CO2 cylinder for a soda maker",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-c58ec046c2",
+  "decoded": "loose camera lenses",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-d66ac3955e",
+  "decoded": "tub of mascarpone",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-41487f5662",
+  "decoded": "glass chess set",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-13c90a2705",
+  "decoded": "raw calf liver",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-f0ef01d8a1",
+  "decoded": "jug of benzene",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-e2168fe319",
+  "decoded": "can of nitrocellulose lacquer",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-33b87f2abd",
+  "decoded": "jug of methanol",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-455727e480",
+  "decoded": "canvas tote bag",
+  "bin": "other",
+  "confidence": "medium"
+ },
+ {
+  "id": "D1-ee8fc8fee3",
+  "decoded": "bottle of 35% hydrogen peroxide",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-aed5426d93",
+  "decoded": "fire blanket",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-6f12255313",
+  "decoded": "unfired clay sculpture",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-2a5b52041e",
+  "decoded": "bottle of hydrofluoric acid",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-56ba8aa36c",
+  "decoded": "glass wind chimes",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-0a99c785f0",
+  "decoded": "fleece blanket",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-555b27c1d7",
+  "decoded": "Talavera serving bowl",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-dd981341f2",
+  "decoded": "can of solvent-based contact cement",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-91a2bcd04c",
+  "decoded": "handmade clay incense burner",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-155d58c00a",
+  "decoded": "tube of refrigerated cookie dough",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-b917e779a6",
+  "decoded": "empty plastic spray bottle",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-b078c5ecc7",
+  "decoded": "arsenic trioxide powder",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-651733bce8",
+  "decoded": "glass cooktop panel",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-ab5b1aca23",
+  "decoded": "dried porcini mushrooms",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D1-f7c0ae4af4",
+  "decoded": "plastic jar of peanut butter",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-e2a8fc4af2",
+  "decoded": "live mussels",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-727ec84f54",
+  "decoded": "box of microscope slides",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-e6d935f5ed",
+  "decoded": "raw pork sausages",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-d209d7252b",
+  "decoded": "tub of tzatziki",
+  "bin": "cold",
+  "confidence": "high"
+ },
+ {
+  "id": "D2-978d1764b1",
+  "decoded": "bar of soap",
+  "bin": "other",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-99ab96f903",
+  "decoded": "lava lamp",
+  "bin": "fragile",
+  "confidence": "medium"
+ },
+ {
+  "id": "D5-affcd00c17",
+  "decoded": "jug of methanol",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-9fd29e09ba",
+  "decoded": "bug bomb insect fogger",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-12e1f750b8",
+  "decoded": "porcelain soup spoons",
+  "bin": "fragile",
+  "confidence": "high"
+ },
+ {
+  "id": "D5-56600468a9",
+  "decoded": "bottle of chlorine bleach",
+  "bin": "hazardous",
+  "confidence": "high"
+ },
+ {
+  "id": "D3-13f5e2e9ef",
+  "decoded": "glass wind chimes",
+  "bin": "fragile",
+  "confidence": "high"
+ }
+]

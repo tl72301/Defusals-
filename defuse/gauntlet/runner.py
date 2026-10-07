@@ -29,9 +29,11 @@ def row(t, choice, **extra):
             'choice': choice, 'correct': choice == t['answer'], **{k: t[k] for k in ('deadline', 'decided_by') if k in t}, **extra}
 
 
-def run_ladder(ladder, player, output, endpoint=None, rungs=None):
+def run_ladder(ladder, player, output, endpoint=None, rungs=None, variant=None):
     from defuse.decisions import Decisions, API_URL
     tasks = [t for t in T.LADDERS[ladder]() if rungs is None or t['rung'] in rungs]
+    if variant == 'stepwise':
+        tasks = [T.stepwise(t) for t in tasks]
     out = Path(output) / player; out.mkdir(parents=True, exist_ok=True)
     path = out / f'{ladder}.jsonl'
     rows = []
@@ -54,7 +56,7 @@ def run_ladder(ladder, player, output, endpoint=None, rungs=None):
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + '\n')
     (out / f'{ladder}.manifest.json').write_text(json.dumps({'ladder': ladder, 'player': player, 'tasks': len(tasks),
-        'rungs': sorted({t['rung'] for t in tasks}), 'source_sha': source_sha(), 'at': time.time(),
+        'rungs': sorted({t['rung'] for t in tasks}), 'variant': variant, 'source_sha': source_sha(), 'at': time.time(),
         'endpoint': 'stub' if endpoint else 'openai'}, indent=1))
     return rows
 
