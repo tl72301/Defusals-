@@ -13,8 +13,8 @@ The model is `gpt-6-luna` through the OpenAI Decisions API. One named choice que
 - **Controllers:** Decisions, the shared rule-oracle solver, uniform random legal action, always first shuffled option.
 - **Timing:** realtime (primary) and paused (judgment without time pressure).
 - **Action dwell:** 0.2 seconds by default; identical across controllers. Button wait is always 0.2 seconds.
-- **Request timeout:** 0.6 seconds total by default, no retries; failure/refusal/invalid answer is a wrong action unless the game already ended or that interrupt demand expired.
-- **Ordering:** Labyrinth first, Keystone second when present, then the original ordinary modules in fixed order, preempted by active interrupt demands at request boundaries. Request arrival determines a timed action's verdict.
+- **Request timeout:** 0.6 seconds total by default (live runs used 1.5 s; see RESULTS.md), no retries; failure/refusal/invalid answer is a wrong action unless the game already ended or that interrupt demand expired.
+- **Ordering:** the ordinary rule modules first, then Keystone when present, then Labyrinth (changed from Labyrinth-first after the first live smoke test; see RESULTS.md), preempted by active interrupt demands at request boundaries. Request arrival determines a timed action's verdict.
 - **Attempt cap:** 300 decisions/actions by default, recorded explicitly if reached.
 
 Use new seeds for smoke and primary experiments. Across controllers and timing conditions use the same seed sets for paired comparisons. Never treat repeated attempts from the same seed in one condition as independent observations. Separate groups by difficulty, countdown, dwell, timeout, action cap, source hash, and stub/live status. No inferential significance claims are made by the descriptive report.
@@ -60,3 +60,14 @@ Rules are sampled without replacement from a pool of 16 for each stage. Keys are
 The `sweep` / `keystone-sweep` command uses a single isolated stage and one choice at each tested depth, with N unique seeds per depth and disjoint seed ranges across depths. Controllers share seeds for paired comparisons. Do not retry an incorrect key in the sweep. Report accuracy by depth beside the exact uniform-random reference of 25%; finite-sample random and first-option results will vary. Ordinary-module retry accuracy must remain separate from sweep first-choice accuracy. Paid sweeps require explicit budget approval with batch permission.
 
 Additional checks: all marker pairs and maze geometries are unique; every cell connects to the exit; the solver solves 1,000 maze seeds and 1,000 Keystone chains at each depth; independent fixtures verify all 16 transformations and conditional branches; wall bumps strike while legal detours do not; traces contain exactly N steps; and the offline sweep costs $0.
+
+
+## Sorting Depot protocol (added after the critical review)
+
+- Banks: v1 (`defuse/depot/bank/`) is the development bank; it was used for the first live runs and for writing the
+  baselines. v2 (`defuse/depot/bank/v2/`) is a test bank written by a separate agent after both code baselines were
+  frozen (commit 0667aac); it adds languages outside Western Europe, non-Latin scripts and heavier typos.
+- Players: oracle, keyword, dictionary (the review's baseline, frozen), random, first_option, decisions.
+- Deadlines: realtime 1.5 s per request; paused 10 s. No retries; a timeout scores as no answer.
+- Analysis: per round and per rule type with 95% Wilson intervals, accuracy when answered and with timeouts counted
+  as misses, paired on bank and seeds; v1 and v2 reported separately.

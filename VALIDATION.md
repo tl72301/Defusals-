@@ -1,6 +1,8 @@
-# Validation evidence
+# Validation evidence (initial offline snapshot)
 
-Validated in the prepared headless Linux cloud environment on 2026-10-07. No live Decisions requests were sent.
+This is the snapshot from the initial build, validated in the prepared headless Linux cloud environment on
+2026-10-07 before any live run. Its test counts and hashes describe that build; later live results and fixes are in
+RESULTS.md, DEPOT_RESULTS.md and evidence/. No live Decisions requests were sent for this snapshot.
 
 ## Automated checks
 

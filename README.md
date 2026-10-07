@@ -114,7 +114,8 @@ Before implementation, the official `createDecision` operation and schemas in [o
 
 Two specification details are handled explicitly: the API permits up to 255 choices and 200 questions, but this benchmark intentionally sends one question with 2–8 choices; the response schema permits an empty probability list, which the adapter accepts. Price is the experiment's supplied assumption, not a price verified by the OpenAPI schema.
 
-The [official Decisions guide](https://developers.openai.com/api/docs/guides/decisions) could not be fetched during this build: the cloud egress proxy returned HTTP 403 before connecting. A network-domain addition was saved for onboarding review. The guide and actual live model access therefore remain **unverified**. No paid request was made. The adapter is validated against a local schema-shaped stub, not against the live service.
+The [official Decisions guide](https://developers.openai.com/api/docs/guides/decisions) could not be fetched during this build: the cloud egress proxy returned HTTP 403 before connecting. A network-domain addition was saved for onboarding review. At that initial build the guide and live model access were unverified and no paid request had been made; live runs
+later succeeded (RESULTS.md). The adapter is validated against a local schema-shaped stub, not against the live service.
 
 An endpoint override is accepted only for loopback HTTP(S) URLs without credentials, query strings, or fragments. Redirects and retries are disabled. Stub calls need no key or paid approval and are marked `stub: true`; their token values are synthetic and cost is $0.
 
