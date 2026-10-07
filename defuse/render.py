@@ -38,9 +38,10 @@ def frame(state,manifest,options=(),answer=None,correct=None,focus=None,wall=0.,
     text(d,(46,79),'ORIGINAL PUZZLES / RECORDED REASONING',13,'#7d9da8')
     text(d,(46,118),f'SEED {manifest["seed"]}   /   {manifest["difficulty"].upper()}   /   {manifest["controller"].upper()}',17)
     text(d,(651,40),display(state['time_left']),66,'#54d3be' if not state['done'] else ('#54d3be' if state['defused'] else '#ff786b'))
-    for i in range(3):
+    limit=manifest.get('limits',{}).get('strikes',3)
+    for i in range(min(limit,3)):   # lights for up to three strikes; probes with more show the count
         d.ellipse((988+i*66,59,1014+i*66,85),fill='#ff786b' if i<state['strikes'] else '#34434b')
-    text(d,(984,101),f'{state["strikes"]} / 3 STRIKES',18)
+    text(d,(984,101),f'{state["strikes"]} / {limit} STRIKES',18)
     mode='PAUSED — JUDGMENT ONLY' if manifest['timing']=='paused' else 'REALTIME — CLOCK RUNNING'
     text(d,(42,183),mode,16,'#f8ba55' if manifest['timing']=='paused' else '#54d3be')
     columns=5 if len(state['modules'])>8 else 4
@@ -170,7 +171,7 @@ def render_run(folder):
                         elif event['type']=='missed_interrupt': module['state']['active']=False
                         if 'strikes' in event: state['strikes']=event['strikes']
                         event_revision+=1
-                        if state['strikes']>=3:
+                        if state['strikes']>=manifest['limits'].get('strikes',3):
                             state.update(done=True,defused=False,elapsed=event['at'],time_left=max(0,manifest['limits']['seconds']-event['at']))
                 if i==count-1: state=result['final_state']; thinking=False
                 key=(index,thinking,display(state['time_left']),int(t*5),event_revision,i==count-1)

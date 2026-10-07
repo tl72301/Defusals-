@@ -120,3 +120,12 @@ def test_timeout_retains_conservative_billing_reservation(monkeypatch,tmp_path):
     assert answer.billing_unknown and answer.error=='timeout' and answer.input_tokens is None
     assert b.show()['requests']==1 and b.show()['unresolved_requests']==1
     assert float(b.show()['accounted_usd'])>0
+
+
+def test_malformed_nested_answers_are_rejected_not_crashed():
+    import pytest
+    from defuse.decisions import parse_response
+    for bad in ({'answers': [None]}, {'answers': ['A']}, [], {'answers': [{'type': 'choice', 'name': 'action', 'choice': 'A',
+               'confidence': .5, 'probabilities': [None]}]}):
+        with pytest.raises(ValueError):
+            parse_response(bad, ['A', 'B'])

@@ -191,3 +191,13 @@ def test_fresh_on_strike_replaces_the_puzzle_and_keeps_keystone_depth():
     new=ks.current()['state']; assert new['depth']==3 and new['stage']==old['stage']
     plain=Bomb(7,only='wires',strike_limit=5); s0=plain.view()['state']
     plain.apply(next(a.id for a in plain.legal() if a.id!=plain.answer()[0])); assert plain.view()['state']==s0
+
+
+def test_strike_limit_is_reported_and_keeps_conditions_apart(tmp_path):
+    from defuse.runner import run_attempt
+    from defuse.reports import report
+    folder,r=run_attempt(1,'first_option',output=tmp_path,video=False,step_seconds=0,only='keystone',strikes=1)
+    assert r['strikes']==1 and r['end_reason']=='strikes'
+    run_attempt(1,'first_option',output=tmp_path,video=False,step_seconds=0,only='keystone',strikes=20)
+    payload=report(tmp_path)
+    assert len([g for g in payload['groups'] if g['controller']=='first_option'])==2

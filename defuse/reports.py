@@ -26,7 +26,7 @@ def report(root,output=None):
     groups=defaultdict(list); seen=set(); duplicates=[]
     for run in runs:
         p,r,m,a=run
-        condition=(r['controller'],r['timing'],r['difficulty'],r['stub'],m['limits']['seconds'],m['limits']['step_seconds'],m['limits']['timeout'],m['limits']['max_requests'],m['code_revision'].get('source_sha256'),m.get('scenario','bomb'),m.get('keystone_depth') or 0)
+        condition=(r['controller'],r['timing'],r['difficulty'],r['stub'],m['limits']['seconds'],m['limits']['step_seconds'],m['limits']['timeout'],m['limits']['max_requests'],m['code_revision'].get('source_sha256'),m.get('scenario','bomb'),m.get('keystone_depth') or 0,m['limits'].get('strikes',3))
         key=condition+(r['seed'],)
         if key in seen: duplicates.append(str(p)); continue
         seen.add(key); groups[condition].append(run)

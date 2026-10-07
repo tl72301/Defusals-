@@ -90,8 +90,8 @@ def frame(manifest, rows, events, t, total):
     # header
     d.rectangle((0, 0, WIDTH, 96), fill=PANEL)
     say(d, (32, 18), 'SORTING DEPOT', 30)
-    say(d, (32, 58), f'Seed {manifest["seed"]}  ·  {who}  ·  ' + ('PAUSED: the belt waits for each answer' if paused
-        else 'REALTIME: the belt keeps moving'), 20, MUTED)
+    say(d, (32, 58), f'Seed {manifest["seed"]}  ·  {who}  ·  ' + ('PAUSED: up to 10 s per package' if paused
+        else 'REALTIME: 1.5 s per package'), 20, MUTED)
     current = [r for r in rows if r['request_at'] <= t]
     row = current[-1] if current else None
     round_now = max((s for s in starts if s[0] <= t), default=(0, ROUNDS[0][0]))[1]
@@ -186,8 +186,8 @@ def frame(manifest, rows, events, t, total):
     else:
         conf = f' ({round(100 * a["confidence"])}% sure)' if a.get('confidence') is not None else ''
         choice = BIN_NAMES.get(row['chosen'], 'nothing')
-        verdict = {'correct': 'correct', 'wrong': 'wrong', 'fell_off': 'too slow: it fell off the belt',
-                   'no_answer': 'no answer in time'}[row['verdict']]
+        verdict = {'correct': 'correct', 'wrong': 'wrong', 'no_answer': 'no answer in time',
+                   'fell_off': 'too slow'}[row['verdict']]
         say(d, (32, HEIGHT - 46), f'{who} chose {choice}{conf} in {row["seconds"]:.2f} s: {verdict}', 24,
             RIGHT_COLOR if row['correct'] else WRONG_COLOR)
         if row['correct']:
@@ -198,24 +198,47 @@ def frame(manifest, rows, events, t, total):
     return img
 
 
-def captions_and_transcript(folder):
+def _ts(s):
+    ms = int(round(max(0.0, s) * 1000))
+    return f'{ms // 3600000:02d}:{ms // 60000 % 60:02d}:{ms // 1000 % 60:02d},{ms % 1000:03d}'
+
+
+def caption_cues(folder):
+    """(start, end, text): a waiting cue from the request until the answer arrives, then the outcome until the next package."""
     rows = read_jsonl(folder / 'actions.jsonl')
     manifest = json.loads((folder / 'manifest.json').read_text())
     who = CONTROLLER_NAME[manifest['controller']]
-
-    def ts(s):
-        ms = int(round(s * 1000)); return f'{ms // 3600000:02d}:{ms // 60000 % 60:02d}:{ms // 1000 % 60:02d},{ms % 1000:03d}'
-    srt, lines = [], ['round\tnumber\tlabel\tchoice\tcorrect bin\tverdict\tconfidence\tseconds']
+    cues = []
     for i, r in enumerate(rows):
-        end = rows[i + 1]['request_at'] if i + 1 < len(rows) else r['decision_at'] + 1.0
+        end = rows[i + 1]['request_at'] if i + 1 < len(rows) else r['decision_at'] + manifest['limits']['dwell_seconds'] + SUMMARY
+        cues.append((r['request_at'], r['decision_at'], f'Package {r["number"]}: "{r["label"]}". {who} is deciding.'))
         conf = r['answer'].get('confidence')
         sure = f' ({round(100 * conf)}% sure)' if conf is not None else ''
-        text = (f'Package {r["number"]}: "{r["label"]}". {who} chose {BIN_NAMES.get(r["chosen"], "nothing")}{sure}: '
-                + ('correct.' if r['correct'] else f'wrong. {r["explanation"]}'))
-        srt.append(f'{i + 1}\n{ts(r["request_at"])} --> {ts(end)}\n{text}\n')
+        outcome = 'correct.' if r['correct'] else ('no answer in time.' if r['verdict'] == 'no_answer' else f'wrong. {r["explanation"]}')
+        cues.append((r['decision_at'], end, f'{who} chose {BIN_NAMES.get(r["chosen"], "nothing")}{sure} in {r["seconds"]:.2f} s: {outcome}'))
+    return cues
+
+
+def captions_for(folder, start=0.0, end=None):
+    """SRT for the part of the video between start and end, re-timed to start at zero."""
+    out = []
+    for a, b, text in caption_cues(Path(folder)):
+        if b <= start or (end is not None and a >= end):
+            continue
+        a, b = max(a, start) - start, (min(b, end) if end is not None else b) - start
+        out.append(f'{len(out) + 1}\n{_ts(a)} --> {_ts(b)}\n{text}\n')
+    return '\n'.join(out)
+
+
+def captions_and_transcript(folder):
+    folder = Path(folder)
+    rows = read_jsonl(folder / 'actions.jsonl')
+    (folder / 'captions.srt').write_text(captions_for(folder))
+    lines = ['round\tnumber\tlabel\tchoice\tcorrect bin\tverdict\tconfidence\tseconds']
+    for r in rows:
+        conf = r['answer'].get('confidence')
         lines.append('\t'.join(map(str, [r['round'], r['number'], r['label'], BIN_NAMES.get(r['chosen'], 'none'),
                                          BIN_NAMES[r['right']], r['verdict'], conf if conf is not None else '', f'{r["seconds"]:.3f}'])))
-    (folder / 'captions.srt').write_text('\n'.join(srt))
     (folder / 'transcript.tsv').write_text('\n'.join(lines) + '\n')
 
 

@@ -46,18 +46,21 @@ def build_request(view,options,instructions=None):
                           'choices':[{'value':o['value'],'description':o['description']} for o in options]}]}
 
 def parse_response(data,allowed):
-    answers=data['answers']
+    if not isinstance(data,dict): raise ValueError('response is not an object')
+    answers=data.get('answers')
     if not isinstance(answers,list) or len(answers)!=1: raise ValueError('expected one answer')
     a=answers[0]
+    if not isinstance(a,dict): raise ValueError('answer is not an object')
     if a.get('name')!='action': raise ValueError('wrong question name')
     if a['type']=='refusal': return Answer(error='refusal')
     if a['type']!='choice' or a['choice'] not in allowed: raise ValueError('invalid choice')
     c=a['confidence']; probs=a['probabilities']
     if isinstance(c,bool) or not isinstance(c,(float,int)) or not math.isfinite(c) or not 0<=c<=1: raise ValueError('invalid confidence')
     if not isinstance(probs,list): raise ValueError('invalid probabilities')
-    labels=[p['value'] for p in probs]
+    if not all(isinstance(p,dict) for p in probs): raise ValueError('invalid probability entry')
+    labels=[p.get('value') for p in probs]
     if any(x not in allowed for x in labels) or len(set(labels))!=len(labels): raise ValueError('invalid probability labels')
-    values=[p['probability'] for p in probs]
+    values=[p.get('probability') for p in probs]
     if any(isinstance(x,bool) or not isinstance(x,(int,float)) or not math.isfinite(x) or not 0<=x<=1 for x in values) or sum(values)>1.02:
         raise ValueError('invalid probability values')
     return Answer(choice=a['choice'],confidence=c,probabilities=probs)
@@ -112,5 +115,5 @@ class Decisions:
             answer.choice,answer.confidence,answer.probabilities,answer.error=parsed.choice,parsed.confidence,parsed.probabilities,parsed.error
             # IDs are opaque metadata; disallow an API key reflected as an ID.
             answer.request_id=request_id
-        except (KeyError,ValueError,TypeError): answer.error='invalid_answer'
+        except (KeyError,ValueError,TypeError,AttributeError): answer.error='invalid_answer'
         return answer

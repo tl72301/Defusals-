@@ -104,7 +104,7 @@ def run_attempt(seed,controller='solver',timing='realtime',difficulty='medium',s
             'defused':bomb.defused,'modules_solved':bomb.solved_count,'modules_total':len(bomb.modules),'strikes':bomb.strikes,
             'time_left':bomb.remaining,'game_duration':bomb.elapsed,'wall_duration':wall_duration,'requests':len(actions) if api else 0,
             'actions':len(actions),'correct_actions':sum(a['correct'] for a in actions),'input_tokens':total_tokens,'cost_usd':total_cost,
-            'billing_unknown_requests':unknown,'errors':errors,'end_reason':reason or ('defused' if bomb.defused else ('strikes' if bomb.strikes>=3 else 'countdown')),
+            'billing_unknown_requests':unknown,'errors':errors,'end_reason':reason or ('defused' if bomb.defused else ('strikes' if bomb.strikes>=bomb.strike_limit else 'countdown')),
             'final_state':bomb.snapshot(),'video_status':'pending' if video else 'disabled'}
     (folder/'results.json').write_text(json.dumps(result,indent=2))
     if video:

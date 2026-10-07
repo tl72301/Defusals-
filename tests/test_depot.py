@@ -62,7 +62,7 @@ def test_keyword_baseline_follows_rules_it_can_parse():
 def test_offline_baselines_and_stubbed_decisions(tmp_path, stub):
     folder, r = run_game(4, 'oracle', 'realtime', output=tmp_path, video=False, dwell=0, intro=0)
     assert r['correct'] == r['packages'] == 100 and r['end_reason'] == 'complete'
-    assert (folder / 'captions.srt').read_text().count('-->') == 100
+    assert (folder / 'captions.srt').read_text().count('-->') == 200
     assert len((folder / 'transcript.tsv').read_text().splitlines()) == 101
     folder, r = run_game(4, 'decisions', 'paused', output=tmp_path, endpoint=stub['url'], video=False, dwell=0, intro=0)
     assert r['requests'] == 100 and r['cost_usd'] == 0 and r['timeout'] == 10.0
@@ -80,7 +80,7 @@ def test_offline_baselines_and_stubbed_decisions(tmp_path, stub):
 def test_short_video_renders_with_captions(tmp_path):
     folder, r = run_game(6, 'keyword', 'paused', output=tmp_path, video=True, dwell=0.05, intro=0.2, rounds=['know'])
     assert r['video_status'] == 'complete' and (folder / 'gameplay.mp4').stat().st_size > 0
-    assert (folder / 'captions.srt').read_text().count('-->') == 20
+    assert (folder / 'captions.srt').read_text().count('-->') == 40
 
 
 def test_palette_is_readable():
@@ -99,3 +99,18 @@ def test_frozen_baselines_read_only_the_prompt_and_keep_the_manifest_in_its_roun
     scores = {name: sum(f(Depot(s).prompt(p)) == p['bin'] for s in range(101, 106) for p in Depot(s).packages)
               for name, f in baselines.CONTROLLERS.items()}
     assert scores == {'keyword': 350, 'dictionary': 493}   # the review's published numbers, plus the manifest fix
+
+
+def test_report_drops_repeated_seeds_and_captions_wait_for_the_answer(tmp_path):
+    from defuse.depot.render import caption_cues, captions_for
+    folder, _ = run_game(101, 'keyword', 'realtime', output=tmp_path, video=False, dwell=0, intro=0, rounds=['know'])
+    run_game(101, 'keyword', 'realtime', output=tmp_path, video=False, dwell=0, intro=0, rounds=['know'])
+    payload = report(tmp_path)
+    group = next(g for g in payload['groups'] if g['controller'] == 'keyword')
+    assert group['runs'] == 1 and group['total'] == 20 and len(payload['duplicates']) == 1
+    rows = [json.loads(l) for l in (folder / 'actions.jsonl').read_text().splitlines()]
+    cues = caption_cues(folder)
+    outcome = [c for c in cues if ' chose ' in c[2]]
+    assert all(abs(c[0] - r['decision_at']) < 1e-9 for c, r in zip(outcome, rows))
+    part = captions_for(folder, 0.0, rows[5]['request_at'])
+    assert part.count('-->') == 10 and part.startswith('1\n00:00:00')
