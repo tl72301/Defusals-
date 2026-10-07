@@ -13,15 +13,18 @@ class Action:
     description: str
     def as_dict(self): return {'id':self.id, 'description':self.description}
 
+FRESH_NOTE = '\nIn this run a strike replaces the puzzle with a new layout of the same type.'
 PROBE_KINDS = ('wires','button','glyph','echo','recall','lexicon','keystone','labyrinth')
 
 
 class Bomb:
-    def __init__(self, seed, difficulty='medium', seconds=180, strike_limit=3, keystone_depth=None, only=None):
+    def __init__(self, seed, difficulty='medium', seconds=180, strike_limit=3, keystone_depth=None, only=None, fresh_on_strike=False):
         if difficulty not in ('easy','medium','hard'): raise ValueError('difficulty must be easy, medium, or hard')
         if seconds <= 0 or strike_limit < 1: raise ValueError('positive countdown and strike limit required')
         self.seed, self.difficulty, self.duration, self.strike_limit = seed, difficulty, seconds, strike_limit
         self.keystone_depth = keystone_depth
+        self.fresh_on_strike = fresh_on_strike
+        self.fresh_rng = random.Random(f'{seed}:fresh')   # replacement layouts never disturb the bomb's own stream
         self.rng = random.Random(seed)
         self.interrupt_rng = random.Random(f'{seed}:interrupt')
         r = self.rng
@@ -42,8 +45,8 @@ class Bomb:
         self.elapsed, self.strikes = 0.0, 0
         self.events = []
 
-    def _make(self,k,i):
-        r = self.rng
+    def _make(self,k,i,r=None):
+        r = r or self.rng
         metadata = {}
         if k == 'labyrinth':
             s, optimal = labyrinth.make_state(r)
@@ -66,6 +69,15 @@ class Bomb:
             s = {'dials':dials,'indices':[r.randrange(3) for _ in range(4)],'cursor':0}
         else: s = {'active':False,'next_at':self.interrupt_rng.uniform(25,40),'deadline':None,'pressure':0,'demands':0}
         return {'id':f'{k}-{i+1}','kind':k,'solved':False,'state':s,**metadata}
+
+    def _replace(self, m):
+        """After a strike, swap in a new layout of the same puzzle, so the next prompt is never a repeat.
+        Keystone keeps its stage and depth; other multi-stage puzzles start over."""
+        if m['kind']=='keystone':
+            s=m['state']; m['state']=keystone.make_state(self.fresh_rng,s['depth'],s['stage'],s['history'])
+        else:
+            m['state']=self._make(m['kind'],0,self.fresh_rng)['state']
+        m['replacements']=m.get('replacements',0)+1
 
     @property
     def remaining(self): return max(0., self.duration-self.elapsed)
@@ -129,7 +141,8 @@ class Bomb:
         if m['kind'] == 'lexicon':   # what each dial window shows, as a player would read it
             state['showing'] = [dial[i] for dial, i in zip(state['dials'], state['indices'])]
         return deepcopy({'edgework':self.edge,'time_left':self.remaining,'display':display(self.remaining),'strikes':self.strikes,
-                         'module_id':m['id'],'module_type':m['kind'],'state':state,'manual':SECTIONS[m['kind']]})
+                         'module_id':m['id'],'module_type':m['kind'],'state':state,'manual':SECTIONS[m['kind']]
+                         + (FRESH_NOTE if self.fresh_on_strike and m['kind']!='labyrinth' else '')})
 
     def snapshot(self):
         return deepcopy({'time_left':self.remaining,'elapsed':self.elapsed,'strikes':self.strikes,'edgework':self.edge,'modules':self.modules,
@@ -159,6 +172,8 @@ class Bomb:
             self.strikes += 1
             if m['kind']=='interrupt':
                 m['state'].update(active=False,deadline=None,next_at=self.elapsed+self.interrupt_rng.uniform(25,40))
+            elif self.fresh_on_strike and m['kind']!='labyrinth':
+                self._replace(m)
         else:
             k,s = m['kind'],m['state']
             if k=='labyrinth':

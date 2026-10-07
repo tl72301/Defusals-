@@ -39,6 +39,7 @@ Useful flags:
 - `--difficulty easy|medium|hard`: 6, 9, or 10 module instances. Every bomb includes Labyrinth; medium and hard also include Keystone. Hard includes a second Thread Array and deeper Keystone stages. A web panel is omitted.
 - `--seconds 180`: countdown; `--timeout 0.6`: total request deadline, with no retries. Live runs used `--timeout 1.5`: with a module's manual included, requests are about 3,100 input tokens and took 0.44-0.57 s in the first smoke test, where 2 of 6 hit 0.6 s. The bomb clock still runs during every request in realtime mode.
 - `--step-seconds 0.2`: actuator dwell after each nonterminal action; button wait always consumes 0.2 seconds. Use the same dwell for all compared controllers.
+- `--fresh-on-strike`: after a strike, replace the puzzle with a new layout of the same type (Keystone keeps its stage and depth; Labyrinth is unchanged because its move history already changes). Decisions answers identical prompts identically, so without this it repeats a wrong answer until the strikes run out.
 - `--only KIND --strikes N`: probe one puzzle type alone (wires, button, glyph, echo, recall, lexicon, keystone, labyrinth) with a higher strike limit, to measure per-puzzle decision accuracy rather than whole-bomb outcomes. Reported as scenario `probe:KIND`.
 - `--max-requests 300`: maximum decisions/actions per attempt. Hitting this cap produces a recorded incomplete attempt.
 - `--output PATH`: parent directory of new run folders.

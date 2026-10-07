@@ -29,6 +29,7 @@ def main(argv=None):
         if name in ('attempt','batch'):
             a.add_argument('--only',help='Probe one puzzle type alone (wires, button, glyph, echo, recall, lexicon, keystone, labyrinth)')
             a.add_argument('--strikes',type=int,default=3,help='Strike limit (probes may allow more to measure accuracy)')
+            a.add_argument('--fresh-on-strike',action='store_true',help='After a strike, replace the puzzle with a new layout of the same type')
         if name in ('batch','sweep'):
             if name=='batch': a.add_argument('--seeds',type=int,nargs='+',required=True)
             else:
@@ -59,7 +60,7 @@ def main(argv=None):
             r=clips(args.runs,args.output); print(f'{len(r["clips"])} review copies; highlight: {r["highlight"]}'); return 0
         common=dict(difficulty=args.difficulty,seconds=args.seconds,output=args.output,endpoint=args.endpoint,timeout=args.timeout,
                     budget=Budget(args.budget_dir),video=not args.no_video,step_seconds=args.step_seconds,max_requests=args.max_requests)
-        if args.command in ('attempt','batch'): common.update(only=args.only,strikes=args.strikes)
+        if args.command in ('attempt','batch'): common.update(only=args.only,strikes=args.strikes,fresh_on_strike=args.fresh_on_strike)
         if args.command in ('sweep','keystone-sweep'):
             if args.seeds<1 or not args.depths or any(d not in range(1,6) for d in args.depths) or len(set(args.depths))!=len(args.depths):
                 raise ValueError('Sweep needs positive N seeds and unique depths 1..5')

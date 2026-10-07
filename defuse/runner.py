@@ -38,16 +38,16 @@ class Clock:
         else: self.last=self.now()
 
 def run_attempt(seed,controller='solver',timing='realtime',difficulty='medium',seconds=180,output=Path('data/runs'),
-                endpoint=API_URL,timeout=.6,budget=None,batch=False,category='attempt',video=True,step_seconds=.2,max_requests=300,keystone_depth=None,only=None,strikes=3):
+                endpoint=API_URL,timeout=.6,budget=None,batch=False,category='attempt',video=True,step_seconds=.2,max_requests=300,keystone_depth=None,only=None,strikes=3,fresh_on_strike=False):
     if controller not in CONTROLLERS or timing not in TIMINGS: raise ValueError('invalid controller or timing')
     if not math.isfinite(seconds) or seconds<=0 or not math.isfinite(step_seconds) or step_seconds<0: raise ValueError('invalid timing limits')
     if max_requests<1: raise ValueError('max requests must be positive')
-    bomb=Bomb(seed,difficulty,seconds,strike_limit=strikes,keystone_depth=keystone_depth,only=only)
+    bomb=Bomb(seed,difficulty,seconds,strike_limit=strikes,keystone_depth=keystone_depth,only=only,fresh_on_strike=fresh_on_strike)
     run_id=f'{seed}-{controller}-{timing}-{uuid.uuid4().hex[:8]}'
     folder=Path(output)/run_id; folder.mkdir(parents=True,exist_ok=False)
     api=Decisions(endpoint,timeout,budget,category,batch) if controller=='decisions' else None
     manifest={'schema_version':1,'run_id':run_id,'seed':seed,'difficulty':difficulty,'controller':controller,'timing':timing,
-              'scenario':'keystone_sweep' if keystone_depth is not None else (f'probe:{only}' if only else 'bomb'),'keystone_depth':keystone_depth,
+              'scenario':('keystone_sweep' if keystone_depth is not None else (f'probe:{only}' if only else 'bomb'))+('+fresh' if fresh_on_strike else ''),'keystone_depth':keystone_depth,
               'code_revision':code_revision(),'limits':{'seconds':seconds,'strikes':strikes,'timeout':timeout,'step_seconds':step_seconds,'max_requests':max_requests},
               'model':'gpt-6-luna' if api else None,'stub':api.stub if api else False,'price_per_million_input_tokens_usd':.10,
               'initial_state':bomb.snapshot(),'created_unix':time.time(),'video':{'fps':30,'width':1280,'height':720,'enabled':video}}

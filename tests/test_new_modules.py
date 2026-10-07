@@ -176,3 +176,18 @@ def test_word_loom_view_states_the_letters_showing():
     bomb=Bomb(30001,only='lexicon'); state=bomb.current()['state']
     showing=bomb.view()['state']['showing']
     assert showing==[d[i] for d,i in zip(state['dials'],state['indices'])] and 'showing' not in state
+
+
+def test_fresh_on_strike_replaces_the_puzzle_and_keeps_keystone_depth():
+    for kind in ('wires','button','glyph','echo','recall','lexicon'):
+        bomb=Bomb(7,only=kind,strike_limit=50,fresh_on_strike=True)
+        before=bomb.view()['state']; right=bomb.answer()[0]
+        wrong=next(a.id for a in bomb.legal() if a.id!=right)
+        assert bomb.apply(wrong)['verdict']=='strike'
+        m=bomb.current(); assert m['replacements']==1 and 'new layout' in bomb.view()['manual']
+        bomb.apply(bomb.answer()[0])   # still solvable after replacement
+    ks=Bomb(7,'medium',keystone_depth=3,strike_limit=5,fresh_on_strike=True)
+    old=ks.current()['state']; wrong=next(a.id for a in ks.legal() if a.id!=ks.answer()[0]); ks.apply(wrong)
+    new=ks.current()['state']; assert new['depth']==3 and new['stage']==old['stage']
+    plain=Bomb(7,only='wires',strike_limit=5); s0=plain.view()['state']
+    plain.apply(next(a.id for a in plain.legal() if a.id!=plain.answer()[0])); assert plain.view()['state']==s0
