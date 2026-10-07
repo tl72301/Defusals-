@@ -1,0 +1,12 @@
+{
+  "note": "Plain-code baseline vocabulary. Written before the item bank and never tuned on it: generic words a simple program might use to sort packages. Matching is case-insensitive substring search.",
+  "cold": ["frozen", "freeze", "ice", "chilled", "refrigerat", "fresh", "milk", "cheese", "yogurt", "butter", "cream", "meat", "fish", "seafood", "vaccine", "insulin", "cold"],
+  "hazardous": ["battery", "batteries", "lithium", "flammable", "fuel", "gasoline", "petrol", "propane", "butane", "lighter", "match", "aerosol", "paint", "solvent", "acid", "bleach", "toxic", "poison", "pesticide", "explosive", "firework", "ammunition", "corrosive", "gas"],
+  "fragile": ["glass", "ceramic", "porcelain", "china", "crystal", "mirror", "vase", "fragile", "wine", "lightbulb", "bulb", "pottery", "stained"],
+  "cities": {
+    "europe": ["london", "paris", "berlin", "madrid", "rome", "lisbon", "oslo", "vienna", "dublin", "athens"],
+    "asia": ["tokyo", "beijing", "seoul", "delhi", "mumbai", "bangkok", "singapore", "jakarta", "manila", "hanoi"],
+    "americas": ["new york", "chicago", "toronto", "mexico city", "lima", "bogota", "santiago", "buenos aires", "sao paulo", "los angeles"],
+    "africa_oceania": ["cairo", "lagos", "nairobi", "johannesburg", "accra", "sydney", "melbourne", "auckland", "perth", "casablanca"]
+  }
+}
