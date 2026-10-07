@@ -162,13 +162,18 @@ Everything else. Five rounds of 20 packages, each announced with one sentence:
 2. **Read it**: labels may be misspelled, abbreviated or in another language.
 3. **Check the list**: a manifest sends some destinations to a fixed bin.
 4. **New rule**: halfway through, sort by the destination's continent instead.
-5. **Remember**: a smudged label says "same bin as the last package from Lisbon".
+5. **Read the recent list**: a smudged label says "same bin as the last package from Lisbon"; the answer is in the
+   recent-package list shown with it (a lookup, not a memory test).
 
-Mistakes cost a point, never the game. Every package is new, so a wrong answer is never repeated. In realtime the
-belt keeps moving (3 s per package); in paused mode it waits.
+Mistakes cost a point, never the game. Every package is new, so a wrong answer is never repeated. Each request has a
+deadline: 1.5 s in realtime, 10 s in paused mode. A late answer scores as no answer.
 
-Players: `oracle` (the answer key), `keyword` (plain code: fixed keyword lists written before the item bank, see
-`defuse/depot/bank/keyword_baseline.json`), `random`, `first_option`, and `decisions`.
+Players: `oracle` (the answer key), `keyword` and `dictionary` (frozen code baselines in `defuse/depot/baselines.py`;
+they read only the prompt), `random`, `first_option`, and `decisions`.
+
+Banks: `--bank v1` is the development bank; `--bank v2` is a test bank written by a separate agent after the
+baselines were frozen, labeled blind by a second agent (320/320 agreement), with 9 lower-confidence items left out.
+Results: DEPOT_RESULTS.md.
 
 The video shows bins by color, icon and word together (colorblind-safe colors), large text, no flashing, a caption
 for every decision and a one-line explanation for every mistake. Each run also writes `captions.srt` and
@@ -176,8 +181,8 @@ for every decision and a one-line explanation for every mistake. Each run also w
 generated from the numbers.
 
 ```bash
-python -m defuse.depot batch --seeds 1 2 3 --controllers oracle keyword random first_option --output data/depot
-python -m defuse.depot batch --seeds 101 102 103 --controllers decisions --timings realtime paused --output data/depot
+python -m defuse.depot batch --bank v2 --seeds 201 202 203 --controllers oracle keyword dictionary random first_option --output data/depot
+python -m defuse.depot batch --bank v2 --seeds 201 202 203 --controllers decisions --timings realtime paused --output data/depot
 python -m defuse.depot report --runs data/depot
 python -m defuse.depot clips --runs data/depot
 ```

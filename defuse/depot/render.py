@@ -7,7 +7,26 @@ import math
 import subprocess
 from pathlib import Path
 from PIL import Image, ImageDraw
+from functools import lru_cache
+from PIL import ImageFont
 from defuse.render import ffmpeg_binary, font
+
+CJK_FONT = '/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc'
+DEVANAGARI_FONT = '/usr/share/fonts/truetype/freefont/FreeSans.ttf'
+
+
+@lru_cache(maxsize=256)
+def _face(path, size):
+    return ImageFont.truetype(path, size)
+
+
+def tfont(value, size):
+    """A font that covers the text: CJK and Hangul, Devanagari, else the default (Latin, Cyrillic, Greek, Arabic)."""
+    if any('\u3000' <= c <= '\u9fff' or '\uac00' <= c <= '\ud7af' or '\uff00' <= c <= '\uffef' for c in value) and Path(CJK_FONT).exists():
+        return _face(CJK_FONT, size)
+    if any('\u0900' <= c <= '\u097f' for c in value) and Path(DEVANAGARI_FONT).exists():
+        return _face(DEVANAGARI_FONT, size)
+    return font(size)
 from defuse.depot.game import ROUNDS, BIN_NAMES, CONTENT_BINS, CONTINENT_BINS, CONTENT_MEANING
 
 WIDTH, HEIGHT, FPS = 1280, 720, 30
@@ -42,7 +61,7 @@ def wrap(draw, value, size, width):
     words, lines, line = value.split(), [], ''
     for w in words:
         test = (line + ' ' + w).strip()
-        if draw.textlength(test, font=font(size)) <= width:
+        if draw.textlength(test, font=tfont(value, size)) <= width:
             line = test
         else:
             lines.append(line); line = w
@@ -50,7 +69,7 @@ def wrap(draw, value, size, width):
 
 
 def say(draw, xy, value, size=22, fill=TEXT, anchor='la'):
-    draw.text(xy, value, font=font(size), fill=fill, anchor=anchor)
+    draw.text(xy, value, font=tfont(value, size), fill=fill, anchor=anchor)
 
 
 def icon(draw, kind, cx, cy, color):
@@ -159,12 +178,12 @@ def frame(manifest, rows, events, t, total):
     d.line((0, 420, WIDTH, 420), fill=CARD, width=6)
     label = row['label']
     size = 40 if len(label) <= 24 else (32 if len(label) <= 34 else 26)
-    width = min(760, int(d.textlength(label, font=font(size))) + 60)
+    width = min(760, int(d.textlength(label, font=tfont(label, size))) + 60)
     mid = 430 if row['round'] == 'remember' else WIDTH // 2   # keep clear of the recent-packages panel
     if row['round'] == 'remember':
-        while size > 20 and d.textlength(label, font=font(size)) + 60 > 2 * (845 - mid):
+        while size > 20 and d.textlength(label, font=tfont(label, size)) + 60 > 2 * (845 - mid):
             size -= 1
-        width = min(2 * (845 - mid), int(d.textlength(label, font=font(size))) + 60)
+        width = min(2 * (845 - mid), int(d.textlength(label, font=tfont(label, size))) + 60)
     if not decided:
         p = min(1.0, (t - row['request_at']) / SLIDE)
         cx, cy = int(-width + p * (mid + width)), 360
