@@ -36,8 +36,9 @@ wider.
   that arrived, both modes were 98% correct (480 and 497 answers).
 - **Wrong answers (10 distinct, each made identically in both modes):** a matryoshka and golf balls sent to Fragile;
   crème brûlée in ceramic ramekins sent to Fragile or Hazardous instead of Cold by precedence; an unfired clay
-  sculpture and a raw rabbit bound for manifest destinations sent to Everything else; acetylene and helium cylinders
-  sent to Hazardous although the manifest named Everything else for their destinations; and four recent-list lookups.
+  sculpture (not on the manifest) sent to Everything else instead of Fragile; a raw rabbit whose destination the
+  manifest sends to Fragile sent to Everything else; acetylene and helium cylinders sent to Hazardous although the
+  manifest named Everything else for their destinations; and four recent-list lookups.
   The answer key holds for each.
 - **Where code wins:** on exact lookups (manifest and recent list) the frozen programs are perfect (100%), Decisions
   90-92%. Its errors there include letting an obvious hazard override an explicit manifest instruction.
