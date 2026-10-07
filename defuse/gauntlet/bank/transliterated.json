@@ -1,0 +1,322 @@
+[
+ {
+  "id": "d4-000",
+  "label": "svezhaya govyadina, 5 kg",
+  "bin": "cold",
+  "why": "Fresh raw beef must be refrigerated.",
+  "meaning": "fresh beef, 5 kg",
+  "form": "Russian transliterated to Latin"
+ },
+ {
+  "id": "d4-001",
+  "label": "pēnwù shāchóngjì, 24 guàn",
+  "bin": "hazardous",
+  "why": "Aerosol insecticide is pressurized and flammable.",
+  "meaning": "aerosol insecticide, 24 cans",
+  "form": "Mandarin pinyin with tone marks"
+ },
+ {
+  "id": "d4-002",
+  "label": "bakır cezve, 3 adet",
+  "bin": "other",
+  "why": "Copper coffee pots are sturdy metal.",
+  "meaning": "copper Turkish coffee pots, 3 pieces",
+  "form": "Turkish"
+ },
+ {
+  "id": "d4-003",
+  "label": "tom tuoi, 5 kg",
+  "bin": "cold",
+  "why": "Fresh raw shrimp must be kept chilled.",
+  "meaning": "fresh shrimp, 5 kg",
+  "form": "Vietnamese without diacritics"
+ },
+ {
+  "id": "d4-004",
+  "label": "Matryoshka матрёшка マトリョーシカ, wooden",
+  "bin": "other",
+  "why": "Wooden nesting dolls are sturdy.",
+  "meaning": "nesting dolls, nesting dolls, nesting dolls, wooden",
+  "form": "mixed script: Latin + Cyrillic + Katakana"
+ },
+ {
+  "id": "d4-005",
+  "label": "cilindros de gas propano for the grill",
+  "bin": "hazardous",
+  "why": "Propane cylinders are flammable pressurized gas.",
+  "meaning": "propane gas cylinders for the grill",
+  "form": "code-switched Spanish/English"
+ },
+ {
+  "id": "d4-006",
+  "label": "benzin, kanistra 20 l",
+  "bin": "hazardous",
+  "why": "Gasoline is highly flammable.",
+  "meaning": "gasoline, 20-litre jerrycan",
+  "form": "Russian transliterated to Latin"
+ },
+ {
+  "id": "d4-007",
+  "label": "sooti kurta, 3 piece",
+  "bin": "other",
+  "why": "Cotton clothing is sturdy and safe.",
+  "meaning": "cotton kurta (tunic), 3 pieces",
+  "form": "Hindi in Latin letters"
+ },
+ {
+  "id": "d4-008",
+  "label": "mitti ka tel, 5 litre",
+  "bin": "hazardous",
+  "why": "Kerosene is a flammable liquid.",
+  "meaning": "kerosene (lit. 'earth oil'), 5 litres",
+  "form": "Hindi in Latin letters"
+ },
+ {
+  "id": "d4-009",
+  "label": "maguro no sashimi, 2 kg",
+  "bin": "cold",
+  "why": "Raw tuna sashimi must stay chilled.",
+  "meaning": "tuna sashimi, 2 kg",
+  "form": "Japanese romaji"
+ },
+ {
+  "id": "d4-010",
+  "label": "Insulin инсулин インスリン, 10 pens",
+  "bin": "cold",
+  "why": "Unopened insulin pens are kept at 2-8 C.",
+  "meaning": "insulin, insulin, insulin, 10 pens",
+  "form": "mixed script: Latin + Cyrillic + Katakana"
+ },
+ {
+  "id": "d4-011",
+  "label": "valenki, razmer 42",
+  "bin": "other",
+  "why": "Felt boots are sturdy and safe.",
+  "meaning": "felt winter boots, size 42",
+  "form": "Russian transliterated to Latin"
+ },
+ {
+  "id": "d4-012",
+  "label": "mareun gim, 100 jang",
+  "bin": "other",
+  "why": "Dried laver sheets are shelf-stable.",
+  "meaning": "dried seaweed (laver), 100 sheets",
+  "form": "Korean revised romanization"
+ },
+ {
+  "id": "d4-013",
+  "label": "yunomi to kyūsu, Arita-yaki",
+  "bin": "fragile",
+  "why": "Arita ware is porcelain, which breaks easily.",
+  "meaning": "teacups and teapot, Arita porcelain",
+  "form": "Japanese romaji"
+ },
+ {
+  "id": "d4-014",
+  "label": "porselanina piata, 12 temachia",
+  "bin": "fragile",
+  "why": "Porcelain plates break easily.",
+  "meaning": "porcelain plates, 12 pieces",
+  "form": "Greek transliterated to Latin"
+ },
+ {
+  "id": "d4-015",
+  "label": "espejo grande for the hallway, marco dorado",
+  "bin": "fragile",
+  "why": "A large mirror is breakable glass.",
+  "meaning": "large mirror for the hallway, gilded frame",
+  "form": "code-switched Spanish/English"
+ },
+ {
+  "id": "d4-016",
+  "label": "Li-ion аккумулятор 電池 x20",
+  "bin": "hazardous",
+  "why": "Lithium-ion batteries are hazardous.",
+  "meaning": "lithium-ion rechargeable battery, battery, 20 units",
+  "form": "mixed script: Latin + Cyrillic + CJK"
+ },
+ {
+  "id": "d4-017",
+  "label": "tenugui to geta",
+  "bin": "other",
+  "why": "A cotton towel and wooden sandals are sturdy.",
+  "meaning": "cotton hand towel and wooden clogs",
+  "form": "Japanese romaji"
+ },
+ {
+  "id": "d4-018",
+  "label": "giaourti straggisto, 10 kg",
+  "bin": "cold",
+  "why": "Strained yogurt is perishable dairy.",
+  "meaning": "strained (Greek) yogurt, 10 kg",
+  "form": "Greek transliterated to Latin"
+ },
+ {
+  "id": "d4-019",
+  "label": "kaanch ki chudiyan, 2 darjan",
+  "bin": "fragile",
+  "why": "Glass bangles break easily.",
+  "meaning": "glass bangles, 2 dozen",
+  "form": "Hindi in Latin letters"
+ },
+ {
+  "id": "d4-020",
+  "label": "ΑCΕΤΟΝΕ 4 L",
+  "bin": "hazardous",
+  "why": "Acetone is a flammable solvent.",
+  "meaning": "acetone, 4 litres",
+  "form": "homoglyphs: Greek capitals A, E, T, O, N for Latin"
+ },
+ {
+  "id": "d4-021",
+  "label": "Brennspiritus, 1 Liter",
+  "bin": "hazardous",
+  "why": "Denatured alcohol is flammable.",
+  "meaning": "methylated spirits (fuel alcohol), 1 litre",
+  "form": "German"
+ },
+ {
+  "id": "d4-022",
+  "label": "сοttοn tοwеls, set of 6",
+  "bin": "other",
+  "why": "Cotton towels are sturdy and safe.",
+  "meaning": "cotton towels, set of 6",
+  "form": "homoglyphs: Cyrillic c, e and Greek omicron inside English"
+ },
+ {
+  "id": "d4-023",
+  "label": "taaza paneer, 2 kilo",
+  "bin": "cold",
+  "why": "Fresh paneer is perishable cheese kept chilled.",
+  "meaning": "fresh paneer (cottage cheese), 2 kilos",
+  "form": "Hindi in Latin letters"
+ },
+ {
+  "id": "d4-024",
+  "label": "ma3moul bel tamr, 2 3elab",
+  "bin": "other",
+  "why": "Baked date cookies are shelf-stable.",
+  "meaning": "date-filled ma'amoul cookies, 2 boxes",
+  "form": "Arabic chat alphabet (3 = ayn)"
+ },
+ {
+  "id": "d4-025",
+  "label": "tōyu, 18 rittoru",
+  "bin": "hazardous",
+  "why": "Kerosene is a flammable liquid.",
+  "meaning": "kerosene, 18 litres",
+  "form": "Japanese romaji with macron"
+ },
+ {
+  "id": "d4-026",
+  "label": "7aleeb taza, 6 litr",
+  "bin": "cold",
+  "why": "Fresh milk must be refrigerated.",
+  "meaning": "fresh milk, 6 litres",
+  "form": "Arabic chat alphabet (7 = h)"
+ },
+ {
+  "id": "d4-027",
+  "label": "azulejos pintados à mão, 2 m²",
+  "bin": "fragile",
+  "why": "Glazed ceramic tiles crack and chip.",
+  "meaning": "hand-painted glazed tiles, 2 square metres",
+  "form": "Portuguese"
+ },
+ {
+  "id": "d4-028",
+  "label": "tsinelas at t-shirt, pang-regalo",
+  "bin": "other",
+  "why": "Slippers and a t-shirt are sturdy.",
+  "meaning": "flip-flops and t-shirt, for a gift",
+  "form": "Tagalog/English code-switch (Taglish)"
+ },
+ {
+  "id": "d4-029",
+  "label": "raw pollo y camarones for the restaurant",
+  "bin": "cold",
+  "why": "Raw chicken and shrimp must be refrigerated.",
+  "meaning": "raw chicken and shrimp for the restaurant",
+  "form": "code-switched Spanish/English"
+ },
+ {
+  "id": "d4-030",
+  "label": "Bohemia хрусталь 水晶 decanter, empty",
+  "bin": "fragile",
+  "why": "An empty crystal decanter breaks easily.",
+  "meaning": "Bohemian crystal, crystal decanter, empty",
+  "form": "mixed script: Latin + Cyrillic + CJK"
+ },
+ {
+  "id": "d4-031",
+  "label": "farforovyy serviz, 12 person",
+  "bin": "fragile",
+  "why": "A porcelain service set breaks easily.",
+  "meaning": "porcelain dinner/tea set for 12",
+  "form": "Russian transliterated to Latin"
+ },
+ {
+  "id": "d4-032",
+  "label": "saengseon hoe, 2 kg",
+  "bin": "cold",
+  "why": "Sliced raw fish must stay chilled.",
+  "meaning": "raw fish slices (sashimi-style), 2 kg",
+  "form": "Korean revised romanization"
+ },
+ {
+  "id": "d4-033",
+  "label": "роrсеlаin figurinе",
+  "bin": "fragile",
+  "why": "A porcelain figurine breaks easily.",
+  "meaning": "porcelain figurine",
+  "form": "homoglyphs: Cyrillic p, o, c, e, a inside English"
+ },
+ {
+  "id": "d4-034",
+  "label": "çakmak gazı, 12 adet",
+  "bin": "hazardous",
+  "why": "Butane lighter refills are flammable pressurized gas.",
+  "meaning": "lighter gas, 12 pieces",
+  "form": "Turkish"
+ },
+ {
+  "id": "d4-035",
+  "label": "vitambaa vya kitenge, mita 12",
+  "bin": "other",
+  "why": "Printed cotton fabric is sturdy.",
+  "meaning": "kitenge printed fabrics, 12 metres",
+  "form": "Swahili"
+ },
+ {
+  "id": "d4-036",
+  "label": "vасcinе vials",
+  "bin": "cold",
+  "why": "Vaccines are cold-chain medicine; cold outranks the vial glass.",
+  "meaning": "vaccine vials",
+  "form": "homoglyphs: Cyrillic a, c, e inside English"
+ },
+ {
+  "id": "d4-037",
+  "label": "7amd kebreetik, 1 litr",
+  "bin": "hazardous",
+  "why": "Sulphuric acid is corrosive.",
+  "meaning": "sulphuric acid, 1 litre",
+  "form": "Arabic chat alphabet (7 = h)"
+ },
+ {
+  "id": "d4-038",
+  "label": "bicchieri di cristallo, 6 pz",
+  "bin": "fragile",
+  "why": "Crystal drinking glasses break easily.",
+  "meaning": "crystal drinking glasses, 6 pieces",
+  "form": "Italian"
+ },
+ {
+  "id": "d4-039",
+  "label": "fanageen 2ahwa 5azaf, 12 7etta",
+  "bin": "fragile",
+  "why": "Porcelain coffee cups break easily.",
+  "meaning": "porcelain coffee cups, 12 pieces",
+  "form": "Egyptian Arabic chat alphabet (2 = hamza, 5 = kh, 7 = h)"
+ }
+]

@@ -1,0 +1,1402 @@
+[
+ {
+  "id": "k-e-000",
+  "rung": "everyday",
+  "label": "propane camping canister",
+  "bin": "hazardous",
+  "why": "Propane is a flammable pressurized gas."
+ },
+ {
+  "id": "k-e-001",
+  "rung": "everyday",
+  "label": "glass christmas tree ornaments",
+  "bin": "fragile",
+  "why": "Thin blown-glass ornaments shatter easily."
+ },
+ {
+  "id": "k-e-002",
+  "rung": "everyday",
+  "label": "bottle of drain cleaner",
+  "bin": "hazardous",
+  "why": "Drain cleaner is a strong corrosive (lye or acid)."
+ },
+ {
+  "id": "k-e-003",
+  "rung": "everyday",
+  "label": "wool winter scarf",
+  "bin": "other",
+  "why": "A scarf is soft, sturdy and safe."
+ },
+ {
+  "id": "k-e-004",
+  "rung": "everyday",
+  "label": "wooden cutting board",
+  "bin": "other",
+  "why": "A wooden board is sturdy and safe."
+ },
+ {
+  "id": "k-e-005",
+  "rung": "everyday",
+  "label": "bag of fresh shrimp",
+  "bin": "cold",
+  "why": "Raw shellfish must be kept chilled."
+ },
+ {
+  "id": "k-e-006",
+  "rung": "everyday",
+  "label": "stainless steel saucepan",
+  "bin": "other",
+  "why": "A steel pan is sturdy and safe."
+ },
+ {
+  "id": "k-e-007",
+  "rung": "everyday",
+  "label": "set of ceramic coffee mugs",
+  "bin": "fragile",
+  "why": "Ceramic mugs chip and break."
+ },
+ {
+  "id": "k-e-008",
+  "rung": "everyday",
+  "label": "can of lighter fluid",
+  "bin": "hazardous",
+  "why": "Lighter fluid is a flammable liquid."
+ },
+ {
+  "id": "k-e-009",
+  "rung": "everyday",
+  "label": "tub of greek yogurt",
+  "bin": "cold",
+  "why": "Yogurt is perishable dairy that must stay refrigerated."
+ },
+ {
+  "id": "k-e-010",
+  "rung": "everyday",
+  "label": "container of cottage cheese",
+  "bin": "cold",
+  "why": "Fresh soft cheese must be refrigerated."
+ },
+ {
+  "id": "k-e-011",
+  "rung": "everyday",
+  "label": "ceramic flower pot",
+  "bin": "fragile",
+  "why": "Fired ceramic cracks and chips easily."
+ },
+ {
+  "id": "k-e-012",
+  "rung": "everyday",
+  "label": "gallon of whole milk",
+  "bin": "cold",
+  "why": "Fresh milk must be refrigerated."
+ },
+ {
+  "id": "k-e-013",
+  "rung": "everyday",
+  "label": "porcelain teacup set",
+  "bin": "fragile",
+  "why": "Porcelain breaks easily."
+ },
+ {
+  "id": "k-e-014",
+  "rung": "everyday",
+  "label": "size 5 soccer ball",
+  "bin": "other",
+  "why": "A soccer ball is sturdy and safe."
+ },
+ {
+  "id": "k-e-015",
+  "rung": "everyday",
+  "label": "box of strike-anywhere matches",
+  "bin": "hazardous",
+  "why": "Strike-anywhere matches ignite from friction and are flammable."
+ },
+ {
+  "id": "k-e-016",
+  "rung": "everyday",
+  "label": "cotton bath towels",
+  "bin": "other",
+  "why": "Towels are soft, sturdy and safe."
+ },
+ {
+  "id": "k-e-017",
+  "rung": "everyday",
+  "label": "sliced deli ham",
+  "bin": "cold",
+  "why": "Sliced cooked meat is perishable and kept refrigerated."
+ },
+ {
+  "id": "k-e-018",
+  "rung": "everyday",
+  "label": "empty glass fish bowl",
+  "bin": "fragile",
+  "why": "A glass bowl breaks easily."
+ },
+ {
+  "id": "k-e-019",
+  "rung": "everyday",
+  "label": "pair of running shoes",
+  "bin": "other",
+  "why": "Shoes are sturdy and safe with no special handling."
+ },
+ {
+  "id": "k-e-020",
+  "rung": "everyday",
+  "label": "snow globe souvenir",
+  "bin": "fragile",
+  "why": "A snow globe is a water-filled glass dome that breaks."
+ },
+ {
+  "id": "k-e-021",
+  "rung": "everyday",
+  "label": "jerry can of gasoline",
+  "bin": "hazardous",
+  "why": "Gasoline is a highly flammable liquid."
+ },
+ {
+  "id": "k-e-022",
+  "rung": "everyday",
+  "label": "stack of paperback novels",
+  "bin": "other",
+  "why": "Books are sturdy and safe."
+ },
+ {
+  "id": "k-e-023",
+  "rung": "everyday",
+  "label": "pack of raw chicken thighs",
+  "bin": "cold",
+  "why": "Raw poultry must be kept refrigerated."
+ },
+ {
+  "id": "k-e-024",
+  "rung": "everyday",
+  "label": "box of incandescent light bulbs",
+  "bin": "fragile",
+  "why": "Bulbs are thin glass envelopes that break easily."
+ },
+ {
+  "id": "k-e-025",
+  "rung": "everyday",
+  "label": "box of fruit popsicles",
+  "bin": "cold",
+  "why": "Popsicles melt unless kept in a freezer."
+ },
+ {
+  "id": "k-e-026",
+  "rung": "everyday",
+  "label": "framed wall mirror",
+  "bin": "fragile",
+  "why": "A mirror is a sheet of glass that shatters."
+ },
+ {
+  "id": "k-e-027",
+  "rung": "everyday",
+  "label": "bottle of rubbing alcohol",
+  "bin": "hazardous",
+  "why": "Isopropyl rubbing alcohol is flammable."
+ },
+ {
+  "id": "k-e-028",
+  "rung": "everyday",
+  "label": "box of frozen fish sticks",
+  "bin": "cold",
+  "why": "A freezer product that must stay frozen."
+ },
+ {
+  "id": "k-e-029",
+  "rung": "everyday",
+  "label": "box of crayons",
+  "bin": "other",
+  "why": "Wax crayons are sturdy, safe and need no refrigeration."
+ },
+ {
+  "id": "k-e-030",
+  "rung": "everyday",
+  "label": "china dinner plates",
+  "bin": "fragile",
+  "why": "China (porcelain) plates break easily."
+ },
+ {
+  "id": "k-e-031",
+  "rung": "everyday",
+  "label": "bottle of nail polish remover",
+  "bin": "hazardous",
+  "why": "Acetone-based remover is a flammable liquid."
+ },
+ {
+  "id": "k-e-032",
+  "rung": "everyday",
+  "label": "spare phone power bank",
+  "bin": "hazardous",
+  "why": "A power bank contains a lithium-ion battery."
+ },
+ {
+  "id": "k-e-033",
+  "rung": "everyday",
+  "label": "fresh salmon fillets",
+  "bin": "cold",
+  "why": "Raw fish spoils quickly without refrigeration."
+ },
+ {
+  "id": "k-e-034",
+  "rung": "everyday",
+  "label": "pound of ground beef",
+  "bin": "cold",
+  "why": "Raw ground meat must be refrigerated."
+ },
+ {
+  "id": "k-e-035",
+  "rung": "everyday",
+  "label": "tub of plastic building blocks",
+  "bin": "other",
+  "why": "Plastic toy blocks are sturdy and safe."
+ },
+ {
+  "id": "k-e-036",
+  "rung": "everyday",
+  "label": "glass cookie jar",
+  "bin": "fragile",
+  "why": "A glass jar breaks if dropped."
+ },
+ {
+  "id": "k-e-037",
+  "rung": "everyday",
+  "label": "aerosol bug spray",
+  "bin": "hazardous",
+  "why": "An insecticide aerosol is pressurized and flammable."
+ },
+ {
+  "id": "k-e-038",
+  "rung": "everyday",
+  "label": "bag of dry dog food",
+  "bin": "other",
+  "why": "Dry kibble is shelf-stable and sturdy."
+ },
+ {
+  "id": "k-e-039",
+  "rung": "everyday",
+  "label": "can of spray paint",
+  "bin": "hazardous",
+  "why": "An aerosol can is pressurized and its propellant is flammable."
+ },
+ {
+  "id": "k-s-000",
+  "rung": "specialist",
+  "label": "UN1072 medical cylinder",
+  "bin": "hazardous",
+  "why": "UN1072 is compressed oxygen, a pressurized oxidizing gas."
+ },
+ {
+  "id": "k-s-001",
+  "rung": "specialist",
+  "label": "quartz cuvettes, 10 mm path",
+  "bin": "fragile",
+  "why": "Quartz cuvettes are thin optical-grade silica that shatters."
+ },
+ {
+  "id": "k-s-002",
+  "rung": "specialist",
+  "label": "polypropylene centrifuge tubes, 50 mL",
+  "bin": "other",
+  "why": "Polypropylene tubes are unbreakable plastic."
+ },
+ {
+  "id": "k-s-003",
+  "rung": "specialist",
+  "label": "NMR tubes, 5 mm, 7 inch",
+  "bin": "fragile",
+  "why": "NMR tubes are thin-walled glass tubes."
+ },
+ {
+  "id": "k-s-004",
+  "rung": "specialist",
+  "label": "monoclonal antibody prefilled syringes",
+  "bin": "cold",
+  "why": "Monoclonal antibodies are biologics stored at 2-8 C."
+ },
+ {
+  "id": "k-s-005",
+  "rung": "specialist",
+  "label": "UN1203 jerricans",
+  "bin": "hazardous",
+  "why": "UN1203 is gasoline (motor spirit), a flammable liquid."
+ },
+ {
+  "id": "k-s-006",
+  "rung": "specialist",
+  "label": "class A volumetric pipettes",
+  "bin": "fragile",
+  "why": "Class A volumetric pipettes are calibrated glass."
+ },
+ {
+  "id": "k-s-007",
+  "rung": "specialist",
+  "label": "berbere spice blend, 1 kg",
+  "bin": "other",
+  "why": "A dry spice blend is shelf-stable."
+ },
+ {
+  "id": "k-s-008",
+  "rung": "specialist",
+  "label": "6 x UN1090 pails",
+  "bin": "hazardous",
+  "why": "UN1090 is acetone, a Class 3 flammable liquid."
+ },
+ {
+  "id": "k-s-009",
+  "rung": "specialist",
+  "label": "6205-2RS deep groove ball bearings",
+  "bin": "other",
+  "why": "Sealed steel bearings are sturdy and safe."
+ },
+ {
+  "id": "k-s-010",
+  "rung": "specialist",
+  "label": "Liebig condenser, 300 mm",
+  "bin": "fragile",
+  "why": "A Liebig condenser is laboratory glassware."
+ },
+ {
+  "id": "k-s-011",
+  "rung": "specialist",
+  "label": "PTFE thread seal tape",
+  "bin": "other",
+  "why": "PTFE tape is inert and sturdy."
+ },
+ {
+  "id": "k-s-012",
+  "rung": "specialist",
+  "label": "hydrofluoric acid 48%, 500 mL",
+  "bin": "hazardous",
+  "why": "HF is acutely toxic and corrosive."
+ },
+ {
+  "id": "k-s-013",
+  "rung": "specialist",
+  "label": "sodium hypochlorite solution 12.5%",
+  "bin": "hazardous",
+  "why": "Concentrated hypochlorite is corrosive."
+ },
+ {
+  "id": "k-s-014",
+  "rung": "specialist",
+  "label": "alumina crucibles, 50 mL",
+  "bin": "fragile",
+  "why": "Alumina crucibles are brittle ceramic."
+ },
+ {
+  "id": "k-s-015",
+  "rung": "specialist",
+  "label": "M12 hex flange bolts, zinc-plated",
+  "bin": "other",
+  "why": "Steel bolts are sturdy and inert."
+ },
+ {
+  "id": "k-s-016",
+  "rung": "specialist",
+  "label": "DIN rail terminal blocks",
+  "bin": "other",
+  "why": "Terminal blocks are sturdy plastic and metal parts."
+ },
+ {
+  "id": "k-s-017",
+  "rung": "specialist",
+  "label": "dried kombu sheets",
+  "bin": "other",
+  "why": "Dried kelp is shelf-stable and sturdy."
+ },
+ {
+  "id": "k-s-018",
+  "rung": "specialist",
+  "label": "UN1978 cylinders, 2 pcs",
+  "bin": "hazardous",
+  "why": "UN1978 is propane, a flammable compressed gas."
+ },
+ {
+  "id": "k-s-019",
+  "rung": "specialist",
+  "label": "diethyl ether, anhydrous, 2.5 L",
+  "bin": "hazardous",
+  "why": "Diethyl ether is an extremely flammable solvent."
+ },
+ {
+  "id": "k-s-020",
+  "rung": "specialist",
+  "label": "UN3480 cartons, 4 pcs",
+  "bin": "hazardous",
+  "why": "UN3480 is lithium-ion batteries shipped on their own."
+ },
+ {
+  "id": "k-s-021",
+  "rung": "specialist",
+  "label": "porcelain Buchner funnels, 90 mm",
+  "bin": "fragile",
+  "why": "Porcelain funnels crack and break easily."
+ },
+ {
+  "id": "k-s-022",
+  "rung": "specialist",
+  "label": "unpasteurized napa cabbage kimchi, 2 kg",
+  "bin": "cold",
+  "why": "Live, unpasteurized kimchi must be kept chilled."
+ },
+ {
+  "id": "k-s-023",
+  "rung": "specialist",
+  "label": "creme fraiche, 1 L tubs",
+  "bin": "cold",
+  "why": "Creme fraiche is perishable cultured cream."
+ },
+ {
+  "id": "k-s-024",
+  "rung": "specialist",
+  "label": "sashimi-grade hamachi loin",
+  "bin": "cold",
+  "why": "Raw fish for sashimi must be kept chilled or deep-chilled."
+ },
+ {
+  "id": "k-s-025",
+  "rung": "specialist",
+  "label": "insulin aspart cartridges",
+  "bin": "cold",
+  "why": "Unopened insulin must be kept at 2-8 C."
+ },
+ {
+  "id": "k-s-026",
+  "rung": "specialist",
+  "label": "burrata, 8 x 125 g",
+  "bin": "cold",
+  "why": "Burrata is a fresh cream-filled cheese that must stay chilled."
+ },
+ {
+  "id": "k-s-027",
+  "rung": "specialist",
+  "label": "borosilicate Erlenmeyer flasks, 250 mL",
+  "bin": "fragile",
+  "why": "Borosilicate flasks are laboratory glass that breaks."
+ },
+ {
+  "id": "k-s-028",
+  "rung": "specialist",
+  "label": "freekeh, 5 kg sacks",
+  "bin": "other",
+  "why": "Freekeh is a dried roasted grain, shelf-stable."
+ },
+ {
+  "id": "k-s-029",
+  "rung": "specialist",
+  "label": "12AX7 vacuum tubes, matched pair",
+  "bin": "fragile",
+  "why": "Vacuum tubes have glass envelopes that break."
+ },
+ {
+  "id": "k-s-030",
+  "rung": "specialist",
+  "label": "skyr, 6 x 500 g",
+  "bin": "cold",
+  "why": "Skyr is fresh cultured dairy kept chilled."
+ },
+ {
+  "id": "k-s-031",
+  "rung": "specialist",
+  "label": "stainless steel laboratory spatulas",
+  "bin": "other",
+  "why": "Steel spatulas are sturdy and safe."
+ },
+ {
+  "id": "k-s-032",
+  "rung": "specialist",
+  "label": "majolica serving platter",
+  "bin": "fragile",
+  "why": "Majolica is tin-glazed earthenware that chips and breaks."
+ },
+ {
+  "id": "k-s-033",
+  "rung": "specialist",
+  "label": "natto, 12 packs",
+  "bin": "cold",
+  "why": "Natto is fermented fresh soybeans sold chilled."
+ },
+ {
+  "id": "k-s-034",
+  "rung": "specialist",
+  "label": "fused silica optical windows",
+  "bin": "fragile",
+  "why": "Fused silica windows are brittle glass optics."
+ },
+ {
+  "id": "k-s-035",
+  "rung": "specialist",
+  "label": "tetrahydrofuran, 4 L",
+  "bin": "hazardous",
+  "why": "THF is a highly flammable solvent."
+ },
+ {
+  "id": "k-s-036",
+  "rung": "specialist",
+  "label": "drum of UN1830",
+  "bin": "hazardous",
+  "why": "UN1830 is sulphuric acid, a Class 8 corrosive."
+ },
+ {
+  "id": "k-s-037",
+  "rung": "specialist",
+  "label": "boudin blanc links",
+  "bin": "cold",
+  "why": "Boudin blanc is a perishable fresh sausage."
+ },
+ {
+  "id": "k-s-038",
+  "rung": "specialist",
+  "label": "MMR vaccine, 10-dose pack",
+  "bin": "cold",
+  "why": "MMR vaccine is a cold-chain vaccine kept at 2-8 C or below."
+ },
+ {
+  "id": "k-s-039",
+  "rung": "specialist",
+  "label": "nitrile examination gloves, box of 100",
+  "bin": "other",
+  "why": "Nitrile gloves are sturdy and safe at room temperature."
+ },
+ {
+  "id": "k-x-000",
+  "rung": "expert",
+  "label": "Jasperware cameo plaque",
+  "bin": "fragile",
+  "why": "Jasperware is unglazed stoneware that chips and breaks."
+ },
+ {
+  "id": "k-x-001",
+  "rung": "expert",
+  "label": "Zerodur mirror blank",
+  "bin": "fragile",
+  "why": "Zerodur is a brittle glass-ceramic."
+ },
+ {
+  "id": "k-x-002",
+  "rung": "expert",
+  "label": "bafun uni trays, Hokkaido",
+  "bin": "cold",
+  "why": "Fresh sea urchin roe is extremely perishable."
+ },
+ {
+  "id": "k-x-003",
+  "rung": "expert",
+  "label": "autologous CAR-T infusion bag",
+  "bin": "cold",
+  "why": "CAR-T cell therapy is shipped cryopreserved."
+ },
+ {
+  "id": "k-x-004",
+  "rung": "expert",
+  "label": "silica aerogel monolith",
+  "bin": "fragile",
+  "why": "Silica aerogel crumbles under slight force."
+ },
+ {
+  "id": "k-x-005",
+  "rung": "expert",
+  "label": "packed red blood cells, 2 units",
+  "bin": "cold",
+  "why": "Red cell units are stored at 1-6 C."
+ },
+ {
+  "id": "k-x-006",
+  "rung": "expert",
+  "label": "cryoprecipitate units, 5 bags",
+  "bin": "cold",
+  "why": "Cryoprecipitate is a blood component stored deep-frozen."
+ },
+ {
+  "id": "k-x-007",
+  "rung": "expert",
+  "label": "t-BuLi, 1.7 M in pentane",
+  "bin": "hazardous",
+  "why": "tert-Butyllithium is pyrophoric in a flammable solvent."
+ },
+ {
+  "id": "k-x-008",
+  "rung": "expert",
+  "label": "zirconium powder, dry",
+  "bin": "hazardous",
+  "why": "Dry zirconium powder is pyrophoric."
+ },
+ {
+  "id": "k-x-009",
+  "rung": "expert",
+  "label": "TMSCl, 500 mL",
+  "bin": "hazardous",
+  "why": "Chlorotrimethylsilane is flammable and releases corrosive HCl."
+ },
+ {
+  "id": "k-x-010",
+  "rung": "expert",
+  "label": "human rabies immune globulin",
+  "bin": "cold",
+  "why": "Rabies immune globulin is a biologic stored at 2-8 C."
+ },
+ {
+  "id": "k-x-011",
+  "rung": "expert",
+  "label": "PEEK rod stock",
+  "bin": "other",
+  "why": "PEEK is a tough, inert engineering polymer."
+ },
+ {
+  "id": "k-x-012",
+  "rung": "expert",
+  "label": "Meissen figurine, 18th century",
+  "bin": "fragile",
+  "why": "Meissen figurines are hard-paste porcelain."
+ },
+ {
+  "id": "k-x-013",
+  "rung": "expert",
+  "label": "tuberculin PPD vials",
+  "bin": "cold",
+  "why": "Tuberculin PPD must be stored at 2-8 C."
+ },
+ {
+  "id": "k-x-014",
+  "rung": "expert",
+  "label": "tsampa, 2 kg",
+  "bin": "other",
+  "why": "Tsampa is roasted barley flour, shelf-stable."
+ },
+ {
+  "id": "k-x-015",
+  "rung": "expert",
+  "label": "Ti-6Al-4V billet",
+  "bin": "other",
+  "why": "Solid titanium alloy billet is sturdy and non-reactive in bulk."
+ },
+ {
+  "id": "k-x-016",
+  "rung": "expert",
+  "label": "Bronze Age palstave",
+  "bin": "other",
+  "why": "A palstave is a solid bronze axe-head."
+ },
+ {
+  "id": "k-x-017",
+  "rung": "expert",
+  "label": "Raney nickel, aqueous slurry",
+  "bin": "hazardous",
+  "why": "Activated Raney nickel is a self-heating pyrophoric catalyst."
+ },
+ {
+  "id": "k-x-018",
+  "rung": "expert",
+  "label": "Lalique car mascot",
+  "bin": "fragile",
+  "why": "Lalique mascots are moulded glass."
+ },
+ {
+  "id": "k-x-019",
+  "rung": "expert",
+  "label": "Inconel 718 bar stock",
+  "bin": "other",
+  "why": "Inconel is a solid nickel superalloy, sturdy and inert."
+ },
+ {
+  "id": "k-x-020",
+  "rung": "expert",
+  "label": "nitrate cine film reels, 35 mm",
+  "bin": "hazardous",
+  "why": "Cellulose nitrate film is highly flammable and self-igniting."
+ },
+ {
+  "id": "k-x-021",
+  "rung": "expert",
+  "label": "kibbeh nayyeh, catering tray",
+  "bin": "cold",
+  "why": "Kibbeh nayyeh is raw minced lamb that must stay chilled."
+ },
+ {
+  "id": "k-x-022",
+  "rung": "expert",
+  "label": "antique Crookes tube",
+  "bin": "fragile",
+  "why": "A Crookes tube is an evacuated glass discharge tube."
+ },
+ {
+  "id": "k-x-023",
+  "rung": "expert",
+  "label": "Hastelloy C-276 plate",
+  "bin": "other",
+  "why": "Hastelloy plate is solid nickel alloy, sturdy and inert."
+ },
+ {
+  "id": "k-x-024",
+  "rung": "expert",
+  "label": "Sevres soft-paste cup",
+  "bin": "fragile",
+  "why": "Soft-paste porcelain is especially brittle."
+ },
+ {
+  "id": "k-x-025",
+  "rung": "expert",
+  "label": "katsuobushi blocks",
+  "bin": "other",
+  "why": "Katsuobushi is rock-hard dried, smoked bonito, shelf-stable."
+ },
+ {
+  "id": "k-x-026",
+  "rung": "expert",
+  "label": "fresh huitlacoche, 2 kg",
+  "bin": "cold",
+  "why": "Fresh corn smut is a perishable delicacy kept chilled."
+ },
+ {
+  "id": "k-x-027",
+  "rung": "expert",
+  "label": "nucleoside-modified mRNA vaccine, multidose vials",
+  "bin": "cold",
+  "why": "mRNA-LNP vaccines require ultra-low cold-chain storage."
+ },
+ {
+  "id": "k-x-028",
+  "rung": "expert",
+  "label": "wootz crucible steel ingot",
+  "bin": "other",
+  "why": "A wootz ingot is a solid steel bar."
+ },
+ {
+  "id": "k-x-029",
+  "rung": "expert",
+  "label": "picric acid, wetted 30% water",
+  "bin": "hazardous",
+  "why": "Wetted picric acid is a desensitized explosive."
+ },
+ {
+  "id": "k-x-030",
+  "rung": "expert",
+  "label": "diethylzinc, neat, 100 g",
+  "bin": "hazardous",
+  "why": "Diethylzinc ignites spontaneously in air."
+ },
+ {
+  "id": "k-x-031",
+  "rung": "expert",
+  "label": "kaymak, 1 kg tub",
+  "bin": "cold",
+  "why": "Kaymak is fresh clotted cream that must stay chilled."
+ },
+ {
+  "id": "k-x-032",
+  "rung": "expert",
+  "label": "WF6 lecture bottle",
+  "bin": "hazardous",
+  "why": "Tungsten hexafluoride is a toxic, corrosive compressed gas."
+ },
+ {
+  "id": "k-x-033",
+  "rung": "expert",
+  "label": "OsO4 ampoules, 0.25 g",
+  "bin": "hazardous",
+  "why": "Osmium tetroxide is acutely toxic."
+ },
+ {
+  "id": "k-x-034",
+  "rung": "expert",
+  "label": "ambrotype portrait, sixth-plate",
+  "bin": "fragile",
+  "why": "An ambrotype is a photograph on a glass plate."
+ },
+ {
+  "id": "k-x-035",
+  "rung": "expert",
+  "label": "Kevlar 49 roving spools",
+  "bin": "other",
+  "why": "Aramid fibre spools are sturdy and safe."
+ },
+ {
+  "id": "k-x-036",
+  "rung": "expert",
+  "label": "HF-pyridine (Olah's reagent)",
+  "bin": "hazardous",
+  "why": "HF-pyridine is toxic and corrosive."
+ },
+ {
+  "id": "k-x-037",
+  "rung": "expert",
+  "label": "Roman silver denarius",
+  "bin": "other",
+  "why": "A silver coin is small and sturdy."
+ },
+ {
+  "id": "k-x-038",
+  "rung": "expert",
+  "label": "Roman unguentarium, excavated",
+  "bin": "fragile",
+  "why": "An unguentarium is an ancient thin glass vessel."
+ },
+ {
+  "id": "k-x-039",
+  "rung": "expert",
+  "label": "300 mm silicon wafers",
+  "bin": "fragile",
+  "why": "Monocrystalline silicon wafers are thin and brittle."
+ },
+ {
+  "id": "k-m-000",
+  "rung": "misleading",
+  "label": "artificial snow spray for windows",
+  "bin": "hazardous",
+  "why": "'Snow' is decorative; the product is a flammable aerosol."
+ },
+ {
+  "id": "k-m-001",
+  "rung": "misleading",
+  "label": "antique battery jar, empty",
+  "bin": "fragile",
+  "why": "An empty battery jar is just a glass container, which breaks."
+ },
+ {
+  "id": "k-m-002",
+  "rung": "misleading",
+  "label": "Sterno cans for buffet warmers",
+  "bin": "hazardous",
+  "why": "Sterno is a flammable gel fuel."
+ },
+ {
+  "id": "k-m-003",
+  "rung": "misleading",
+  "label": "circuit cooler spray can",
+  "bin": "hazardous",
+  "why": "'Cooler' is the use; it is a pressurized aerosol."
+ },
+ {
+  "id": "k-m-004",
+  "rung": "misleading",
+  "label": "cultured buttermilk with lactic acid",
+  "bin": "cold",
+  "why": "Mild lactic acid is not corrosive; buttermilk is perishable dairy."
+ },
+ {
+  "id": "k-m-005",
+  "rung": "misleading",
+  "label": "polar fleece jacket",
+  "bin": "other",
+  "why": "'Polar' is a fabric name; a jacket needs no refrigeration."
+ },
+ {
+  "id": "k-m-006",
+  "rung": "misleading",
+  "label": "crystal shrimp dumplings, uncooked",
+  "bin": "cold",
+  "why": "'Crystal' describes the wrapper; raw shrimp dumplings need cold storage."
+ },
+ {
+  "id": "k-m-007",
+  "rung": "misleading",
+  "label": "bisque-fired clay bowls",
+  "bin": "fragile",
+  "why": "'Fired' is a kiln stage; bisque ceramic is brittle."
+ },
+ {
+  "id": "k-m-008",
+  "rung": "misleading",
+  "label": "aquarium CO2 refill cylinder",
+  "bin": "hazardous",
+  "why": "The aquarium is the use; the CO2 cylinder is pressurized."
+ },
+ {
+  "id": "k-m-009",
+  "rung": "misleading",
+  "label": "raw rock lobster tails",
+  "bin": "cold",
+  "why": "'Rock' is a species name; raw lobster must stay chilled."
+ },
+ {
+  "id": "k-m-010",
+  "rung": "misleading",
+  "label": "dry shampoo, travel size",
+  "bin": "hazardous",
+  "why": "Dry shampoo is a flammable aerosol."
+ },
+ {
+  "id": "k-m-011",
+  "rung": "misleading",
+  "label": "botulinum toxin type A, cosmetic vials",
+  "bin": "cold",
+  "why": "Despite 'toxin', this is a licensed medicine stored at 2-8 C."
+ },
+ {
+  "id": "k-m-012",
+  "rung": "misleading",
+  "label": "bent-tube neon sign",
+  "bin": "fragile",
+  "why": "Neon is inert at low pressure; the tubing is thin glass."
+ },
+ {
+  "id": "k-m-013",
+  "rung": "misleading",
+  "label": "tub of lithium grease",
+  "bin": "other",
+  "why": "Lithium soap grease contains no battery and is not regulated as dangerous."
+ },
+ {
+  "id": "k-m-014",
+  "rung": "misleading",
+  "label": "hand sanitizer gel, 70% ethanol",
+  "bin": "hazardous",
+  "why": "70% ethanol gel is a flammable liquid."
+ },
+ {
+  "id": "k-m-015",
+  "rung": "misleading",
+  "label": "lava lamp, mains powered",
+  "bin": "fragile",
+  "why": "A mains lava lamp has no battery and its glass vessel breaks."
+ },
+ {
+  "id": "k-m-016",
+  "rung": "misleading",
+  "label": "porcelain nail kit with acrylic liquid",
+  "bin": "hazardous",
+  "why": "'Porcelain' is a nail style; the monomer liquid is flammable."
+ },
+ {
+  "id": "k-m-017",
+  "rung": "misleading",
+  "label": "fitness tracker wristband",
+  "bin": "hazardous",
+  "why": "A fitness tracker contains a lithium battery."
+ },
+ {
+  "id": "k-m-018",
+  "rung": "misleading",
+  "label": "fire-roasted salsa, fresh deli tub",
+  "bin": "cold",
+  "why": "'Fire' is a cooking style; fresh salsa needs refrigeration."
+ },
+ {
+  "id": "k-m-019",
+  "rung": "misleading",
+  "label": "porcelain-effect vinyl floor tiles",
+  "bin": "other",
+  "why": "Only the look is porcelain; vinyl tiles are flexible and sturdy."
+ },
+ {
+  "id": "k-m-020",
+  "rung": "misleading",
+  "label": "old mobile phones for recycling",
+  "bin": "hazardous",
+  "why": "Old phones still contain lithium batteries."
+ },
+ {
+  "id": "k-m-021",
+  "rung": "misleading",
+  "label": "cut-crystal ice bucket",
+  "bin": "fragile",
+  "why": "The ice bucket is empty; cut crystal is breakable."
+ },
+ {
+  "id": "k-m-022",
+  "rung": "misleading",
+  "label": "Battery Park walking-tour guidebook",
+  "bin": "other",
+  "why": "'Battery Park' is a place; a book is sturdy and safe."
+ },
+ {
+  "id": "k-m-023",
+  "rung": "misleading",
+  "label": "empty Igloo cooler",
+  "bin": "other",
+  "why": "An empty plastic cooler is sturdy and holds nothing perishable."
+ },
+ {
+  "id": "k-m-024",
+  "rung": "misleading",
+  "label": "crystal-clear lamp oil",
+  "bin": "hazardous",
+  "why": "'Crystal-clear' describes clarity; lamp oil is flammable."
+ },
+ {
+  "id": "k-m-025",
+  "rung": "misleading",
+  "label": "battery-farm chicken breasts, raw",
+  "bin": "cold",
+  "why": "'Battery' refers to farming; raw chicken needs refrigeration."
+ },
+ {
+  "id": "k-m-026",
+  "rung": "misleading",
+  "label": "frosted bathroom tumblers",
+  "bin": "fragile",
+  "why": "'Frosted' means etched glass, which is breakable."
+ },
+ {
+  "id": "k-m-027",
+  "rung": "misleading",
+  "label": "hot-smoked trout fillets, vacuum packed",
+  "bin": "cold",
+  "why": "'Hot' is the smoking method; smoked fish is perishable."
+ },
+ {
+  "id": "k-m-028",
+  "rung": "misleading",
+  "label": "acid-etched bathroom mirror",
+  "bin": "fragile",
+  "why": "The etching is finished; the mirror is breakable glass."
+ },
+ {
+  "id": "k-m-029",
+  "rung": "misleading",
+  "label": "Firestone truck tyres",
+  "bin": "other",
+  "why": "'Fire' is in the brand name; tyres are sturdy and safe."
+ },
+ {
+  "id": "k-m-030",
+  "rung": "misleading",
+  "label": "gunpowder green tea, 500 g",
+  "bin": "other",
+  "why": "Gunpowder tea is rolled dry tea leaves, shelf-stable."
+ },
+ {
+  "id": "k-m-031",
+  "rung": "misleading",
+  "label": "Pyrex measuring jug",
+  "bin": "fragile",
+  "why": "Pyrex is a brand of glass bakeware, not anything pyrotechnic."
+ },
+ {
+  "id": "k-m-032",
+  "rung": "misleading",
+  "label": "explosion-proof junction box",
+  "bin": "other",
+  "why": "Rated for hazardous areas, but the box itself is a sturdy metal enclosure."
+ },
+ {
+  "id": "k-m-033",
+  "rung": "misleading",
+  "label": "poisson cru, ready to serve",
+  "bin": "cold",
+  "why": "'Poisson' is French for fish; raw marinated fish must stay chilled."
+ },
+ {
+  "id": "k-m-034",
+  "rung": "misleading",
+  "label": "flameworked borosilicate pendant",
+  "bin": "fragile",
+  "why": "'Flameworked' is how it was made; the pendant is glass."
+ },
+ {
+  "id": "k-m-035",
+  "rung": "misleading",
+  "label": "ice hockey pucks, dozen",
+  "bin": "other",
+  "why": "Rubber pucks are sturdy and need no refrigeration."
+ },
+ {
+  "id": "k-m-036",
+  "rung": "misleading",
+  "label": "dynamite rolls, sushi platter",
+  "bin": "cold",
+  "why": "A dynamite roll is sushi, which must be kept chilled."
+ },
+ {
+  "id": "k-m-037",
+  "rung": "misleading",
+  "label": "baked alaska, ready to torch",
+  "bin": "cold",
+  "why": "The torch is for browning; the ice-cream core needs a freezer."
+ },
+ {
+  "id": "k-m-038",
+  "rung": "misleading",
+  "label": "Royal Doulton snowman figurine",
+  "bin": "fragile",
+  "why": "'Snowman' is the theme; the figurine is bone china."
+ },
+ {
+  "id": "k-m-039",
+  "rung": "misleading",
+  "label": "Crystal Palace FC scarf",
+  "bin": "other",
+  "why": "Crystal Palace is a football club; a scarf is sturdy and safe."
+ },
+ {
+  "id": "k-c-000",
+  "rung": "compound",
+  "label": "hurricane lamp filled with kerosene",
+  "bin": "hazardous",
+  "why": "Hazardous (flammable kerosene) plus Fragile (glass chimney); Hazardous wins."
+ },
+ {
+  "id": "k-c-001",
+  "rung": "compound",
+  "label": "nail varnish set in porcelain gift box",
+  "bin": "hazardous",
+  "why": "Hazardous (flammable varnish) plus Fragile (porcelain); Hazardous outranks Fragile."
+ },
+ {
+  "id": "k-c-002",
+  "rung": "compound",
+  "label": "mains-powered stained-glass lamp",
+  "bin": "fragile",
+  "why": "No battery, so not Hazardous; stained glass is Fragile."
+ },
+ {
+  "id": "k-c-003",
+  "rung": "compound",
+  "label": "sealed plastic bottles of spring water",
+  "bin": "other",
+  "why": "Water is safe, shelf-stable and in plastic, so Everything else."
+ },
+ {
+  "id": "k-c-004",
+  "rung": "compound",
+  "label": "white vinegar, glass bottle",
+  "bin": "fragile",
+  "why": "5% vinegar is not corrosive; the glass bottle makes it Fragile."
+ },
+ {
+  "id": "k-c-005",
+  "rung": "compound",
+  "label": "insulin pens with AAA-battery glucose meter",
+  "bin": "cold",
+  "why": "Cold (insulin); the alkaline AAA battery is not lithium, so Cold wins over Everything else."
+ },
+ {
+  "id": "k-c-006",
+  "rung": "compound",
+  "label": "creme brulee in ceramic ramekins",
+  "bin": "cold",
+  "why": "Cold (custard dessert) plus Fragile (ceramic); Cold outranks Fragile."
+ },
+ {
+  "id": "k-c-007",
+  "rung": "compound",
+  "label": "tiramisu in porcelain serving dish",
+  "bin": "cold",
+  "why": "Cold (mascarpone dessert) plus Fragile (porcelain); Cold wins."
+ },
+ {
+  "id": "k-c-008",
+  "rung": "compound",
+  "label": "fire extinguisher in glass display case",
+  "bin": "hazardous",
+  "why": "Hazardous (pressurized extinguisher) plus Fragile (glass case); Hazardous wins."
+ },
+ {
+  "id": "k-c-009",
+  "rung": "compound",
+  "label": "raw honey in ceramic crock",
+  "bin": "fragile",
+  "why": "Honey is shelf-stable (Everything else) but the ceramic crock is Fragile; Fragile wins."
+ },
+ {
+  "id": "k-c-010",
+  "rung": "compound",
+  "label": "melamine dinnerware set",
+  "bin": "other",
+  "why": "Melamine looks like china but is sturdy plastic, so not Fragile."
+ },
+ {
+  "id": "k-c-011",
+  "rung": "compound",
+  "label": "corded hair straightener, ceramic plates",
+  "bin": "other",
+  "why": "Ceramic-coated plates are bonded to metal and it has no battery, so Everything else."
+ },
+ {
+  "id": "k-c-012",
+  "rung": "compound",
+  "label": "wind-up alarm clock, acrylic face",
+  "bin": "other",
+  "why": "No battery and an acrylic (not glass) face, so Everything else."
+ },
+ {
+  "id": "k-c-013",
+  "rung": "compound",
+  "label": "live lobsters packed with gel packs",
+  "bin": "cold",
+  "why": "Cold (live shellfish) plus Everything else (gel packs are non-hazardous); Cold wins."
+ },
+ {
+  "id": "k-c-014",
+  "rung": "compound",
+  "label": "porcelain night light, lithium-ion rechargeable",
+  "bin": "hazardous",
+  "why": "Hazardous (lithium-ion battery) plus Fragile (porcelain); Hazardous outranks Fragile."
+ },
+ {
+  "id": "k-c-015",
+  "rung": "compound",
+  "label": "fresh basil pesto in glass jars",
+  "bin": "cold",
+  "why": "Cold (fresh pesto) plus Fragile (glass); Cold outranks Fragile."
+ },
+ {
+  "id": "k-c-016",
+  "rung": "compound",
+  "label": "shelf-stable pickles in glass jar",
+  "bin": "fragile",
+  "why": "Sealed pickles need no refrigeration; the glass jar makes them Fragile."
+ },
+ {
+  "id": "k-c-017",
+  "rung": "compound",
+  "label": "extra virgin olive oil, glass bottle",
+  "bin": "fragile",
+  "why": "Olive oil is not flammable and is shelf-stable; the glass bottle makes it Fragile."
+ },
+ {
+  "id": "k-c-018",
+  "rung": "compound",
+  "label": "acrylic aquarium with air pump",
+  "bin": "other",
+  "why": "Acrylic is shatter-resistant and the pump is mains-powered, so Everything else."
+ },
+ {
+  "id": "k-c-019",
+  "rung": "compound",
+  "label": "porcelain teapot with loose-leaf tea",
+  "bin": "fragile",
+  "why": "Fragile (porcelain) plus Everything else (dry tea); Fragile wins."
+ },
+ {
+  "id": "k-c-020",
+  "rung": "compound",
+  "label": "canned tuna in olive oil",
+  "bin": "other",
+  "why": "Sealed cans are shelf-stable and olive oil is not flammable, so Everything else."
+ },
+ {
+  "id": "k-c-021",
+  "rung": "compound",
+  "label": "beef jerky in resealable pouches",
+  "bin": "other",
+  "why": "Jerky is dried, shelf-stable meat, so not Cold."
+ },
+ {
+  "id": "k-c-022",
+  "rung": "compound",
+  "label": "vaccine carrier with lithium-battery data logger",
+  "bin": "hazardous",
+  "why": "Hazardous (lithium battery) plus Cold (vaccines); Hazardous outranks Cold."
+ },
+ {
+  "id": "k-c-023",
+  "rung": "compound",
+  "label": "flat-pack bookcase with glass doors",
+  "bin": "fragile",
+  "why": "Fragile (glass panels) plus Everything else (wood); Fragile wins."
+ },
+ {
+  "id": "k-c-024",
+  "rung": "compound",
+  "label": "fresh egg pasta in wooden crate",
+  "bin": "cold",
+  "why": "Cold (fresh pasta) plus Everything else (crate); Cold wins."
+ },
+ {
+  "id": "k-c-025",
+  "rung": "compound",
+  "label": "bromine in sealed glass ampoules",
+  "bin": "hazardous",
+  "why": "Hazardous (toxic, corrosive bromine) plus Fragile (glass); Hazardous wins."
+ },
+ {
+  "id": "k-c-026",
+  "rung": "compound",
+  "label": "mercury thermometer, glass",
+  "bin": "hazardous",
+  "why": "Hazardous (toxic mercury) plus Fragile (glass); Hazardous wins."
+ },
+ {
+  "id": "k-c-027",
+  "rung": "compound",
+  "label": "foie gras in earthenware terrine",
+  "bin": "cold",
+  "why": "Cold (fresh foie gras) plus Fragile (earthenware); Cold wins."
+ },
+ {
+  "id": "k-c-028",
+  "rung": "compound",
+  "label": "maple syrup in glass bottle, unopened",
+  "bin": "fragile",
+  "why": "Unopened syrup is shelf-stable; the glass bottle makes it Fragile."
+ },
+ {
+  "id": "k-c-029",
+  "rung": "compound",
+  "label": "baby oil in plastic bottle",
+  "bin": "other",
+  "why": "Mineral oil is not flammable and the bottle is plastic, so Everything else."
+ },
+ {
+  "id": "k-c-030",
+  "rung": "compound",
+  "label": "spray cheese, aerosol can",
+  "bin": "hazardous",
+  "why": "Hazardous (pressurized aerosol) plus Everything else (shelf-stable cheese); Hazardous outranks."
+ },
+ {
+  "id": "k-c-031",
+  "rung": "compound",
+  "label": "insulin in glass multi-dose vials",
+  "bin": "cold",
+  "why": "Cold (insulin) plus Fragile (glass vials); Cold outranks Fragile."
+ },
+ {
+  "id": "k-c-032",
+  "rung": "compound",
+  "label": "stem cell bags in filled liquid nitrogen dewar",
+  "bin": "hazardous",
+  "why": "Hazardous (liquid nitrogen is a pressurized cryogenic gas) plus Cold (cell therapy); Hazardous wins."
+ },
+ {
+  "id": "k-c-033",
+  "rung": "compound",
+  "label": "wall clock with glass face, alkaline AA",
+  "bin": "fragile",
+  "why": "Alkaline AA is not lithium, so not Hazardous; the glass face makes it Fragile."
+ },
+ {
+  "id": "k-c-034",
+  "rung": "compound",
+  "label": "red wine, case of six bottles",
+  "bin": "fragile",
+  "why": "Table wine is not flammable or perishable; glass bottles make it Fragile."
+ },
+ {
+  "id": "k-c-035",
+  "rung": "compound",
+  "label": "flashlight with alkaline AA batteries",
+  "bin": "other",
+  "why": "Alkaline batteries are not lithium and the plastic torch is sturdy, so no other bin applies."
+ },
+ {
+  "id": "k-c-036",
+  "rung": "compound",
+  "label": "fresh milk in glass bottles",
+  "bin": "cold",
+  "why": "Cold (fresh milk) plus Fragile (glass); Cold outranks Fragile."
+ },
+ {
+  "id": "k-c-037",
+  "rung": "compound",
+  "label": "insulin pump kit with lithium battery and insulin vials",
+  "bin": "hazardous",
+  "why": "Hazardous (lithium battery) plus Cold (insulin) plus Fragile (vials); Hazardous wins."
+ },
+ {
+  "id": "k-c-038",
+  "rung": "compound",
+  "label": "caviar in a crystal serving bowl",
+  "bin": "cold",
+  "why": "Cold (perishable caviar) plus Fragile (crystal); Cold outranks Fragile."
+ },
+ {
+  "id": "k-c-039",
+  "rung": "compound",
+  "label": "UHT milk cartons, unopened",
+  "bin": "other",
+  "why": "UHT milk is shelf-stable until opened and cartons are sturdy, so not Cold or Fragile."
+ }
+]
