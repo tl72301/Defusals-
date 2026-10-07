@@ -16,7 +16,7 @@ TEXT, MUTED = '#F5F7FA', '#C3CDD6'
 RIGHT_COLOR, WRONG_COLOR = '#56D364', '#FF8A80'
 BIN_COLOR = {'cold': '#56B4E9', 'hazardous': '#E69F00', 'fragile': '#CC79A7', 'other': '#009E73',
              'europe': '#56B4E9', 'asia': '#E69F00', 'americas': '#F0E442', 'africa_oceania': '#CC79A7'}
-CONTROLLER_NAME = {'decisions': 'Decisions', 'oracle': 'Answer key', 'keyword': 'Keyword matcher',
+CONTROLLER_NAME = {'decisions': 'Decisions', 'oracle': 'Answer key', 'keyword': 'Keyword matcher', 'dictionary': 'Dictionary program',
                    'random': 'Random picker', 'first_option': 'First-option picker'}
 SLIDE, DROP, SUMMARY = 0.4, 0.4, 4.0
 TEXT_PAIRS = [(TEXT, BG), (MUTED, BG), (TEXT, PANEL), (MUTED, PANEL), (TEXT, CARD), (MUTED, CARD),
