@@ -87,6 +87,8 @@ Set `OPENAI_API_KEY` securely in the operator's runtime environment. Never put i
 
 ```bash
 python -m defuse.budget show
+# --attempt-requests caps the total number of attempt requests under this approval (all attempts together);
+# --max-requests on attempt/batch caps each attempt.
 python -m defuse.budget approve --total-usd 1.00 \
   --smoke-requests 30 --attempt-requests 300 --allow-batch --confirm
 python -m defuse.doctor --live

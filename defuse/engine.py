@@ -124,8 +124,12 @@ class Bomb:
 
     def view(self, module=None):
         m = module or self.current()
+        if not m: return None
+        state = deepcopy(m['state'])
+        if m['kind'] == 'lexicon':   # what each dial window shows, as a player would read it
+            state['showing'] = [dial[i] for dial, i in zip(state['dials'], state['indices'])]
         return deepcopy({'edgework':self.edge,'time_left':self.remaining,'display':display(self.remaining),'strikes':self.strikes,
-                         'module_id':m['id'],'module_type':m['kind'],'state':m['state'],'manual':SECTIONS[m['kind']]}) if m else None
+                         'module_id':m['id'],'module_type':m['kind'],'state':state,'manual':SECTIONS[m['kind']]})
 
     def snapshot(self):
         return deepcopy({'time_left':self.remaining,'elapsed':self.elapsed,'strikes':self.strikes,'edgework':self.edge,'modules':self.modules,

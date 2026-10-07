@@ -170,3 +170,9 @@ def test_rule_puzzles_come_before_keystone_and_labyrinth_and_probes_isolate_one_
     assert kinds[-2:]==['keystone','labyrinth'] and kinds[0]=='wires'
     probe=Bomb(3,only='glyph',strike_limit=10)
     assert [m['kind'] for m in probe.modules]==['glyph'] and probe.strike_limit==10
+
+
+def test_word_loom_view_states_the_letters_showing():
+    bomb=Bomb(30001,only='lexicon'); state=bomb.current()['state']
+    showing=bomb.view()['state']['showing']
+    assert showing==[d[i] for d,i in zip(state['dials'],state['indices'])] and 'showing' not in state
