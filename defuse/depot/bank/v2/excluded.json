@@ -1,0 +1,25 @@
+{
+ "note": "Left out of play: a blind second annotator agreed on every bin (320/320) but rated these less than high confidence. See annotation_blind.json.",
+ "ids": [
+  "t-c020",
+  "t-c041",
+  "t-c046",
+  "t-c048",
+  "t-c064",
+  "t-c069",
+  "t-c088",
+  "t-m059",
+  "t-m093"
+ ],
+ "reasons": {
+  "t-c064": "glass and breakable, but contains toxic mercury; hazardous outranks fragile",
+  "t-c020": "most tinned caviar is fresh and must be refrigerated, but pasteurized tins can be shelf-stable",
+  "t-m059": "non-English term; acid or strong liquor, both hazardous",
+  "t-c088": "glass bottles; table wine is low-proof and not normally treated as flammable",
+  "t-c069": "crystal bottle is fragile, but perfume is flammable (alcohol) and hazardous outranks fragile",
+  "t-m093": "usually glass and breakable, but small and fairly sturdy",
+  "t-c041": "CR2032 is a lithium coin cell, though the label does not say lithium",
+  "t-c046": "household-strength ammonia is dilute; borderline toxic/corrosive",
+  "t-c048": "toxic, though ethylene glycol is often not regulated as dangerous goods for transport"
+ }
+}
