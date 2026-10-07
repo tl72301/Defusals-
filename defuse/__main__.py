@@ -26,6 +26,9 @@ def main(argv=None):
         a.add_argument('--output',type=Path,default=Path('data/runs')); a.add_argument('--endpoint',default=API_URL); a.add_argument('--timeout',type=float,default=.6)
         a.add_argument('--budget-dir',type=Path,default=DEFAULT_DIR); a.add_argument('--no-video',action='store_true'); a.add_argument('--step-seconds',type=float,default=.2)
         a.add_argument('--max-requests',type=int,default=300)
+        if name in ('attempt','batch'):
+            a.add_argument('--only',help='Probe one puzzle type alone (wires, button, glyph, echo, recall, lexicon, keystone, labyrinth)')
+            a.add_argument('--strikes',type=int,default=3,help='Strike limit (probes may allow more to measure accuracy)')
         if name in ('batch','sweep'):
             if name=='batch': a.add_argument('--seeds',type=int,nargs='+',required=True)
             else:
@@ -56,6 +59,7 @@ def main(argv=None):
             r=clips(args.runs,args.output); print(f'{len(r["clips"])} review copies; highlight: {r["highlight"]}'); return 0
         common=dict(difficulty=args.difficulty,seconds=args.seconds,output=args.output,endpoint=args.endpoint,timeout=args.timeout,
                     budget=Budget(args.budget_dir),video=not args.no_video,step_seconds=args.step_seconds,max_requests=args.max_requests)
+        if args.command in ('attempt','batch'): common.update(only=args.only,strikes=args.strikes)
         if args.command in ('sweep','keystone-sweep'):
             if args.seeds<1 or not args.depths or any(d not in range(1,6) for d in args.depths) or len(set(args.depths))!=len(args.depths):
                 raise ValueError('Sweep needs positive N seeds and unique depths 1..5')

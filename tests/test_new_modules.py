@@ -31,7 +31,7 @@ def test_nine_unique_marker_pairs_and_connected_original_layouts():
 def test_1000_seeds_labyrinth_and_keystone_at_every_depth():
     seen=set()
     for seed in range(1000):
-        bomb=Bomb(seed,'hard'); maze=bomb.current(); seen.add(labyrinth.layout_for(maze['state']['markers'])['id'])
+        bomb=Bomb(seed,'hard',only='labyrinth'); maze=bomb.current(); seen.add(labyrinth.layout_for(maze['state']['markers'])['id'])
         optimal=maze['optimal_moves']; moves=0
         while not maze['solved']:
             result=bomb.apply(bomb.answer()[0]); moves+=1
@@ -50,7 +50,7 @@ def test_1000_seeds_labyrinth_and_keystone_at_every_depth():
 
 
 def test_wall_bump_and_legal_detour_have_distinct_verdicts():
-    bomb=Bomb(17); m=bomb.current(); state=m['state']; layout=labyrinth.layout_for(state['markers'])
+    bomb=Bomb(17,only='labyrinth'); m=bomb.current(); state=m['state']; layout=labyrinth.layout_for(state['markers'])
     # Find a cell with at least two open neighbors so one is a legal detour.
     distance=labyrinth.distances(layout,state['exit'])
     cell=next(c for c in distance if c!=tuple(state['exit']) and sum(labyrinth.legal(layout,c,a) for a in labyrinth.DIRECTIONS)>=2)
@@ -67,7 +67,7 @@ def test_wall_bump_and_legal_detour_have_distinct_verdicts():
 
 
 def test_maze_view_does_not_expose_selected_walls_or_shortest_route():
-    bomb=Bomb(11)
+    bomb=Bomb(11,only='labyrinth')
     view=bomb.view()
     assert set(view['state'])=={'markers','cell','exit','moves'}
     assert 'Layout 1:' in view['manual'] and 'Layout 9:' in view['manual']
@@ -156,10 +156,17 @@ def test_new_metrics_in_logs_and_reports(tmp_path):
     folder,result=run_attempt(8,'solver',output=tmp_path,video=False,step_seconds=0,keystone_depth=5)
     row=json.loads((folder/'actions.jsonl').read_text().splitlines()[0])
     assert row['depth']==5 and len(row['oracle_trace']['steps'])==5
-    # A maze-only request cap yields one measured move, with its initial optimum retained.
-    run_attempt(8,'solver',output=tmp_path,video=False,step_seconds=0,max_requests=1)
+    # A maze-only probe with a request cap yields one measured move, with its initial optimum retained.
+    run_attempt(8,'solver',output=tmp_path,video=False,step_seconds=0,max_requests=1,only='labyrinth')
     payload=report(tmp_path)
-    maze_group=next(g for g in payload['groups'] if g['scenario']=='bomb')
+    maze_group=next(g for g in payload['groups'] if g['scenario']=='probe:labyrinth')
     assert maze_group['labyrinth']['moves_taken']==1
     assert maze_group['labyrinth']['legal_move_rate']==maze_group['labyrinth']['shortest_path_rate']==1
     assert maze_group['labyrinth']['per_maze'][0]['optimal_moves']>=8
+
+
+def test_rule_puzzles_come_before_keystone_and_labyrinth_and_probes_isolate_one_kind():
+    kinds=[m['kind'] for m in Bomb(3,'medium').modules]
+    assert kinds[-2:]==['keystone','labyrinth'] and kinds[0]=='wires'
+    probe=Bomb(3,only='glyph',strike_limit=10)
+    assert [m['kind'] for m in probe.modules]==['glyph'] and probe.strike_limit==10

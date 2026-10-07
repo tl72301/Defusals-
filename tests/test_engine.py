@@ -119,7 +119,7 @@ def test_interrupt_clauses(pressure,lit,ports,expected,clause):
     assert oracle('interrupt',{'pressure':pressure},e)==(expected,'interrupt.'+clause)
 
 def test_interrupt_deadline_preemption_and_rearming():
-    b=Bomb(1); m=b.modules[-1]; first=m['state']['next_at']; assert 25<=first<=40
+    b=Bomb(1); m=next(x for x in b.modules if x['kind']=='interrupt'); first=m['state']['next_at']; assert 25<=first<=40
     b.advance(first)
     assert b.current()==m and m['state']['active']
     b.advance(10)
@@ -133,8 +133,9 @@ def test_interrupt_deadline_preemption_and_rearming():
     assert b.strikes==3 and b.done
 
 def test_interrupt_prevents_win_until_demand_cleared():
-    b=Bomb(4); m=b.modules[-1]; b.advance(m['state']['next_at'])
-    for other in b.modules[:-1]: other['solved']=True
+    b=Bomb(4); m=next(x for x in b.modules if x['kind']=='interrupt'); b.advance(m['state']['next_at'])
+    for other in b.modules:
+        if other is not m: other['solved']=True
     assert not b.defused
     b.apply(b.answer()[0]); assert b.defused and b.solved_count==9
 

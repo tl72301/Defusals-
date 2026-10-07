@@ -13,8 +13,11 @@ class Action:
     description: str
     def as_dict(self): return {'id':self.id, 'description':self.description}
 
+PROBE_KINDS = ('wires','button','glyph','echo','recall','lexicon','keystone','labyrinth')
+
+
 class Bomb:
-    def __init__(self, seed, difficulty='medium', seconds=180, strike_limit=3, keystone_depth=None):
+    def __init__(self, seed, difficulty='medium', seconds=180, strike_limit=3, keystone_depth=None, only=None):
         if difficulty not in ('easy','medium','hard'): raise ValueError('difficulty must be easy, medium, or hard')
         if seconds <= 0 or strike_limit < 1: raise ValueError('positive countdown and strike limit required')
         self.seed, self.difficulty, self.duration, self.strike_limit = seed, difficulty, seconds, strike_limit
@@ -25,10 +28,16 @@ class Bomb:
         self.edge = {'serial': ''.join(r.choices(string.ascii_uppercase,k=3))+''.join(r.choices(string.digits,k=3)),
                      'batteries':r.randrange(5), 'indicators':{x:bool(r.getrandbits(1)) for x in ['NOVA','RAY']},
                      'ports':r.sample(['fiber','copper','optic'],r.randrange(4))}
-        kinds = ['labyrinth'] + ([] if difficulty=='easy' else ['keystone']) + ['wires','button','glyph','echo','recall']
+        # Rule puzzles first, then Keystone, with the spatial Labyrinth last, so one weak puzzle type
+        # cannot use up the strikes before the others are tried.
+        kinds = ['wires','button','glyph','echo','recall']
         if difficulty != 'easy': kinds += ['lexicon','interrupt']
         if difficulty == 'hard': kinds += ['wires']
+        kinds += ([] if difficulty=='easy' else ['keystone']) + ['labyrinth']
         if keystone_depth is not None: kinds = ['keystone']
+        if only is not None:
+            if only not in PROBE_KINDS: raise ValueError(f'--only must be one of {", ".join(PROBE_KINDS)}')
+            kinds = [only]
         self.modules = [self._make(k,i) for i,k in enumerate(kinds)]
         self.elapsed, self.strikes = 0.0, 0
         self.events = []

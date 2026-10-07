@@ -37,8 +37,9 @@ The experiment seed controls the bomb, a separate interrupt stream, random-contr
 Useful flags:
 
 - `--difficulty easy|medium|hard`: 6, 9, or 10 module instances. Every bomb includes Labyrinth; medium and hard also include Keystone. Hard includes a second Thread Array and deeper Keystone stages. A web panel is omitted.
-- `--seconds 180`: countdown; `--timeout 0.6`: total request deadline, with no retries.
+- `--seconds 180`: countdown; `--timeout 0.6`: total request deadline, with no retries. Live runs used `--timeout 1.5`: with a module's manual included, requests are about 3,100 input tokens and took 0.44-0.57 s in the first smoke test, where 2 of 6 hit 0.6 s. The bomb clock still runs during every request in realtime mode.
 - `--step-seconds 0.2`: actuator dwell after each nonterminal action; button wait always consumes 0.2 seconds. Use the same dwell for all compared controllers.
+- `--only KIND --strikes N`: probe one puzzle type alone (wires, button, glyph, echo, recall, lexicon, keystone, labyrinth) with a higher strike limit, to measure per-puzzle decision accuracy rather than whole-bomb outcomes. Reported as scenario `probe:KIND`.
 - `--max-requests 300`: maximum decisions/actions per attempt. Hitting this cap produces a recorded incomplete attempt.
 - `--output PATH`: parent directory of new run folders.
 
@@ -54,7 +55,7 @@ python -m defuse manual --output manual.md
 
 The original modules are Thread Array (wires), Pulse Seal (timed button), Sigil Rack (ordered names), Tint Echo (color sequence), Ledger Keys (memory), Word Loom (letter dials), Relief Watch (interrupts), Labyrinth (spatial planning), and Keystone (dependent arithmetic). Every action has an immediate verdict. Incorrect actions add a strike; the third strike ends the attempt. In Labyrinth, any open move is valid: legal detours do not strike, and shortest-path quality is recorded separately. Wrong ordinary actions preserve the puzzle's progress. Wrong interrupt answers close that demand with a strike, as the manual specifies.
 
-The runner starts with Labyrinth, then Keystone when included, followed by the original ordinary-module order, preempted by an active Relief Watch demand. An in-flight request cannot be cancelled into a new model decision: its action arrives at the old module, then the runner services any live interrupt. Deadlines still accrue during that request. Missing an interrupt adds exactly one strike and rearms it. Interrupts stop when all ordinary modules and any active demand are cleared.
+The runner works the rule puzzles first (Thread Array, Pulse Seal, Sigil Rack, Tint Echo, Ledger Keys, Word Loom), then Keystone when included, with Labyrinth last, preempted by an active Relief Watch demand. (The first live smoke test put Labyrinth first: three wall bumps ended the bomb before any other puzzle was tried, so one weak puzzle type decided every attempt.) An in-flight request cannot be cancelled into a new model decision: its action arrives at the old module, then the runner services any live interrupt. Deadlines still accrue during that request. Missing an interrupt adds exactly one strike and rearms it. Interrupts stop when all ordinary modules and any active demand are cleared.
 
 **Realtime is the headline condition.** The monotonic clock advances during network setup, inference, timeouts, logging, and actuator dwell. Button release is judged against the display at action arrival, not the prompt's stale time. The prompt includes only this module's manual, visible state/history, edgework, time, and strikes. It never includes the oracle's action or rule identifier. Options contain literal actions only, shuffled with the logged seed.
 
