@@ -1,0 +1,41 @@
+{
+ "ids": [
+  "k-c-005",
+  "k-c-011",
+  "k-c-018",
+  "k-c-026",
+  "k-c-030",
+  "k-c-032",
+  "k-e-004",
+  "k-e-012",
+  "k-e-016",
+  "k-e-017",
+  "k-e-033",
+  "k-m-011",
+  "k-m-024",
+  "k-m-026",
+  "k-x-026"
+ ],
+ "reasons": {
+  "duplicate of a v1/v2 label": [
+   "k-e-004",
+   "k-e-012",
+   "k-e-016",
+   "k-e-017",
+   "k-e-033"
+  ],
+  "blind annotator disagreed": [],
+  "blind annotator not highly confident": [
+   "k-x-026",
+   "k-m-011",
+   "k-m-024",
+   "k-m-026",
+   "k-c-005",
+   "k-c-011",
+   "k-c-018",
+   "k-c-026",
+   "k-c-030",
+   "k-c-032"
+  ]
+ }
+}

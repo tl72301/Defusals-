@@ -1,0 +1,1442 @@
+[
+ {
+  "id": "d4-000",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Russian: fresh beef, 5 kg."
+ },
+ {
+  "id": "d4-001",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Chinese pinyin: spray insecticide, 24 cans; aerosol and toxic."
+ },
+ {
+  "id": "d4-002",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Turkish: copper coffee pots, 3 pieces; sturdy metal."
+ },
+ {
+  "id": "d4-003",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Vietnamese tom tuoi = fresh shrimp."
+ },
+ {
+  "id": "d4-004",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Wooden nesting dolls."
+ },
+ {
+  "id": "d4-005",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Spanish: propane gas cylinders; flammable pressurized gas."
+ },
+ {
+  "id": "d4-006",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Russian: gasoline, 20 L canister."
+ },
+ {
+  "id": "d4-007",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Hindi: cotton kurta."
+ },
+ {
+  "id": "d4-008",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Hindi mitti ka tel = kerosene."
+ },
+ {
+  "id": "d4-009",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Japanese: tuna sashimi."
+ },
+ {
+  "id": "d4-010",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Insulin pens (multilingual)."
+ },
+ {
+  "id": "d4-011",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Russian felt boots, size 42."
+ },
+ {
+  "id": "d4-012",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Korean: dried laver seaweed sheets."
+ },
+ {
+  "id": "d4-013",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Japanese: Arita porcelain teacup and teapot."
+ },
+ {
+  "id": "d4-014",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Greek: porcelain plates, 12 pieces."
+ },
+ {
+  "id": "d4-015",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Spanish: large mirror with gilded frame."
+ },
+ {
+  "id": "d4-016",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Lithium-ion batteries (Russian/Japanese 'battery')."
+ },
+ {
+  "id": "d4-017",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Japanese cotton hand towel and wooden sandals."
+ },
+ {
+  "id": "d4-018",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Greek: strained yogurt, 10 kg."
+ },
+ {
+  "id": "d4-019",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Hindi: glass bangles, two dozen."
+ },
+ {
+  "id": "d4-020",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Acetone written with Greek homoglyphs; flammable."
+ },
+ {
+  "id": "d4-021",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "German: denatured alcohol fuel; flammable."
+ },
+ {
+  "id": "d4-022",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Cotton towels with Greek/Cyrillic homoglyphs."
+ },
+ {
+  "id": "d4-023",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Hindi: fresh paneer cheese."
+ },
+ {
+  "id": "d4-024",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Arabizi: date-filled maamoul cookies, 2 boxes."
+ },
+ {
+  "id": "d4-025",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Japanese toyu = kerosene, in standard 18 L can."
+ },
+ {
+  "id": "d4-026",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Arabizi haleeb taza = fresh milk, 6 litres."
+ },
+ {
+  "id": "d4-027",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Portuguese: hand-painted ceramic tiles."
+ },
+ {
+  "id": "d4-028",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Filipino: slippers and t-shirt, as a gift."
+ },
+ {
+  "id": "d4-029",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Spanish: raw chicken and shrimp."
+ },
+ {
+  "id": "d4-030",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Crystal decanter (Russian/Japanese for crystal)."
+ },
+ {
+  "id": "d4-031",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Russian: porcelain dinner service."
+ },
+ {
+  "id": "d4-032",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Korean saengseon hoe = raw fish sashimi."
+ },
+ {
+  "id": "d4-033",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Porcelain figurine written with Cyrillic homoglyphs."
+ },
+ {
+  "id": "d4-034",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Turkish: lighter gas refills; flammable butane."
+ },
+ {
+  "id": "d4-035",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Swahili: kitenge fabric, 12 metres."
+ },
+ {
+  "id": "d4-036",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Vaccine vials with Cyrillic homoglyphs."
+ },
+ {
+  "id": "d4-037",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Arabizi hamd kibritik = sulfuric acid; corrosive."
+ },
+ {
+  "id": "d4-038",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Italian: crystal glasses, 6 pieces."
+ },
+ {
+  "id": "d4-039",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Arabizi: ceramic coffee cups, 12 pieces."
+ },
+ {
+  "id": "k-c-000",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Contains flammable kerosene."
+ },
+ {
+  "id": "k-c-001",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Nail varnish is a flammable liquid."
+ },
+ {
+  "id": "k-c-002",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Stained glass lampshade breaks easily."
+ },
+ {
+  "id": "k-c-003",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Bottled water in plastic."
+ },
+ {
+  "id": "k-c-004",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Household vinegar is not hazardous; glass bottle."
+ },
+ {
+  "id": "k-c-005",
+  "bin": "cold",
+  "confidence": "medium",
+  "note": "Insulin needs refrigeration; AAA meter battery is typically alkaline, not lithium."
+ },
+ {
+  "id": "k-c-006",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Custard dessert; outranks fragile."
+ },
+ {
+  "id": "k-c-007",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Perishable dairy dessert; outranks fragile."
+ },
+ {
+  "id": "k-c-008",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Pressurized extinguisher outranks fragile glass case."
+ },
+ {
+  "id": "k-c-009",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Honey is shelf-stable; ceramic crock."
+ },
+ {
+  "id": "k-c-010",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Melamine plastic is sturdy."
+ },
+ {
+  "id": "k-c-011",
+  "bin": "other",
+  "confidence": "medium",
+  "note": "Sturdy appliance; ceramic is just a plate coating."
+ },
+ {
+  "id": "k-c-012",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Mechanical clock, acrylic face, no battery."
+ },
+ {
+  "id": "k-c-013",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Live seafood shipped chilled."
+ },
+ {
+  "id": "k-c-014",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Lithium-ion battery outranks porcelain."
+ },
+ {
+  "id": "k-c-015",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh pesto needs refrigeration; cold outranks fragile."
+ },
+ {
+  "id": "k-c-016",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Shelf-stable; glass jar."
+ },
+ {
+  "id": "k-c-017",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Shelf-stable oil in a glass bottle."
+ },
+ {
+  "id": "k-c-018",
+  "bin": "other",
+  "confidence": "medium",
+  "note": "Acrylic tank and pump are sturdy."
+ },
+ {
+  "id": "k-c-019",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Porcelain; dry tea needs no cold."
+ },
+ {
+  "id": "k-c-020",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Canned, shelf-stable."
+ },
+ {
+  "id": "k-c-021",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Shelf-stable dried meat."
+ },
+ {
+  "id": "k-c-022",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Contains a lithium battery, which outranks cold."
+ },
+ {
+  "id": "k-c-023",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass door panels break easily."
+ },
+ {
+  "id": "k-c-024",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh egg pasta is perishable and refrigerated."
+ },
+ {
+  "id": "k-c-025",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Bromine is toxic and corrosive."
+ },
+ {
+  "id": "k-c-026",
+  "bin": "hazardous",
+  "confidence": "medium",
+  "note": "Contains toxic mercury, which outranks the fragile glass."
+ },
+ {
+  "id": "k-c-027",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Foie gras terrine is perishable; cold outranks fragile."
+ },
+ {
+  "id": "k-c-028",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Unopened syrup is shelf-stable; glass bottle."
+ },
+ {
+  "id": "k-c-029",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Mineral oil in plastic; not regulated."
+ },
+ {
+  "id": "k-c-030",
+  "bin": "hazardous",
+  "confidence": "medium",
+  "note": "Pressurized aerosol can; food is shelf-stable."
+ },
+ {
+  "id": "k-c-031",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Insulin needs refrigeration; outranks fragile."
+ },
+ {
+  "id": "k-c-032",
+  "bin": "hazardous",
+  "confidence": "medium",
+  "note": "Filled liquid nitrogen dewar is a regulated cryogenic gas; outranks cold."
+ },
+ {
+  "id": "k-c-033",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass face; alkaline batteries are not hazardous."
+ },
+ {
+  "id": "k-c-034",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass bottles; table wine is not regulated as hazardous."
+ },
+ {
+  "id": "k-c-035",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Alkaline batteries are not hazardous."
+ },
+ {
+  "id": "k-c-036",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh milk needs refrigeration; cold outranks fragile."
+ },
+ {
+  "id": "k-c-037",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Lithium battery outranks the refrigerated insulin."
+ },
+ {
+  "id": "k-c-038",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Caviar must be refrigerated; outranks fragile."
+ },
+ {
+  "id": "k-c-039",
+  "bin": "other",
+  "confidence": "high",
+  "note": "UHT milk is shelf-stable unopened; cartons are sturdy."
+ },
+ {
+  "id": "k-e-000",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Flammable pressurized gas."
+ },
+ {
+  "id": "k-e-001",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Thin glass ornaments."
+ },
+ {
+  "id": "k-e-002",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Corrosive."
+ },
+ {
+  "id": "k-e-003",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Textile."
+ },
+ {
+  "id": "k-e-004",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Wooden kitchen item."
+ },
+ {
+  "id": "k-e-005",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh seafood, perishable."
+ },
+ {
+  "id": "k-e-006",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Metal cookware."
+ },
+ {
+  "id": "k-e-007",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Ceramic."
+ },
+ {
+  "id": "k-e-008",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Flammable liquid."
+ },
+ {
+  "id": "k-e-009",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Dairy."
+ },
+ {
+  "id": "k-e-010",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh dairy."
+ },
+ {
+  "id": "k-e-011",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Ceramic."
+ },
+ {
+  "id": "k-e-012",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh milk."
+ },
+ {
+  "id": "k-e-013",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Porcelain."
+ },
+ {
+  "id": "k-e-014",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Sports ball."
+ },
+ {
+  "id": "k-e-015",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Strike-anywhere matches are flammable solids."
+ },
+ {
+  "id": "k-e-016",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Textile."
+ },
+ {
+  "id": "k-e-017",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Deli meat."
+ },
+ {
+  "id": "k-e-018",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass."
+ },
+ {
+  "id": "k-e-019",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Footwear."
+ },
+ {
+  "id": "k-e-020",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass globe."
+ },
+ {
+  "id": "k-e-021",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Flammable fuel."
+ },
+ {
+  "id": "k-e-022",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Books."
+ },
+ {
+  "id": "k-e-023",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Raw poultry."
+ },
+ {
+  "id": "k-e-024",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass bulbs."
+ },
+ {
+  "id": "k-e-025",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Frozen dessert."
+ },
+ {
+  "id": "k-e-026",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass mirror."
+ },
+ {
+  "id": "k-e-027",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Flammable isopropanol."
+ },
+ {
+  "id": "k-e-028",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Frozen food."
+ },
+ {
+  "id": "k-e-029",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Wax crayons."
+ },
+ {
+  "id": "k-e-030",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Porcelain plates."
+ },
+ {
+  "id": "k-e-031",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Acetone-based, flammable."
+ },
+ {
+  "id": "k-e-032",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Power bank contains lithium-ion cells."
+ },
+ {
+  "id": "k-e-033",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh fish."
+ },
+ {
+  "id": "k-e-034",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Raw meat."
+ },
+ {
+  "id": "k-e-035",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Plastic toys."
+ },
+ {
+  "id": "k-e-036",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass."
+ },
+ {
+  "id": "k-e-037",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Pressurized flammable aerosol."
+ },
+ {
+  "id": "k-e-038",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Shelf-stable pet food."
+ },
+ {
+  "id": "k-e-039",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Flammable pressurized aerosol."
+ },
+ {
+  "id": "k-m-000",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Pressurized aerosol."
+ },
+ {
+  "id": "k-m-001",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Empty glass jar; no battery chemistry."
+ },
+ {
+  "id": "k-m-002",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Flammable alcohol gel fuel."
+ },
+ {
+  "id": "k-m-003",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Pressurized freeze spray aerosol."
+ },
+ {
+  "id": "k-m-004",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Cultured dairy that must be refrigerated; lactic acid is harmless."
+ },
+ {
+  "id": "k-m-005",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Textile."
+ },
+ {
+  "id": "k-m-006",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Raw shrimp dumplings."
+ },
+ {
+  "id": "k-m-007",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Unglazed bisque ceramic."
+ },
+ {
+  "id": "k-m-008",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Pressurized gas cylinder."
+ },
+ {
+  "id": "k-m-009",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Raw shellfish."
+ },
+ {
+  "id": "k-m-010",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Aerosol with flammable propellant."
+ },
+ {
+  "id": "k-m-011",
+  "bin": "cold",
+  "confidence": "medium",
+  "note": "Pharmaceutical botulinum toxin is a refrigerated medicine, not shipped as a toxic DG."
+ },
+ {
+  "id": "k-m-012",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass gas-discharge tubing."
+ },
+ {
+  "id": "k-m-013",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Lithium-soap grease, not a battery."
+ },
+ {
+  "id": "k-m-014",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "70% ethanol is flammable."
+ },
+ {
+  "id": "k-m-015",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass vessel with liquid; breaks easily."
+ },
+ {
+  "id": "k-m-016",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Acrylic nail liquid is flammable methacrylate monomer."
+ },
+ {
+  "id": "k-m-017",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Contains a lithium battery."
+ },
+ {
+  "id": "k-m-018",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh deli salsa is refrigerated."
+ },
+ {
+  "id": "k-m-019",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Vinyl flooring that merely looks like porcelain."
+ },
+ {
+  "id": "k-m-020",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Phones contain lithium batteries."
+ },
+ {
+  "id": "k-m-021",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Cut crystal glass."
+ },
+ {
+  "id": "k-m-022",
+  "bin": "other",
+  "confidence": "high",
+  "note": "A book."
+ },
+ {
+  "id": "k-m-023",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Empty plastic cooler."
+ },
+ {
+  "id": "k-m-024",
+  "bin": "hazardous",
+  "confidence": "medium",
+  "note": "Paraffin lamp fuel; combustible and aspiration-toxic."
+ },
+ {
+  "id": "k-m-025",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Raw chicken; battery-farm refers to husbandry, not batteries."
+ },
+ {
+  "id": "k-m-026",
+  "bin": "fragile",
+  "confidence": "medium",
+  "note": "Frosted glass tumblers."
+ },
+ {
+  "id": "k-m-027",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Vacuum-packed smoked fish still needs refrigeration."
+ },
+ {
+  "id": "k-m-028",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass mirror."
+ },
+ {
+  "id": "k-m-029",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Rubber tyres."
+ },
+ {
+  "id": "k-m-030",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Gunpowder is a rolled green tea style, not explosive; dry tea."
+ },
+ {
+  "id": "k-m-031",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass jug."
+ },
+ {
+  "id": "k-m-032",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Metal electrical enclosure; the name describes its rating, not contents."
+ },
+ {
+  "id": "k-m-033",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Tahitian raw-fish salad; perishable."
+ },
+ {
+  "id": "k-m-034",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass pendant."
+ },
+ {
+  "id": "k-m-035",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Rubber pucks."
+ },
+ {
+  "id": "k-m-036",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Dynamite roll is a sushi roll; perishable seafood."
+ },
+ {
+  "id": "k-m-037",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Ice-cream dessert must stay frozen."
+ },
+ {
+  "id": "k-m-038",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Fine bone china figurine."
+ },
+ {
+  "id": "k-m-039",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Football club scarf; textile."
+ },
+ {
+  "id": "k-s-000",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "UN1072 = compressed oxygen, oxidizing pressurized gas."
+ },
+ {
+  "id": "k-s-001",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Optical quartz glass cuvettes."
+ },
+ {
+  "id": "k-s-002",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Plastic lab tubes."
+ },
+ {
+  "id": "k-s-003",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Thin-walled glass NMR tubes."
+ },
+ {
+  "id": "k-s-004",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Biologic drug requiring refrigeration."
+ },
+ {
+  "id": "k-s-005",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "UN1203 = gasoline."
+ },
+ {
+  "id": "k-s-006",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass pipettes."
+ },
+ {
+  "id": "k-s-007",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Dry spice blend."
+ },
+ {
+  "id": "k-s-008",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "UN1090 = acetone."
+ },
+ {
+  "id": "k-s-009",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Sealed steel ball bearings."
+ },
+ {
+  "id": "k-s-010",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass lab condenser."
+ },
+ {
+  "id": "k-s-011",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Inert plastic tape."
+ },
+ {
+  "id": "k-s-012",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Hydrofluoric acid, toxic and corrosive."
+ },
+ {
+  "id": "k-s-013",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Concentrated bleach is corrosive."
+ },
+ {
+  "id": "k-s-014",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Ceramic crucibles."
+ },
+ {
+  "id": "k-s-015",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Steel fasteners."
+ },
+ {
+  "id": "k-s-016",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Plastic/metal electrical parts."
+ },
+ {
+  "id": "k-s-017",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Dried seaweed."
+ },
+ {
+  "id": "k-s-018",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "UN1978 = propane."
+ },
+ {
+  "id": "k-s-019",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Extremely flammable solvent."
+ },
+ {
+  "id": "k-s-020",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "UN3480 = lithium-ion batteries."
+ },
+ {
+  "id": "k-s-021",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Porcelain lab funnels."
+ },
+ {
+  "id": "k-s-022",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Live fermented food must be refrigerated."
+ },
+ {
+  "id": "k-s-023",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh cultured cream."
+ },
+ {
+  "id": "k-s-024",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Raw fish for sashimi."
+ },
+ {
+  "id": "k-s-025",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Insulin requires refrigeration."
+ },
+ {
+  "id": "k-s-026",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh cheese requiring refrigeration."
+ },
+ {
+  "id": "k-s-027",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Laboratory glassware."
+ },
+ {
+  "id": "k-s-028",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Dried roasted green wheat grain."
+ },
+ {
+  "id": "k-s-029",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass vacuum tubes."
+ },
+ {
+  "id": "k-s-030",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Cultured dairy."
+ },
+ {
+  "id": "k-s-031",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Stainless steel utensils."
+ },
+ {
+  "id": "k-s-032",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Tin-glazed earthenware."
+ },
+ {
+  "id": "k-s-033",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Natto is kept refrigerated."
+ },
+ {
+  "id": "k-s-034",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Optical glass."
+ },
+ {
+  "id": "k-s-035",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Flammable solvent."
+ },
+ {
+  "id": "k-s-036",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "UN1830 = sulfuric acid."
+ },
+ {
+  "id": "k-s-037",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh white sausage, perishable meat."
+ },
+ {
+  "id": "k-s-038",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Vaccine requires cold chain."
+ },
+ {
+  "id": "k-s-039",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Disposable gloves."
+ },
+ {
+  "id": "k-x-000",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Wedgwood stoneware plaque."
+ },
+ {
+  "id": "k-x-001",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Glass-ceramic mirror blank, brittle."
+ },
+ {
+  "id": "k-x-002",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Fresh sea urchin roe."
+ },
+ {
+  "id": "k-x-003",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Cryopreserved cell therapy product."
+ },
+ {
+  "id": "k-x-004",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Aerogel is extremely brittle."
+ },
+ {
+  "id": "k-x-005",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Blood product stored refrigerated."
+ },
+ {
+  "id": "k-x-006",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Frozen blood component."
+ },
+ {
+  "id": "k-x-007",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "tert-Butyllithium is pyrophoric."
+ },
+ {
+  "id": "k-x-008",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Dry zirconium powder is pyrophoric/flammable."
+ },
+ {
+  "id": "k-x-009",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Trimethylsilyl chloride: flammable and corrosive."
+ },
+ {
+  "id": "k-x-010",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Immune globulin stored refrigerated."
+ },
+ {
+  "id": "k-x-011",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Engineering plastic rod."
+ },
+ {
+  "id": "k-x-012",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Porcelain."
+ },
+ {
+  "id": "k-x-013",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Diagnostic biologic stored refrigerated."
+ },
+ {
+  "id": "k-x-014",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Tibetan roasted barley flour."
+ },
+ {
+  "id": "k-x-015",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Titanium alloy billet."
+ },
+ {
+  "id": "k-x-016",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Bronze axe head; solid metal antiquity."
+ },
+ {
+  "id": "k-x-017",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Raney nickel is a pyrophoric/flammable catalyst even as a slurry."
+ },
+ {
+  "id": "k-x-018",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Lalique mascots are moulded glass."
+ },
+ {
+  "id": "k-x-019",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Nickel superalloy metal bar; sturdy and inert."
+ },
+ {
+  "id": "k-x-020",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Cellulose nitrate film is highly flammable."
+ },
+ {
+  "id": "k-x-021",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Raw lamb dish."
+ },
+ {
+  "id": "k-x-022",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Evacuated antique glass discharge tube."
+ },
+ {
+  "id": "k-x-023",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Nickel alloy plate."
+ },
+ {
+  "id": "k-x-024",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Soft-paste porcelain."
+ },
+ {
+  "id": "k-x-025",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Dried fermented bonito, rock-hard and shelf-stable."
+ },
+ {
+  "id": "k-x-026",
+  "bin": "cold",
+  "confidence": "medium",
+  "note": "Fresh corn smut fungus, highly perishable."
+ },
+ {
+  "id": "k-x-027",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "mRNA vaccines require cold/frozen storage."
+ },
+ {
+  "id": "k-x-028",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Steel ingot."
+ },
+ {
+  "id": "k-x-029",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Wetted desensitized explosive."
+ },
+ {
+  "id": "k-x-030",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Pyrophoric organozinc."
+ },
+ {
+  "id": "k-x-031",
+  "bin": "cold",
+  "confidence": "high",
+  "note": "Clotted cream, perishable dairy."
+ },
+ {
+  "id": "k-x-032",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Tungsten hexafluoride: toxic, corrosive compressed gas."
+ },
+ {
+  "id": "k-x-033",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Osmium tetroxide is highly toxic."
+ },
+ {
+  "id": "k-x-034",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Photograph on glass plate."
+ },
+ {
+  "id": "k-x-035",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Aramid fibre spools."
+ },
+ {
+  "id": "k-x-036",
+  "bin": "hazardous",
+  "confidence": "high",
+  "note": "Hydrogen fluoride complex, toxic and corrosive."
+ },
+ {
+  "id": "k-x-037",
+  "bin": "other",
+  "confidence": "high",
+  "note": "Silver coin; sturdy."
+ },
+ {
+  "id": "k-x-038",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Ancient glass or ceramic perfume flask."
+ },
+ {
+  "id": "k-x-039",
+  "bin": "fragile",
+  "confidence": "high",
+  "note": "Thin brittle silicon wafers."
+ }
+]
