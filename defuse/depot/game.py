@@ -42,6 +42,10 @@ def load_bank(bank='v1'):
     folder = bank_dir(bank)
     contents = json.loads((folder / 'contents.json').read_text())
     messy = json.loads((folder / 'messy.json').read_text())
+    # Items a blind second annotator disagreed with (or found ambiguous) are left out of play, not edited.
+    excluded = set(json.loads((folder / 'excluded.json').read_text())['ids']) if (folder / 'excluded.json').exists() else set()
+    contents = [i for i in contents if i['id'] not in excluded]
+    messy = [i for i in messy if i['id'] not in excluded]
     cities = json.loads((BANK / 'cities.json').read_text())   # one shared gazetteer
     return contents, messy, cities
 
