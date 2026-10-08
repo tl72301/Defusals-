@@ -13,8 +13,8 @@ The model is `gpt-6-luna` through the OpenAI Decisions API. One named choice que
 - **Controllers:** Decisions, the shared rule-oracle solver, uniform random legal action, always first shuffled option.
 - **Timing:** realtime (primary) and paused (judgment without time pressure).
 - **Action dwell:** 0.2 seconds by default; identical across controllers. Button wait is always 0.2 seconds.
-- **Request timeout:** 0.6 seconds total by default (live runs used 1.5 s; see RESULTS.md), no retries; failure/refusal/invalid answer is a wrong action unless the game already ended or that interrupt demand expired.
-- **Ordering:** the ordinary rule modules first, then Keystone when present, then Labyrinth (changed from Labyrinth-first after the first live smoke test; see RESULTS.md), preempted by active interrupt demands at request boundaries. Request arrival determines a timed action's verdict.
+- **Request timeout:** 0.6 seconds total by default (live runs used 1.5 s; see DEFUSE_RESULTS.md), no retries; failure/refusal/invalid answer is a wrong action unless the game already ended or that interrupt demand expired.
+- **Ordering:** the ordinary rule modules first, then Keystone when present, then Labyrinth (changed from Labyrinth-first after the first live smoke test; see DEFUSE_RESULTS.md), preempted by active interrupt demands at request boundaries. Request arrival determines a timed action's verdict.
 - **Attempt cap:** 300 decisions/actions by default, recorded explicitly if reached.
 
 Use new seeds for smoke and primary experiments. Across controllers and timing conditions use the same seed sets for paired comparisons. Never treat repeated attempts from the same seed in one condition as independent observations. Separate groups by difficulty, countdown, dwell, timeout, action cap, source hash, and stub/live status. No inferential significance claims are made by the descriptive report.

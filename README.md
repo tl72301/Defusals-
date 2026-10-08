@@ -1,4 +1,24 @@
-# Defuse × Decisions
+# Stress-testing OpenAI Decisions
+
+Three experiments with OpenAI's Decisions API (`gpt-6-luna`, which picks one option from a list in about half a
+second): where it fails, where it beats code, and where it breaks when pushed. Every live request, result table
+and baseline is archived in `evidence/`. Total spend: about $0.36, counted conservatively.
+
+![Frontier map](docs/gauntlet-frontier.png)
+
+| Chapter | What happened | Write-up |
+|---|---|---|
+| 1. **Defuse**, a bomb-defusal game | 0 of 40 bombs defused across two runs. Several rule puzzles and multi-step arithmetic were close to random guessing. | [DEFUSE_RESULTS.md](DEFUSE_RESULTS.md) |
+| 2. **Sorting Depot**, a package-sorting game | 97% on labels it had never seen, including 13 languages and heavy typos, against 56% for the best frozen program. A [critical review](REVIEW.md) showed that a simple program written after seeing the first item bank matched Decisions on it; the rematch used a separately written test bank and baselines frozen in advance. | [DEPOT_RESULTS.md](DEPOT_RESULTS.md) |
+| 3. **Depot Gauntlet**, four difficulty ladders | It held up to 0.75 s deadlines, 20 rules, expert chemistry and every language and script tried. It broke at 0.5 s (the network round trip), at stacked rule exceptions (42%), at labels built to mislead, and at heavily damaged spelling. 200 packages in one request: 165 per second at 97%. | [GAUNTLET_RESULTS.md](GAUNTLET_RESULTS.md) |
+
+The short version: Decisions is a fast, knowledgeable reader of messy real-world text and a poor rule engine. Let
+code hold the rules, let Decisions read the input, and send many items per request.
+
+Protocol: [EXPERIMENT_SPEC.md](EXPERIMENT_SPEC.md). REVIEW.md cites files as they were at revision 53feed2, when
+DEFUSE_RESULTS.md was named RESULTS.md.
+
+# Running it yourself
 
 An original, text-first bomb-defusal game and a recorded experiment harness for OpenAI Decisions. The engine is pure Python; the CLI runs in a headless Linux container with no display or GPU. All names, rules, glyph names, text, and rendered art were created for this project. This project contains no assets or manual text from other bomb-defusal games.
 
@@ -115,7 +135,7 @@ Before implementation, the official `createDecision` operation and schemas in [o
 Two specification details are handled explicitly: the API permits up to 255 choices and 200 questions, but this benchmark intentionally sends one question with 2–8 choices; the response schema permits an empty probability list, which the adapter accepts. Price is the experiment's supplied assumption, not a price verified by the OpenAPI schema.
 
 The [official Decisions guide](https://developers.openai.com/api/docs/guides/decisions) could not be fetched during this build: the cloud egress proxy returned HTTP 403 before connecting. A network-domain addition was saved for onboarding review. At that initial build the guide and live model access were unverified and no paid request had been made; live runs
-later succeeded (RESULTS.md). The adapter is validated against a local schema-shaped stub, not against the live service.
+later succeeded (DEFUSE_RESULTS.md). The adapter is validated against a local schema-shaped stub, not against the live service.
 
 An endpoint override is accepted only for loopback HTTP(S) URLs without credentials, query strings, or fragments. Redirects and retries are disabled. Stub calls need no key or paid approval and are marked `stub: true`; their token values are synthetic and cost is $0.
 
@@ -188,6 +208,8 @@ python -m defuse.depot clips --runs data/depot
 ```
 
 ## Depot Gauntlet (pushing Decisions until it breaks)
+
+Needs three extra packages: `.venv/bin/pip install -r requirements-gauntlet.txt`.
 
 Four ladders, each harder rung by rung: **speed** (deadlines from 1.5 s down to 0.5 s, then up to 200 packages in
 one request), **rule load** (1 to 20 destination rules, then stacked exceptions), **knowledge depth** (everyday to

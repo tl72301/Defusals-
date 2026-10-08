@@ -1,0 +1,5 @@
+# Extra packages for the Depot Gauntlet (trained classifier, charts). Install after requirements.lock:
+#   .venv/bin/pip install -r requirements-gauntlet.txt
+sentence-transformers==6.1.0
+scikit-learn==1.9.1
+matplotlib==3.11.2

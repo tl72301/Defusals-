@@ -7,7 +7,7 @@ order shuffled per request. Sanitized logs for every run are in `evidence/`; tab
 
 ## The fair test: a separately written bank (v2), seeds 201-205
 
-After a critical review (REVIEW.md on branch `review/critical`) showed that a dictionary program written after
+After a critical review (REVIEW.md) showed that a dictionary program written after
 reading the first bank matched Decisions on it, the protocol was tightened:
 
 1. Both code baselines were frozen first (commit `0667aac`): the original keyword matcher (manifest bug fixed) and
@@ -66,6 +66,6 @@ On short labels it had never seen, including seven non-Latin scripts and heavy t
 their contents far better than frozen dictionary and keyword programs, and it followed a stated rule change almost
 perfectly. It was less reliable than code at exact table lookups. These are one model, one prompt format and 225
 items written by an AI author and checked by a second AI annotator, not human-validated; native-speaker review of the
-foreign labels is the obvious next check. The comparison with the Defuse results (RESULTS.md) is descriptive: the
+foreign labels is the obvious next check. The comparison with the Defuse results (DEFUSE_RESULTS.md) is descriptive: the
 tasks differ in content, prompt length, response format and history, so these experiments do not identify which
 difference causes the gap.
