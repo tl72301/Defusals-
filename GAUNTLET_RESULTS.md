@@ -54,7 +54,7 @@ answers that do arrive are still right. **The speed limit is the network round t
 
 Putting 200 packages in one request (the API's maximum) sorted them in 1.14 s, **about 100 times the throughput**
 of one-at-a-time requests, with no loss of accuracy and about half the tokens per package. That one request cost
-about $0.003. The trained classifier, run locally, was faster still (0.4 s for all 200) but 64% correct.
+about $0.003. Video: [docs/gauntlet-200-in-one-request.mp4](docs/gauntlet-200-in-one-request.mp4). The trained classifier, run locally, was faster still (0.4 s for all 200) but 64% correct.
 
 ### B. Rule load: how many rules can it hold? (40 packages per rung, half going to a listed city)
 

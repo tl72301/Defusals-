@@ -6,6 +6,8 @@ and baseline is archived in `evidence/`. Total spend: about $0.36, counted conse
 
 ![Frontier map](docs/gauntlet-frontier.png)
 
+Video: [200 packages sorted in one request](docs/gauntlet-200-in-one-request.mp4) (33 s, captions in the matching .srt).
+
 | Chapter | What happened | Write-up |
 |---|---|---|
 | 1. **Defuse**, a bomb-defusal game | 0 of 40 bombs defused across two runs. Several rule puzzles and multi-step arithmetic were close to random guessing. | [DEFUSE_RESULTS.md](DEFUSE_RESULTS.md) |

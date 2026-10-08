@@ -1,0 +1,20 @@
+1
+00:00:00,000 --> 00:00:03,000
+200 packages, one Decisions request. Real timing first, then a slowed replay.
+
+2
+00:00:03,000 --> 00:00:06,500
+All 200 answers arrive together after 1.14 seconds: 194 of 200 correct.
+
+3
+00:00:06,500 --> 00:00:20,500
+Slowed replay: each package, the bin it chose, and whether that was right.
+
+4
+00:00:20,500 --> 00:00:27,000
+The 6 mistakes, with the answer key.
+
+5
+00:00:27,000 --> 00:00:33,000
+One package per request: 1.7 packages per second, 97% correct 200 packages per request: 165 packages per second, 97% correct Trained classifier on the same 200: 64% correct
+
