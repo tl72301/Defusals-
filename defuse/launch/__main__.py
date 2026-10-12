@@ -11,7 +11,7 @@ FLIPS = [0.01, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5]
 def tune(root='data/launch', endpoint=None):
     """Development scenarios only. Order: fewest false clears, then unjustified holds, then clarifications."""
     from defuse.launch import bank
-    scenarios = bank.load('dev')
+    scenarios = bank.load('dev') + bank.load('hard_dev')        # both development sets (§8, change 6)
     ex = runner.make_extractors(__import__('pathlib').Path(root), endpoint)
     chosen, grid = {}, {}
     for system, name, values in (('decisions-threshold', 'threshold', THRESHOLDS), ('decisions-sensitive', 'flip', FLIPS)):
@@ -29,7 +29,7 @@ def tune(root='data/launch', endpoint=None):
 def main(argv=None):
     p = argparse.ArgumentParser(prog='python -m defuse.launch')
     sub = p.add_subparsers(dest='cmd', required=True)
-    r = sub.add_parser('run'); r.add_argument('--split', choices=['dev', 'test'], required=True)
+    r = sub.add_parser('run'); r.add_argument('--split', choices=['dev', 'test', 'hard_dev', 'hard_test'], required=True)
     r.add_argument('--systems', nargs='+', choices=SYSTEMS, default=SYSTEMS); r.add_argument('--root', default='data/launch')
     r.add_argument('--endpoint')
     t = sub.add_parser('tune'); t.add_argument('--root', default='data/launch'); t.add_argument('--endpoint')

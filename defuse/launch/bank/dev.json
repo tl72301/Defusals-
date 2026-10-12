@@ -3,6 +3,7 @@
   "id": "L1001",
   "seed": 1001,
   "split": "dev",
+  "hard": false,
   "profile": "mixed",
   "start": [
    19,
@@ -1093,6 +1094,7 @@
   "id": "L1002",
   "seed": 1002,
   "split": "dev",
+  "hard": false,
   "profile": "gusty",
   "start": [
    17,
@@ -2160,6 +2162,7 @@
   "id": "L1003",
   "seed": 1003,
   "split": "dev",
+  "hard": false,
   "profile": "storm",
   "start": [
    19,
@@ -3249,6 +3252,7 @@
   "id": "L1004",
   "seed": 1004,
   "split": "dev",
+  "hard": false,
   "profile": "heat",
   "start": [
    14,
@@ -4343,6 +4347,7 @@
   "id": "L1005",
   "seed": 1005,
   "split": "dev",
+  "hard": false,
   "profile": "solar",
   "start": [
    17,
@@ -5436,6 +5441,7 @@
   "id": "L1006",
   "seed": 1006,
   "split": "dev",
+  "hard": false,
   "profile": "quiet",
   "start": [
    16,
@@ -6499,6 +6505,7 @@
   "id": "L1007",
   "seed": 1007,
   "split": "dev",
+  "hard": false,
   "profile": "mixed",
   "start": [
    18,
@@ -7597,6 +7604,7 @@
   "id": "L1008",
   "seed": 1008,
   "split": "dev",
+  "hard": false,
   "profile": "gusty",
   "start": [
    13,

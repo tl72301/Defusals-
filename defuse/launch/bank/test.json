@@ -3,6 +3,7 @@
   "id": "L2001",
   "seed": 2001,
   "split": "test",
+  "hard": false,
   "profile": "solar",
   "start": [
    16,
@@ -1106,6 +1107,7 @@
   "id": "L2002",
   "seed": 2002,
   "split": "test",
+  "hard": false,
   "profile": "quiet",
   "start": [
    12,
@@ -2175,6 +2177,7 @@
   "id": "L2003",
   "seed": 2003,
   "split": "test",
+  "hard": false,
   "profile": "mixed",
   "start": [
    18,
@@ -3311,6 +3314,7 @@
   "id": "L2004",
   "seed": 2004,
   "split": "test",
+  "hard": false,
   "profile": "gusty",
   "start": [
    13,
@@ -4385,6 +4389,7 @@
   "id": "L2005",
   "seed": 2005,
   "split": "test",
+  "hard": false,
   "profile": "storm",
   "start": [
    14,
@@ -5502,6 +5507,7 @@
   "id": "L2006",
   "seed": 2006,
   "split": "test",
+  "hard": false,
   "profile": "heat",
   "start": [
    17,
@@ -6571,6 +6577,7 @@
   "id": "L2007",
   "seed": 2007,
   "split": "test",
+  "hard": false,
   "profile": "solar",
   "start": [
    16,
@@ -7666,6 +7673,7 @@
   "id": "L2008",
   "seed": 2008,
   "split": "test",
+  "hard": false,
   "profile": "quiet",
   "start": [
    17,
@@ -8739,6 +8747,7 @@
   "id": "L2009",
   "seed": 2009,
   "split": "test",
+  "hard": false,
   "profile": "mixed",
   "start": [
    14,
@@ -9829,6 +9838,7 @@
   "id": "L2010",
   "seed": 2010,
   "split": "test",
+  "hard": false,
   "profile": "gusty",
   "start": [
    19,
@@ -10901,6 +10911,7 @@
   "id": "L2011",
   "seed": 2011,
   "split": "test",
+  "hard": false,
   "profile": "storm",
   "start": [
    16,
@@ -12000,6 +12011,7 @@
   "id": "L2012",
   "seed": 2012,
   "split": "test",
+  "hard": false,
   "profile": "heat",
   "start": [
    19,
@@ -13100,6 +13112,7 @@
   "id": "L2013",
   "seed": 2013,
   "split": "test",
+  "hard": false,
   "profile": "solar",
   "start": [
    13,
@@ -14200,6 +14213,7 @@
   "id": "L2014",
   "seed": 2014,
   "split": "test",
+  "hard": false,
   "profile": "quiet",
   "start": [
    19,
@@ -15280,6 +15294,7 @@
   "id": "L2015",
   "seed": 2015,
   "split": "test",
+  "hard": false,
   "profile": "mixed",
   "start": [
    19,
@@ -16382,6 +16397,7 @@
   "id": "L2016",
   "seed": 2016,
   "split": "test",
+  "hard": false,
   "profile": "gusty",
   "start": [
    17,
@@ -17450,6 +17466,7 @@
   "id": "L2017",
   "seed": 2017,
   "split": "test",
+  "hard": false,
   "profile": "storm",
   "start": [
    18,
@@ -18525,6 +18542,7 @@
   "id": "L2018",
   "seed": 2018,
   "split": "test",
+  "hard": false,
   "profile": "heat",
   "start": [
    17,
@@ -19617,6 +19635,7 @@
   "id": "L2019",
   "seed": 2019,
   "split": "test",
+  "hard": false,
   "profile": "solar",
   "start": [
    13,
@@ -20690,6 +20709,7 @@
   "id": "L2020",
   "seed": 2020,
   "split": "test",
+  "hard": false,
   "profile": "quiet",
   "start": [
    13,
@@ -21788,6 +21808,7 @@
   "id": "L2021",
   "seed": 2021,
   "split": "test",
+  "hard": false,
   "profile": "mixed",
   "start": [
    19,
@@ -22911,6 +22932,7 @@
   "id": "L2022",
   "seed": 2022,
   "split": "test",
+  "hard": false,
   "profile": "gusty",
   "start": [
    14,
@@ -23979,6 +24001,7 @@
   "id": "L2023",
   "seed": 2023,
   "split": "test",
+  "hard": false,
   "profile": "storm",
   "start": [
    18,
@@ -25101,6 +25124,7 @@
   "id": "L2024",
   "seed": 2024,
   "split": "test",
+  "hard": false,
   "profile": "heat",
   "start": [
    16,

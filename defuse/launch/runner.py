@@ -33,6 +33,7 @@ def _decision_view(reports, answers, overrides, m):
 def candidates(system, rep, res, reports, answers, overrides, params):
     """Ordered (question, reason) clarification requests for a report that just arrived."""
     a = res['answers']
+    reports = [r for r in reports if r['id'] in answers]           # only what the system has read so far
     out = [(q, 'unclear') for q in rules.ITEMS if a.get(q) == 'unclear']      # weather items only (§8, change 2)
     probs = res.get('probs') or {}
     if system == 'decisions-threshold':

@@ -85,6 +85,82 @@ def weather(r, profile):
     return w, strikes
 
 
+# ---------- the harder set (LAUNCH_PROTOCOL.md §8, change 6): same questions and keys, harder phrasing ----------
+def hard_facts(w, strikes, m, items, r, used):
+    """Phrasings a careful reader handles but a fast reader may not. The answer is always defined by the true value."""
+    facts = {}
+    for item in items:
+        if item == 'WIND':
+            k = w['wind'][m]
+            v = r.choice(['direction', 'other_level', 'self_correct', 'spoken'])
+            if v == 'direction':
+                sus, d = max(5, k - r.randint(4, 9)), r.choice(range(10, 360, 10))
+                spec = (f'peak wind at the 132.5-ft level, said with the wind direction first: "{d:03d} at {sus} gusting {k}" '
+                        f'(direction in degrees, sustained {sus} kt, gust {k} kt)')
+            elif v == 'other_level':
+                other = k + r.randint(4, 7)
+                spec = f'peak wind at the 132.5-ft level {k} kt, and in the same sentence the 54-ft level peak {other} kt (name both heights)'
+            elif v == 'self_correct':
+                wrong = k + 6 if k <= 29 else k - 6
+                spec = (f'peak wind at the 132.5-ft level: misspeak "{wrong}" first, then correct yourself in the same breath '
+                        f'to {k} kt (the final value is {k}; do not call this report a correction of an earlier report)')
+            else:
+                spec = f'peak wind at the 132.5-ft level {k} kt, the number spoken digit by digit (e.g. "two-niner")'
+            used.add(f'h_wind_{v}')
+            facts['WIND'] = (wind_bin(k), spec)
+        elif item in ('TEMP_LOW', 'TEMP_HIGH'):
+            f = w['temp_low' if item == 'TEMP_LOW' else 'temp_high'][m]
+            level = '132.5-ft' if item == 'TEMP_LOW' else '257.5-ft'
+            v = r.choice(['other_place', 'spoken', 'plain'])
+            if v == 'other_place':
+                spec = f'temperature at the {level} level {f:.1f} °F, and in the same sentence the crew access arm temperature {f + r.choice([-3.1, 2.7, 3.4]):.1f} °F (a different place)'
+            elif v == 'spoken':
+                spec = f'temperature at the {level} level {f:.1f} °F, the number spoken as words (e.g. "ninety-four point niner")'
+            else:
+                spec = f'temperature at the {level} level {f:.1f} °F'
+            used.add(f'h_temp_{v}')
+            facts[item] = (temp_bin(f), spec)
+        elif item == 'PRECIP':
+            p = w['precip'][m]
+            if p:
+                spec = 'light rain has started at the pad (precipitation at the pad)'
+            else:
+                spec = f'no precipitation at the pad or along the flight path, but mention rain showers on radar about {r.randint(22, 40)} nmi away, well off the flight path'
+                used.add('h_precip_far_rain')
+            facts['PRECIP'] = ('yes' if p else 'no', spec)
+        elif item == 'LIGHTNING':
+            last = last_strike_within(strikes, m)
+            far = r.randint(12, 19)
+            if last is None or m - last >= 30:
+                spec = (f'no lightning within 10 nautical miles of the flight path in the last 30 minutes; mention a strike '
+                        f'{far} nmi from the flight path {r.randint(2, 9)} minutes ago')
+                facts['LIGHTNING'] = ('clear30', spec)
+            else:
+                dist = next(d for s2, d in strikes if s2 == last and d <= 10)
+                age = m - last
+                spec = (f'most recent strike within 10 nautical miles of the flight path was {age} minutes ago at {dist} nmi; '
+                        f'also mention a more recent strike {far} nmi out {max(0, age - r.randint(1, 4))} minutes ago')
+                facts['LIGHTNING'] = (lightning_bin(age), spec)
+            used.add('h_lightning_far_strike')
+        elif item == 'FIELDMILL':
+            v = w['mill'][m]
+            out = (1800 if abs(v) < 1500 else 620) * (-1 if r.random() < 0.5 else 1)
+            spec = (f'largest field mill reading within 5 nmi of the pad {v:+d} V/m, and in the same sentence a mill 7 nmi '
+                    f'from the pad (outside 5 nmi) reading {out:+d} V/m')
+            used.add('h_mill_far_mill')
+            facts['FIELDMILL'] = (mill_bin(v), spec)
+        elif item == 'SOLAR':
+            level = w['solar'][m]
+            names = {0: 'none', 1: 'minor', 2: 'moderate', 3: 'strong', 4: 'severe', 5: 'extreme'}
+            g = 4 if level < 4 else 1
+            base = (f'NOAA S{level} ({names[level]}) solar radiation storm conditions' if level
+                    else 'no solar radiation storm or radio blackout (NOAA S0/R0)')
+            spec = f'{base}; also mention a G{g} ({names[g]}) geomagnetic storm in progress'
+            used.add('h_solar_g_scale')
+            facts['SOLAR'] = (solar_bin(level), spec)
+    return facts
+
+
 def true_state(w, strikes, t):
     """Rules applied to exact hidden values (diagnostics only; never the scoring reference)."""
     status = {
@@ -109,6 +185,8 @@ def item_facts(w, strikes, m, items, r, style, used=None):
     applied are added to `used`."""
     used = set() if used is None else used
     facts = {}
+    if style.get('hard'):
+        return hard_facts(w, strikes, m, items, r, used)
     for item in items:
         if item == 'WIND':
             k = w['wind'][m]
@@ -188,7 +266,7 @@ def make_report(rid, minute, source, facts, obs_minute, time_stated, tags, extra
             'spec': spec, 'tags': sorted(set(tags)), 'true_obs': {q: facts[q][0] for q in facts}}
 
 
-def scenario(seed, split):
+def scenario(seed, split, hard=False):
     r = random.Random(f'launch:{seed}')
     profile = PROFILES[seed % len(PROFILES)]
     w, strikes = weather(r, profile)
@@ -210,6 +288,7 @@ def scenario(seed, split):
         if m in (0, 40) or 'SOLAR' in focus:
             items.append('SOLAR')
         style = {'format': r.random() < 0.3, 'clock_time': r.random() < 0.4}
+        style['hard'] = hard
         used = set()
         facts = item_facts(w, strikes, m, items, r, style, used)
         tags = ['rollup'] + sorted(used)
@@ -221,6 +300,7 @@ def scenario(seed, split):
         item = r.choice(focus)
         items = [i for i in desk if desk[i] == desk[item] and (i == item or r.random() < 0.6)]
         style = {'format': r.random() < 0.5, 'clock_time': r.random() < 0.5}
+        style['hard'] = hard
         used = set()
         facts = item_facts(w, strikes, m, items, r, style, used)
         tags = ['interim'] + sorted(used)
@@ -234,7 +314,7 @@ def scenario(seed, split):
     reports.sort(key=lambda x: (x['minute'], x['id']))
     for i, rep in enumerate(reports):                       # stable ids in time order
         rep['id'] = f'L{seed}-{i + 1:02d}'
-    return {'id': f'L{seed}', 'seed': seed, 'split': split, 'profile': profile, 'start': list(start),
+    return {'id': f'L{seed}', 'seed': seed, 'split': split, 'hard': hard, 'profile': profile, 'start': list(start),
             'weather': w, 'strikes': strikes, 'traps': traps, 'reports': reports}
 
 

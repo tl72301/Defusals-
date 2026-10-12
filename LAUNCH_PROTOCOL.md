@@ -153,4 +153,19 @@ alone, holding every other answer at its top choice.
    question in 15 reports: reports that say they correct an earlier value were keyed "not a correction". The texts
    were right; the generator passed the correction flag to the wrong argument. Fixed (only those 15 keys changed; a
    test now checks it). After the fix the reviewers agree with all 5,031 answers, so no scenario is excluded.
+6. **A second, harder test set, added after the development runs and before any test report reached a model.** On
+   development scenarios every model read the reports almost perfectly (Decisions 99.2% on the eight factual
+   questions; the ordinary API 99.6 to 99.8%), so the original test set may leave the probabilities little to fix.
+   The original test set is kept unchanged and is still the pre-registered test of H1. The harder set (16 test
+   scenarios, seeds 3001 to 3016, plus 4 development scenarios, 3101 to 3104) asks the same questions with the same
+   answer-key rules, but every report uses phrasings a careful reader handles and a fast reader may not: a wind
+   direction before the speed ("270 at 18 gusting 31"), another tower height in the same sentence, a speaker who
+   misspeaks and corrects himself mid-sentence (which is not a correction of an earlier report), a temperature from
+   another place, a field mill outside 5 nmi or a strike beyond 10 nmi quoted alongside the real one, a G-scale
+   geomagnetic storm (which does not count) next to the S or R level, and rain on radar far from the flight path.
+   - **H1b** (same test as H1) on the harder test set.
+   - Thresholds are tuned on both development sets together and frozen before either test set is run.
+   - Texts are written by new blind author agents and checked by new blind reviewers. In the harder set, a report on
+     which the reviewer and the key disagree is dropped from its scenario (listed in bank/excluded.json); scenarios
+     are not dropped.
 
