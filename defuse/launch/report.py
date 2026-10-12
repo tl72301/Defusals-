@@ -5,7 +5,7 @@ import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
 from defuse.launch import rules, bank
-from defuse.launch.runner import score, SYSTEMS
+from defuse.launch.runner import score, SYSTEMS, EXPLORATORY
 
 ITEM_RULE = {'WIND': 'WIND', 'TEMP_LOW': 'HEAT', 'TEMP_HIGH': 'HEAT', 'PRECIP': 'PRECIP', 'LIGHTNING': 'LIGHTNING',
              'FIELDMILL': 'FIELDMILL', 'SOLAR': 'SOLAR'}
@@ -109,7 +109,7 @@ def costs(results):
 def report(split='test', root='data/launch'):
     scenarios = bank.load(split)
     out, lines = {'split': split, 'systems': {}}, [f'# Launch Window results ({split})', '']
-    loaded = {s: load(root, split, s) for s in SYSTEMS}
+    loaded = {s: load(root, split, s) for s in SYSTEMS + EXPLORATORY}
     loaded = {s: v for s, v in loaded.items() if v}
     for s, data in loaded.items():
         res = data['results']

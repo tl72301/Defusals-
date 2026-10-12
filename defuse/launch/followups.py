@@ -1,5 +1,6 @@
 """Post-hoc follow-ups (LAUNCH_PROTOCOL.md §8, change 8): the raw-value ordinary-API variant and repeat runs."""
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 from defuse.launch import rules
@@ -63,7 +64,7 @@ def report(root='data/launch'):
 
 
 if __name__ == '__main__':
-    o = report()
+    o = report(sys.argv[1] if len(sys.argv) > 1 else 'data/launch')
     for split, s in o['raw_variant'].items():
         print(f"raw variant {split}: FC={s['false_clears']} UH={s['unjustified_holds']} wrong={s['wrong_state']}/{s['polls']} "
               f"asks={s['clarifications']} factual={100 * s['factual_accuracy']:.1f}% FC scenarios={s['false_clear_scenarios']} rules={s['false_clear_rules']}")

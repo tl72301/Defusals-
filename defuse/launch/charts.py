@@ -10,8 +10,10 @@ SURFACE, INK, MUTED, GRID = '#fcfcfb', '#1f2328', '#5b616b', '#e6e6e3'
 RED, AMBER, GREY, BLUE = '#d6453d', '#d99a12', '#b4b9c0', '#2a78d6'
 NAMES = {'oracle': 'Answer key (ceiling)', 'parser': 'Regex parser', 'decisions-top': 'Decisions, top answer',
          'decisions-threshold': 'Decisions + confidence threshold', 'decisions-sensitive': 'Decisions + decision-sensitive asks',
-         'responses-luna-none': 'Same model, ordinary API (no reasoning)', 'responses-luna-medium': 'Same model, ordinary API (medium reasoning)'}
-ORDER = ['decisions-top', 'decisions-threshold', 'decisions-sensitive', 'responses-luna-none', 'responses-luna-medium', 'parser', 'oracle']
+         'responses-luna-none': 'Same model, ordinary API, ranges (no reasoning)', 'responses-luna-medium': 'Same model, ordinary API, ranges (medium reasoning)',
+         'responses-luna-none-raw': 'Same model, ordinary API, raw numbers (post-hoc)'}
+ORDER = ['decisions-top', 'decisions-threshold', 'decisions-sensitive', 'responses-luna-none', 'responses-luna-none-raw', 'responses-luna-medium',
+         'parser', 'oracle']
 
 
 def _style(ax):

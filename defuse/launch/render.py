@@ -18,7 +18,7 @@ RULE_NAME = {'WIND': 'Peak wind ≤ 29 kt (132.5 ft)', 'HEAT': 'Not >94.5°F for
              'SOLAR': 'No severe/extreme solar'}
 SHORT_RULE = {'WIND': 'Wind ≤ 29 kt', 'HEAT': 'Heat streak', 'PRECIP': 'Precipitation', 'LIGHTNING': 'Lightning 30 min',
               'FIELDMILL': 'Field mill 15 min', 'SOLAR': 'Solar'}
-INTRO, OUTRO = 3.0, 7.0
+INTRO, OUTRO = 5.0, 10.0
 BEFORE, DURING = 0.3, 1.1          # seconds of video per simulated minute, before and inside the launch window
 
 
@@ -70,11 +70,11 @@ def frame(sc, runs, t_sim, extra=None):
     status = f'window opens in {wo - t} min' if t < wo else ('WINDOW OPEN' if t <= wc else 'window closed')
     d.text((W - 24, 56), status, font=font(15), fill=STATE_COLOR[rules.MET] if wo <= t <= wc else MUTED, anchor='ra')
     # report feed
-    feed_w = 560 if len(runs) > 1 else 596
+    feed_w = {1: 596, 2: 560}.get(len(runs), 480)
     d.rounded_rectangle((24, 84, 24 + feed_w, 600), 10, fill=PANEL)
     d.text((40, 96), 'Weather voice loop', font=font(18), fill=TEXT)
     y = 128
-    cols = 68 if len(runs) > 1 else 74
+    cols = {1: 74, 2: 68}.get(len(runs), 57)
     clar = {}
     for c in lead['clarifications']:
         clar.setdefault(c['report'], []).append(c)
@@ -99,7 +99,7 @@ def frame(sc, runs, t_sim, extra=None):
     d.rounded_rectangle((bx, 84, W - 24, 600), 10, fill=PANEL)
     d.text((bx + 16, 96), 'Modeled criteria', font=font(18), fill=TEXT)
     ncol = len(runs) + 1
-    cw = 118 if len(runs) > 1 else 150
+    cw = {1: 150, 2: 118}.get(len(runs), 104)
     x0 = W - 40 - ncol * (cw + 10) + 10
     labels = [lab for lab, *_ in states] + ['Answer key']
     for i, lab in enumerate(labels):
@@ -201,7 +201,7 @@ def render(sc, runs, target, outro_lines, intro_lines=None):
         says = '; '.join(f'{lab} says {rules.STATE_NAME[r["polls"][i]["S"]]}' for lab, r in runs)
         cues.append((a, a + 2.5, f'Poll at {rules.clock(sc["start"], p["t"])}: {says}; the evidence supports {rules.STATE_NAME[p["J"]]}.'))
     total = to_sec(sim.MINUTES)
-    cues.append((total, total + OUTRO, ' '.join(outro_lines)))
+    cues.append((total, total + OUTRO, ' '.join(l if l[-1] in '.:;!?' else l + '.' for l in outro_lines)))
     ts = lambda s: f'{int(s // 3600):02}:{int(s % 3600 // 60):02}:{int(s % 60):02},{int(round(s % 1 * 1000)) % 1000:03}'
     cues.sort()
     target.with_suffix('.srt').write_text(''.join(f'{i}\n{ts(a)} --> {ts(b)}\n{txt}\n\n' for i, (a, b, txt) in enumerate(cues, 1)))
