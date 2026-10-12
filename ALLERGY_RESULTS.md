@@ -80,7 +80,7 @@ messages and could not handle the fryer wording or corrections reliably.
 
 - **A simulation.** Nine major allergens and simplified restaurant rules; no molluscs, refined-oil exemptions or
   allergies outside the nine. Nothing here says a real dish is safe.
-- **AI-written messages.** Fifteen author agents wrote them and twelve blind reviewers checked them (full agreement with
+- **AI-written messages.** Twelve author agents wrote them and twelve blind reviewers checked them (full agreement with
   the answer key on 22,957 answers); no restaurant staff wrote or checked them.
 - **Rare events.** No system made a false clear, so the safety comparison rests on mistaken holds and on the
   counterfactual above, which was run after seeing the results.
