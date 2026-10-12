@@ -787,9 +787,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "4",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:35} (say so explicitly)",
      "NOAA S4 (severe) solar radiation storm conditions",
      "it corrects the value given at {clock:35}"
@@ -3107,9 +3108,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "0-2",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:42} (say so explicitly)",
      "no solar radiation storm or radio blackout in progress (NOAA S0/R0)",
      "it corrects the value given at {clock:42}"
@@ -5284,9 +5286,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "lt1000",
      "SOLAR": "not_mentioned",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:48} (say so explicitly)",
      "largest field mill reading within 5 nmi of the pad -790 V/m",
      "it corrects the value given at {clock:48}"
@@ -7360,9 +7363,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "4",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:41} (say so explicitly)",
      "NOAA R4 (severe) radio blackout conditions",
      "it corrects the value given at {clock:41}"
@@ -11879,9 +11883,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "lt1000",
      "SOLAR": "not_mentioned",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:58} (say so explicitly)",
      "largest field mill reading within 5 nmi of the pad +270 V/m",
      "it corrects the value given at {clock:58}"
@@ -13040,9 +13045,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "not_mentioned",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:70} (say so explicitly)",
      "temperature at the 257.5-ft level 92.4 \u00b0F",
      "it corrects the value given at {clock:70}"
@@ -14106,9 +14112,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "0-2",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:68} (say so explicitly)",
      "NOAA R1 (minor) radio blackout conditions",
      "it corrects the value given at {clock:68}"
@@ -19298,9 +19305,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "not_mentioned",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:34} (say so explicitly)",
      "temperature at the 132.5-ft level 95.7 \u00b0F",
      "it corrects the value given at {clock:34}"
@@ -21723,9 +21731,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "not_mentioned",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:72} (say so explicitly)",
      "peak wind at the 132.5-ft level 15 kt",
      "it corrects the value given at {clock:72}"
@@ -22782,9 +22791,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "0-2",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:62} (say so explicitly)",
      "NOAA S2 (moderate) solar radiation storm conditions",
      "it corrects the value given at {clock:62}"
@@ -24793,9 +24803,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "lt1000",
      "SOLAR": "not_mentioned",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:38} (say so explicitly)",
      "largest field mill reading within 5 nmi of the pad +900 V/m",
      "it corrects the value given at {clock:38}"
@@ -26068,9 +26079,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "not_mentioned",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:61} (say so explicitly)",
      "temperature at the 257.5-ft level 93.9 \u00b0F",
      "it corrects the value given at {clock:61}"

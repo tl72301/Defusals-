@@ -149,3 +149,8 @@ alone, holding every other answer at its top choice.
    exploratory system ("responses-luna-medium"); it is not part of the hypothesis tests.
 4. **Extraction runs in parallel** (up to 6 requests at a time) before each system's countdown is simulated. The
    simulation uses its own clock, so this changes no result; measured latencies include any queuing at the API.
+5. **Answer-key bug found by the blind review.** The reviewers agreed with the key on every answer except one
+   question in 15 reports: reports that say they correct an earlier value were keyed "not a correction". The texts
+   were right; the generator passed the correction flag to the wrong argument. Fixed (only those 15 keys changed; a
+   test now checks it). After the fix the reviewers agree with all 5,031 answers, so no scenario is excluded.
+

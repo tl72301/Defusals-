@@ -150,3 +150,10 @@ def test_runner_offline_oracle_parser_and_stubbed_models(tmp_path, stub):
     n = len(stub['requests'])
     runner.run_scenario(sc, 'decisions-top', ex)                           # second run is served from the cache
     assert len(stub['requests']) == n
+
+
+def test_correction_reports_are_keyed_as_corrections():
+    for seed in (1004, 1005, 2001, 2020):
+        sc = sim.scenario(seed, 'x')
+        for r in sc['reports']:
+            assert (r['answers']['CORRECTION'] == 'yes') == ('correction' in r['tags'])

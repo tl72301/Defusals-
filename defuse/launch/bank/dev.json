@@ -4130,9 +4130,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "not_mentioned",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:50} (say so explicitly)",
      "temperature at the 132.5-ft level 95.6 \u00b0F",
      "it corrects the value given at {clock:50}"
@@ -5225,9 +5226,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "4",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:56} (say so explicitly)",
      "NOAA S4 (severe) solar radiation storm conditions",
      "it corrects the value given at {clock:56}"
@@ -8533,9 +8535,10 @@
      "LIGHTNING": "not_mentioned",
      "FIELDMILL": "not_mentioned",
      "SOLAR": "not_mentioned",
-     "CORRECTION": "no"
+     "CORRECTION": "yes"
     },
     "spec": [
+     "this is a correction of this source's earlier report; say so",
      "these observations were taken at {clock:50} (say so explicitly)",
      "peak wind at the 132.5-ft level 17 kt",
      "it corrects the value given at {clock:50}"

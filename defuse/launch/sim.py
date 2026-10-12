@@ -270,7 +270,7 @@ def plant(trap, r, w, strikes, focus, desk, rid):
         first['true_obs'] = {item: facts[item][0]}
         fix_at = min(MINUTES, m + r.randint(2, 5))
         second = make_report(rid(), fix_at, desk[item], facts, m, True, ['correction'],
-                             extra_spec=[f'it corrects the value given at {{clock:{m}}}'])
+                             extra_spec=[f'it corrects the value given at {{clock:{m}}}'], correction=True)
         return [first, second]
     if trap == 'irrelevant_level':
         options = [
