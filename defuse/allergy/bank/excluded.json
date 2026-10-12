@@ -4,5 +4,6 @@
   "A2133-10",
   "A2151-12"
  ],
- "note": "Change 1 (ALLERGY_PROTOCOL.md \u00a78): scope messages about a relative \"not eating with us\" whose relation word (\"aunt\") is the same as a diner who had joined and was eating; ambiguous by construction. Dropped before any test request or review."
+ "note": "Change 1 (ALLERGY_PROTOCOL.md \u00a78): scope messages about a relative \"not eating with us\" whose relation word (\"aunt\") is the same as a diner who had joined and was eating; ambiguous by construction. Dropped before any test request or review.",
+ "review": "Twelve blind reviewers answered all 11 questions for all 2,087 test messages and agreed with the answer key on every answer (22,957); no second review was needed and no further message was dropped."
 }
