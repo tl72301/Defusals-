@@ -2,7 +2,7 @@
 
 Four experiments with OpenAI's Decisions API (`gpt-6-luna`, which picks one option from a list in about half a
 second): where it fails, where it beats code, and where it breaks when pushed. Every live request, result table
-and baseline is archived in `evidence/`. Total spend: about $1.61 of a $4 cap, counted conservatively.
+and baseline is archived in `evidence/`. Total spend: about $2.42 of a $4 cap, counted conservatively.
 
 ![Frontier map](docs/gauntlet-frontier.png)
 
@@ -13,12 +13,12 @@ Video: [200 packages sorted in one request](docs/gauntlet-200-in-one-request.mp4
 | 1. **Defuse**, a bomb-defusal game | 0 of 40 bombs defused across two runs. Several rule puzzles and multi-step arithmetic were close to random guessing. | [DEFUSE_RESULTS.md](DEFUSE_RESULTS.md) |
 | 2. **Sorting Depot**, a package-sorting game | 97% on labels it had never seen, including 13 languages and heavy typos, against 56% for the best frozen program. A [critical review](REVIEW.md) showed that a simple program written after seeing the first item bank matched Decisions on it; the rematch used a separately written test bank and baselines frozen in advance. | [DEPOT_RESULTS.md](DEPOT_RESULTS.md) |
 | 3. **Depot Gauntlet**, four difficulty ladders | It held up to 0.75 s deadlines, 20 rules, expert chemistry and every language and script tried. It broke at 0.5 s (the network round trip), at stacked rule exceptions (42%), at labels built to mislead, and at heavily damaged spelling. 200 packages in one request: 165 per second at 97%. | [GAUNTLET_RESULTS.md](GAUNTLET_RESULTS.md) |
-| 4. **Launch Window**, a modeled launch countdown | Decisions read the weather voice loop and code applied a simplified subset of NASA's Artemis I weather rules. Over 360 test polls it made 0 false clears and 3 wrong polls, and every factual answer it gave at probability 0.9 or higher was right. The same model through the ordinary API made 6 false clears when it had to pick a range, but none when it gave raw numbers that code sorted (a check run afterwards): the gap was the answer format, not the endpoint. Decisions stayed about 4.5 times faster and gave identical answers on every repeat. Pre-registered; the main hypothesis could not be tested because there were no false clears to prevent. | [LAUNCH_RESULTS.md](LAUNCH_RESULTS.md) |
+| 4. **Launch Window**, a modeled launch countdown | Decisions read the weather voice loop and code applied a simplified subset of NASA's Artemis I weather rules. Final numbers on 2,108 test reports, same model three ways: Decisions got 99.12% of factual answers right at $0.200 per 1,000 reports and 0.56 s per report; the ordinary API picking a range 99.32%, $0.184, 2.0 s; the ordinary API giving raw numbers that code sorts 99.85%, $0.189, 2.75 s. False clears over 1,080 polls: 7, 15 and 4. Decisions was the fastest and its probabilities flagged most of its errors, but it was not the most accurate. Pre-registered, including the final confirmation set. | [LAUNCH_RESULTS.md](LAUNCH_RESULTS.md) |
 
 The short version: Decisions is a fast, knowledgeable reader of messy real-world text and a poor rule engine. Let
 code hold the rules, let Decisions read the input, and send many items per request. Launch Window adds a caution:
-the same model through the ordinary API read just as well once it wrote raw numbers and code sorted them, so there
-Decisions' edge was speed and consistency, not accuracy.
+the same model through the ordinary API read more accurately once it wrote raw numbers and code sorted them, so there
+Decisions' edge was speed, consistency and its probabilities, not accuracy.
 
 Protocols: [EXPERIMENT_SPEC.md](EXPERIMENT_SPEC.md), [LAUNCH_PROTOCOL.md](LAUNCH_PROTOCOL.md). REVIEW.md cites files as they were at revision 53feed2, when
 DEFUSE_RESULTS.md was named RESULTS.md.

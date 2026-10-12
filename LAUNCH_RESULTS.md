@@ -5,12 +5,72 @@ applies a small, simplified subset of NASA's published Artemis I weather criteri
 met" here never means a launch would be authorized.** Pre-registered at commit `089c5e4` before any report text
 existed; every later change is logged in LAUNCH_PROTOCOL.md §8.
 
-> **Correction after a fairness check (same day).** The first write-up said the same model was unsafe through the
-> ordinary API. In that comparison the ordinary API had to pick a range (for example "90.0 to 94.5 °F") from a JSON
-> schema. When it reported the raw number instead and code sorted it into the range, it made **no false clears** in
-> four runs and read as accurately as Decisions or better. The false clears came from asking it to pick a range,
-> not from the endpoint. What stays with Decisions: it was about 4.5 times faster, gave identical answers on every
-> repeat, and every factual error it made came with a probability below 0.9. See [Follow-ups](#follow-ups-endpoint-or-answer-format).
+> **Final numbers (2,108 test reports, same model three ways).**
+> Decisions: 99.12% of factual answers right, $0.200 per 1,000 reports, 0.56 s per report.
+> Ordinary API picking a range: 99.32%, $0.184, 2.0 s.
+> Ordinary API giving raw numbers that code sorts into ranges: **99.85%**, $0.189, 2.75 s.
+> The raw-numbers version was the most accurate and made the fewest false clears (4 of 1,080 polls, against 7 for
+> Decisions and 15 for range-picking). Decisions was 4 to 5 times faster, but the least accurate and slightly the most
+> expensive. An earlier version of this page, based on the first 697 reports, said Decisions made no false clears and
+> that the same model was unsafe through the ordinary API; neither held up. See [Final numbers](#final-numbers-2108-test-reports).
+
+## Final numbers (2,108 test reports)
+
+Registered before any of its texts existed (LAUNCH_PROTOCOL.md §8, change 9): 80 new scenarios (40 original-style,
+40 harder), 1,411 new reports written by eight new blind authors and checked by eight new blind reviewers, who agreed
+with the answer key on all 12,699 answers. Each system ran once, unchanged from the earlier runs. With the earlier
+test sets that makes 2,108 reports and 16,864 factual answers per system.
+
+![Final comparison](docs/launch-final.png)
+
+| | Decisions | Ordinary API, picking a range | Ordinary API, raw numbers |
+|---|---:|---:|---:|
+| **Answers right, 8 factual questions** (95% interval) | 99.12% (98.97–99.25) | 99.32% (99.18–99.43) | **99.85%** (99.78–99.90) |
+| Wrong factual answers | 148 of 16,864 | 115 | 25 |
+| Reports with every factual answer right | 93.5% | 94.8% | 98.9% |
+| Answers right, all 9 questions | 93.7%\* | 99.2% | 99.6% |
+| **False clears** | 7 of 1,080 polls | 15 | **4** |
+| Wrong polls | 18 of 1,080 | 41 | 12 |
+| **Cost per 1,000 reports** | $0.200 | **$0.184** | $0.189 |
+| Tokens per report | 2,002 in, 0 out | 1,483 in, 71 out | 1,133 in, 151 out |
+| **Median time per report** | **0.56 s** | 2.01 s | 2.75 s |
+
+\*One harmless quirk: Decisions often answers "unclear" to "does this report correct an earlier one?" for ordinary
+reports. The rules treat that as "no", so it changes no decision.
+
+**The 1,411 new reports alone** (the confirmatory result): 99.07% (98.88–99.23), 99.35% (99.19–99.49) and 99.84%
+(99.75–99.90); false clears 7, 9 and 4 of 720 polls; wrong polls 15, 29 and 9. Every pair differs significantly on
+the same answers (exact McNemar test, Holm-corrected): Decisions vs range-picking p = 0.015, Decisions vs raw numbers
+p < 10⁻¹⁶, range-picking vs raw numbers p < 10⁻⁹.
+
+Per question, all 2,108 reports:
+
+| | Obs. time | Wind | Temp 132.5 ft | Temp 257.5 ft | Precip | Lightning | Field mill | Solar |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Decisions | 97.9% | 98.5% | 99.5% | 99.4% | 100% | 98.6% | 99.4% | 99.7% |
+| Ordinary API, picking a range | 99.2% | 99.6% | 99.6% | 99.2% | 100% | 98.2% | 99.9% | 98.7% |
+| Ordinary API, raw numbers | 100% | 99.7% | 99.95% | 99.95% | 100% | 99.2% | 100% | 100% |
+
+**What the new reports showed.**
+
+- **Decisions is not free of false clears.** It made 7, in 4 of the 80 new scenarios. Two came from strike times given
+  as clock times ("most recent strike within 10 nm ... at 1350Z"): it placed the strike too far back, so the 30-minute
+  lightning wait ended early. Three came from reading "ninety-four point niner degrees" and "94.8" as 94.5 °F or less,
+  and two from reading "three-four knots" (radio style for 34) as 25 knots or less.
+- **The raw-numbers version's 4 false clears were all that one wind phrase.** Winds of 32 to 34 knots spoken
+  digit by digit ("three-four knots", "three-two knots") appeared in 6 reports; raw numbers misread 4 of them,
+  range-picking 3 and Decisions 1. Range-picking's 9 also included the familiar heat
+  errors (94.9 to 95.3 °F read as "90.0 to 94.5") and lightning time arithmetic.
+- **The probability alarm mostly held.** On the new reports, 10,512 of 10,518 answers Decisions gave at 0.9 or higher
+  were right. Five of the 6 exceptions were "not mentioned" for temperatures stated without the word "temperature"
+  ("87.5 degrees at 132.5 feet"). Over all 2,108 reports: 15,741 of 15,747 (99.96%), and 142 of its 148 errors came
+  below 0.9. The ordinary API gave no comparable per-answer probability.
+- **Cost was close.** Decisions bills only input tokens, but its requests carry every question and option as input
+  (about 2,000 tokens per report against 1,100 to 1,500), so it cost 6 to 9% more per report.
+
+**Which to use, on this evidence.** For accuracy, the ordinary API writing raw values with code doing the sorting.
+For speed, Decisions (about 0.6 s against 2 to 3 s), with probabilities that flag most of its errors. Asking the
+ordinary API to pick a range was the weakest on safety. All three cost about $0.20 per 1,000 reports.
 
 ![Wrong polls by system](docs/launch-errors.png)
 
@@ -20,18 +80,19 @@ existed; every later change is logged in LAUNCH_PROTOCOL.md §8.
   wait after lightning within 10 nmi, a 15-minute wait after a field mill reading of 1,500 V/m, and NOAA S/R level
   4 or 5. A separate agent re-implemented these rules from the protocol text alone; after one bug fix and two
   written clarifications the two engines agree on all 18,592 test cases.
-- **Reports (people-like text).** 697 test reports in 40 scenarios: 24 scenarios in the original test set and 16
-  in a harder set added after development runs showed every model reading the original set almost perfectly. Seven
-  separate author agents wrote the texts without seeing answers, code or results. Blind reviewers answered every
-  question from the text alone and agreed with the answer key on all 8,154 answers (906 test and development
-  reports), after the first review caught a key bug in 15 correction reports.
+- **Reports (people-like text).** 2,108 test reports in 120 scenarios. First, 697 reports in 40 scenarios: 24 in the
+  original test set and 16 in a harder set added after development runs showed every model reading the original set
+  almost perfectly. Then 1,411 reports in 80 new scenarios (40 of each style) for the final numbers. Fifteen separate
+  author agents wrote the texts without seeing answers, code or results. Blind reviewers answered every question from
+  the text alone and agreed with the answer key on all 20,853 answers (2,317 test and development reports), after the
+  first review caught a key bug in 15 correction reports.
 - **The model's job.** Nine multiple-choice questions per report: when the observations were made, six weather
   readings, and whether it corrects an earlier report. It never compares a value with a limit or adds times.
 - **Scoring.** At each of 9 polls per scenario, a system's state is compared with the *justified* state: what the
   evidence it actually received supports. A system that says "met" when the evidence does not support it has made a
   **false clear**, even if the hidden weather happened to be fine. Lucky guesses are not credited.
 
-## Results
+## Results on the first test sets (697 reports)
 
 All model rows are the same model, gpt-6-luna. "Picking a range" means the model chose one of the same options
 Decisions saw; "raw numbers" means it wrote the values it read and code sorted them into those options.
@@ -65,9 +126,9 @@ every error above is a reading error. Times were measured with up to six request
 row was designed after the results above it were known (LAUNCH_PROTOCOL.md §8, change 8); read it as a check, not a
 pre-registered result.
 
-## What it shows
+## What the first test sets showed
 
-**1. Decisions read the loop reliably, and its mistakes did not change decisions.** It made 33 reading errors on
+**1. On the first test sets, Decisions read the loop reliably, and its mistakes did not change decisions.** It made 33 reading errors on
 the original set and 10 on the harder set, but only 3 polls went wrong, all of them cautious ("insufficient" instead
 of "met" or "violated"). Most of its errors could not matter: reading "24G31KT" as 36 knots or more is still a wind
 violation. It handled the harder set's distractors well: every factual answer right on 145 of 147 reports that
@@ -92,7 +153,8 @@ all tied). The decision-sensitive strategy asked about as often as the top answe
 **4. The probabilities are a reliable alarm.** On the eight factual questions, every answer Decisions gave at 0.9 or
 higher was right: 5,229 of 5,229. All 43 of its factual errors came with a top probability below 0.9. Below 0.9 it
 is underconfident: answers at 0.5 to 0.7 were right 82% (original) and 94% (harder) of the time. The ordinary API
-gave no comparable per-answer probability.
+gave no comparable per-answer probability. On the 1,411 new reports the alarm missed 6 confident errors (see Final
+numbers).
 
 ![Calibration](docs/launch-calibration.png)
 
@@ -140,7 +202,8 @@ run still had just 1 wrong poll.
 
 **What this changes.** "The same model is safer through Decisions" does not hold. Decisions was safe with ranges,
 and the ordinary API was safe once code did the sorting. What Decisions still offered here: answers in about 0.6 s
-against 2.6 to 2.9 s, identical answers on every run, and probabilities that put every factual error below 0.9. The cost was
+against 2.6 to 2.9 s, identical answers on every run, and probabilities that put every factual error below 0.9 (on the new reports, 99
+of 105). The cost was
 about the same ($0.056 against $0.053 for one pass over the harder set).
 
 ## Diagnostics
@@ -161,20 +224,23 @@ about the same ($0.056 against $0.053 for one pass over the harder set).
 - **AI-written reports.** Authors and reviewers were AI agents, not meteorologists or launch weather officers. The
   "vague range" trap always used a range around the limit (for example "27 to 32 knots"), sometimes far from the
   true value, which a real speaker would not do.
-- **Small numbers.** The differences rest on few events: the false clears come from 3 scenarios, and the wrong-poll
-  counts are single digits. Only the harder set was repeated, and only for three systems.
+- **Small numbers for safety.** Accuracy rests on 16,864 answers per system, but false clears are rare events (4 to
+  15 per system over 1,080 polls, from 3 to 9 scenarios), so their differences are less certain than the accuracy
+  differences. Each system ran once on the new reports; only the first harder set was repeated.
 - **Prompt format.** As the follow-ups show, the answer format changed the result more than the endpoint did. Other
-  formats were not tried, and the raw-numbers schema was designed after seeing the failures.
+  formats were not tried. The raw-numbers schema was designed after seeing the first failures, then frozen before the
+  1,411 new reports existed.
 - **Latency** was measured with up to six requests in parallel and includes queuing at the API.
 - **The harder set was added after development runs** (logged as change 6, before any test request), because the
   original set left the probabilities nothing to fix.
 
 ## Cost
 
-About $1.25 for this experiment, counted conservatively: $0.79 for the pre-registered development and test runs,
-clarifications, tuning grid and batching comparison, and $0.45 for the follow-ups. Decisions bills only input tokens
-($0.10 per million); the ordinary-API runs also paid for about 430,000 output tokens. The whole project, all four
-experiments, has spent about $1.61 of its $4 cap.
+About $2.06 for this experiment, counted conservatively: $0.79 for the pre-registered development and test runs,
+clarifications, tuning grid and batching comparison, $0.45 for the follow-ups, and $0.81 for the three systems on the
+1,411 new reports. Decisions bills only input tokens ($0.10 per million); the ordinary-API runs also paid for about
+750,000 output tokens ($0.50 per million). The whole project, all four experiments, has spent about $2.42 of its $4
+cap.
 
 ## Reproduce
 
@@ -184,5 +250,7 @@ python -m defuse.launch run --split hard_test --systems responses-luna-none-raw 
 python -m defuse.launch report --split test
 python -m defuse.launch batching --split test
 python -m defuse.launch.followups
+python -m defuse.launch run --split confirm --systems decisions-top responses-luna-none responses-luna-none-raw   # and hard_confirm
+python -m defuse.launch.confirm                    # final numbers (data/launch/confirm.json)
 python -m defuse.launch.charts data/launch
 ```
