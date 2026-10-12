@@ -157,3 +157,15 @@ def test_correction_reports_are_keyed_as_corrections():
         sc = sim.scenario(seed, 'x')
         for r in sc['reports']:
             assert (r['answers']['CORRECTION'] == 'yes') == ('correction' in r['tags'])
+
+
+def test_raw_value_variant_and_repeat_namespaces(tmp_path, stub):
+    from defuse.launch import runner
+    sc = _with_texts(sim.scenario(3003, 'hard_test', True))
+    ex = runner.make_extractors(tmp_path, endpoint=stub['url'], tag='-r2')
+    r = runner.run_scenario(sc, 'responses-luna-none-raw', ex)
+    body = next(b for b in stub['requests'] if 'text' in b)
+    props = body['text']['format']['schema']['properties']
+    assert props['wind_peak_knots']['type'] == ['number', 'null'] and body['text']['format']['strict']
+    assert all(e['answers']['WIND'] in ('not_mentioned', 'unclear') for e in r['extractions'].values())   # stub gives no numbers
+    assert (tmp_path / 'cache' / 'responses-luna-none-raw-r2').is_dir()

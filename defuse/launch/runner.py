@@ -6,21 +6,24 @@ import json
 import time
 from pathlib import Path
 from defuse.launch import rules, sim, bank
-from defuse.launch.models import DecisionsExtractor, ResponsesExtractor, ParserExtractor, oracle_result
+from defuse.launch.models import DecisionsExtractor, ResponsesExtractor, RawResponsesExtractor, ParserExtractor, oracle_result
 
 SYSTEMS = ['oracle', 'parser', 'decisions-top', 'decisions-threshold', 'decisions-sensitive', 'responses-luna-none',
            'responses-luna-medium']
+EXPLORATORY = ['responses-luna-none-raw']          # post-hoc (§8, change 8); run only when named
 EXTRACTOR = {'parser': 'parser', 'decisions-top': 'decisions', 'decisions-threshold': 'decisions',
              'decisions-sensitive': 'decisions', 'responses-luna-none': 'responses-none',
-             'responses-luna-medium': 'responses-medium', 'oracle': 'oracle'}
+             'responses-luna-medium': 'responses-medium', 'oracle': 'oracle', 'responses-luna-none-raw': 'responses-none-raw'}
 PARAMS_FILE = Path(__file__).resolve().parent / 'bank' / 'tuned.json'
 
 
-def make_extractors(root, endpoint=None, budget=None):
+def make_extractors(root, endpoint=None, budget=None, tag=''):
+    rurl = endpoint and endpoint.replace('decisions', 'responses')
     return {'parser': ParserExtractor(),
-            'decisions': DecisionsExtractor(root, True, endpoint=endpoint, budget=budget),
-            'responses-none': ResponsesExtractor(root, 'none', endpoint=endpoint and endpoint.replace('decisions', 'responses'), budget=budget),
-            'responses-medium': ResponsesExtractor(root, 'medium', endpoint=endpoint and endpoint.replace('decisions', 'responses'), budget=budget)}
+            'decisions': DecisionsExtractor(root, True, endpoint=endpoint, budget=budget, tag=tag),
+            'responses-none': ResponsesExtractor(root, 'none', endpoint=rurl, budget=budget, tag=tag),
+            'responses-medium': ResponsesExtractor(root, 'medium', endpoint=rurl, budget=budget, tag=tag),
+            'responses-none-raw': RawResponsesExtractor(root, 'none', endpoint=rurl, budget=budget, tag=tag)}
 
 
 def _decision_view(reports, answers, overrides, m):
@@ -118,11 +121,13 @@ def prefetch(scenarios, systems, extractors, workers=6):
         list(pool.map(lambda j: j[0](bank.header(j[1], j[2]), j[2]['text'], j[1]['start'], j[2]['minute']), jobs))
 
 
-def run(split, systems, root='data/launch', endpoint=None, params=None, budget=None, workers=6):
+def run(split, systems, root='data/launch', endpoint=None, params=None, budget=None, workers=6, repeat=None):
+    """repeat=k: a fresh, independent run (its own cache namespace and output file, suffix -rk)."""
     root = Path(root)
     out = root / split
     out.mkdir(parents=True, exist_ok=True)
-    extractors = make_extractors(root, endpoint, budget)
+    tag = f'-r{repeat}' if repeat else ''
+    extractors = make_extractors(root, endpoint, budget, tag)
     tuned = json.loads(PARAMS_FILE.read_text()) if PARAMS_FILE.exists() else {}
     scenarios = bank.load(split)
     prefetch(scenarios, systems, extractors, workers)
@@ -131,7 +136,7 @@ def run(split, systems, root='data/launch', endpoint=None, params=None, budget=N
         p = (params or {}).get(system) or tuned.get(system) or {}
         started = time.time()
         results = [run_scenario(sc, system, extractors, p) for sc in scenarios]
-        (out / f'{system}.json').write_text(json.dumps({'system': system, 'split': split, 'params': p,
+        (out / f'{system}{tag}.json').write_text(json.dumps({'system': system, 'split': split, 'params': p, 'repeat': repeat,
                                                         'seconds': round(time.time() - started, 1), 'results': results},
                                                        ensure_ascii=False))
         summary[system] = score(results)

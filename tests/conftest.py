@@ -26,7 +26,7 @@ def stub():
             time.sleep(config['delay'])
             if 'questions' not in body:                      # Responses API shape (structured output)
                 props = body['text']['format']['schema']['properties']
-                out = {k: v['enum'][0] for k, v in props.items()}
+                out = {k: (v['enum'][0] if 'enum' in v else None) for k, v in props.items()}
                 if config['mode'] == 'invalid': out = {k: 'OUTSIDE' for k in props}
                 response = {'status': 'completed', 'output': [{'type': 'message', 'content': [{'type': 'output_text', 'text': json.dumps(out)}]}],
                             'usage': {'input_tokens': config['tokens'], 'output_tokens': 7, 'output_tokens_details': {'reasoning_tokens': 0}}}

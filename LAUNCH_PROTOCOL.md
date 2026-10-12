@@ -172,4 +172,10 @@ alone, holding every other answer at its top choice.
    folder, which showed other files' names (other authors' packets and texts, review packets). Each reported opening
    none of them. No answer keys were in that folder. The first round of harder-set reviewers stopped early on a
    session usage limit before writing any answers; new reviewer agents redid the review from scratch.
+8. **Post-hoc follow-ups after the test results (exploratory; not part of any pre-registered test).**
+   (a) A fairness check on the ordinary API: "responses-luna-none-raw" reports raw values (numbers and units as
+   stated, observation and strike times as clock times or minutes), and code converts units, does the time arithmetic
+   and bins them with the answer key's own bin edges, so the model never chooses a range. Run on both test sets.
+   (b) Repeat runs: decisions-top, responses-luna-none and responses-luna-none-raw are run again, independently
+   (fresh requests, no cache), on the harder test set, to see whether the false-clear counts are stable.
 

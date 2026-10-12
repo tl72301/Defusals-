@@ -72,10 +72,10 @@ def _fill(answers):
 
 class DecisionsExtractor:
     """All 9 questions in one request (batched=True) or one request per question."""
-    def __init__(self, root, batched=True, endpoint=None, timeout=30.0, budget=None):
+    def __init__(self, root, batched=True, endpoint=None, timeout=30.0, budget=None, tag=''):
         self.batched, self.endpoint, self.timeout = batched, endpoint or DECISIONS_URL, timeout
         self.budget = budget or Budget()
-        self.cache = Cache(root, 'decisions' if batched else 'decisions-single')
+        self.cache = Cache(root, ('decisions' if batched else 'decisions-single') + tag)
 
     def __call__(self, header, text, start, minute, clarifying=None):
         qs = question_set(start, minute)
@@ -107,13 +107,16 @@ class DecisionsExtractor:
 
 class ResponsesExtractor:
     """The same model through the ordinary Responses API with a strict JSON schema of the same options."""
-    def __init__(self, root, effort='none', endpoint=None, timeout=120.0, budget=None, max_output=None):
+    MODE = 'bins'
+
+    def __init__(self, root, effort='none', endpoint=None, timeout=120.0, budget=None, max_output=None, tag=''):
         self.effort, self.timeout = effort, timeout
         self.endpoint = endpoint or RESPONSES_URL
         self.stub = self.endpoint != RESPONSES_URL and validate_endpoint(self.endpoint)
         self.budget = budget or Budget()
         self.max_output = max_output or (400 if effort == 'none' else 6000)
-        self.cache = Cache(root, f'responses-luna-{effort}')
+        suffix = '' if self.MODE == 'bins' else f'-{self.MODE}'
+        self.cache = Cache(root, f'responses-luna-{effort}{suffix}{tag}')
 
     def body(self, v, qs):
         props = {n: {'type': 'string', 'enum': [o['value'] for o in opts],
@@ -125,10 +128,15 @@ class ResponsesExtractor:
                                     'schema': {'type': 'object', 'properties': props, 'required': list(props),
                                                'additionalProperties': False}}}}
 
+    def to_answers(self, parsed, qs, start, minute):
+        allowed = {n: {o['value'] for o in opts} for n, _, opts in qs}
+        answers = {n: parsed[n] for n in allowed if parsed.get(n) in allowed[n]}
+        return answers, (None if len(answers) == len(allowed) else 'invalid_values')
+
     def __call__(self, header, text, start, minute, clarifying=None):
         qs = question_set(start, minute)
         v = view(header, text, clarifying)
-        key = self.cache.key('responses', self.effort, v, qs)
+        key = self.cache.key('responses', self.effort, self.MODE, v, qs)
         hit = self.cache.get(key)
         if hit:
             return hit
@@ -162,15 +170,99 @@ class ResponsesExtractor:
             if part['type'] == 'refusal':
                 raise ValueError('refusal')
             parsed = json.loads(part['text'])
-            allowed = {n: {o['value'] for o in opts} for n, _, opts in qs}
-            answers = {n: parsed[n] for n in allowed if parsed.get(n) in allowed[n]}
-            if len(answers) != len(allowed):
-                err = 'invalid_values'
+            answers, err = self.to_answers(parsed, qs, start, minute)
         except Exception as e:
             err = str(e)[:40] if str(e) in ('incomplete', 'refusal') else 'invalid_answer'
         out = _result(_fill(answers), None, lat, tin, tout, cost, err, 1)
         self.cache.put(key, out)
         return out
+
+
+class RawResponsesExtractor(ResponsesExtractor):
+    """Post-hoc fairness check (LAUNCH_PROTOCOL.md §8, change 8): the ordinary API reports raw values (numbers as
+    stated, units, clock times or minutes as stated) and code converts units, does the time arithmetic and bins them
+    with exactly the answer key's bin edges. The model never chooses a range."""
+    MODE = 'raw'
+    STATUS = ['given', 'not_mentioned', 'unclear']
+
+    def body(self, v, qs):
+        instr = {n: i for n, i, _ in qs}
+        num = {'type': ['number', 'null']}
+        txt = {'type': ['string', 'null']}
+        st = lambda d: {'type': 'string', 'enum': self.STATUS, 'description': d + ' Use "unclear" if mentioned but no single value is given (for example a range).'}
+        props = {
+            'obs_time_form': {'type': 'string', 'enum': ['not_stated', 'clock_time', 'minutes_before_report'],
+                              'description': instr['OBS_TIME'] + ' Say how the observation time is given, if at all.'},
+            'obs_clock_hhmm': {**txt, 'description': 'If an observation clock time is stated, its four digits HHMM (e.g. "1342"); else null.'},
+            'obs_minutes_before_report': {**num, 'description': 'If stated as minutes before the report, that number; else null.'},
+            'wind_status': st(instr['WIND']),
+            'wind_peak_knots': {**num, 'description': 'The peak wind in knots at the 132.5-foot level as stated (gust if a gust is given); else null.'},
+            'temp_132_status': st(instr['TEMP_LOW']),
+            'temp_132_f': {**num, 'description': 'The 132.5-foot temperature in °F as stated; else null.'},
+            'temp_257_status': st(instr['TEMP_HIGH']),
+            'temp_257_f': {**num, 'description': 'The 257.5-foot temperature in °F as stated; else null.'},
+            'precip': {'type': 'string', 'enum': ['not_mentioned', 'yes', 'no', 'unclear'], 'description': instr['PRECIP'] +
+                       ' yes = precipitation at the pad or along the flight path; no = none there.'},
+            'lightning_status': {'type': 'string', 'enum': ['strike_within_10nm', 'none_within_10nm_in_last_30_min', 'only_beyond_10nm',
+                                                            'not_mentioned', 'unclear'],
+                                 'description': 'Lightning within 10 nautical miles of the flight path, according to this report.'},
+            'strike_clock_hhmm': {**txt, 'description': 'If a strike within 10 nm is reported with a clock time, its HHMM; else null.'},
+            'strike_minutes_before_report': {**num, 'description': 'If a strike within 10 nm is reported as minutes ago, that number; else null.'},
+            'fieldmill_status': st(instr['FIELDMILL']),
+            'fieldmill_value': {**num, 'description': 'The largest field mill reading within 5 nm of the pad, as stated (keep the sign); else null.'},
+            'fieldmill_unit': {'type': ['string', 'null'], 'enum': ['V/m', 'kV/m', None], 'description': 'The unit of that reading.'},
+            'solar_status': st(instr['SOLAR']),
+            'solar_level': {**num, 'description': 'The highest NOAA S or R level number stated (0 to 5); G levels do not count; else null.'},
+            'correction': {'type': 'string', 'enum': ['no', 'yes', 'unclear'], 'description': instr['CORRECTION']},
+        }
+        return {'model': LUNA, 'reasoning': {'effort': self.effort}, 'max_output_tokens': self.max_output,
+                'input': [{'role': 'system', 'content': SYSTEM.replace('choosing exactly one of the allowed values',
+                                                                        'giving the values exactly as stated')},
+                          {'role': 'user', 'content': v}],
+                'text': {'format': {'type': 'json_schema', 'name': 'report_values', 'strict': True,
+                                    'schema': {'type': 'object', 'properties': props, 'required': list(props),
+                                               'additionalProperties': False}}}}
+
+    def to_answers(self, x, qs, start, minute):
+        from defuse.launch import sim
+        from defuse.launch.parser import clock_minute
+
+        def minutes_since(hhmm, mins):
+            if mins is not None:
+                return mins
+            if hhmm and len(str(hhmm).strip().rstrip('Zz')) == 4 and str(hhmm).strip().rstrip('Zz').isdigit():
+                return minute - clock_minute(start, str(hhmm).strip().rstrip('Zz'))
+            return None
+
+        def value(status, v, binner):
+            if status == 'not_mentioned':
+                return 'not_mentioned'
+            if status == 'given' and isinstance(v, (int, float)):
+                return binner(v)
+            return 'unclear'
+        a = {}
+        age = minutes_since(x.get('obs_clock_hhmm'), x.get('obs_minutes_before_report')) if x.get('obs_time_form') != 'not_stated' else 0
+        a['OBS_TIME'] = sim.age_bin(max(0, age)) if age is not None else 'current'
+        a['WIND'] = value(x.get('wind_status'), x.get('wind_peak_knots'), sim.wind_bin)
+        a['TEMP_LOW'] = value(x.get('temp_132_status'), x.get('temp_132_f'), sim.temp_bin)
+        a['TEMP_HIGH'] = value(x.get('temp_257_status'), x.get('temp_257_f'), sim.temp_bin)
+        a['PRECIP'] = x.get('precip') if x.get('precip') in ('not_mentioned', 'yes', 'no', 'unclear') else 'unclear'
+        ls = x.get('lightning_status')
+        if ls == 'strike_within_10nm':
+            ago = minutes_since(x.get('strike_clock_hhmm'), x.get('strike_minutes_before_report'))
+            a['LIGHTNING'] = sim.lightning_bin(max(0, ago)) if ago is not None else 'unclear'
+        else:
+            a['LIGHTNING'] = {'none_within_10nm_in_last_30_min': 'clear30', 'only_beyond_10nm': 'beyond10',
+                              'not_mentioned': 'not_mentioned'}.get(ls, 'unclear')
+        mv = x.get('fieldmill_value')
+        if isinstance(mv, (int, float)) and x.get('fieldmill_unit') == 'kV/m':
+            mv = mv * 1000
+        a['FIELDMILL'] = value(x.get('fieldmill_status'), mv, sim.mill_bin)
+        sl = x.get('solar_level')
+        a['SOLAR'] = value(x.get('solar_status'), int(sl) if isinstance(sl, (int, float)) and 0 <= sl <= 5 else None,
+                           sim.solar_bin) if x.get('solar_status') != 'given' or isinstance(sl, (int, float)) else 'unclear'
+        a['CORRECTION'] = x.get('correction') if x.get('correction') in ('no', 'yes', 'unclear') else 'unclear'
+        return a, None
 
 
 def post(endpoint, encoded, timeout, stub):
