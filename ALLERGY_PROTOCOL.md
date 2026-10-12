@@ -131,3 +131,6 @@ key, otherwise it is dropped (listed in `defuse/allergy/bank/excluded.json`). Sc
 2. **Development messages are not blind-reviewed.** They are used only for the smoke tests (§7), never in results.
    The smoke tests (66 messages, all systems) cost $0.036, projecting about $1.12 for the test set, under the $1.30
    limit, so no test scenario is removed.
+3. **One post-hoc check, after the results (not pre-registered).** No system sent an unsafe dish, so I measured how much
+   of that came from the code's rule that an unexplained "it's fine" never lifts a restriction: the same readings were
+   replayed with a rule that trusts every "it's fine" (`defuse/allergy/counterfactual.py`). Reported as exploratory.

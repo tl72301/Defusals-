@@ -53,9 +53,10 @@ def system_state(sc, run, t):
     return rules.decisions(sc['dishes'], msgs, answers, over, t)
 
 
-def pill(d, x, y, decision, w=96, h=40, unsafe=False):
+def pill(d, x, y, decision, w=96, h=40, mistake=None):
     fg, bg = COLOR[decision]
-    d.rounded_rectangle((x, y, x + w, y + h), 10, fill=bg, outline=fg if not unsafe else '#c93a3a', width=1 if not unsafe else 4)
+    ring = {'unsafe': '#c93a3a', 'held': '#d99a12'}.get(mistake)
+    d.rounded_rectangle((x, y, x + w, y + h), 10, fill=bg, outline=ring or fg, width=4 if ring else 1)
     d.text((x + 22, y + h / 2), ICON[decision], font=icon_font(18), fill=fg, anchor='mm')
     d.text((x + 38, y + h / 2), WORD[decision], font=font(18, 'SemiBold'), fill=fg, anchor='lm')
 
@@ -99,7 +100,9 @@ def frame(sc, runs, key_run, t, tally):
         for k, line in enumerate(textwrap.wrap(dish, 20)[:2]):
             d.text((644, y + 2 + k * 21), line, font=font(17, 'SemiBold'), fill=INK)
         for i, (dec, *_) in enumerate(states):
-            pill(d, x0 + i * cw, y, dec[dish], unsafe=dec[dish] == rules.SEND and correct[dish] != rules.SEND)
+            mistake = ('unsafe' if dec[dish] == rules.SEND and correct[dish] != rules.SEND else
+                       'held' if dec[dish] != rules.SEND and correct[dish] == rules.SEND else None)
+            pill(d, x0 + i * cw, y, dec[dish], mistake=mistake)
         pill(d, x0 + len(states) * cw, y, correct[dish])
         y += 66
     avoid = [rules.NAME[a] for a, s in status.items() if s == 'avoid']
@@ -111,15 +114,18 @@ def frame(sc, runs, key_run, t, tally):
                                 'shared with ' + ', '.join(rules.NAME[a] for a in oil)))
     d.text((644, 516), known, font=font(15), fill=INK)
     d.text((644, 542), oil_txt, font=font(15), fill=MUTED)
-    d.text((644, 568), 'Red outline = sent when the evidence did not show it was safe', font=font(13), fill=FAINT)
+    d.text((644, 568), 'Red outline = sent though not shown safe   ·   Amber outline = held though safe', font=font(13), fill=FAINT)
     # tally
     d.rounded_rectangle((24, 616, W - 24, 690), 14, fill=CARD, outline=LINE)
-    d.text((44, 653), 'Unsafe dishes sent so far', font=font(18, 'SemiBold'), fill=INK, anchor='lm')
+    d.text((44, 641), 'So far', font=font(18, 'SemiBold'), fill=INK, anchor='lm')
+    d.text((44, 666), 'unsafe sent · held by mistake', font=font(13), fill=MUTED, anchor='lm')
     for i, (lab, _) in enumerate(runs):
-        cx = 470 + i * 270
-        n = tally[i]
-        d.text((cx, 653), str(n), font=font(34, 'SemiBold'), fill='#c93a3a' if n else '#1f8a4c', anchor='rm')
-        d.text((cx + 12, 653), lab.replace('\n', ' '), font=font(15), fill=MUTED, anchor='lm')
+        cx = 330 + i * 310
+        unsafe, held = tally[i]
+        d.text((cx, 653), str(unsafe), font=font(30, 'SemiBold'), fill='#c93a3a' if unsafe else '#1f8a4c', anchor='rm')
+        d.text((cx + 8, 653), '·', font=font(30, 'SemiBold'), fill=FAINT, anchor='lm')
+        d.text((cx + 26, 653), str(held), font=font(30, 'SemiBold'), fill='#9a6a00' if held else '#1f8a4c', anchor='lm')
+        d.text((cx + 60, 653), lab.replace('\n', ' '), font=font(14), fill=MUTED, anchor='lm')
     d.text((W / 2, 706), 'Research simulation of US allergen rules. Not food-safety advice.', font=font(12), fill=FAINT, anchor='mm')
     return img
 
@@ -139,10 +145,11 @@ def results_card(report_path, scope='all'):
     cols = [('decisions', 'Decisions'), ('responses-options', 'Ordinary API,\npicking options'),
             ('responses-names', 'Ordinary API,\nwriting food names')]
     n = S['decisions']
-    rows = [('Answers right', lambda v: v['factual_accuracy'], lambda x: f'{100 * x:.1f}%', max),
+    rows = [('Answers right', lambda v: v['factual_accuracy'], lambda x: f'{100 * x:.2f}%', max),
             ('Unsafe dishes sent', lambda v: v['false_clears'], lambda x: f'{x}', min),
+            ('Dishes held by mistake', lambda v: v['unjustified_holds'], lambda x: f'{x}', min),
             ('Cost per 1,000 messages', lambda v: v['cost_per_1000_messages'], lambda x: f'${x:.2f}', min),
-            ('Time per message', lambda v: v['latency_p50'], lambda x: f'{x:.1f} s', min)]
+            ('Time per message', lambda v: v['latency_p50'], lambda x: f'{x:.2f} s', min)]
     img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
     d.text((64, 52), 'The results', font=font(40, 'SemiBold'), fill=INK)
     d.text((64, 104), f'{n["messages"]:,} messages, {n["dish_checks"]:,} dish checks, same model three ways',
@@ -153,17 +160,17 @@ def results_card(report_path, scope='all'):
         for k, line in enumerate(lab.split('\n')):
             d.text((x0 + i * cw + cw / 2, 178 + k * 24), line, font=font(19, 'SemiBold'), fill=MUTED, anchor='ma')
     for j, (name, get, fmt, best) in enumerate(rows):
-        y = 246 + j * 86
+        y = 240 + j * 70
         d.line((64, y, W - 64, y), fill=LINE)
-        d.text((76, y + 43), name, font=font(24, 'SemiBold'), fill=INK, anchor='lm')
+        d.text((76, y + 35), name, font=font(23, 'SemiBold'), fill=INK, anchor='lm')
         vals = [get(S[s]) for s, _ in cols]
         top = best(vals)
         for i, v in enumerate(vals):
             cx = x0 + i * cw + cw / 2
             if v == top:
-                d.rounded_rectangle((cx - 96, y + 16, cx + 96, y + 70), 12, fill='#e3f4ea')
-            d.text((cx, y + 43), fmt(v), font=font(32, 'SemiBold'), fill=INK, anchor='mm')
-    d.text((64, 628), 'Green = best in the row. "Unsafe" = sent when the evidence did not show it was safe.',
+                d.rounded_rectangle((cx - 96, y + 10, cx + 96, y + 60), 12, fill='#e3f4ea')
+            d.text((cx, y + 35), fmt(v), font=font(30, 'SemiBold'), fill=INK, anchor='mm')
+    d.text((64, 628), 'Green = best in the row. No system sent an unsafe dish: the code never trusts an unexplained "it\'s fine".',
            font=font(17), fill=MUTED)
     d.text((64, 656), 'Pre-registered; blind authors and reviewers. Research simulation, not food-safety advice.',
            font=font(17), fill=FAINT)
@@ -179,7 +186,7 @@ def render(sc, runs, key_run, target, intro_lines, end_card):
     intro = title_card(intro_lines, 'Research simulation of US allergen rules (FDA, 2025). Not food-safety advice.')
     for _ in range(int(INTRO * FPS)):
         proc.stdin.write(intro.tobytes())
-    tally = [0] * len(runs)
+    tally = [[0, 0] for _ in runs]
     last, n = None, int((to_sec(rules.MINUTES) - INTRO) * FPS)
     for i in range(n + 1):
         t = to_min(INTRO + i / FPS)
@@ -189,7 +196,8 @@ def render(sc, runs, key_run, target, intro_lines, end_card):
                 k = rules.POLLS.index(minute)
                 for s, (_, run) in enumerate(runs):
                     p = run['polls'][k]
-                    tally[s] += sum(p['S'][dish] == rules.SEND and p['J'][dish] != rules.SEND for dish in p['S'])
+                    tally[s][0] += sum(p['S'][dish] == rules.SEND and p['J'][dish] != rules.SEND for dish in p['S'])
+                    tally[s][1] += sum(p['S'][dish] != rules.SEND and p['J'][dish] == rules.SEND for dish in p['S'])
             last = (minute, frame(sc, runs, key_run, minute, tally).tobytes())
         proc.stdin.write(last[1])
     for _ in range(int(OUTRO * FPS)):

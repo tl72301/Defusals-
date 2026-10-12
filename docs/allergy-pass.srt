@@ -1,0 +1,84 @@
+1
+00:00:00,000 --> 00:00:06,000
+Allergy Pass Can AI read restaurant allergy notes well enough to keep guests safe? One model, three ways: Decisions, the ordinary API picking options, and the ordinary API writing food names. Code checks every dish every 5 minutes.
+
+2
+00:00:06,000 --> 00:00:09,000
+7:50 PM, Delivery app, order note for delivery order #4369: Just placed our order! One person on this order can't have any shellfish, please.
+
+3
+00:00:09,500 --> 00:00:12,500
+8:04 PM, Server, ticket note for Table 9: Guest can't have any shellfish.
+
+4
+00:00:09,750 --> 00:00:12,750
+8:05 PM, Customer, app chat for delivery order #4369: hey my aunt just joined us and she's eating from this order too. she has a wheat allergy
+
+5
+00:00:10,250 --> 00:00:13,250
+8:07 PM, Kitchen chat: Reading back the ticket for delivery order #4369: no shellfish.
+
+6
+00:00:11,000 --> 00:00:14,000
+8:10 PM, Manager on duty: Driver's on the way for Table 9.
+
+7
+00:00:13,400 --> 00:00:16,400
+8:12 PM, Kitchen chat: FYI shrimp are going in the same oil as the fries tonight, fries fryer is shared with the shrimp now.
+
+8
+00:00:17,000 --> 00:00:20,000
+8:15 PM, Kitchen chat: Heads up: customer on delivery order #4369 must avoid shellfish. Separate thing, the guest at Table 5 can't have any sesame.
+
+9
+00:00:17,000 --> 00:00:20,000
+8:15 PM, Manager on duty: Shrimp is fine for delivery order #4369.
+
+10
+00:00:19,400 --> 00:00:22,400
+8:17 PM, Customer, app chat for delivery order #4369: oh and dairy is fine for everyone eating from this order
+
+11
+00:00:23,000 --> 00:00:26,000
+8:20 PM, Kitchen chat: Ticket for order #4147, customer must avoid soy.
+
+12
+00:00:23,000 --> 00:00:26,000
+8:20 PM, Manager on duty: Passing along from the guest on delivery order #4369: the customer must avoid shrimp.
+
+13
+00:00:25,400 --> 00:00:28,400
+8:22 PM, Customer, app chat for delivery order #4369: just a reminder, one of us has a shrimp allergy!
+
+14
+00:00:31,400 --> 00:00:34,400
+8:27 PM, Kitchen chat: Firing two burgers for Table 26.
+
+15
+00:00:39,800 --> 00:00:42,800
+8:34 PM, Kitchen chat: We're out of the mango sorbet tonight.
+
+16
+00:00:39,800 --> 00:00:42,800
+8:34 PM, Server, ticket note for Table 5: Someone on this ticket must avoid sesame.
+
+17
+00:00:45,800 --> 00:00:48,800
+8:39 PM, Kitchen chat: Table 26 guest can't have any shrimp.
+
+18
+00:00:45,800 --> 00:00:48,800
+8:39 PM, Kitchen chat: Table 5 still waiting on their desserts.
+
+19
+00:00:51,800 --> 00:00:54,800
+8:44 PM, Customer, app chat for delivery order #4369: could we get some extra napkins and water for the table? thanks
+
+20
+00:00:56,600 --> 00:00:59,600
+8:48 PM, Kitchen chat: Grill station's backed up about five minutes.
+
+21
+00:00:59,000 --> 00:01:11,000
+The results: answers right, unsafe dishes sent, cost and time per message for the three systems.
+
