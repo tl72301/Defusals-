@@ -1,4 +1,4 @@
-"""Summary chart for ALLERGY_RESULTS.md: accuracy, mistaken holds, cost and speed for the three model systems."""
+"""Summary chart for ALLERGY_RESULTS.md: accuracy, unnecessary holds and asks, cost and speed for the three model systems."""
 import json
 import sys
 from pathlib import Path
@@ -24,15 +24,27 @@ def final(root, out, scope='all'):
         ax.text(100 * hi + 0.01, yi, f"{100 * v['factual_accuracy']:.2f}%", va='center', fontsize=10, color=INK)
     ax.set_xlim(99.5, 100.06)
     ax.set_title('Answers right, 10 factual questions\n(dot; line = 95% interval)', loc='left', fontsize=11, color=INK)
-    panels = [('unjustified_holds', f"Dishes held by mistake\n(of {n['dish_checks']:,} checks; unsafe sent: 0 for all)", lambda v: f'{v}'),
+    panels = [('unjustified_holds', f"Held or asked unnecessarily\n(of {n['dish_checks']:,} dish checks;\nunsafe dishes sent: 0 for all)",
+               lambda v: f'{v}'),
               ('cost_per_1000_messages', 'Cost per 1,000 messages\n(US dollars)', lambda v: f'${v:.3f}'),
               ('latency_p50', 'Median time per message\n(seconds)', lambda v: f'{v:.2f} s')]
     colors = [c for *_, c in SYSTEMS]
     for ax, (key, title, fmt) in zip(axes[1:], panels):
         vals = [S[s][key] for s, _, _ in SYSTEMS]
-        ax.barh(y, vals, color=colors, height=0.55)
-        for yi, v in zip(y, vals):
-            ax.text(v + max(vals) * 0.03, yi, fmt(v), va='center', fontsize=10, color=INK)
+        if key == 'unjustified_holds':                # holds solid, asks pale
+            holds = [S[s]['unnecessary_holds'] for s, _, _ in SYSTEMS]
+            ax.barh(y, holds, color=colors, height=0.55)
+            ax.barh(y, [v - h for v, h in zip(vals, holds)], left=holds, color=colors, alpha=0.35, height=0.55)
+            for yi, v, h in zip(y, vals, holds):
+                if v > h:
+                    ax.text(h / 2, yi, f'{h} held', ha='center', va='center', fontsize=9, color='white')
+                    ax.text((h + v) / 2, yi, f'{v - h} asked', ha='center', va='center', fontsize=9, color=INK)
+            labels = [f'{v}' for v in vals]
+        else:
+            ax.barh(y, vals, color=colors, height=0.55)
+            labels = [fmt(v) for v in vals]
+        for yi, v, lab in zip(y, vals, labels):
+            ax.text(v + max(vals) * 0.03, yi, lab, va='center', fontsize=10, color=INK)
         ax.set_xlim(0, max(vals) * 1.45)
         ax.set_title(title, loc='left', fontsize=11, color=INK)
     for ax in axes:

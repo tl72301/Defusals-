@@ -87,6 +87,10 @@ def test_every_system_runs_offline(stub, tmp_path):
         assert len(r['polls']) == len(rules.POLLS) and set(r['extractions']) == {m['id'] for m in sc['messages']}
     body = stub['requests'][0]
     assert len(body['questions']) == 11 and 'FDA' in body['input'][0]['content'][0]['text']
+    from defuse.allergy.report import summarize
+    for r in out.values():
+        v = summarize([r], {})
+        assert v['unnecessary_holds'] + v['unnecessary_asks'] == v['unjustified_holds']
 
 
 def test_parser_scope_and_slips():

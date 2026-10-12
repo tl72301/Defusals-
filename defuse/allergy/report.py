@@ -47,6 +47,10 @@ def summarize(results, tags):
            'output_tokens': sum(e['output_tokens'] for e in ex) + sum(c['output_tokens'] for c in cl),
            'latency_p50': statistics.median(lat) if lat else None,
            'errors': sum(bool(e['error']) for e in ex)}
+    checks = [(p['S'][d], p['J'][d]) for r in results for p in r['polls'] for d in p['S']]
+    out['unnecessary_holds'] = sum(sv == rules.HOLD and jv == rules.SEND for sv, jv in checks)
+    out['unnecessary_asks'] = sum(sv == rules.ASK and jv == rules.SEND for sv, jv in checks)
+    out['correction_errors'] = sum(not right[(m, 'CORRECTION')] for m in ids)
     if results and any(e.get('probs') for e in ex):
         hi_n = hi_ok = 0
         for r in results:
@@ -58,6 +62,7 @@ def summarize(results, tags):
                         if top >= 0.9:
                             hi_n += 1; hi_ok += e['answers'][q] == r['key'][mid][q]
         out['answers_at_0.9_or_more'] = [hi_ok, hi_n]
+        out['factual_errors_below_0.9'] = (len(fact) - sum(fact)) - (hi_n - hi_ok)
     return out
 
 
@@ -76,6 +81,9 @@ def report(root='data/allergy'):
         data = {s: [r for sp in splits for r in (load(root, sp, s) or [])] for s in SYSTEMS}
         data = {s: v for s, v in data.items() if v}
         res = {'splits': splits, 'systems': {s: summarize(v, tags) for s, v in data.items()}}
+        if 'oracle' in data:                          # share of factual answers whose correct value is "not mentioned"
+            slots = [r['key'][m][q] for r in data['oracle'] for m in r['key'] for q in rules.FACTUAL]
+            res['not_mentioned_share'] = sum(v == 'not_mentioned' for v in slots) / len(slots)
         names = [s for s in MODEL_SYSTEMS if s in data]
         pairs = [(names[i], names[j]) for i in range(len(names)) for j in range(i + 1, len(names))]
         cmp = [compare(data[x], data[y]) for x, y in pairs]

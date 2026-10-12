@@ -114,11 +114,11 @@ def frame(sc, runs, key_run, t, tally):
                                 'shared with ' + ', '.join(rules.NAME[a] for a in oil)))
     d.text((644, 516), known, font=font(15), fill=INK)
     d.text((644, 542), oil_txt, font=font(15), fill=MUTED)
-    d.text((644, 568), 'Red outline = sent though not shown safe   ·   Amber outline = held though safe', font=font(13), fill=FAINT)
+    d.text((644, 568), 'Red outline = sent though not shown safe   ·   Amber outline = held or asked though safe', font=font(13), fill=FAINT)
     # tally
     d.rounded_rectangle((24, 616, W - 24, 690), 14, fill=CARD, outline=LINE)
     d.text((44, 641), 'So far', font=font(18, 'SemiBold'), fill=INK, anchor='lm')
-    d.text((44, 666), 'unsafe sent · held by mistake', font=font(13), fill=MUTED, anchor='lm')
+    d.text((44, 666), 'unsafe sent · held or asked unnecessarily', font=font(13), fill=MUTED, anchor='lm')
     for i, (lab, _) in enumerate(runs):
         cx = 330 + i * 310
         unsafe, held = tally[i]
@@ -147,7 +147,7 @@ def results_card(report_path, scope='all'):
     n = S['decisions']
     rows = [('Answers right', lambda v: v['factual_accuracy'], lambda x: f'{100 * x:.2f}%', max),
             ('Unsafe dishes sent', lambda v: v['false_clears'], lambda x: f'{x}', min),
-            ('Dishes held by mistake', lambda v: v['unjustified_holds'], lambda x: f'{x}', min),
+            ('Held or asked unnecessarily', lambda v: v['unjustified_holds'], lambda x: f'{x}', min),
             ('Cost per 1,000 messages', lambda v: v['cost_per_1000_messages'], lambda x: f'${x:.2f}', min),
             ('Time per message', lambda v: v['latency_p50'], lambda x: f'{x:.2f} s', min)]
     img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
@@ -169,10 +169,19 @@ def results_card(report_path, scope='all'):
             cx = x0 + i * cw + cw / 2
             if v == top:
                 d.rounded_rectangle((cx - 96, y + 10, cx + 96, y + 60), 12, fill='#e3f4ea')
-            d.text((cx, y + 35), fmt(v), font=font(30, 'SemiBold'), fill=INK, anchor='mm')
-    d.text((64, 628), 'Green = best in the row. No system sent an unsafe dish: the code never trusts an unexplained "it\'s fine".',
+            sv = S[cols[i][0]]
+            split = name.startswith('Held') and sv['unnecessary_asks']
+            d.text((cx, y + (28 if split else 35)), fmt(v), font=font(30, 'SemiBold'), fill=INK, anchor='mm')
+            if split:                                 # holds and asks are counted together; show the split
+                d.text((cx, y + 56), f"{sv['unnecessary_holds']} held · {sv['unnecessary_asks']} asked", font=font(14),
+                       fill=MUTED, anchor='mm')
+    d.text((64, 616), 'Green = best in the row. No system sent an unsafe dish: the code never trusts an unexplained "it\'s fine".',
            font=font(17), fill=MUTED)
-    d.text((64, 656), 'Pre-registered; blind authors and reviewers. Research simulation, not food-safety advice.',
+    share = json.loads(Path(report_path).read_text())[scope].get('not_mentioned_share')
+    if share:
+        d.text((64, 643), f'{100 * share:.1f}% of answers are "not mentioned", so answering that everywhere would already score '
+               f'about {100 * share:.0f}%.', font=font(17), fill=MUTED)
+    d.text((64, 670), 'Pre-registered; blind authors and reviewers. Research simulation, not food-safety advice.',
            font=font(17), fill=FAINT)
     return img
 

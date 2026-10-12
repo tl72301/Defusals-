@@ -17,16 +17,23 @@ Video: [one order replayed, then the results](docs/allergy-pass.mp4) (71 s, capt
 | 2,087 messages, 3,987 dish checks | Decisions | Ordinary API, picking options | Ordinary API, writing food names |
 |---|---:|---:|---:|
 | **Answers right** (95% interval) | 99.84% (99.78–99.89) | **99.96%** (99.92–99.98) | 99.66% (99.58–99.73) |
+| Messages with every answer right | 98.4% | **99.6%** | 96.6% |
 | **Unsafe dishes sent** | **0** | **0** | **0** |
-| **Dishes held by mistake** | 76 | **33** | 179 |
+| **Held or asked unnecessarily** | 76 holds | **33** holds | 179 (102 holds, 77 asks) |
+| "Is this a correction?" answered wrong | 7 | **1** | 11 |
 | **Cost per 1,000 messages** | $0.217 | $0.191 | **$0.114** |
 | **Median time per message** | **0.55 s** | 2.22 s | 1.82 s |
 
+- Accuracy starts high: 95.1% of answers are "not mentioned", so answering that everywhere would score about 95%.
+  Messages with every answer right is the stricter measure.
 - No system sent an unsafe dish, because the code never trusts an unexplained "it's fine": with that rule removed,
-  even perfect reading would have sent 77 unsafe dishes (a check run after the results).
-- Picking from the same options was the most accurate; Decisions was 4 times faster and its probabilities flagged its
-  mistakes (99.98% of its answers at 0.9 or higher were right); writing food names for code to sort was the cheapest
-  and the least accurate, because listing every food pulled in other tables' allergies.
+  even perfect reading would have sent 77 unsafe dishes (a check run after the results). That rule depends on the
+  correction question, and every wrong answer to it claimed a correction that was not there; none of those messages
+  said an allergen was fine, so no restriction was lifted.
+- Picking from the same options was the most accurate. Decisions was 4 times faster, though speed did not change any
+  decision in this simulation, and its probabilities flagged most of its mistakes (28 of its 33 wrong answers came
+  below 0.9; the code did not use them). Writing food names for code to sort was the cheapest and the least accurate,
+  because listing every food pulled in other tables' allergies.
 - All three accuracy differences are statistically significant. Full results: [ALLERGY_RESULTS.md](ALLERGY_RESULTS.md);
   protocol: [ALLERGY_PROTOCOL.md](ALLERGY_PROTOCOL.md).
 

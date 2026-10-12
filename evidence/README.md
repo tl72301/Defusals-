@@ -21,6 +21,6 @@ python -m defuse.launch.confirm /tmp/ev/data/launch
 
 SHA-256:
 
-`40c11aa22544b80a7210c95b2dfe5e03753cca3c06c36e508220baa02ba46e9a`  evidence/allergy-pass-2026-10-12.tar.gz
+`9de24af129d827d4de2cbf2d0ea525ba847b5bc42de2f8af7473fb6a42837bb3`  evidence/allergy-pass-2026-10-12.tar.gz
 `34df579e2e943d85f473ecd5863984c06a0c0212bd6d2103e7508ebb96444f6f`  evidence/budget-ledger-2026-10-07.jsonl.gz
 `276be77f8891faacd694a58d84833bdde364db20e073b4de8d9f1ff2f37f3c18`  evidence/launch-window-2026-10-12.tar.gz
