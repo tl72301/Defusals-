@@ -1,4 +1,5 @@
 {
  "scenarios": [],
- "note": "After the answer-key fix (protocol change 5), the blind reviewers agreed with every answer (559 reports x 9 questions); no scenario was excluded."
+ "note": "After the answer-key fix (protocol change 5), the blind reviewers agreed with every answer (559 reports x 9 questions); no scenario was excluded. Harder set: the reviewers agreed with every answer (347 reports x 9 questions); no report was dropped.",
+ "reports": []
 }

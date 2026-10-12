@@ -1,0 +1,182 @@
+{
+ "decisions-threshold": {
+  "threshold": 0.6
+ },
+ "decisions-sensitive": {
+  "flip": 0.5
+ },
+ "grid_on_dev": {
+  "decisions-threshold": [
+   {
+    "threshold": 0.5,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 3,
+    "wrong_state": 3,
+    "opportunities_used": 56,
+    "opportunities": 75,
+    "clarifications": 23
+   },
+   {
+    "threshold": 0.6,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 2,
+    "wrong_state": 2,
+    "opportunities_used": 51,
+    "opportunities": 75,
+    "clarifications": 47
+   },
+   {
+    "threshold": 0.7,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 3,
+    "wrong_state": 3,
+    "opportunities_used": 50,
+    "opportunities": 75,
+    "clarifications": 48
+   },
+   {
+    "threshold": 0.8,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 4,
+    "wrong_state": 4,
+    "opportunities_used": 49,
+    "opportunities": 75,
+    "clarifications": 48
+   },
+   {
+    "threshold": 0.9,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 4,
+    "wrong_state": 4,
+    "opportunities_used": 49,
+    "opportunities": 75,
+    "clarifications": 48
+   },
+   {
+    "threshold": 0.95,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 4,
+    "wrong_state": 4,
+    "opportunities_used": 49,
+    "opportunities": 75,
+    "clarifications": 48
+   },
+   {
+    "threshold": 0.99,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 4,
+    "wrong_state": 4,
+    "opportunities_used": 49,
+    "opportunities": 75,
+    "clarifications": 48
+   }
+  ],
+  "decisions-sensitive": [
+   {
+    "flip": 0.01,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 4,
+    "wrong_state": 4,
+    "opportunities_used": 49,
+    "opportunities": 75,
+    "clarifications": 48
+   },
+   {
+    "flip": 0.02,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 4,
+    "wrong_state": 4,
+    "opportunities_used": 49,
+    "opportunities": 75,
+    "clarifications": 48
+   },
+   {
+    "flip": 0.05,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 4,
+    "wrong_state": 4,
+    "opportunities_used": 49,
+    "opportunities": 75,
+    "clarifications": 43
+   },
+   {
+    "flip": 0.1,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 4,
+    "wrong_state": 4,
+    "opportunities_used": 49,
+    "opportunities": 75,
+    "clarifications": 37
+   },
+   {
+    "flip": 0.2,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 3,
+    "wrong_state": 3,
+    "opportunities_used": 51,
+    "opportunities": 75,
+    "clarifications": 25
+   },
+   {
+    "flip": 0.3,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 3,
+    "wrong_state": 3,
+    "opportunities_used": 56,
+    "opportunities": 75,
+    "clarifications": 14
+   },
+   {
+    "flip": 0.5,
+    "scenarios": 12,
+    "polls": 108,
+    "false_clears": 0,
+    "scenarios_with_false_clear": 0,
+    "unjustified_holds": 3,
+    "wrong_state": 3,
+    "opportunities_used": 56,
+    "opportunities": 75,
+    "clarifications": 8
+   }
+  ]
+ }
+}

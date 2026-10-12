@@ -1,0 +1,5207 @@
+[
+ {
+  "id": "L3001-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "yes",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "unclear",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "ge2000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-12",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "10-19",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "10-19",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3001-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "20-29",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "unclear",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3002-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "4",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "unclear",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "4",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "4",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3003-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "26-27",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-10",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-13",
+  "answers": {
+   "OBS_TIME": "5-14",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "yes"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3004-18",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "ge2000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "yes"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-14",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3005-18",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "32-35",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "ge36",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "yes"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "30-31",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "32-35",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "unclear",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-17",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3006-18",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "ge2000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "yes",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "unclear",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "yes",
+   "LIGHTNING": "10-19",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "20-29",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3007-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-12",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3008-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "unclear",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "4",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3009-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-07",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "unclear",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3010-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "yes",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "yes",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "ge2000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "unclear",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "30-31",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-16",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "28-29",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3011-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "32-35",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "26-27",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "32-35",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-07",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "26-27",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "ge36",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "26-27",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "yes"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "30-31",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "32-35",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3012-18",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "yes",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "ge2000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "yes",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "1500-1999",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "10-19",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "20-29",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-14",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3013-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-06",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "94.6-96",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "94.6-96",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3014-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-07",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "unclear",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "4",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "4",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3015-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "yes"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3016-18",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "yes",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "ge2000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "30-31",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "30-31",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "32-35",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "32-35",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "28-29",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "unclear",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "32-35",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3101-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "32-35",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "30-31",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "30-31",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-11",
+  "answers": {
+   "OBS_TIME": "5-14",
+   "WIND": "30-31",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "yes"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3102-18",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "yes",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "yes",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "ge2000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-06",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "lt10",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "10-19",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "10-19",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "20-29",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-15",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3103-17",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "lt90",
+   "TEMP_HIGH": "lt90",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-01",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-02",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-03",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-04",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-05",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-06",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-07",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-08",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-09",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "0-2",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-10",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-11",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-12",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-13",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-14",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-15",
+  "answers": {
+   "OBS_TIME": "5-14",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "not_mentioned",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "yes"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-16",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-17",
+  "answers": {
+   "OBS_TIME": "15-29",
+   "WIND": "not_mentioned",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "not_mentioned",
+   "PRECIP": "not_mentioned",
+   "LIGHTNING": "not_mentioned",
+   "FIELDMILL": "not_mentioned",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ },
+ {
+  "id": "L3104-18",
+  "answers": {
+   "OBS_TIME": "current",
+   "WIND": "le25",
+   "TEMP_LOW": "90-94.5",
+   "TEMP_HIGH": "90-94.5",
+   "PRECIP": "no",
+   "LIGHTNING": "clear30",
+   "FIELDMILL": "lt1000",
+   "SOLAR": "not_mentioned",
+   "CORRECTION": "no"
+  },
+  "doubt": ""
+ }
+]
