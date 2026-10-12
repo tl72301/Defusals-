@@ -140,3 +140,12 @@ alone, holding every other answer at its top choice.
    Clarified here, code unchanged: (a) for LIGHTNING and FIELDMILL, "met" also requires that no source's latest fresh
    reading is "unclear"; (b) HEAT's "last 30 minutes" means every minute from t-30 to t, judged with the corrections
    and clarification answers known at t. After aligning these, the two engines agree on all 18,592 test cases.
+2. **Before any development or test run (after a 2-report smoke test).** The common "clarify when the answer is
+   'unclear'" rule now applies only to the seven weather items. The protocol treats CORRECTION "unclear" as "no", and
+   the smoke test showed Decisions often choosing "unclear" there, which would spend every system's budget on a
+   question that cannot change the state. The threshold and decision-sensitive rules still see every question.
+3. **Systems.** gpt-6-luna is a reasoning model. The pre-registered "responses-luna" comparison runs with reasoning
+   effort "none" (the same speed class as Decisions). The model's default effort, "medium", is added as a separate,
+   exploratory system ("responses-luna-medium"); it is not part of the hypothesis tests.
+4. **Extraction runs in parallel** (up to 6 requests at a time) before each system's countdown is simulated. The
+   simulation uses its own clock, so this changes no result; measured latencies include any queuing at the API.

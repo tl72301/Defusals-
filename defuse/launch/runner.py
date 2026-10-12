@@ -33,7 +33,7 @@ def _decision_view(reports, answers, overrides, m):
 def candidates(system, rep, res, reports, answers, overrides, params):
     """Ordered (question, reason) clarification requests for a report that just arrived."""
     a = res['answers']
-    out = [(q, 'unclear') for q in rules.QUESTION_NAMES if a.get(q) == 'unclear']
+    out = [(q, 'unclear') for q in rules.ITEMS if a.get(q) == 'unclear']      # weather items only (§8, change 2)
     probs = res.get('probs') or {}
     if system == 'decisions-threshold':
         low = sorted((max(probs[q].values()), q) for q in rules.QUESTION_NAMES if probs.get(q) and a.get(q) != 'unclear')
@@ -108,13 +108,23 @@ def run_scenario(sc, system, extractors, params=None):
             'key': key}
 
 
-def run(split, systems, root='data/launch', endpoint=None, params=None, budget=None):
+def prefetch(scenarios, systems, extractors, workers=6):
+    """Extract every report in parallel ahead of the policy runs (results are cached; clarifications are not prefetched)."""
+    from concurrent.futures import ThreadPoolExecutor
+    names = sorted({EXTRACTOR[s] for s in systems} - {'oracle', 'parser'})
+    jobs = [(extractors[n], sc, r) for n in names for sc in scenarios for r in sc['reports']]
+    with ThreadPoolExecutor(workers) as pool:
+        list(pool.map(lambda j: j[0](bank.header(j[1], j[2]), j[2]['text'], j[1]['start'], j[2]['minute']), jobs))
+
+
+def run(split, systems, root='data/launch', endpoint=None, params=None, budget=None, workers=6):
     root = Path(root)
     out = root / split
     out.mkdir(parents=True, exist_ok=True)
     extractors = make_extractors(root, endpoint, budget)
     tuned = json.loads(PARAMS_FILE.read_text()) if PARAMS_FILE.exists() else {}
     scenarios = bank.load(split)
+    prefetch(scenarios, systems, extractors, workers)
     summary = {}
     for system in systems:
         p = (params or {}).get(system) or tuned.get(system) or {}
