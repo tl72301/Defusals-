@@ -7,17 +7,20 @@ from defuse.launch import sim, rules
 
 BANK = Path(__file__).resolve().parent / 'bank'
 SPLITS = {'dev': list(range(1001, 1009)), 'test': list(range(2001, 2025)),
-          'hard_dev': list(range(3101, 3105)), 'hard_test': list(range(3001, 3017))}
-HARD = {'hard_dev', 'hard_test'}
+          'hard_dev': list(range(3101, 3105)), 'hard_test': list(range(3001, 3017)),
+          'confirm': list(range(4001, 4041)), 'hard_confirm': list(range(5001, 5041))}      # §8, change 9
+HARD = {'hard_dev', 'hard_test', 'hard_confirm'}
 
 
 def header(sc, rep):
     return f'[{rules.clock(sc["start"], rep["minute"])}] {sim.SOURCES[rep["source"]]}'
 
 
-def build():
+def build(splits=None):
     BANK.mkdir(exist_ok=True)
     for split, seeds in SPLITS.items():
+        if splits and split not in splits:
+            continue
         (BANK / f'{split}.json').write_text(json.dumps([sim.scenario(s, split, split in HARD) for s in seeds], indent=1))
 
 

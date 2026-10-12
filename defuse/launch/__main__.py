@@ -1,7 +1,7 @@
 """python -m defuse.launch run|tune|report|batching"""
 import argparse
 import json
-from defuse.launch import runner, report, rules
+from defuse.launch import runner, report, rules, bank
 from defuse.launch.runner import SYSTEMS, EXPLORATORY, PARAMS_FILE
 
 THRESHOLDS = [0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.99]
@@ -29,7 +29,7 @@ def tune(root='data/launch', endpoint=None):
 def main(argv=None):
     p = argparse.ArgumentParser(prog='python -m defuse.launch')
     sub = p.add_subparsers(dest='cmd', required=True)
-    r = sub.add_parser('run'); r.add_argument('--split', choices=['dev', 'test', 'hard_dev', 'hard_test'], required=True)
+    r = sub.add_parser('run'); r.add_argument('--split', choices=list(bank.SPLITS), required=True)
     r.add_argument('--systems', nargs='+', choices=SYSTEMS + EXPLORATORY, default=SYSTEMS); r.add_argument('--root', default='data/launch')
     r.add_argument('--repeat', type=int)
     r.add_argument('--endpoint')
