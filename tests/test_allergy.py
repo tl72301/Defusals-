@@ -94,3 +94,11 @@ def test_parser_scope_and_slips():
     assert a['SHELLFISH'] == 'not_mentioned'
     a = parser.parse('Kitchen chat', 'Table 12 no dairy; Table 9 no eggs.', 'Table 12')
     assert a['MILK'] == 'avoid' and a['EGG'] == 'not_mentioned'
+
+
+def test_saved_scenarios_compute_truth():
+    from defuse.allergy import bank
+    for split in bank.SPLITS:
+        for sc in bank.load(split):
+            for t in rules.POLLS:
+                sim.true_decisions(sc, t)

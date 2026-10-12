@@ -358,8 +358,8 @@ def plant(trap, b, r, restricted, base, others, vague_cat):
 # ---------- truth, clarifications ----------
 def true_oil(sc, t):
     oil = set(rules.FRYER_DEFAULT)
-    events = sorted(sc['fryer_events'] + [(m['minute'], m['true']['FRYER']) for m in sc['messages']
-                                         if 'fryer_unclear' in m['tags']])
+    events = sorted([tuple(e) for e in sc['fryer_events']] + [(m['minute'], m['true']['FRYER']) for m in sc['messages']
+                                                               if 'fryer_unclear' in m['tags']])
     for m, kind in events:
         if m <= t:
             oil = set() if kind == 'fresh' else oil | {rules.FRYER_ADDS[kind]}
