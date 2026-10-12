@@ -1,6 +1,6 @@
 # Stress-testing OpenAI Decisions
 
-Three experiments with OpenAI's Decisions API (`gpt-6-luna`, which picks one option from a list in about half a
+Four experiments with OpenAI's Decisions API (`gpt-6-luna`, which picks one option from a list in about half a
 second): where it fails, where it beats code, and where it breaks when pushed. Every live request, result table
 and baseline is archived in `evidence/`. Total spend: about $0.36, counted conservatively.
 
@@ -13,11 +13,12 @@ Video: [200 packages sorted in one request](docs/gauntlet-200-in-one-request.mp4
 | 1. **Defuse**, a bomb-defusal game | 0 of 40 bombs defused across two runs. Several rule puzzles and multi-step arithmetic were close to random guessing. | [DEFUSE_RESULTS.md](DEFUSE_RESULTS.md) |
 | 2. **Sorting Depot**, a package-sorting game | 97% on labels it had never seen, including 13 languages and heavy typos, against 56% for the best frozen program. A [critical review](REVIEW.md) showed that a simple program written after seeing the first item bank matched Decisions on it; the rematch used a separately written test bank and baselines frozen in advance. | [DEPOT_RESULTS.md](DEPOT_RESULTS.md) |
 | 3. **Depot Gauntlet**, four difficulty ladders | It held up to 0.75 s deadlines, 20 rules, expert chemistry and every language and script tried. It broke at 0.5 s (the network round trip), at stacked rule exceptions (42%), at labels built to mislead, and at heavily damaged spelling. 200 packages in one request: 165 per second at 97%. | [GAUNTLET_RESULTS.md](GAUNTLET_RESULTS.md) |
+| 4. **Launch Window**, a modeled launch countdown | Decisions read the weather voice loop and code applied a simplified subset of NASA's Artemis I weather rules. Over 360 test polls it made 0 false clears and 3 wrong polls; the same model through the ordinary API made 6 false clears (reasoning off) or 17 wrong polls (medium reasoning), 3 to 5 times slower. Every answer it gave at probability 0.9 or higher was right. Pre-registered; the main hypothesis could not be tested because there were no false clears to prevent. | [LAUNCH_RESULTS.md](LAUNCH_RESULTS.md) |
 
 The short version: Decisions is a fast, knowledgeable reader of messy real-world text and a poor rule engine. Let
 code hold the rules, let Decisions read the input, and send many items per request.
 
-Protocol: [EXPERIMENT_SPEC.md](EXPERIMENT_SPEC.md). REVIEW.md cites files as they were at revision 53feed2, when
+Protocols: [EXPERIMENT_SPEC.md](EXPERIMENT_SPEC.md), [LAUNCH_PROTOCOL.md](LAUNCH_PROTOCOL.md). REVIEW.md cites files as they were at revision 53feed2, when
 DEFUSE_RESULTS.md was named RESULTS.md.
 
 # Running it yourself
@@ -225,4 +226,17 @@ python -m defuse.gauntlet run --ladder C --player classifier          # free: ke
 python -m defuse.gauntlet run --ladder C --player decisions           # live; needs OPENAI_API_KEY and a budget approval
 python -m defuse.gauntlet throughput --player decisions --sizes 1 10 50 200
 python -m defuse.gauntlet report && python -m defuse.gauntlet.chart && python -m defuse.gauntlet.clip
+```
+
+## Launch Window (a modeled launch countdown)
+
+A decision model answers nine multiple-choice questions about each report on a simulated weather voice loop; code
+applies a small, simplified subset of NASA's published Artemis I weather criteria and polls the state every five
+minutes in the launch window. It is a research simulation: "criteria met" never means a launch would be authorized.
+Protocol and pre-registration: LAUNCH_PROTOCOL.md. Results: LAUNCH_RESULTS.md. Replay: docs/launch-window-replay.mp4.
+
+```bash
+python -m defuse.launch run --split test --systems oracle parser          # free
+python -m defuse.launch run --split test                                   # live; needs OPENAI_API_KEY and a budget approval
+python -m defuse.launch report --split test && python -m defuse.launch.charts data/launch
 ```
