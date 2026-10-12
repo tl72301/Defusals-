@@ -167,7 +167,7 @@ def _heat(rs, t):
 
 def _lightning(rs, t):
     for x in rs:
-        if x['item'] == 'LIGHTNING' and x['value'] in LIGHTNING_LATEST:
+        if x['item'] == 'LIGHTNING' and x['value'] in LIGHTNING_LATEST and x['obs_old'] is not None:   # '30+' is expired
             if t < x['minute'] - LIGHTNING_LATEST[x['value']] + LIGHTNING_WAIT:
                 return VIOLATED
     latest = _latest_per_source(rs, 'LIGHTNING', t)

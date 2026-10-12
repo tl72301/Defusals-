@@ -104,3 +104,23 @@ def test_parser_on_handwritten_examples():
     assert p('G4 geomagnetic storm watch.')['SOLAR'] == 'not_mentioned'
     assert p('Correction to my last: peak 27 knots.')['CORRECTION'] == 'yes'
     assert p('Relaying tower ob taken at 1402Z: peak 22 kt.')['OBS_TIME'] == '15-29'
+
+
+def test_independent_engine_agrees():
+    import random
+    from defuse.launch.independent import engine_aligned as indep
+    opts = {q: [v for v, _ in o] for q, _, o in rules.questions((14, 0), 40)}
+    r = random.Random(11)
+    for _ in range(400):
+        reps, answers = [], {}
+        for i in range(r.randint(1, 7)):
+            reps.append({'id': f'r{i:02d}', 'minute': r.randint(0, 80), 'source': r.choice(['LWO', 'TOWER', 'LIGHTNING'])})
+            answers[f'r{i:02d}'] = {q: r.choice(opts[q]) if r.random() < 0.6 else sim.blank_answers()[q] for q in rules.QUESTION_NAMES}
+        over = sorted((r.randint(0, 82), r.choice(reps)['id'], q, r.choice(opts[q])) for q in r.sample(rules.QUESTION_NAMES, 2))
+        for t in r.sample(range(81), 3):
+            assert rules.rule_status(reps, answers, over, t) == indep.rule_status(reps, answers, over, t)
+    for seed in (1001, 2003, 2010):
+        sc = sim.scenario(seed, 'x')
+        a = {x['id']: x['answers'] for x in sc['reports']}
+        for t in range(81):
+            assert rules.rule_status(sc['reports'], a, [], t) == indep.rule_status(sc['reports'], a, [], t)

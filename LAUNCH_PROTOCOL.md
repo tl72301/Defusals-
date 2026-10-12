@@ -134,4 +134,9 @@ alone, holding every other answer at its top choice.
 
 ## 8. Changes after pre-registration
 
-None yet.
+1. **Rule-engine check (before any report text existed).** An independent implementation from this text
+   (defuse/launch/independent/) disagreed in three places. Fixed in code: a lightning statement in a report whose
+   observation time is "30 or more minutes" no longer starts a wait (such readings are expired, as section 4 says).
+   Clarified here, code unchanged: (a) for LIGHTNING and FIELDMILL, "met" also requires that no source's latest fresh
+   reading is "unclear"; (b) HEAT's "last 30 minutes" means every minute from t-30 to t, judged with the corrections
+   and clarification answers known at t. After aligning these, the two engines agree on all 18,592 test cases.
