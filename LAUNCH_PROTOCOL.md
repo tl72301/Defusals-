@@ -168,4 +168,8 @@ alone, holding every other answer at its top choice.
    - Texts are written by new blind author agents and checked by new blind reviewers. In the harder set, a report on
      which the reviewer and the key disagree is dropped from its scenario (listed in bank/excluded.json); scenarios
      are not dropped.
+7. **Blindness disclosure.** All three harder-set authors reported running one directory listing of the scratch
+   folder, which showed other files' names (other authors' packets and texts, review packets). Each reported opening
+   none of them. No answer keys were in that folder. The first round of harder-set reviewers stopped early on a
+   session usage limit before writing any answers; new reviewer agents redid the review from scratch.
 
