@@ -73,7 +73,8 @@ class Budget:
             return {'approved':a['active'],'approval':a,'accounted_usd':str(cost),
                     'remaining_usd':str(max(Decimal(0),Decimal(a['total_usd'])-cost)),
                     'requests':len(rs),'unresolved_requests':len(rs)-len(ss),
-                    'reported_tokens':sum(s['input_tokens'] for s in ss.values())}
+                    'reported_tokens':sum(s['input_tokens'] for s in ss.values()),
+                    'reported_output_tokens':sum(s.get('output_tokens',0) for s in ss.values())}
     def revoke(self):
         with self.locked():
             a,_=self._read()
@@ -91,6 +92,31 @@ class Budget:
             rid=uuid.uuid4().hex
             self._append({'event':'reserve','id':rid,'approval_id':a['id'],'category':category,'estimated_tokens':estimated_tokens,'reserved_usd':str(amount),'at':time.time()})
             return rid
+    def reserve_usd(self,amount_usd,category='attempt',batch=False,kind='usd'):
+        """Reserve a dollar amount (for APIs that also bill output tokens). Same caps and approval as reserve()."""
+        amount=Decimal(str(amount_usd))
+        if category not in ('smoke','attempt') or not amount.is_finite() or amount<=0: raise BudgetError('invalid reservation')
+        with self.locked():
+            a,rows=self._read()
+            if not a or not a['active']: raise BudgetError('Paid requests require budget approve --confirm')
+            rs,_,used=self._usage(a,rows)
+            if batch and not a['allow_batch']: raise BudgetError('Batch requires an approval with --allow-batch')
+            if sum(r['category']==category for r in rs.values())>=a[category+'_requests']: raise BudgetError(category+' request cap exhausted')
+            if used+amount>Decimal(a['total_usd']): raise BudgetError('Estimated request cost exceeds remaining budget')
+            rid=uuid.uuid4().hex
+            self._append({'event':'reserve','id':rid,'approval_id':a['id'],'category':category,'kind':kind,'estimated_tokens':0,'reserved_usd':str(amount),'at':time.time()})
+            return rid
+    def settle_usd(self,rid,cost_usd,input_tokens,output_tokens,request_id=None):
+        cost=Decimal(str(cost_usd))
+        if not cost.is_finite() or cost<0 or not isinstance(input_tokens,int) or not isinstance(output_tokens,int): raise BudgetError('invalid usage')
+        with self.locked():
+            a,rows=self._read()
+            r=next((r for r in rows if r['event']=='reserve' and r['id']==rid),None)
+            if r is None or any(x['event']=='settle' and x['id']==rid for x in rows): raise BudgetError('unknown or already settled reservation')
+            self._append({'event':'settle','id':rid,'approval_id':r['approval_id'],'input_tokens':input_tokens,'output_tokens':output_tokens,'cost_usd':str(cost),'request_id':request_id,'at':time.time()})
+            if cost>Decimal(r['reserved_usd']) and a and a['id']==r['approval_id']:
+                a['active']=False; self._write_approval(a)
+                raise BudgetError('Usage exceeded conservative estimate; approval revoked')
     def settle(self,rid,input_tokens,request_id=None):
         if not isinstance(input_tokens,int) or isinstance(input_tokens,bool) or input_tokens<0: raise BudgetError('invalid usage')
         with self.locked():

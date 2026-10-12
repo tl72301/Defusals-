@@ -124,3 +124,29 @@ def test_independent_engine_agrees():
         a = {x['id']: x['answers'] for x in sc['reports']}
         for t in range(81):
             assert rules.rule_status(sc['reports'], a, [], t) == indep.rule_status(sc['reports'], a, [], t)
+
+
+def _with_texts(sc):
+    for r in sc['reports']:
+        r['text'] = ' '.join(sim.resolve_spec(sc, r))     # stand-in text for offline tests
+    return sc
+
+
+def test_runner_offline_oracle_parser_and_stubbed_models(tmp_path, stub):
+    from defuse.launch import runner
+    sc = _with_texts(sim.scenario(1003, 'dev'))
+    ex = runner.make_extractors(tmp_path, endpoint=stub['url'])
+    o = runner.run_scenario(sc, 'oracle', ex)
+    assert all(p['S'] == p['J'] for p in o['polls'])                       # the oracle is its own reference
+    assert len(o['polls']) == len(rules.POLLS)
+    for system in ('parser', 'decisions-top', 'decisions-sensitive', 'decisions-threshold', 'responses-luna-none'):
+        r = runner.run_scenario(sc, system, ex, {'threshold': 0.9, 'flip': 0.05})
+        assert len(r['clarifications']) <= rules.CLARIFY_BUDGET
+        assert set(r['extractions']) == {x['id'] for x in sc['reports']}
+    body = next(b for b in stub['requests'] if 'questions' in b)
+    assert len(body['questions']) == 9 and 'Report:' in body['input'][0]['content'][0]['text']
+    resp = next(b for b in stub['requests'] if 'text' in b)
+    assert resp['model'] == 'gpt-6-luna' and resp['reasoning'] == {'effort': 'none'} and resp['text']['format']['strict']
+    n = len(stub['requests'])
+    runner.run_scenario(sc, 'decisions-top', ex)                           # second run is served from the cache
+    assert len(stub['requests']) == n

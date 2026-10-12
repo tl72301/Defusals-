@@ -24,6 +24,14 @@ def stub():
             body=json.loads(self.rfile.read(int(self.headers['Content-Length'])))
             config['requests'].append(body); config['headers'].append(dict(self.headers))
             time.sleep(config['delay'])
+            if 'questions' not in body:                      # Responses API shape (structured output)
+                props = body['text']['format']['schema']['properties']
+                out = {k: v['enum'][0] for k, v in props.items()}
+                if config['mode'] == 'invalid': out = {k: 'OUTSIDE' for k in props}
+                response = {'status': 'completed', 'output': [{'type': 'message', 'content': [{'type': 'output_text', 'text': json.dumps(out)}]}],
+                            'usage': {'input_tokens': config['tokens'], 'output_tokens': 7, 'output_tokens_details': {'reasoning_tokens': 0}}}
+                self.send_response(config['status']); self.send_header('Content-Type','application/json'); self.end_headers()
+                self.wfile.write(json.dumps(response).encode()); return
             answers=[]
             for q in body['questions']:
                 choices=q['choices']; n=len(choices)
