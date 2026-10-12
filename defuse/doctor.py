@@ -18,16 +18,15 @@ def main(argv=None):
     missing=[]
     if sys.version_info<(3,11): missing.append('Python 3.11+')
     else: print('PASS Python',sys.version.split()[0])
-    for package in ['PIL','numpy','httpx','imageio_ffmpeg']:
+    for package in ['PIL','numpy','httpx','imageio_ffmpeg','matplotlib']:
         try: importlib.import_module(package); print('PASS package',package)
         except ImportError: missing.append('package '+package+' (run bash scripts/setup.sh)')
     try:
-        from defuse.engine import Bomb
-        from defuse.render import ffmpeg_binary, frame
+        from defuse.launch.render import ffmpeg_binary, title_card
         exe=ffmpeg_binary(); subprocess.run([exe,'-version'],check=True,capture_output=True)
-        with tempfile.TemporaryDirectory(prefix='defuse-doctor-') as td:
+        with tempfile.TemporaryDirectory(prefix='launch-doctor-') as td:
             png=Path(td)/'frame.png'; mp4=Path(td)/'render.mp4'
-            frame(Bomb(0).snapshot(),{'seed':0,'difficulty':'medium','controller':'solver','timing':'realtime'}).save(png)
+            title_card(['Launch Window'],'doctor check').save(png)
             subprocess.run([exe,'-loglevel','error','-y','-loop','1','-i',str(png),'-t','0.1','-r','30','-c:v','libx264','-threads','2','-pix_fmt','yuv420p',str(mp4)],check=True,capture_output=True)
             subprocess.run([exe,'-loglevel','error','-i',str(mp4),'-f','null','-'],check=True,capture_output=True)
         print('PASS ffmpeg and 1280x720 H.264 render/decode')

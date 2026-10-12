@@ -1,0 +1,116 @@
+1
+00:00:00,000 --> 00:00:06,000
+Launch Window: a research simulation. A decision model reads weather reports; code applies a simplified subset of NASA Artemis I weather criteria.
+
+2
+00:00:06,000 --> 00:00:07,500
+[1310Z] Launch Weather Officer: Weather update on the loop: 132.5-ft peak wind two-zero, uh, make that one-four knots; 92.7 degrees at the 132.5-foot level; 257.5-ft temp ninety-two point three degrees. No precip at the pad or along the flight path; rain showers on radar about 39 nmi away, well off the flight path. No lightning within 10 nm of the flight path in the past 30 minutes, but we did have a strike 14 nm from the flight path 3 minutes ago; largest field mill reading within 5 nm of the pad -350 V/m, with the mill 7 nm from the pad, outside 5 nm, at -1800 V/m. NOAA S2 moderate solar radiation storm conditions, plus a G4 severe geomagnetic storm in progress.
+
+3
+00:00:09,000 --> 00:00:10,500
+[1320Z] Launch Weather Officer: All stations, weather: 132.5-ft peak wind 310 at 6 gusting 13 knots. 132.5-ft temp 95.5 degrees and the crew access arm reading 98.9 degrees; temperature at the 257.5-foot level 95.2 °F. No precipitation at the pad or along the flight path, though radar shows rain showers about 39 nm out, well off the flight path. No lightning within 10 nm of the flight path in the past 30 minutes, but we did have a strike 16 nm from the flight path 7 minutes ago; largest field mill reading within 5 nmi of the pad +520 V/m, with the mill 7 nmi from the pad, outside 5 nmi, at +1800 V/m.
+
+4
+00:00:12,000 --> 00:00:13,500
+[1330Z] Launch Weather Officer: Weather update on the loop: peak wind at the 132.5-ft level is one-eight, sorry, one-two, 12 knots. Temperature at the 132.5-ft level 95.1 degrees; 257.5-ft temp ninety-four point niner degrees. No precipitation at the pad or on the flight path, just some rain showers on radar about 27 nm away, well off the flight path. Lightning: none within 10 nm of the flight path in the last 30 minutes, with a strike logged 13 nm from the flight path 7 minutes ago; largest field mill reading within 5 nm of the pad plus 750 V/m, with the mill 7 nm from the pad, outside 5 nm, at minus 1800 V/m.
+
+5
+00:00:14,400 --> 00:00:15,900
+[1338Z] Pad weather tower operator: 257.5-ft temp 94.8 degrees and the crew access arm reading 97.5 degrees.
+
+6
+00:00:15,000 --> 00:00:16,500
+[1340Z] Launch Weather Officer: All stations, weather: peak wind 11 knots at the 132.5-foot level and 15 knots at the 54-foot level. Temperature at the 132.5-ft level 95.0 degrees, with the crew access arm at 98.4 degrees; temperature at the 257.5-foot level 94.5 °F. No precipitation at the pad or along the flight path, though radar shows rain showers about 35 nm out, well off the flight path. No lightning within 10 nmi of the flight path in the last 30 minutes, though there was a strike 19 nmi from the flight path 9 minutes ago; largest field mill reading within 5 nm of the pad -450 V/m, with the mill 7 nm from the pad, outside 5 nm, at -1800 V/m.
+
+7
+00:00:17,400 --> 00:00:20,200
+[1348Z] Launch Weather Officer: LWO on the loop, temperature at ground level 97.4 °F.
+
+8
+00:00:18,000 --> 00:00:20,500
+Poll at 1350Z: Decisions says modeled criteria met; Ordinary API, ranges says modeled criteria met; Ordinary API, raw numbers says evidence insufficient; the evidence supports evidence insufficient.
+
+9
+00:00:18,000 --> 00:00:22,400
+[1350Z] Launch Weather Officer: Weather update on the loop: peak wind at the 132.5-ft level 11 kt, with the 54-ft level peaking at 18 kt; 132.5-foot temp 95.1 degrees; 94.9 degrees at the 257.5-ft level. No precipitation at the pad or along the flight path, though radar shows rain showers about 40 nm out, well off the flight path. No lightning within 10 nmi of the flight path in the past 30 minutes, but we did have a strike 18 nmi from the flight path 9 minutes ago; field mills: largest within 5 nm of the pad -790 V/m, while the mill 7 nm from the pad, outside the 5 nm ring, shows -1800 V/m. Space weather is NOAA S2, moderate solar radiation storm conditions, with a G4 severe geomagnetic storm in progress.
+
+10
+00:00:23,500 --> 00:00:26,000
+Poll at 1355Z: Decisions says modeled criteria met; Ordinary API, ranges says evidence insufficient; Ordinary API, raw numbers says evidence insufficient; the evidence supports evidence insufficient.
+
+11
+00:00:29,000 --> 00:00:31,500
+Poll at 1400Z: Decisions says modeled criteria met; Ordinary API, ranges says evidence insufficient; Ordinary API, raw numbers says modeled criteria met; the evidence supports modeled criteria met.
+
+12
+00:00:29,000 --> 00:00:33,400
+[1400Z] Launch Weather Officer: Weather update on the loop: peak wind at the 132.5-foot level 18, uh, make that 12 kt. 95.1 degrees at the 132.5-foot level; temperature at the 257.5-foot level ninety-four point five degrees. No precip at the pad or along the flight path; rain showers on radar about 34 nmi away, well off the flight path. Lightning: none within 10 nmi of the flight path in the last 30 minutes, with a strike logged 18 nmi from the flight path 4 minutes ago; largest field mill within 5 nm of the pad is +470 V/m, and the mill 7 nm from the pad, outside 5 nm, is reading -1800 V/m.
+
+13
+00:00:30,100 --> 00:00:34,500
+[1401Z] Pad weather tower operator: 132.5-ft peak wind one-two knots. 132.5-foot temperature ninety-five point two degrees; 257.5-ft temp 94.9 degrees and the crew access arm reading 97.6 degrees.
+
+14
+00:00:33,400 --> 00:00:37,800
+[1404Z] Pad weather tower operator: Temperature at the 132.5-foot level 95.2 °F, with the crew access arm at 92.1 °F; 257.5-foot temperature ninety-four point seven degrees.
+
+15
+00:00:34,500 --> 00:00:37,000
+Poll at 1405Z: Decisions says evidence insufficient; Ordinary API, ranges says evidence insufficient; Ordinary API, raw numbers says evidence insufficient; the evidence supports evidence insufficient.
+
+16
+00:00:34,500 --> 00:00:37,500
+Decisions asks the source to say again: temp high. Answer: temperature at the 257.5-foot level was 94.5 degrees Fahrenheit.
+
+17
+00:00:34,500 --> 00:00:38,900
+[1405Z] Pad weather tower operator: Pad tower, 257.5-ft temp reading somewhere between 93.5 and 95.5 °F, can't pin it down tighter right now.
+
+18
+00:00:40,000 --> 00:00:42,500
+Poll at 1410Z: Decisions says modeled criteria met; Ordinary API, ranges says evidence insufficient; Ordinary API, raw numbers says evidence insufficient; the evidence supports evidence insufficient.
+
+19
+00:00:40,000 --> 00:00:44,400
+[1410Z] Launch Weather Officer: Weather update on the loop: 132.5-ft peak wind 020 at 6 gusting 11 kt. 132.5-ft temp ninety-five point one degrees; temperature at the 257.5-ft level 94.8 degrees. No precip at the pad or along the flight path; rain showers on radar about 29 nmi away, well off the flight path. No lightning within 10 nm of the flight path in the past 30 minutes, but we did have a strike 13 nm from the flight path 2 minutes ago; largest field mill reading within 5 nmi of the pad +740 V/m, with the mill 7 nmi from the pad, outside 5 nmi, at -1800 V/m.
+
+20
+00:00:42,200 --> 00:00:46,600
+[1412Z] Pad weather tower operator: Tower op here, 132.5-ft peak wind 100 at 5 gusting 11 knots. 257.5-ft temp 94.9 degrees and the crew access arm reading 91.8 degrees.
+
+21
+00:00:44,400 --> 00:00:48,800
+[1414Z] Pad weather tower operator: Okay, 132.5-ft peak wind one-seven, uh, make that one-one knots. Temperature at the 132.5-foot level ninety-five point three degrees; 257.5-foot temp 94.9 degrees.
+
+22
+00:00:45,500 --> 00:00:48,000
+Poll at 1415Z: Decisions says modeled criteria met; Ordinary API, ranges says evidence insufficient; Ordinary API, raw numbers says modeled criteria met; the evidence supports modeled criteria met.
+
+23
+00:00:51,000 --> 00:00:53,500
+Poll at 1420Z: Decisions says evidence insufficient; Ordinary API, ranges says evidence insufficient; Ordinary API, raw numbers says modeled criteria met; the evidence supports modeled criteria met.
+
+24
+00:00:51,000 --> 00:00:55,400
+[1420Z] Launch Weather Officer: Weather update on the loop: peak wind at the 132.5-ft level one-one knots. Temperature at the 132.5-ft level ninety-five point one degrees; 257.5-ft temp 94.9 degrees and the crew access arm reading 98.3 degrees. No precipitation at the pad or along the flight path, though radar shows rain showers about 38 nmi out, well off the flight path. No lightning within 10 nm of the flight path in the past 30 minutes, but we did have a strike 14 nm from the flight path 6 minutes ago; largest field mill reading within 5 nmi of the pad -220 V/m, with the mill 7 nmi from the pad, outside 5 nmi, at +1800 V/m.
+
+25
+00:00:52,100 --> 00:00:56,500
+[1421Z] Launch Weather Officer: Relaying the pad weather tower's reading: 257.5-foot temp 94.9 degrees.
+
+26
+00:00:56,500 --> 00:00:59,000
+Poll at 1425Z: Decisions says evidence insufficient; Ordinary API, ranges says evidence insufficient; Ordinary API, raw numbers says modeled criteria met; the evidence supports modeled criteria met.
+
+27
+00:01:02,000 --> 00:01:04,500
+Poll at 1430Z: Decisions says modeled criteria met; Ordinary API, ranges says modeled criteria met; Ordinary API, raw numbers says modeled criteria met; the evidence supports modeled criteria met.
+
+28
+00:01:02,000 --> 00:01:06,400
+[1430Z] Launch Weather Officer: Weather update on the loop: 132.5-ft peak wind one-seven, uh, make that one-one knots. 92.6 °F at the 132.5-ft level, crew access arm 96.0 °F; 257.5-foot temperature ninety-two point two degrees. No precipitation at the pad or along the flight path, though radar shows rain showers about 38 nm out, well off the flight path. No lightning within 10 nm of the flight path in the last 30 minutes, though there was a strike 12 nm from the flight path 7 minutes ago; largest field mill within 5 nm of the pad is minus 140 V/m, and the mill 7 nm from the pad, outside 5 nm, is reading minus 1800 V/m.
+
+29
+00:01:02,000 --> 00:01:14,000
+Final numbers on 2,108 test reports, same model three ways. Factual answers right: Decisions 99.12%, ordinary API picking a range 99.32%, ordinary API giving raw numbers 99.85%. False clears over 1,080 polls: 7, 15 and 4. Cost per 1,000 reports: $0.200, $0.184 and $0.189. Median time per report: 0.56 s, 2.01 s and 2.75 s. The raw-numbers version's 4 false clears all came from one phrase: "three-four knots" read as 25 or less.
+

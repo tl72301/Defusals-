@@ -2,12 +2,12 @@ import json
 import time
 import pytest
 from defuse.decisions import Decisions, build_request, validate_endpoint
-from defuse.engine import Bomb
-from defuse.runner import shuffle_options, Clock, run_attempt
 
 
 def query():
-    b=Bomb(8); return b.view(),shuffle_options(b.legal(),8,0)[1]
+    view = {'report': '[1450Z] Launch Weather Officer: peak wind at the 132.5-foot level 18 knots.'}
+    options = [{'value': 'A', 'description': '25 knots or less'}, {'value': 'B', 'description': '26 knots or more'}]
+    return view, options
 
 def test_documented_body_and_no_answer_hint(stub,monkeypatch):
     monkeypatch.setenv('OPENAI_API_KEY','SENTINEL_SECRET_DO_NOT_SEND')
@@ -43,21 +43,7 @@ def test_http_failure_no_retry(stub):
     stub['status']=500; a=Decisions(stub['url']).ask(*query())
     assert a.error=='http_500' and len(stub['requests'])==1
 
-def test_realtime_vs_paused_slow_stub(stub,tmp_path):
-    stub['delay']=.15
-    results={}
-    for mode in ['realtime','paused']:
-        folder,r=run_attempt(8,'decisions',mode,endpoint=stub['url'],seconds=5,output=tmp_path,video=False,max_requests=1,step_seconds=0)
-        actions=[json.loads(x) for x in (folder/'actions.jsonl').read_text().splitlines()]
-        row=actions[0]; results[mode]=row['game_after']-row['game_at']
-        assert row['answer']['latency']>=.15
-    assert results['realtime']>=.15
-    assert results['paused']<.03
 
-def test_expired_countdown_during_request_cannot_win(stub,tmp_path):
-    stub['delay']=.15
-    _,r=run_attempt(8,'decisions',seconds=.05,endpoint=stub['url'],output=tmp_path,video=False)
-    assert not r['defused'] and r['end_reason']=='countdown' and r['actions']==1
 
 def test_live_request_blocked_without_key_or_approval(monkeypatch,tmp_path):
     from defuse.budget import Budget, BudgetError
@@ -66,12 +52,6 @@ def test_live_request_blocked_without_key_or_approval(monkeypatch,tmp_path):
     monkeypatch.setenv('OPENAI_API_KEY','test-key-not-a-real-key')
     with pytest.raises(BudgetError): Decisions(budget=Budget(tmp_path)).ask(*query())
 
-def test_options_shuffle_reproducible_and_not_fixed_A():
-    b=Bomb(20)
-    a=shuffle_options(b.legal(),20,0)
-    assert a==shuffle_options(b.legal(),20,0)
-    orders={tuple(o['id'] for o in shuffle_options(b.legal(),20,i)[1]) for i in range(20)}
-    assert len(orders)>5
 
 def test_official_schema_allows_empty_distribution():
     from defuse.decisions import parse_response

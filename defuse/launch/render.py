@@ -1,14 +1,32 @@
 """Countdown replay video: report feed, the six modeled rules (system vs answer key), clarifications and polls.
 
 A research simulation; every frame says that "criteria met" is about a simplified model, never launch authorization."""
+import shutil
 import subprocess
 import textwrap
+from functools import lru_cache
 from pathlib import Path
-from PIL import Image, ImageDraw
-from defuse.render import ffmpeg_binary, font
+from PIL import Image, ImageDraw, ImageFont
 from defuse.launch import rules, sim, bank
 
 W, H, FPS = 1280, 720, 30
+
+
+def ffmpeg_binary():
+    system = shutil.which('ffmpeg')
+    if system:
+        return system
+    import imageio_ffmpeg
+    return imageio_ffmpeg.get_ffmpeg_exe()
+
+
+@lru_cache(maxsize=24)
+def font(size):
+    for name in ['/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', '/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf']:
+        if Path(name).exists():
+            return ImageFont.truetype(name, size)
+    return ImageFont.load_default(size=size)
+
 BG, PANEL, CARD, LINE = '#0e141b', '#16202b', '#1d2a37', '#2c3b4a'
 TEXT, MUTED = '#f2f5f8', '#b9c4cf'
 STATE_COLOR = {rules.MET: '#3fb68b', rules.VIOLATED: '#f06a62', rules.INSUFFICIENT: '#e0b23c'}
@@ -18,7 +36,7 @@ RULE_NAME = {'WIND': 'Peak wind ≤ 29 kt (132.5 ft)', 'HEAT': 'Not >94.5°F for
              'SOLAR': 'No severe/extreme solar'}
 SHORT_RULE = {'WIND': 'Wind ≤ 29 kt', 'HEAT': 'Heat streak', 'PRECIP': 'Precipitation', 'LIGHTNING': 'Lightning 30 min',
               'FIELDMILL': 'Field mill 15 min', 'SOLAR': 'Solar'}
-INTRO, OUTRO = 5.0, 10.0
+INTRO, OUTRO = 6.0, 12.0
 BEFORE, DURING = 0.3, 1.1          # seconds of video per simulated minute, before and inside the launch window
 
 
@@ -164,7 +182,44 @@ def title_card(lines, sub):
     return img
 
 
-def render(sc, runs, target, outro_lines, intro_lines=None):
+def results_card(confirm_path, scope='pooled'):
+    """The final numbers (LAUNCH_PROTOCOL.md §8, change 9) as one frame."""
+    import json
+    S = json.loads(Path(confirm_path).read_text())[scope]['systems']
+    cols = [('decisions-top', 'Decisions'), ('responses-luna-none', 'Ordinary API,\npicking a range'),
+            ('responses-luna-none-raw', 'Ordinary API,\nraw numbers')]
+    n = S['decisions-top']
+    rows = [('Factual answers right', lambda v: v['factual_accuracy'], lambda x: f'{100 * x:.2f}%', max),
+            (f"Wrong answers (of {n['factual_answers']:,})", lambda v: n['factual_answers'] - v['factual_right'], lambda x: f'{x}', min),
+            (f"False clears (of {n['polls']:,} polls)", lambda v: v['false_clears'], lambda x: f'{x}', min),
+            ('Cost per 1,000 reports', lambda v: v['cost_per_1000_reports'], lambda x: f'${x:.3f}', min),
+            ('Median time per report', lambda v: v['latency_p50'], lambda x: f'{x:.2f} s', min)]
+    img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
+    d.text((60, 44), f"Final numbers: {n['reports']:,} test reports, same model three ways", font=font(30), fill=TEXT)
+    d.text((60, 90), 'Pre-registered. Blind authors and reviewers. A simulation, never launch authorization.', font=font(16), fill=MUTED)
+    x0, cw, y0, rh = 470, 250, 150, 74
+    d.rounded_rectangle((40, y0 - 10, W - 40, y0 + 62 + rh * len(rows)), 12, fill=PANEL)
+    for i, (_, label) in enumerate(cols):
+        for k, line in enumerate(label.split('\n')):
+            d.text((x0 + i * cw + cw / 2, y0 + 8 + k * 22), line, font=font(18), fill=MUTED, anchor='ma')
+    for j, (name, get, fmt, best) in enumerate(rows):
+        y = y0 + 62 + j * rh
+        d.line((60, y, W - 60, y), fill=LINE, width=1)
+        d.text((70, y + rh / 2), name, font=font(21), fill=TEXT, anchor='lm')
+        vals = [get(S[s]) for s, _ in cols]
+        top = best(vals)
+        for i, v in enumerate(vals):
+            cx = x0 + i * cw + cw / 2
+            if v == top:
+                d.rounded_rectangle((cx - 92, y + 12, cx + 92, y + rh - 12), 8, outline=STATE_COLOR[rules.MET], width=2)
+            d.text((cx, y + rh / 2), fmt(v), font=font(26), fill=TEXT, anchor='mm')
+    d.text((60, 612), 'Raw numbers: the model writes the value it read ("95.1"); code sorts it into the range.', font=font(17), fill=MUTED)
+    d.text((60, 640), 'Its 4 false clears all came from one phrase: "three-four knots" (34) read as 25 or less. Green outline = best in row.',
+           font=font(17), fill=MUTED)
+    return img
+
+
+def render(sc, runs, target, outro_lines, intro_lines=None, end_card=None):
     target = Path(target)
     cmd = [ffmpeg_binary(), '-hide_banner', '-loglevel', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}',
            '-r', str(FPS), '-i', '-', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '23', '-pix_fmt', 'yuv420p',
@@ -183,7 +238,7 @@ def render(sc, runs, target, outro_lines, intro_lines=None):
         if last is None or int(t) != last[0]:
             last = (int(t), frame(sc, runs, t).tobytes())
         proc.stdin.write(last[1])
-    end = title_card(outro_lines, 'All values, reports and the answer key are in the repository.')
+    end = end_card or title_card(outro_lines, 'All values, reports and the answer key are in the repository.')
     for _ in range(int(OUTRO * FPS)):
         proc.stdin.write(end.tobytes())
     proc.stdin.close()

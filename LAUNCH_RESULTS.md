@@ -23,6 +23,9 @@ test sets that makes 2,108 reports and 16,864 factual answers per system.
 
 ![Final comparison](docs/launch-final.png)
 
+Video: [one of the 120 scenarios replayed, then the final numbers](docs/launch-window.mp4) (74 s, captions in the
+matching .srt).
+
 | | Decisions | Ordinary API, picking a range | Ordinary API, raw numbers |
 |---|---:|---:|---:|
 | **Answers right, 8 factual questions** (95% interval) | 99.12% (98.97–99.25) | 99.32% (99.18–99.43) | **99.85%** (99.78–99.90) |
@@ -239,8 +242,8 @@ about the same ($0.056 against $0.053 for one pass over the harder set).
 About $2.06 for this experiment, counted conservatively: $0.79 for the pre-registered development and test runs,
 clarifications, tuning grid and batching comparison, $0.45 for the follow-ups, and $0.81 for the three systems on the
 1,411 new reports. Decisions bills only input tokens ($0.10 per million); the ordinary-API runs also paid for about
-750,000 output tokens ($0.50 per million). The whole project, all four experiments, has spent about $2.42 of its $4
-cap.
+750,000 output tokens ($0.50 per million). Earlier experiments, since removed from this repository (they remain in its git history), bring the
+account's total to about $2.42 of a $4 cap.
 
 ## Reproduce
 

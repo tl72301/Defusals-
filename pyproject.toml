@@ -3,9 +3,9 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "defuse-decisions"
+name = "launch-window"
 version = "0.1.0"
-description = "An original text-first timed reasoning benchmark with recorded experiments"
+description = "Launch Window: OpenAI Decisions vs the ordinary API reading a simulated launch weather loop"
 requires-python = ">=3.11"
 license = "MIT"
 dynamic = ["dependencies"]
@@ -18,4 +18,3 @@ include = ["defuse*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = ["media: video integration tests"]
