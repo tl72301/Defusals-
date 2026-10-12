@@ -153,6 +153,10 @@ def batching(split='test', root='data/launch'):
     from defuse.launch.models import DecisionsExtractor
     scenarios = bank.load(split)
     batched, single = DecisionsExtractor(root, True), DecisionsExtractor(root, False)
+    from concurrent.futures import ThreadPoolExecutor
+    jobs = [(sc, r) for sc in scenarios for r in sc['reports']]
+    with ThreadPoolExecutor(6) as pool:                    # fill the one-question-per-request cache in parallel
+        list(pool.map(lambda j: single(bank.header(j[0], j[1]), j[1]['text'], j[0]['start'], j[1]['minute']), jobs))
     rows = []
     for sc in scenarios:
         for r in sc['reports']:
