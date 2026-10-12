@@ -160,7 +160,7 @@ alone, holding every other answer at its top choice.
    scenarios, seeds 3001 to 3016, plus 4 development scenarios, 3101 to 3104) asks the same questions with the same
    answer-key rules, but every report uses phrasings a careful reader handles and a fast reader may not: a wind
    direction before the speed ("270 at 18 gusting 31"), another tower height in the same sentence, a speaker who
-   misspeaks and corrects himself mid-sentence (which is not a correction of an earlier report), a temperature from
+   misspeaks and corrects themselves mid-sentence (which is not a correction of an earlier report), a temperature from
    another place, a field mill outside 5 nmi or a strike beyond 10 nmi quoted alongside the real one, a G-scale
    geomagnetic storm (which does not count) next to the S or R level, and rain on radar far from the flight path.
    - **H1b** (same test as H1) on the harder test set.

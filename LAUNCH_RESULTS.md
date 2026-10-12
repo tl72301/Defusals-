@@ -58,7 +58,7 @@ on the original set and 10 on the harder set, but only 3 polls went wrong, all o
 instead of "met" or "violated"). Most of its errors could not matter: reading "24G31KT" as 36 knots or more is still
 a wind violation. On the harder set's distractors it was the best reader of all: it got every factual answer right
 on 145 of 147 reports that quoted a far-away lightning strike, 83 of 83 that mentioned a G-scale geomagnetic storm,
-31 of 31 that gave the wind direction first, and 38 of 39 where the speaker misspoke and corrected himself.
+31 of 31 that gave the wind direction first, and 38 of 39 where the speaker misspoke and corrected themselves.
 
 **2. The same model through the ordinary API was slower and, without reasoning, unsafe.** With reasoning off it
 made 6 false clears on the harder set, all on the heat rule: it read clearly stated temperatures such as "95.7 °F"
@@ -127,8 +127,9 @@ against 1.97 million), and took 0.6 s per report against about 5 s for nine sequ
 ## Cost
 
 About $0.79 for this experiment, counted conservatively (development and test runs for every system, clarifications,
-the tuning grid and the batching comparison): roughly 9.6 million input tokens across the session's approval, almost
-all of it Decisions at $0.10 per million. The whole project, all four experiments, has spent about $1.15 of its $4 cap.
+the tuning grid and the batching comparison). Decisions bills only input tokens ($0.10 per million); the ordinary-API
+runs also paid for about 205,000 output tokens. The whole project, all four experiments, has spent about $1.15 of its
+$4 cap.
 
 ## Reproduce
 
