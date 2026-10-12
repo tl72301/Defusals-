@@ -11,6 +11,15 @@ ITEM_RULE = {'WIND': 'WIND', 'TEMP_LOW': 'HEAT', 'TEMP_HIGH': 'HEAT', 'PRECIP': 
              'FIELDMILL': 'FIELDMILL', 'SOLAR': 'SOLAR'}
 
 
+FACTUAL = [q for q in rules.QUESTION_NAMES if q != 'CORRECTION']
+
+
+def justified_vs_truth(results):
+    """How often the evidence-justified state differed from the hidden truth (diagnostic only)."""
+    from collections import Counter
+    return dict(Counter(f"{p['J']}|{p['T']}" for r in results for p in r['polls']))
+
+
 def load(root, split, system):
     p = Path(root) / split / f'{system}.json'
     return json.loads(p.read_text()) if p.exists() else None
@@ -65,11 +74,11 @@ def false_clear_causes(results):
     return dict(c)
 
 
-def calibration(results):
+def calibration(results, questions=None):
     rows = []
     for res in results:
         for rid, ex in res['extractions'].items():
-            for q in rules.QUESTION_NAMES:
+            for q in questions or rules.QUESTION_NAMES:
                 pr = (ex.get('probs') or {}).get(q)
                 if pr:
                     rows.append((max(pr.values()), ex['answers'][q] == res['key'][rid][q]))
@@ -111,7 +120,10 @@ def report(split='test', root='data/launch'):
                              'extraction_accuracy': acc, 'all_questions_right_by_tag': by_tag,
                              'recognition_delay': {'n': len(delays), 'never': sum(d is None for d in delays),
                                                    'median_minutes': statistics.median([d for d in delays if d is not None]) if any(d is not None for d in delays) else None},
-                             'calibration': calibration(res) if s.startswith('decisions') else None, **costs(res)}
+                             'calibration': calibration(res) if s.startswith('decisions') else None,
+                             'calibration_factual': calibration(res, FACTUAL) if s.startswith('decisions') else None,
+                             'factual_accuracy': sum(acc[q] for q in FACTUAL) / len(FACTUAL),
+                             'justified_vs_truth': justified_vs_truth(res), **costs(res)}
     S = out['systems']
     if 'decisions-top' in S and 'decisions-sensitive' in S:
         out['H1'] = sign_test(S['decisions-top']['per_scenario_false_clears'], S['decisions-sensitive']['per_scenario_false_clears'])
