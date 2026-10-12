@@ -1,5 +1,5 @@
 {
  "scenarios": [],
- "note": "After the answer-key fix (protocol change 5), the blind reviewers agreed with every answer (559 reports x 9 questions); no scenario was excluded. Harder set: the reviewers agreed with every answer (347 reports x 9 questions); no report was dropped.",
+ "note": "After the answer-key fix (protocol change 5), the blind reviewers agreed with every answer (559 reports x 9 questions); no scenario was excluded. Harder set: the reviewers agreed with every answer (347 reports x 9 questions); no report was dropped. Confirmation sets (change 9): eight new blind reviewers agreed with every answer (1,411 reports x 9 questions); no second review was needed and no report was dropped. Reviewers received the questions once per packet rather than repeated with every report.",
  "reports": []
 }
