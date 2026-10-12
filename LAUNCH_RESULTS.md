@@ -92,7 +92,10 @@ protocol code once the observation time and correction flag were read correctly;
 of correction reports right in 14 of 17 and stale relays in 51 of 52. The regex parser never recognized 12 changes on
 the original set and 33 on the harder set.
 
-**7. Batching (all 9 questions in one request vs one question per request).** Pending: being measured.
+**7. Batching: no interference at all.** Every test report was also asked one question per request (6,273 requests).
+On all 697 reports, the answer to every one of the 9 questions was identical either way (100% agreement), so accuracy
+was identical too. Asking all 9 at once used 9 times fewer requests and 29 to 36% fewer input tokens (1.34 million
+against 1.97 million), and took 0.6 s per report against about 5 s for nine sequential requests.
 
 ## Diagnostics
 
@@ -123,7 +126,9 @@ the original set and 33 on the harder set.
 
 ## Cost
 
-Pending: total once the batching run finishes.
+About $0.79 for this experiment, counted conservatively (development and test runs for every system, clarifications,
+the tuning grid and the batching comparison): roughly 9.6 million input tokens across the session's approval, almost
+all of it Decisions at $0.10 per million. The whole project, all four experiments, has spent about $1.15 of its $4 cap.
 
 ## Reproduce
 
