@@ -124,4 +124,10 @@ key, otherwise it is dropped (listed in `defuse/allergy/bank/excluded.json`). Sc
 
 ## 8. Changes after pre-registration
 
-(none yet)
+1. **Three ambiguous messages dropped before review and before any test request.** One author noticed that in three
+   scenarios the "not eating with us" relative had the same relation word ("my aunt") as a diner who had joined and
+   was eating, so a reader could take them as the same person. The generator chose both relations independently. The
+   three messages (A2013-04, A2133-10, A2151-12) are dropped; their scenarios stay. Test set: 2,087 messages.
+2. **Development messages are not blind-reviewed.** They are used only for the smoke tests (§7), never in results.
+   The smoke tests (66 messages, all systems) cost $0.036, projecting about $1.12 for the test set, under the $1.30
+   limit, so no test scenario is removed.
