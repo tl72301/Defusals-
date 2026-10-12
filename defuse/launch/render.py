@@ -58,7 +58,10 @@ def frame(sc, run, label, t_sim, extra=None):
     for r in reversed(feed):
         head = bank.header(sc, r)
         d.text((40, y), head, font=font(14), fill=MUTED); y += 20
-        for line in wrap(r['text'], 74)[:4]:
+        lines = wrap(r['text'], 74)
+        if len(lines) > 6:
+            lines = lines[:6]; lines[-1] = lines[-1][:70] + ' …'
+        for line in lines:
             d.text((40, y), line, font=font(15), fill=TEXT); y += 19
         for c in clar_by_report.get(r['id'], []):
             if c['minute'] <= t:
@@ -94,7 +97,7 @@ def frame(sc, run, label, t_sim, extra=None):
            font=font(15), fill=MUTED)
     # timeline
     d.rounded_rectangle((24, 616, W - 24, 700), 10, fill=PANEL)
-    x0, x1 = 60, W - 60
+    x0, x1 = 130, W - 50
     xm = lambda m: x0 + (x1 - x0) * m / sim.MINUTES
     d.rectangle((xm(wo), 640, xm(wc), 650), fill=CARD)
     d.line((x0, 645, x1, 645), fill=LINE, width=2)
@@ -108,8 +111,8 @@ def frame(sc, run, label, t_sim, extra=None):
             if p['S'] == rules.MET and p['J'] != rules.MET:
                 d.text((cx, 694), '!', font=font(12), fill=STATE_COLOR[rules.VIOLATED], anchor='mm')
     d.polygon([(xm(min(t, sim.MINUTES)) - 6, 628), (xm(min(t, sim.MINUTES)) + 6, 628), (xm(min(t, sim.MINUTES)), 637)], fill=TEXT)
-    d.text((x0 - 30, 660), label[:9], font=font(11), fill=MUTED, anchor='ra')
-    d.text((x0 - 30, 679), 'key', font=font(11), fill=MUTED, anchor='ra')
+    d.text((x0 - 16, 659), label[:12], font=font(12), fill=MUTED, anchor='ra')
+    d.text((x0 - 16, 677), 'answer key', font=font(12), fill=MUTED, anchor='ra')
     if extra:
         extra(d)
     return img
