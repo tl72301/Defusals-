@@ -333,3 +333,108 @@ def test_confirm_run_offline(stub, tmp_path, monkeypatch):
     rep = confirm_report.repeat(tmp_path / 'data' / 'allergy', 'confirm_test')
     assert set(rep) == set(confirm_run.REPEATED) and rep['responses-options']['answers_changed']['k'] == 0
     assert confirm_report.analyse(tmp_path / 'data' / 'allergy', 'confirm_test', '-r2')['readers']['decisions']
+
+
+def test_where_plans():
+    from collections import Counter
+    from defuse.allergy import where, bank, where_report
+    cs = where.clauses('where_test')
+    assert len(cs) == 144 and Counter(c['word_type'] for c in cs) == {'plain': 72, 'hard': 72}
+    assert set(Counter((c['allergen'], c['subject'], c['form']) for c in cs).values()) == {1}
+    assert not any(c['word'] in where.SPECIAL for c in cs)
+    for split in ('where_dev', 'where_test'):
+        saved = bank.load(split)
+        assert [sc['seed'] for sc in saved] == bank.SPLITS[split]
+        cells = where.cells(split)
+        for sc in saved:
+            assert sc == json_round(where.scenario(sc['seed'], split, *cells[sc['seed']]) | {'messages': sc['messages']})
+            a, b = (where_report.role(sc, r) for r in 'AB')
+            x, y = sc['allergen'], sc['other_allergen']
+            assert where.valid_pair(x, y) and sc['target'] != sc['other']
+            assert a['table'] == sc['target'] and b['table'] == sc['other'] and a['place'] == sc['a_place']
+            assert a['answers'] == blank(**{x: 'avoid'}) and b['answers'] == blank()
+            assert a['source'] == b['source'] if sc['a_place'] == sc['b_place'] else True
+            assert sc['restricted'] == {x: a['minute']} and all(1 <= m['minute'] <= 15 for m in sc['messages'])
+            has = [rules.dish_allergens(d, rules.FRYER_DEFAULT) for d in sc['dishes']]
+            assert 3 <= len(has) <= 4 and any(x in h for h in has) and any(y in h and x not in h for h in has)
+            r = runner.run_scenario({**sc, 'messages': [{**m, 'text': 'x'} for m in sc['messages']]}, 'oracle', {})
+            assert where_report.order_outcome(sc, r) == {'sent': False, 'held': False}
+    test = bank.load('where_test')
+    for k in ('a', 'b'):                                      # every clause in every place, once as A and once as B
+        assert Counter((sc[f'{k}_clause'], sc[f'{k}_place']) for sc in test).keys() == \
+               {(c['id'], p) for c in cs for p in where.PLACES}
+    assert where.compose('ticket', 'Table 4', 'the kid is allergic to peanuts.') == 'The kid is allergic to peanuts.'
+    assert where.compose('host_reservation', 'Table 4', 'The kid is allergic to peanuts.') == \
+           'Reservation note for Table 4: the kid is allergic to peanuts.'
+    assert where.compose('kitchen', 'Table 9', 'the kid is allergic to peanuts.') == 'Table 9: the kid is allergic to peanuts.'
+
+
+def test_where_texts_compose(tmp_path, monkeypatch):
+    import json
+    from defuse.allergy import where, bank
+    (tmp_path / 'where_dev.json').write_text((bank.BANK / 'where_dev.json').read_text())
+    f = tmp_path / 'clauses.json'
+    f.write_text(json.dumps([{'id': c['id'], 'text': c['must_convey'].split(' (use')[0] + '.'} for c in where.clauses('where_dev')]))
+    texts = where.compose_texts('where_dev', [f], tmp_path)
+    monkeypatch.setattr(bank, 'BANK', tmp_path)
+    scs = bank.load('where_dev')
+    assert all(m['text'] == texts[m['id']] for sc in scs for m in sc['messages']) and len(texts) == 14
+    sc = next(s for s in scs if s['a_place'] == 'host_reservation')
+    assert next(m for m in sc['messages'] if m['role'] == 'A')['text'].startswith(f"Reservation note for {sc['target']}: ")
+    with pytest.raises(ValueError):
+        where.compose_texts('where_dev', [], tmp_path)
+
+
+def test_where_report_offline(stub, tmp_path):
+    import json
+    from defuse.allergy import where_report, bank
+    scs = bank.load('where_dev')
+    for sc in scs:
+        for m in sc['messages']:
+            m['text'] = m['spec'][0].split(': ', 1)[1]
+    ex = runner.make_extractors(tmp_path, endpoint=stub['url'])
+    (tmp_path / 'where_dev').mkdir()
+    for s in runner.SYSTEMS:
+        res = [runner.run_scenario(sc, s, ex) for sc in scs]
+        (tmp_path / 'where_dev' / f'{s}.json').write_text(json.dumps({'results': res}))
+    out = where_report.analyse(tmp_path, 'where_dev')
+    o = out['readers']['oracle']
+    assert o['a_missed']['k'] == o['b_taken']['k'] == o['orders']['allergen_sent']['k'] == 0 and o['orders']['right']['k'] == 7
+    assert out['readers']['decisions']['a_missed']['k'] == 7                 # the stub answers the first option
+    assert out['readers']['decisions']['orders']['allergen_sent']['k'] == 7
+    assert set(out['tests']) == {'H1_decisions_missed_host_reservation_vs_ticket', 'H2_decisions_missed',
+                                 'H3_b_taken_ticket_vs_ticket_named', 'readers_compared', 'hybrid'}
+    assert 'hybrid' in out['readers'] and len(out['tests']['readers_compared']) == 6
+    from defuse.allergy import charts, render                 # the chart and the video cards draw
+    charts.where(tmp_path, tmp_path / 'where.png', 'where_dev')
+    assert (tmp_path / 'where.png').stat().st_size > 10000
+    assert render.where_card(tmp_path / 'where_dev-report.json').size == (render.W, render.H)
+    assert render.where_places_card('where_dev').size == (render.W, render.H)
+    from defuse.allergy import where_explore                  # the exploratory breakdowns read the same files
+    ex = where_explore.explore(tmp_path, 'where_dev')
+    assert sum(ex['decisions']['missed_read_as'].values()) == 7 and (tmp_path / 'where_dev-explore.json').exists()
+    assert 'second_test_other_table_notes' not in ex
+
+
+def test_where_run_offline(stub, tmp_path, monkeypatch):
+    from defuse.allergy import where_run, where_report, bank
+    from defuse.budget import Budget
+    load = bank.load
+
+    def two(split):                                       # two orders per split; the plan stands in for any missing text
+        scs = load(split)[:2]
+        for sc in scs:
+            for m in sc['messages']:
+                m['text'] = m.get('text') or m['spec'][0].split(': ', 1)[1]
+        return scs
+    monkeypatch.setattr(bank, 'load', two)
+    monkeypatch.chdir(tmp_path)
+    Budget().approve(4.00, attempt_requests=14000, confirm=True)
+    monkeypatch.setattr(where_run, 'ROOT', tmp_path / 'data' / 'allergy')
+    monkeypatch.setattr(where_run, 'ENDPOINT', stub['url'])
+    where_run.main()
+    out = tmp_path / 'data' / 'allergy' / 'where_test'
+    assert (out / 'decisions.json').exists() and (out / 'responses-names-r2.json').exists()
+    assert not (out / 'decisions-r2.json').exists()                          # Decisions is not repeated (§11.5)
+    rep = where_report.repeat(tmp_path / 'data' / 'allergy', 'where_test')
+    assert set(rep) == set(where_run.REPEATED) and rep['responses-options']['answers_changed']['k'] == 0

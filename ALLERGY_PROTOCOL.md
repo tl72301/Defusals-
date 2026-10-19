@@ -463,3 +463,176 @@ plus 15%.
    test, and is labelled exploratory wherever it is reported. In the video, the replay's caption now says that "ask
    the guest" holds the food until the answer comes, and the running counts no longer overlap their labels when a
    count has two digits. The pre-registered analysis (`confirm_report.py`) was not changed after the run.
+
+## 11. Where allergies hide, and whose they are. Pre-registration of October 19, 2026 (third test)
+
+Committed before any message text for this test existed, after the §10 results. Everything not stated here is as in
+§1 to §7: the same menu, definitions, 11 questions, prompts, systems, clarification rule and delay, and pass checks.
+Code: `defuse/allergy/where.py` (plans and how texts are put together), `defuse/allergy/where_report.py` (this
+analysis), `defuse/allergy/where_run.py` (the paid run).
+
+**Prior work.** A search on October 19 (66 queries across arXiv, clinical and NLP journals, GitHub, Hugging Face,
+blogs, forums and restaurant-tech products; report in
+[docs/prior-work-where-2026-10-19.md](docs/prior-work-where-2026-10-19.md)) found no study that holds one allergy
+sentence fixed, moves it between writers and wordings (ticket, host stand, "Reservation note for", manager, kitchen),
+and measures both how often it is missed and how often another table's note is applied to the order asked about. It
+found no published comparison of the Decisions API with the Responses API on any extraction task. The parts exist
+separately: the same text under a different source label changes model behaviour in opinion-rating tasks (Germani
+and Spitale 2025); a neighbouring patient's speech contaminates AI-written clinical notes (Vishwanath et al. 2026,
+arXiv 2610.08585); details about bystanders lower accuracy (MedDistractQA, 2025); an engineering blog reports a
+model attaching the wrong ticket ID when the ID sits only in a header (Classmethod, 2026), with nothing measured; and
+an informal forum post reports that the Decisions "choice" format is poorly calibrated and sensitive to option
+order. Option order is the same in every place here, so it cannot explain a difference between places.
+
+### 11.1 Question
+
+In plain words: **does it matter where an allergy is written down, and can the AI tell whose allergy it is?**
+
+Two patterns kept turning up in the earlier tests, each time in passing:
+- Decisions missed allergies written as a host's reservation note more often than anywhere else: 6 of 41 on
+  October 12, 4 of 79 on the first October 19 test and 9 of 50 on the second. Those notes always came from the host
+  stand and always said "Reservation note for …", so it is not known which of the two (or neither) is the cause.
+- In the second October 19 test, another table's ticket note, where that table is named only at the top of the note,
+  was taken as this order's allergy by Decisions in 18 of 226, by picking options in 8 of 226 and by writing names in
+  40 of 226 (exploratory, counted after the results). Another table's allergy with the table named in the text was
+  taken in 0, 0 and 4 of 254.
+
+Neither was what those tests were built to measure, and the wording varied. This test isolates both: the same
+sentences, written once, are placed in seven places, once as this order's allergy and once as another table's.
+
+### 11.2 Seven places, two notes
+
+Blind authors write **144 short allergy notes** ("clauses"), each from one line such as *the kid is allergic to
+cashews*: 9 allergens x 4 subjects ("the kid", "the guest", "one of the guests", "someone in the party") x 4 ways of
+saying it ("is allergic to …", "can't have any …", "must avoid …", "has a … allergy"). Half use the allergen's plain
+name ("peanuts", "dairy") and half a harder word from `lexicon.WORDS` ("peanut butter", "ghee"); the "has a … allergy"
+form always takes a plain name, and "lactose" and "celiac" are not used (they need their own phrasing). Authors never
+see where a note will go.
+
+Code then puts each clause into a message in seven places, for a table (this order's, or another's):
+
+| Place | Header the reader sees | Text the reader sees |
+|---|---|---|
+| ticket | Server, ticket note for *table* | the clause alone: the table is named only in the header |
+| ticket_named | Server, ticket note for *table* | "*Table*: clause" |
+| host | Host stand | "*Table*: clause" |
+| host_reservation | Host stand | "Reservation note for *table*: clause" |
+| manager | Manager on duty | "*Table*: clause" |
+| manager_reservation | Manager on duty | "Reservation note for *table*: clause" |
+| kitchen | Kitchen chat | "*Table*: clause" |
+
+Every order (a dine-in table) has exactly two messages, both between minute 1 and minute 15:
+- **A, this order's own allergy** (allergen X). Answer key: X `avoid`, everything else `not_mentioned`.
+- **B, another table's allergy** (allergen Y, never X), about a different table. Answer key: everything
+  `not_mentioned` (nothing is said about this order).
+
+Each message is read on its own, as always, so nothing else is needed in the order.
+
+### 11.3 Orders
+
+**1,008 test orders** (seeds 4001–5008): every clause appears in every place exactly once as A and exactly once as B.
+The B clause for each A clause is fixed (a matching found by code, so each clause is used once as B, always with a
+different allergen, and some dish on the menu has Y but not X); its place is the A place plus an offset fixed per
+clause (mod 7), so each B clause also visits every place once. A and B are in the same place in about 1 order in 7.
+Each order has 3 or 4 dishes: one or two with X, one with Y but not X, and the rest with neither (the fries oil holds
+wheat, as always). The truth: X is avoided from A's minute; nothing else. Development: 7 orders (seeds 3901–3907, one
+per A place) built from 4 separate clauses, for smoke tests only.
+
+With the answer key's readings, code gives every order the right decision at every pass check (checked by code on
+the plans before any text). So every wrong outcome comes from a reading:
+- **this order's note missed** (A's X read as neither `avoid` nor `unclear`): the allergy is lost with no question
+  asked, and a dish with X is sent;
+- **another table's note taken as this order's** (B read as `avoid` or `unclear` for any allergen): safe food is held,
+  or a clarification is asked (`unclear`, answered as in §4: "that message said nothing about … for *this table*").
+
+### 11.4 Messages
+
+Authors (blind, as in §5) see a short guide and each clause's id and "must convey" line, nothing else: no table,
+place, header, order or answer key. The guide asks for one short staff-style note that keeps the subject and the food
+word exactly, may phrase the allergy its own way and add a few words such as "please flag it", adds no other food,
+person or severity, names no table, order, place, role or time, does not say "this table", "here", "tonight" or
+similar, and reads naturally both alone and after a prefix such as "Table 7: ". Code checks every clause (food word
+and subject present; no digits and none of those words); a clause that fails goes to a fresh author before any review.
+Code then puts every clause into its 14 messages (`where.compose`): on the server's ticket, the clause with its first
+letter capitalised; elsewhere the prefix and the clause with its first letter lowercased.
+
+Separate blind reviewers answer all 11 questions for every message (2,016 test, 14 development) from its header, text
+and the order it is about, as the readers do; any message where a reviewer disagrees with the key on any allergen goes
+to a fresh second reviewer. A message is **disputed** if both disagree with the key on an allergen. Disputed messages
+stay with their plan-defined key; results are reported with and without every clause that has a disputed message (all
+14 of its messages). If careful reviewers dispute one place far more often than the others, that is reported as a
+finding about that place (it misleads people too), not only as a text problem.
+
+### 11.5 Systems and runs
+
+The three model systems of §6, the parser, the answer key, and the §9.5 hybrid (Decisions; below 0.9, picking
+options' answer; no extra requests). Two runs: the full test set once (the result), then a repeat of **picking options
+and writing names only**, with a separate cache (`--tag -r2`). Decisions is not repeated: on the first October 19 test
+its repeat changed 0 of 23,595 answers. The repeat's report uses Decisions' first run.
+
+### 11.6 Analysis (pre-registered)
+
+**This order's note missed** and **another table's note taken** are defined in §11.3. All tests are exact two-sided
+McNemar tests paired by clause (the same words in two places), α = 0.05, with Holm's correction within each family.
+
+- **H1 (where, Decisions).** Decisions misses this order's note more often as a host's reservation note than on the
+  server's ticket: `host_reservation` against `ticket`, 144 pairs. Expected direction: more misses as a reservation
+  note.
+- **H2 (why, Decisions; Holm over 2).** `host_reservation` against `manager_reservation` (the same words, a different
+  writer) and `host_reservation` against `host` (the same writer, without "Reservation note for"). No directional
+  prediction: this says which of the two carries the effect, if either does.
+- **H3 (whose, each reader; Holm over 3).** Another table's ticket note is taken as this order's more often when that
+  table is named only in the header than when it is also named in the text: B `ticket` against B `ticket_named`, 144
+  pairs, for Decisions, picking options and writing names. Expected direction: more taken when named only in the
+  header.
+- **Secondary.** (a) Both measures for every reader in every place, and this order's note read as exactly `avoid`.
+  (b) Readers compared over all 1,008 orders on both measures, pairwise, Holm over 6. (c) Both measures by subject and
+  by plain or harder word. (d) Order outcomes: **allergen sent** (a dish sent at a pass check that the truth holds)
+  and **safe food held** (a dish held or sent back to ask that the truth sends), by reader, by A's place and by B's
+  place; the parser and the answer key as references. (e) The hybrid against Decisions and against picking options on
+  answers where something was said, Holm over 2, with cost per 1,000 messages and median and 90th-percentile time.
+  (f) Repeat run: answers read differently; notes missed or taken that changed; orders whose outcome changed.
+  (g) Decisions' probability for its answer on the notes it missed: the median, and how many fall below the hybrid's
+  0.9 (which the hybrid would send to a second reading). (h) Factual accuracy, accuracy where something was said,
+  clarifications asked, request errors. (i) The blind reviewers' readings by place, as a reference.
+- Every rate with its denominator and a Wilson 95% interval. A 0 against 0 is reported as "none seen" with its upper
+  bound (§9.8 amendment 4). No pooled winner across places.
+
+### 11.7 Budget
+
+Thomas approved a fresh **$4.00** for this test on October 19 (the earlier $4.00 has $0.232 left and is not used). A
+new gate approval of **$4.00** covers it; every paid request goes through it. The plans hold 2,016 test messages and
+14 development messages; at §10's measured costs ($0.207, $0.181 and $0.108 per 1,000 messages for Decisions, picking
+options and writing names, clarifications included) one full run projects about $1.00, the smoke tests about $0.01
+and the repeat about $0.58, about $1.60 in all. `where_run.py` stops before any test request if the smoke tests
+project a run that does not fit in what is left less $0.05, and skips the repeat unless what is left covers what those
+two systems cost in the test run plus 15%.
+
+### 11.8 Changes after this pre-registration
+
+1. **Messages and review (§11.4), before any request.** Four blind authors wrote the 148 clauses (144 test, 4
+   development); all passed the code check on the first try, so none went to a fresh author. Code put them into the
+   2,030 messages (`defuse/allergy/bank/where_*_clauses.json` and `where_*_texts.json`). Eight blind reviewers
+   answered all 11 questions for all 2,030 messages and agreed with the answer key on every answer, including every
+   other table's ticket note with that table named only in the header. No message went to a second reviewer, and none
+   is disputed. Answers in `defuse/allergy/bank/where_review_blind.json`.
+2. **Chart and video (descriptive), before any result.** Added before the paid run returned anything: a chart
+   (`python -m defuse.allergy.charts <root> where`) and a fourth video part (`render.where_part`: a title card, a card
+   showing one note in all seven places, and a results card), passed to the renderer as a fifth argument. The note
+   shown is chosen by a fixed rule, not by any result: the first test clause (C001), as Table 12's own allergy and as
+   Table 9's. No test, measure, order or message changed.
+3. **Exploratory analysis and video line, after the results.** Added after the paid run's results were seen, and
+   labelled exploratory wherever reported: `defuse/allergy/where_explore.py`, which lists what each reader answered on
+   the notes it got wrong, Decisions' misses at host reservation notes by form, its probability for "avoid" in each
+   place, and, when the second test's runs (§10) are under the same folder, how often each reader took another
+   table's note there that said "this ticket" (86 of those 226 notes did; §11's notes never do). The video's results
+   card gained a line for the hybrid, and its lines were moved closer together to fit. `where_report.py` (§11.6) was
+   not changed after the run; the primary results are its output on the test run with no tag, and the repeat run's
+   with `-r2`. No test, measure, order or message changed.
+4. **Why Decisions misses host reservation notes (exploratory), after Thomas asked.** `where_explore.py` gained two
+   breakdowns, both descriptive: how close Decisions' calls were on host reservation notes (the winning probability on
+   its misses, the near misses it got right, the same words' "avoid" probability in the other places, and how sure it
+   was that another table's note said nothing, by place), and, when the earlier tests' runs (§9, §10) are under the
+   same folder, its misses of their allergy notes by writer and by whether the note said "reservation". The results
+   doc reports them with a best guess at the cause, marked as untested, and a follow-up test is listed under what to
+   test next. No test, measure, order or message changed.

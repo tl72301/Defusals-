@@ -13,6 +13,10 @@ probabilities, latency, tokens, cost), the extraction cache, and the budget ledg
 | allergy-confirm-2026-10-19.tar.gz | Allergy Pass, October 19, second test ("Just ask the guest?"): every system on the 4 development orders and the 240 test orders, the repeat run of picking options and writing names (`-r2`), every extraction, and the request cache (re-runs the test offline) |
 | allergy-confirm-2026-10-19-run.txt | The console output of `python -m defuse.allergy.confirm_run`: smoke-test cost and projection, errors per system, budget before and after |
 | allergy-confirm-analysis-2026-10-19.tar.gz | The second test's analysis outputs: the pre-registered reports for both runs, the run-to-run comparison, and the exploratory cause lists (`confirm_explore`) |
+| allergy-where-2026-10-19.tar.gz | Allergy Pass, October 19, third test ("Where allergies hide, and whose they are"): every system on the 7 development orders and the 1,008 test orders, the repeat run of picking options and writing names (`-r2`), every extraction, and the request cache (re-runs the test offline) |
+| allergy-where-2026-10-19-run.txt | The console output of `python -m defuse.allergy.where_run`: smoke-test cost and projection, errors per system, budget before and after |
+| allergy-where-analysis-2026-10-19.tar.gz | The third test's analysis outputs: the pre-registered reports for both runs, the run-to-run comparison, and the exploratory breakdowns (`where_explore`; with the earlier tests' archives extracted to the same folder, they also count the second test's other-table notes that said "this ticket" and Decisions' misses of both earlier tests' allergy notes by writer) |
+| budget-ledger-where-2026-10-19.jsonl.gz | Every budget reservation and settlement under the second $4.00 approval, for the third October 19 test |
 | budget-ledger-confirm-2026-10-19.jsonl.gz | Every budget reservation and settlement under the $1.85 approval for the second October 19 test (part of the same $4.00) |
 | budget-ledger-2026-10-19.jsonl.gz | Every budget reservation and settlement under the October 19 approval of $4.00 |
 | budget-ledger-2026-10-07.jsonl.gz | Every budget reservation and settlement (requested tokens, reported usage, cost), including earlier experiments that have since been removed from this repository |
@@ -26,6 +30,8 @@ python -m defuse.allergy.exploratory /tmp/ev/data/allergy
 python -m defuse.allergy.cancel_report /tmp/ev/data/allergy cancel_test       # and: ... cancel_test -r2
 python -m defuse.allergy.confirm_report /tmp/ev/data/allergy confirm_test     # and: ... confirm_test -r2
 python -m defuse.allergy.confirm_explore /tmp/ev/data/allergy                 # and: ... /tmp/ev/data/allergy -r2
+python -m defuse.allergy.where_report /tmp/ev/data/allergy where_test         # and: ... where_test -r2
+python -m defuse.allergy.where_explore /tmp/ev/data/allergy                   # and: ... /tmp/ev/data/allergy -r2
 python -m defuse.launch report --split test --root /tmp/ev/data/launch   # and --split hard_test
 python -m defuse.launch.followups /tmp/ev/data/launch
 python -m defuse.launch.confirm /tmp/ev/data/launch
@@ -40,7 +46,11 @@ SHA-256:
 `c189a57185dcd11643355ecf5e5fcc1d98771cfd3e01909cde36bd9a5a5dd790`  evidence/allergy-confirm-2026-10-19.tar.gz
 `993def7eb1425e9c3debfd2cdebacf5fc5ffd5741ebff280b280f13f3b0165af`  evidence/allergy-confirm-analysis-2026-10-19.tar.gz
 `9de24af129d827d4de2cbf2d0ea525ba847b5bc42de2f8af7473fb6a42837bb3`  evidence/allergy-pass-2026-10-12.tar.gz
+`ba2725e663b742bac15014e0b46d4b94b2ceebac7a4ef5aacb3315433924c047`  evidence/allergy-where-2026-10-19-run.txt
+`6ef1d2ec5b7b04c597031c3afe588cb5735c599994a45c99454d782103269760`  evidence/allergy-where-2026-10-19.tar.gz
+`978691b7f3dff427f1a2aa2d257186dfe9c6ecabc2e644c143cb6d0bca262c53`  evidence/allergy-where-analysis-2026-10-19.tar.gz
 `34df579e2e943d85f473ecd5863984c06a0c0212bd6d2103e7508ebb96444f6f`  evidence/budget-ledger-2026-10-07.jsonl.gz
 `ed0ee21e0f09151a35e0156b5ad6aba044f0e477c5abae84d5f4e6d6f4ee78c7`  evidence/budget-ledger-2026-10-19.jsonl.gz
 `f5334334b8d17038f3bc9154393d64d81ce59b3ad1e410398e7ca80f91eb9061`  evidence/budget-ledger-confirm-2026-10-19.jsonl.gz
+`115c7f58182cf16eb7ac04e80d4f97199d35677bf56bfc8f97afac317f68466e`  evidence/budget-ledger-where-2026-10-19.jsonl.gz
 `276be77f8891faacd694a58d84833bdde364db20e073b4de8d9f1ff2f37f3c18`  evidence/launch-window-2026-10-12.tar.gz

@@ -1,0 +1,711 @@
+[
+ {
+  "id": "W3901",
+  "seed": 3901,
+  "split": "where_dev",
+  "hard": true,
+  "profile": "ticket",
+  "start": [
+   18,
+   20
+  ],
+  "target": "Table 13",
+  "other": "Table 5",
+  "delivery": false,
+  "dishes": [
+   "Pesto pasta",
+   "Brownie sundae",
+   "Fish and chips"
+  ],
+  "allergen": "TREE_NUT",
+  "other_allergen": "FISH",
+  "a_clause": "D1",
+  "a_place": "ticket",
+  "b_clause": "D2",
+  "b_place": "host_reservation",
+  "restricted": {
+   "TREE_NUT": 13
+  },
+  "fryer_events": [],
+  "traps": [
+   "ticket",
+   "other:host_reservation"
+  ],
+  "messages": [
+   {
+    "minute": 10,
+    "source": "HOST",
+    "label": "Host stand",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "B (host_reservation, Table 5): someone in the party must avoid fish (use the words \"someone in the party\" and \"fish\")"
+    ],
+    "tags": [
+     "B",
+     "host_reservation",
+     "plain"
+    ],
+    "true": {},
+    "clause": "D2",
+    "place": "host_reservation",
+    "table": "Table 5",
+    "role": "B",
+    "id": "W3901-01"
+   },
+   {
+    "minute": 13,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 13",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "avoid",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "A (ticket, Table 13): the guest is allergic to cashews (use the words \"the guest\" and \"cashews\")"
+    ],
+    "tags": [
+     "A",
+     "hard",
+     "ticket"
+    ],
+    "true": {
+     "TREE_NUT": "avoid"
+    },
+    "clause": "D1",
+    "place": "ticket",
+    "table": "Table 13",
+    "role": "A",
+    "id": "W3901-02"
+   }
+  ]
+ },
+ {
+  "id": "W3902",
+  "seed": 3902,
+  "split": "where_dev",
+  "hard": false,
+  "profile": "ticket_named",
+  "start": [
+   19,
+   40
+  ],
+  "target": "Table 25",
+  "other": "Table 4",
+  "delivery": false,
+  "dishes": [
+   "Grilled salmon with rice",
+   "Caesar salad",
+   "Lobster roll"
+  ],
+  "allergen": "FISH",
+  "other_allergen": "EGG",
+  "a_clause": "D2",
+  "a_place": "ticket_named",
+  "b_clause": "D3",
+  "b_place": "manager",
+  "restricted": {
+   "FISH": 9
+  },
+  "fryer_events": [],
+  "traps": [
+   "ticket_named",
+   "other:manager"
+  ],
+  "messages": [
+   {
+    "minute": 9,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 25",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "avoid",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "A (ticket_named, Table 25): someone in the party must avoid fish (use the words \"someone in the party\" and \"fish\")"
+    ],
+    "tags": [
+     "A",
+     "plain",
+     "ticket_named"
+    ],
+    "true": {
+     "FISH": "avoid"
+    },
+    "clause": "D2",
+    "place": "ticket_named",
+    "table": "Table 25",
+    "role": "A",
+    "id": "W3902-01"
+   },
+   {
+    "minute": 9,
+    "source": "MANAGER",
+    "label": "Manager on duty",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "B (manager, Table 4): the kid has an egg allergy (use the words \"the kid\" and \"egg\")"
+    ],
+    "tags": [
+     "B",
+     "manager",
+     "plain"
+    ],
+    "true": {},
+    "clause": "D3",
+    "place": "manager",
+    "table": "Table 4",
+    "role": "B",
+    "id": "W3902-02"
+   }
+  ]
+ },
+ {
+  "id": "W3903",
+  "seed": 3903,
+  "split": "where_dev",
+  "hard": false,
+  "profile": "host",
+  "start": [
+   17,
+   20
+  ],
+  "target": "Table 12",
+  "other": "Table 13",
+  "delivery": false,
+  "dishes": [
+   "Lobster roll",
+   "Almond cake",
+   "Garden salad with tahini dressing"
+  ],
+  "allergen": "EGG",
+  "other_allergen": "SESAME",
+  "a_clause": "D3",
+  "a_place": "host",
+  "b_clause": "D4",
+  "b_place": "manager_reservation",
+  "restricted": {
+   "EGG": 8
+  },
+  "fryer_events": [],
+  "traps": [
+   "host",
+   "other:manager_reservation"
+  ],
+  "messages": [
+   {
+    "minute": 8,
+    "source": "HOST",
+    "label": "Host stand",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "avoid",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "A (host, Table 12): the kid has an egg allergy (use the words \"the kid\" and \"egg\")"
+    ],
+    "tags": [
+     "A",
+     "host",
+     "plain"
+    ],
+    "true": {
+     "EGG": "avoid"
+    },
+    "clause": "D3",
+    "place": "host",
+    "table": "Table 12",
+    "role": "A",
+    "id": "W3903-01"
+   },
+   {
+    "minute": 15,
+    "source": "MANAGER",
+    "label": "Manager on duty",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "B (manager_reservation, Table 13): one of the guests can't have any tahini (use the words \"one of the guests\" and \"tahini\")"
+    ],
+    "tags": [
+     "B",
+     "hard",
+     "manager_reservation"
+    ],
+    "true": {},
+    "clause": "D4",
+    "place": "manager_reservation",
+    "table": "Table 13",
+    "role": "B",
+    "id": "W3903-02"
+   }
+  ]
+ },
+ {
+  "id": "W3904",
+  "seed": 3904,
+  "split": "where_dev",
+  "hard": true,
+  "profile": "host_reservation",
+  "start": [
+   18,
+   40
+  ],
+  "target": "Table 22",
+  "other": "Table 6",
+  "delivery": false,
+  "dishes": [
+   "Cheeseburger and fries",
+   "Garden salad with tahini dressing",
+   "Almond cake"
+  ],
+  "allergen": "SESAME",
+  "other_allergen": "TREE_NUT",
+  "a_clause": "D4",
+  "a_place": "host_reservation",
+  "b_clause": "D1",
+  "b_place": "kitchen",
+  "restricted": {
+   "SESAME": 6
+  },
+  "fryer_events": [],
+  "traps": [
+   "host_reservation",
+   "other:kitchen"
+  ],
+  "messages": [
+   {
+    "minute": 4,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "B (kitchen, Table 6): the guest is allergic to cashews (use the words \"the guest\" and \"cashews\")"
+    ],
+    "tags": [
+     "B",
+     "hard",
+     "kitchen"
+    ],
+    "true": {},
+    "clause": "D1",
+    "place": "kitchen",
+    "table": "Table 6",
+    "role": "B",
+    "id": "W3904-01"
+   },
+   {
+    "minute": 6,
+    "source": "HOST",
+    "label": "Host stand",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "avoid",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "A (host_reservation, Table 22): one of the guests can't have any tahini (use the words \"one of the guests\" and \"tahini\")"
+    ],
+    "tags": [
+     "A",
+     "hard",
+     "host_reservation"
+    ],
+    "true": {
+     "SESAME": "avoid"
+    },
+    "clause": "D4",
+    "place": "host_reservation",
+    "table": "Table 22",
+    "role": "A",
+    "id": "W3904-02"
+   }
+  ]
+ },
+ {
+  "id": "W3905",
+  "seed": 3905,
+  "split": "where_dev",
+  "hard": true,
+  "profile": "manager",
+  "start": [
+   19,
+   10
+  ],
+  "target": "Table 12",
+  "other": "Table 27",
+  "delivery": false,
+  "dishes": [
+   "Pesto pasta",
+   "Brownie sundae",
+   "Grilled salmon with rice",
+   "Peanut noodles"
+  ],
+  "allergen": "TREE_NUT",
+  "other_allergen": "FISH",
+  "a_clause": "D1",
+  "a_place": "manager",
+  "b_clause": "D2",
+  "b_place": "ticket",
+  "restricted": {
+   "TREE_NUT": 6
+  },
+  "fryer_events": [],
+  "traps": [
+   "manager",
+   "other:ticket"
+  ],
+  "messages": [
+   {
+    "minute": 6,
+    "source": "MANAGER",
+    "label": "Manager on duty",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "avoid",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "A (manager, Table 12): the guest is allergic to cashews (use the words \"the guest\" and \"cashews\")"
+    ],
+    "tags": [
+     "A",
+     "hard",
+     "manager"
+    ],
+    "true": {
+     "TREE_NUT": "avoid"
+    },
+    "clause": "D1",
+    "place": "manager",
+    "table": "Table 12",
+    "role": "A",
+    "id": "W3905-01"
+   },
+   {
+    "minute": 6,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 27",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "B (ticket, Table 27): someone in the party must avoid fish (use the words \"someone in the party\" and \"fish\")"
+    ],
+    "tags": [
+     "B",
+     "plain",
+     "ticket"
+    ],
+    "true": {},
+    "clause": "D2",
+    "place": "ticket",
+    "table": "Table 27",
+    "role": "B",
+    "id": "W3905-02"
+   }
+  ]
+ },
+ {
+  "id": "W3906",
+  "seed": 3906,
+  "split": "where_dev",
+  "hard": false,
+  "profile": "manager_reservation",
+  "start": [
+   17,
+   20
+  ],
+  "target": "Table 17",
+  "other": "Table 20",
+  "delivery": false,
+  "dishes": [
+   "Caesar salad",
+   "Fish and chips",
+   "Lobster roll",
+   "Vegetable curry with coconut milk"
+  ],
+  "allergen": "FISH",
+  "other_allergen": "EGG",
+  "a_clause": "D2",
+  "a_place": "manager_reservation",
+  "b_clause": "D3",
+  "b_place": "ticket_named",
+  "restricted": {
+   "FISH": 7
+  },
+  "fryer_events": [],
+  "traps": [
+   "manager_reservation",
+   "other:ticket_named"
+  ],
+  "messages": [
+   {
+    "minute": 6,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 20",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "B (ticket_named, Table 20): the kid has an egg allergy (use the words \"the kid\" and \"egg\")"
+    ],
+    "tags": [
+     "B",
+     "plain",
+     "ticket_named"
+    ],
+    "true": {},
+    "clause": "D3",
+    "place": "ticket_named",
+    "table": "Table 20",
+    "role": "B",
+    "id": "W3906-01"
+   },
+   {
+    "minute": 7,
+    "source": "MANAGER",
+    "label": "Manager on duty",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "avoid",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "A (manager_reservation, Table 17): someone in the party must avoid fish (use the words \"someone in the party\" and \"fish\")"
+    ],
+    "tags": [
+     "A",
+     "manager_reservation",
+     "plain"
+    ],
+    "true": {
+     "FISH": "avoid"
+    },
+    "clause": "D2",
+    "place": "manager_reservation",
+    "table": "Table 17",
+    "role": "A",
+    "id": "W3906-02"
+   }
+  ]
+ },
+ {
+  "id": "W3907",
+  "seed": 3907,
+  "split": "where_dev",
+  "hard": false,
+  "profile": "kitchen",
+  "start": [
+   19,
+   0
+  ],
+  "target": "Table 23",
+  "other": "Table 5",
+  "delivery": false,
+  "dishes": [
+   "Caesar salad",
+   "Almond cake",
+   "Cheeseburger and fries"
+  ],
+  "allergen": "EGG",
+  "other_allergen": "SESAME",
+  "a_clause": "D3",
+  "a_place": "kitchen",
+  "b_clause": "D4",
+  "b_place": "host",
+  "restricted": {
+   "EGG": 6
+  },
+  "fryer_events": [],
+  "traps": [
+   "kitchen",
+   "other:host"
+  ],
+  "messages": [
+   {
+    "minute": 6,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "avoid",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "A (kitchen, Table 23): the kid has an egg allergy (use the words \"the kid\" and \"egg\")"
+    ],
+    "tags": [
+     "A",
+     "kitchen",
+     "plain"
+    ],
+    "true": {
+     "EGG": "avoid"
+    },
+    "clause": "D3",
+    "place": "kitchen",
+    "table": "Table 23",
+    "role": "A",
+    "id": "W3907-01"
+   },
+   {
+    "minute": 12,
+    "source": "HOST",
+    "label": "Host stand",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "B (host, Table 5): one of the guests can't have any tahini (use the words \"one of the guests\" and \"tahini\")"
+    ],
+    "tags": [
+     "B",
+     "hard",
+     "host"
+    ],
+    "true": {},
+    "clause": "D4",
+    "place": "host",
+    "table": "Table 5",
+    "role": "B",
+    "id": "W3907-02"
+   }
+  ]
+ }
+]
