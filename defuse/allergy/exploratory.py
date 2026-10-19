@@ -195,9 +195,18 @@ def hybrid_order(sc, rd, ro, threshold, mode='options'):
         o['latencies'].append(lat)
         o['answers'][mid] = a
         for q in rules.FACTUAL:
-            if budget <= 0 or a[q] != 'unclear' or (mode == 'review' and q in low):
+            reviewed = mode == 'review' and q in low
+            if budget <= 0 or (rd['key'][mid][q] if reviewed else a[q]) != 'unclear':
                 continue
             _, correct = sim.clarification(sc, m, q)
+            if reviewed:                       # the reviewer says "unclear" too, so the guest is asked after the review
+                c = cl.get(('decisions', mid, q))
+                o['assumed'] += c is None
+                arrival = m['minute'] + 2 * rules.CLARIFY_DELAY
+                o['sys_over'].append((arrival, mid, q, c['answer'] if c else correct))
+                o['key_over'].append((arrival, mid, q, correct))
+                budget -= 1
+                continue
             c = cl.get((src.get((mid, q), 'decisions'), mid, q))
             if c is None:
                 o['assumed'] += 1
@@ -234,7 +243,8 @@ def single_mention(scs, runs):
     and blank the allergen in every other message, in the answer key and in each system's cached reading alike; then
     replay the same code. A false clear here means a dish sent when the one remaining mention supported holding or
     asking: a reading error with no repeat to cover it. This assumes a system would read a message without the mention
-    as "not mentioned" for that allergen, and leaves each system's other answers and replies as they were."""
+    as "not mentioned" for that allergen, and leaves each system's other answers and replies as they were. Restrictions
+    stated only vaguely ("nut allergy") have no "avoid" mention and are not covered."""
     tags = {m['id']: m['tags'] for sc in scs.values() for m in sc['messages']}
     out = {s: {'variants': 0, 'consequential': 0, 'with_false_clear': 0, 'false_clears': 0,
                'missed_sole_mention': 0, 'by_kept_message': defaultdict(lambda: [0, 0])} for s in ['oracle'] + READERS}
@@ -244,6 +254,8 @@ def single_mention(scs, runs):
             mentions = [m['id'] for m in sc['messages'] if m['answers'][a] == 'avoid']
             exposed = any(a in rules.dish_allergens(d, rules.FRYER_DEFAULT | {'SHELLFISH', 'FISH'}) for d in sc['dishes'])
             for keep in mentions:
+                if 'clarified' in tags[keep]:      # the vague note and its reply stay, so nothing would change
+                    continue
                 drop = set(mentions) - {keep}
                 kind = next((t for t in ('late_joiner', 'host', 'readback', 'relay', 'reminder', 'clarified',
                                          'self_correct', 'other_table_same', 'order') if t in tags[keep]), 'other')
