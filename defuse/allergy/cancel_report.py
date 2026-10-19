@@ -72,18 +72,30 @@ def accuracy(r_by):
     return {'factual': ci(right, total), 'mentioned': ci(m_right, mentioned), 'messages_all_right': ci(all_right, msgs)}
 
 
+def changed_from_key(res, s, rule, i):
+    a, k = res[s][rule][i], res['oracle'][rule][i]
+    return (a['unsafe'], a['needless']) != (k['unsafe'], k['needless'])
+
+
 def paired(xs, ys):
     """Exact McNemar on two lists of booleans over the same units: (only first true, only second true, p)."""
     a = sum(x and not y for x, y in zip(xs, ys)); b = sum(y and not x for x, y in zip(xs, ys))
     return [a, b, mcnemar(a, b)]
 
 
-def analyse(root='data/allergy', split=SPLIT, tag=''):
+def disputed():
+    """Cancel messages a reviewer disputed but kept (§9.8 amendment 2), from bank/excluded.json."""
+    p = bank.BANK / 'excluded.json'
+    return set(json.loads(p.read_text()).get('disputed', [])) if p.exists() else set()
+
+
+def analyse(root='data/allergy', split=SPLIT, tag='', undisputed_only=False):
     global SCS
     SCS = {sc['id']: sc for sc in bank.load(split)}
     runs = runs_for(root, split, tag)
-    ids = sorted(SCS)
-    out = {'split': split, 'orders': len(ids), 'messages': sum(len(SCS[i]['messages']) for i in ids),
+    drop = disputed()
+    ids = sorted(i for i in SCS if not (undisputed_only and any(m['id'] in drop for m in SCS[i]['messages'])))
+    out = {'split': split, 'undisputed_only': undisputed_only, 'orders': len(ids), 'messages': sum(len(SCS[i]['messages']) for i in ids),
            'arms': {a: sum(SCS[i]['arm'] == a for i in ids) for a in cancel.ARMS}, 'readers': {}, 'tests': {}}
     res = {}
     for s, by in runs.items():
@@ -99,6 +111,9 @@ def analyse(root='data/allergy', split=SPLIT, tag=''):
             total = {k: sum(r[k] for r in per.values()) for k in ('orders', 'unsafe', 'needless', 'reading_unsafe')}
             v['rules'][rule] = {'by_arm': dict(per), 'all': total, 'unsafe': ci(total['unsafe'], total['orders']),
                                 'needless': ci(total['needless'], total['orders'])}
+            if s != 'oracle' and 'oracle' in runs:          # §9.8 amendment 1: did this reader's reading change the outcome?
+                changed = [changed_from_key(res, s, rule, i) for i in ids]
+                v['rules'][rule]['outcome_differs_from_key'] = ci(sum(changed), len(ids))
         if s != 'oracle':
             rd = [readings(SCS[i], by[i]) for i in ids]
             arms = [SCS[i]['arm'] for i in ids]
@@ -118,6 +133,7 @@ def analyse(root='data/allergy', split=SPLIT, tag=''):
                 lats = sorted(x for h in hs for x in h['latencies'])
                 v['cost_usd'] = sum(h['cost'] for h in hs)
                 v['messages_sent_to_second_reading'] = sum(h['messages_sent_on'] for h in hs)
+                v['replies_assumed_read_correctly'] = sum(h['assumed'] for h in hs)
                 v['latency_p50'] = lats[len(lats) // 2]; v['latency_p90'] = lats[int(0.9 * len(lats))]
             else:
                 ex = [e for r in by.values() for e in r['extractions'].values()]
@@ -129,15 +145,28 @@ def analyse(root='data/allergy', split=SPLIT, tag=''):
                     v['latency_p50'] = lats[len(lats) // 2]; v['latency_p90'] = lats[int(0.9 * len(lats))]
             v['cost_per_1000_messages'] = 1000 * v['cost_usd'] / out['messages']
 
-    # §9.6 tests. Family 1: the rules, on each model reader's own readings (paired by order), Holm over 6.
+    # §9.6 as amended (§9.8 amendment 1). Primary: does the reader change the outcome, against the answer key under the
+    # same rule? Pairwise between the model readers, for `anyone` and `guest_only`, exact McNemar, Holm over 6.
     fam = {}
-    for s in [x for x in MODEL if x in res]:
-        for k in ('unsafe', 'needless'):
-            fam[f'{s}: anyone vs guest_only, orders {k}'] = paired([res[s]['anyone'][i][k] for i in ids],
-                                                                  [res[s]['guest_only'][i][k] for i in ids])
+    names = [x for x in MODEL if x in res]
+    if 'oracle' in res:
+        for rule in ('anyone', 'guest_only'):
+            for i, a in enumerate(names):
+                for b in names[i + 1:]:
+                    fam[f'{rule}: {a} vs {b}, outcome differs from key'] = paired(
+                        [changed_from_key(res, a, rule, j) for j in ids], [changed_from_key(res, b, rule, j) for j in ids])
     for (k, v), p in zip(fam.items(), holm([v[2] for v in fam.values()]) if fam else []):
         v.append(p)
-    out['tests']['rules'] = fam
+    out['tests']['reading_changes_outcome'] = fam
+    # Descriptive (settled by the arm design, §9.8 amendment 3): rule against rule on the same readings, per arm.
+    desc = {}
+    for s in names:
+        for arm in cancel.ARMS:
+            sel = [i for i in ids if SCS[i]['arm'] == arm]
+            for k in ('unsafe', 'needless'):
+                desc[f'{s}, {arm}: anyone vs guest_only, orders {k}'] = paired(
+                    [res[s]['anyone'][i][k] for i in sel], [res[s]['guest_only'][i][k] for i in sel])
+    out['tests']['rules_by_arm_descriptive'] = desc
     # Families 2 and 3: the readers, on the single mention missed and on staff_soft read as a correction; Holm over 3.
     for name, pick in (('mention_missed', lambda sc, x: x['mention_read'] not in ('avoid', 'unclear')),
                        ('soft_read_as_correction', lambda sc, x: sc['arm'] == 'staff_soft' and x.get('lift_correction') == 'yes')):
@@ -166,7 +195,8 @@ def analyse(root='data/allergy', split=SPLIT, tag=''):
         for (k, v), p in zip(fam.items(), holm([v[2] for v in fam.values()])):
             v.append(p)
         out['tests']['hybrid'] = fam
-    (Path(root) / f'{split}{tag}-report.json').write_text(json.dumps(out, indent=1))
+    name = f'{split}{tag}' + ('-undisputed' if undisputed_only else '')
+    (Path(root) / f'{name}-report.json').write_text(json.dumps(out, indent=1))
     return out
 
 
@@ -177,6 +207,13 @@ def table(out):
         for rule, x in v['rules'].items():
             arms = ' '.join(f"{a}={r['unsafe']}/{r['needless']}" for a, r in x['by_arm'].items())
             print(f"  {rule:12s} unsafe {x['all']['unsafe']}/{x['all']['orders']} needless {x['all']['needless']}  [{arms}]")
+        for rule, x in v['rules'].items():
+            if 'outcome_differs_from_key' in x:
+                d = x['outcome_differs_from_key']
+                print(f"  {rule:12s} outcome differs from the answer key in {d['k']}/{d['n']} orders")
+        if 'replies_assumed_read_correctly' in v:
+            print(f"  hybrid: {v['messages_sent_to_second_reading']} messages to a second reading; "
+                  f"{v['replies_assumed_read_correctly']} clarification replies assumed read correctly")
         if 'mention_missed_all' in v:
             m = v['mention_missed_all']
             print(f"  single mention missed {m['k']}/{m['n']}; soft read as correction "
@@ -186,9 +223,16 @@ def table(out):
     for fam, tests in out['tests'].items():
         print(f'\n{fam}')
         for k, v in tests.items():
+            if fam.endswith('descriptive') and v[0] == v[1] == 0:
+                continue
             print(f'  {k}: {v[0]} vs {v[1]}, p={v[2]:.3g}' + (f', Holm p={v[3]:.3g}' if len(v) > 3 else ''))
 
 
 if __name__ == '__main__':
     root = sys.argv[1] if len(sys.argv) > 1 else 'data/allergy'
-    table(analyse(root, sys.argv[2] if len(sys.argv) > 2 else SPLIT))
+    split = sys.argv[2] if len(sys.argv) > 2 else SPLIT
+    tag = sys.argv[3] if len(sys.argv) > 3 else ''
+    table(analyse(root, split, tag))
+    if disputed():
+        print('\n--- without orders whose messages a reviewer disputed ---')
+        table(analyse(root, split, tag, undisputed_only=True))

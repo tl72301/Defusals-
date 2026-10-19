@@ -175,4 +175,4 @@ def test_cancel_report_offline(stub, tmp_path):
     assert oracle['anyone']['by_arm']['staff_wrong_correction']['unsafe'] == 1
     assert oracle['guest_only']['all']['unsafe'] == 0
     assert oracle['guest_only']['by_arm']['staff_fixes_own']['needless'] == 1
-    assert 'hybrid' in out['readers'] and set(out['tests']) == {'rules', 'mention_missed', 'soft_read_as_correction', 'hybrid'}
+    assert 'hybrid' in out['readers'] and set(out['tests']) == {'reading_changes_outcome', 'rules_by_arm_descriptive', 'mention_missed', 'soft_read_as_correction', 'hybrid'}

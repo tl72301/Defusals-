@@ -241,4 +241,26 @@ of the seed list until one run fits under $3.50. The gate refuses any request th
 
 ### 9.8 Changes after this pre-registration
 
-None yet.
+Amendments 1 to 7 were made on October 19 after an independent read-only review of §9 (which saw no plan answers or
+message text), while the authors were writing; before I or any reviewer had read a message text and before any request.
+
+1. **Primary changed.** With perfect reading the rule-against-rule comparison is settled by the arm design (§9.3: 40
+   to 0 both ways), so it cannot fail. Primary is now what §9.1 asks: for each model system and rule (`anyone`,
+   `guest_only`), the orders whose outcome (unsafe, needless stop) differs from the answer key's under the same rule;
+   pairwise between the three systems, exact McNemar, Holm over the 6 tests. The rule-against-rule tests become
+   descriptive.
+2. **Disputed cancel messages are kept.** A careful reader may call a staff "actually, it's fine" a correction, and
+   dropping such messages would remove exactly the cases staff_soft is about. A cancel message whose reviewers
+   disagree with the key stays in the test with its plan-defined key and is listed as disputed; results are reported
+   with and without the orders that contain one, and the reviewers' own CORRECTION `yes` rate per arm is reported as a
+   finding. Other messages follow §5 (a dropped single mention drops its order).
+3. **No pooled winner.** Rules are compared per arm. The arm sizes are a design choice, so a pooled count of unsafe
+   orders against needless stops would only reflect them.
+4. **Nulls.** If a measure is 0 against 0 (likely for missed single mentions: all 72 single-mention allergies on
+   October 12 were read), it is reported as "none seen" with its upper bound (0 of 300 is at most 1.3%), not as equal.
+5. **"Same sender" means the same role** (server, host, manager, kitchen, guest side): code knows the role, not the
+   person.
+6. **Checks before the cancel message are not scored in the four cancel arms.** A missed single mention still shows
+   from the cancel minute on.
+7. **The hybrid's assumed replies are counted.** Where the run that gave an `unclear` never asked, the reply is assumed
+   read correctly; that count is printed beside the hybrid's results.

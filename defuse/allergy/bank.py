@@ -48,10 +48,10 @@ def load(split):
 
 
 def authoring_packet(split, seeds, path):
-    data = {sc['id']: sc for sc in json.loads((BANK / f'{split}.json').read_text())}
+    data = {sc['seed']: sc for sc in json.loads((BANK / f'{split}.json').read_text())}
     packet = []
     for seed in seeds:
-        sc = data[f'A{seed}']
+        sc = data[seed]
         packet.append({'scenario': sc['id'], 'order': sc['target'], 'messages': [
             {'id': m['id'], 'header': header(sc, m), 'must_convey': sim.resolve_spec(sc, m)} for m in sc['messages']]})
     Path(path).write_text(json.dumps(packet, indent=1, ensure_ascii=False))
@@ -65,9 +65,9 @@ def review_packet(split, seeds, path):
              'questions': [{'name': n, 'instructions': i, 'options': [{'value': v, 'meaning': d} for v, d in o]}
                            for n, i, o in rules.questions()]}
     items = []
-    by_id = {sc['id']: sc for sc in load(split)}
+    by_seed = {sc['seed']: sc for sc in load(split)}
     for seed in seeds:
-        sc = by_id[f'A{seed}']
+        sc = by_seed[seed]
         for m in sc['messages']:
             items.append({'id': m['id'], 'order': sc['target'], 'header': header(sc, m), 'text': m['text']})
     Path(path).write_text(json.dumps({'guide': guide, 'messages': items}, indent=1, ensure_ascii=False))
