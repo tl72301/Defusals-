@@ -182,3 +182,15 @@ One order: staff wrote down an allergy by mistake, then say casually that it is 
 00:03:25,100 --> 00:03:41,100
 The results for each situation and rule, and what real AI reading changed. With real AI reading and "ask the guest", the allergen went out in 4 (Decisions), 0 (picking options), 6 (writing names) of 120 orders. Safe food stayed held after the guest's answer in 11 (Decisions), 4 (picking options), 23 (writing names) of 120. Guests' answers read wrongly: 6 (Decisions), 1 (picking options), 10 (writing names) of 240. The price of asking: with perfect reading, safe food waited one check (5 minutes) in 70 of 120 orders.
 
+47
+00:03:41,100 --> 00:03:47,100
+Where allergies hide, and whose they are A third new test: 144 allergy notes, each put in seven places, once for the table being asked about and once for another table. Does the AI catch every one, and does it know whose it is?
+
+48
+00:03:47,100 --> 00:03:57,100
+One note, seven places: on the server's ticket (with the table only at the top, or in the text too), at the host stand (plain or as a reservation note), from the manager (plain or as a reservation note) and in kitchen chat.
+
+49
+00:03:57,100 --> 00:04:13,100
+How often each reader missed this table's allergy and took another table's as this table's, by place. Orders where the allergen was sent: 35 (Decisions), 0 (picking options), 0 (writing names) of 1,008. Orders where safe food was held or questioned: 0 (Decisions), 1 (picking options), 17 (writing names) of 1,008. Decisions with its unsure answers re-read by picking options: allergen sent in 0, safe food held in 0.
+

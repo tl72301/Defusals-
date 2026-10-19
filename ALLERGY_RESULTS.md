@@ -5,11 +5,14 @@ server, the guest, the delivery app, the host, the manager and the kitchen. The 
 three ways; code applies the rules and decides, every 5 minutes, whether each dish on the order may be sent.
 **Not food-safety advice: "send" here never means a dish is safe for a real person.** Pre-registered in
 [ALLERGY_PROTOCOL.md](ALLERGY_PROTOCOL.md) before any message existed; later changes are logged in its §8, and the
-October 19 test in its §9.
+October 19 tests in its §9, §10 and §11.
 
-On October 19 the first results were critiqued, reanalysed for free from the saved data, and two new questions were
+On October 19 the first results were critiqued, reanalysed for free from the saved data, and three new questions were
 tested on fresh orders, each under its own pre-registration: **who should be allowed to cancel an allergy?** (300
-orders) and then **when staff say an allergy is fine, does it work to just ask the guest?** (240 orders).
+orders), then **when staff say an allergy is fine, does it work to just ask the guest?** (240 orders), and then
+**does it matter where an allergy is written down, and can the AI tell whose allergy it is?** (1,008 orders).
+
+![Where allergies hide results](docs/allergy-where.png)
 
 ![Just ask the guest? results](docs/allergy-confirm.png)
 
@@ -17,8 +20,36 @@ orders) and then **when staff say an allergy is fine, does it work to just ask t
 
 ![October 12 results](docs/allergy-final.png)
 
-Video: [one October 12 order replayed, its results, then one order of each new test under each rule, and their
-results](docs/allergy-pass.mp4) (3 min 41 s, captions in the matching .srt).
+Video: [one October 12 order replayed, its results, then one order of the first two new tests under each rule, one
+note of the third in all seven places, and their results](docs/allergy-pass.mp4) (4 min 13 s, captions in the
+matching .srt).
+
+## How the conclusions changed with the third October 19 test
+
+- **Decisions' blind spot is one kind of note, and now it is pinned down.** Three earlier tests saw Decisions miss
+  some host-stand reservation notes (6 of 41, 4 of 79, 9 of 50) without showing why. Here the same 144 notes were put
+  in seven places. Decisions missed 35 of the 144 written as "Reservation note for Table 12: …" from the host stand,
+  and none of the same 144 anywhere else: not on the server's ticket, not from the manager with the same "Reservation
+  note for" words, and not from the host stand without them. Neither the writer nor the words alone did it; only the
+  two together. Every miss was read as "not mentioned", so the allergen went out in 35 of 1,008 orders.
+- **The fix already in this repository caught every miss.** Decisions was unsure (below 0.9) about all 35, so
+  re-reading its unsure answers with picking options got every answer of all 2,016 messages right, sent no allergen
+  and held no safe food, at Decisions' speed (median 0.55 s against 2.88 s for picking options alone). In the second
+  test the same hybrid held safe food in 8 orders against picking options' 4, so it is not always the best reader.
+- **Only Decisions cared where the note was.** Picking options and writing names missed none of the 1,008 allergies
+  in any place.
+- **"Whose allergy is it?" errors were rare with clean notes, and only on the server's ticket.** Decisions took none
+  of 1,008 other tables' notes as this order's, picking options 1 and writing names 17. In the second test they took
+  18, 8 and 40 of 226. One likely reason, found after the results and so only a lead: 86 of those 226 notes said
+  "on this ticket", which this test's notes never did, and Decisions took 12 of those 86 against 6 of the other 140.
+- **The pre-registered "named only at the top" effect was not established.** Writing names took more ticket notes
+  when the other table was named only in the header (13 against 4 of 144), but the difference was not significant
+  after correction (p = 0.15). The repeat run showed it more strongly (10 against 0, p = 0.006), so it is probably
+  real for writing names; the other two readers showed nothing (0 against 0, 1 against 0).
+- **Careful reviewers read all 2,030 messages exactly as the answer key**, so none of these errors came from unclear
+  text. This test cost $1.587 of a second $4.00 approval; $2.413 is left.
+
+Ranked next tests are at the end: [What to test next](#what-to-test-next-ranked).
 
 ## How the conclusions changed with the second October 19 test
 
@@ -73,6 +104,161 @@ results](docs/allergy-pass.mp4) (3 min 41 s, captions in the matching .srt).
   12 results, so the new test fixed it in advance.
 
 Ranked next tests are at the end: [What to test next](#what-to-test-next-ranked).
+
+## Where allergies hide, and whose they are (third new test, October 19)
+
+**The question.** Does it matter where an allergy is written down, and can the AI tell whose allergy it is? Two
+patterns kept turning up in the earlier tests, each time in passing. Decisions missed allergies written as a host's
+reservation note more often than anywhere else (6 of 41, 4 of 79, 9 of 50), but those notes always came from the host
+stand and always said "Reservation note for …", so it was not known which of the two mattered. And every reader
+sometimes took another table's allergy as this order's, the main cause of the needless holds that remained under "ask
+the guest". This test isolates both. A search of 66 queries across papers, GitHub, Hugging Face, blogs, forums and
+restaurant-tech products found no study that moves one allergy sentence between writers and places and measures both
+errors ([docs/prior-work-where-2026-10-19.md](docs/prior-work-where-2026-10-19.md)); the nearest are studies showing
+that a source label changes how a model rates the same text, and that a neighbouring patient's words leak into
+AI-written clinical notes. Pre-registered in protocol §11 before any message existed.
+
+**The notes.** Blind authors wrote 144 short allergy notes, one for each mix of 9 allergens, 4 people ("the kid",
+"the guest", "one of the guests", "someone in the party") and 4 ways of saying it ("is allergic to …", "can't have
+any …", "must avoid …", "has a … allergy"), half with the plain food name and half with a harder word ("ghee",
+"groundnuts"). They never saw where a note would go. Code then put every note in seven places, once as the order's
+own allergy and once as another table's. The first note, chosen by a fixed rule before any result, as Table 12's:
+
+| Place | Header the reader sees | Text the reader sees |
+|---|---|---|
+| Server's ticket, table named only at the top | Server, ticket note for Table 12 | The kid is allergic to peanuts, be careful. |
+| Server's ticket, table named in the text too | Server, ticket note for Table 12 | Table 12: the kid is allergic to peanuts, be careful. |
+| Host stand | Host stand | Table 12: the kid is allergic to peanuts, be careful. |
+| Host stand, reservation note | Host stand | Reservation note for Table 12: the kid is allergic to peanuts, be careful. |
+| Manager | Manager on duty | Table 12: the kid is allergic to peanuts, be careful. |
+| Manager, reservation note | Manager on duty | Reservation note for Table 12: the kid is allergic to peanuts, be careful. |
+| Kitchen chat | Kitchen chat | Table 12: the kid is allergic to peanuts, be careful. |
+
+**The orders.** 1,008 fresh dine-in orders, each with exactly two notes: its own allergy (A) and another table's (B,
+always a different allergen). Every note appears in every place once as A and once as B. Each order has a dish with
+its own allergen, a dish with only the other table's allergen, and sometimes a dish with neither. With perfect reading
+every order is decided right, so every wrong outcome comes from a reading: **this order's allergy missed** sends a
+dish with the allergen; **another table's note taken as this order's** holds safe food or asks needlessly. Blind
+reviewers read all 2,030 messages (2,016 test, 14 development) and agreed with the answer key on every answer, so no
+message is disputed and there is one set of results.
+
+### Results
+
+This order's own allergy missed (allergen sent), of 144 notes in each place:
+
+| Place | Decisions | Picking options | Writing names | Re-read below 0.9 | Parser |
+|---|---:|---:|---:|---:|---:|
+| Server's ticket, table named only at the top | 0 | 0 | 0 | 0 | 0 |
+| Server's ticket, table named in the text too | 0 | 0 | 0 | 0 | 0 |
+| Host stand | 0 | 0 | 0 | 0 | 0 |
+| **Host stand, reservation note** | **35** | 0 | 0 | 0 | 0 |
+| Manager | 0 | 0 | 0 | 0 | 0 |
+| Manager, reservation note | 0 | 0 | 0 | 0 | 0 |
+| Kitchen chat | 0 | 0 | 0 | 0 | 0 |
+
+Another table's note taken as this order's (safe food held or asked about), of 144 notes in each place; the repeat
+run in brackets (Decisions was not repeated):
+
+| Place | Decisions | Picking options | Writing names | Re-read below 0.9 | Parser |
+|---|---:|---:|---:|---:|---:|
+| Server's ticket, table named only at the top | 0 | 1 (2) | **13** (10) | 0 | 0 |
+| Server's ticket, table named in the text too | 0 | 0 (2) | 4 (0) | 0 | 0 |
+| Host stand | 0 | 0 (0) | 0 (0) | 0 | 0 |
+| Host stand, reservation note | 0 | 0 (0) | 0 (1) | 0 | 0 |
+| Manager | 0 | 0 (0) | 0 (0) | 0 | 0 |
+| Manager, reservation note | 0 | 0 (0) | 0 (1) | 0 | 0 |
+| Kitchen chat | 0 | 0 (0) | 0 (0) | 0 | 0 |
+
+| 1,008 orders, 2,016 messages | Decisions | Picking options | Writing names | Re-read below 0.9 | Parser |
+|---|---:|---:|---:|---:|---:|
+| Orders with the allergen sent (of 1,008) | 35 | **0** | **0** | **0** | **0** |
+| Orders with safe food held (of 1,008) | **0** | 1 | 17 | **0** | **0** |
+| Own allergy read as exactly "avoid" (of 1,008) | 973 | **1,008** | **1,008** | **1,008** | 987 |
+| Answers right, 10 factual questions (of 20,160) | 99.83% | 99.99% | 99.92% | **100%** | 99.90% |
+| Messages with every answer right (of 2,016) | 98.26% | 99.85% | 99.16% | **100%** | 98.96% |
+| Clarifications asked | 0 | 0 | 3 | 0 | 21 |
+| Cost per 1,000 messages | $0.207 | $0.181 | **$0.107** | $0.221 | free |
+| Median time per message (90th percentile) | **0.53 s** (0.88) | 2.88 s (4.97) | 1.88 s (8.03) | 0.55 s (1.34) | – |
+| Repeat run: answers read differently (of 22,176) | not repeated | 18 | 19 | – | – |
+| Repeat run: orders whose outcome changed (of 1,008) | not repeated | 4 | 19 | – | – |
+
+The pre-registered tests (exact McNemar tests paired by note; "35 against 0" means 35 notes missed in the first place
+but not the second, and 0 the other way round):
+
+| Test | Result | p (Holm-corrected where a family) | Verdict |
+|---|---|---|---|
+| H1. Decisions misses: host reservation note against server's ticket | 35 against 0 | 6 × 10⁻¹¹ | **confirmed** |
+| H2. Decisions misses: host reservation note against manager reservation note | 35 against 0 | 1 × 10⁻¹⁰ | **the writer matters** |
+| H2. Decisions misses: host reservation note against plain host note | 35 against 0 | 1 × 10⁻¹⁰ | **the words matter** |
+| H3. Another table's ticket taken, named only at the top against in the text too: Decisions | 0 against 0 | 1 | none seen |
+| H3. Same, picking options | 1 against 0 | 1 | no difference |
+| H3. Same, writing names | 13 against 4 | 0.15 (0.049 before correction) | **not established** (repeat run: 10 against 0, p = 0.006) |
+
+### What it shows
+
+**1. Decisions misses allergies in one kind of note: a host's reservation note.** It missed 35 of the 144 (24%; 18%
+to 32% with 95% confidence) and none of the same 144 notes in any of the other six places (0 of 864; at most 0.4%).
+H2 says which part matters: the same words from the manager were never missed, and the same writer without
+"Reservation note for" was never missed. Only the host stand and those words together. Every miss was read as "not
+mentioned", so the allergy was never recorded and a dish with the allergen went out: the only unsafe sends by any AI
+in this test. The first note shown above was one of them: "Reservation note for Table 12: the kid is allergic to
+peanuts, be careful." got "not mentioned" at 0.63 and "avoid" at 0.32, while the same words got "avoid" at 0.95 to
+1.00 in the six other places. Why is not known. Counted after the results (exploratory):
+- **The wording mattered.** Of the 36 host reservation notes in each form, Decisions missed 20 saying "has a …
+  allergy" ("someone in the party has a tree nut allergy"), 10 saying "is allergic to …", 4 saying "must avoid …"
+  (or the authors' own phrasing of it, such as "needs to stay away from soy") and 1 saying "can't have any …". By
+  person: "the kid" 14 of 36, "someone in the party" 12, "the guest" 7, "one of the guests" 2. Notes with the plain
+  food name were missed more (28 of 504 against 7 of 504 with a harder word), but every "has a … allergy" note used
+  the plain name, so that difference may come from the form.
+- **Decisions was less sure about host reservation notes in general, not only the ones it missed.** Its probability for
+  "avoid" there had a median of 0.81, and 89 of 144 were below 0.9. On manager reservation notes 15 of 144 were below
+  0.9 (median 0.99), and in the other five places at most 2 of 144.
+
+**2. Re-reading Decisions' unsure answers caught all 35.** Decisions' probability for its wrong answer had a median
+of 0.62, and all 35 were below the hybrid's cut-off of 0.9, fixed in advance. The hybrid sent 163 of 2,016 messages
+(8%) to picking options and got every answer of every message right: no allergen sent, no safe food held. Pre-
+registered: it got more right than Decisions where something was said (35 against 0; p = 1 × 10⁻¹⁰) and the same as
+picking options (0 against 0). It kept Decisions' speed (median 0.55 s against 2.88 s) and cost $0.221 per 1,000
+messages, a little more than either part alone. In the second test it held safe food in 8 orders against picking
+options' 4, so it is not always the best reader.
+
+**3. The ordinary API did not care where the note was.** Picking options and writing names read all 1,008 of this
+order's allergies as "avoid" in every place, and the keyword parser missed none (it called 3 notes "unclear" in all
+seven places and asked: "the guest needs to steer clear of feta", "the kid must stay away from crab", "the kid needs
+to stay away from soy"). Picking options also flagged soy in 2 notes about fish sauce; neither changed a decision.
+
+**4. Another table's note was rarely taken as this order's, and only on the server's ticket.** Decisions took none of
+1,008 (at most 0.4%). Picking options took 1: "Server, ticket note for Table 25: The guest needs to steer clear of
+feta." when asked about Table 5. Writing names took 17, all ticket notes ("Server, ticket note for Table 8: The guest
+can't eat peanuts." when asked about Table 23), significantly more than Decisions (0 against 17; p < 0.001 after
+correction) and picking options (1 against 17; p < 0.001). The pre-registered prediction that a ticket note naming its
+table only at the top is taken more often held in direction for writing names (13 against 4) but was not significant
+after correction, so it is not established; on the repeat run it was (10 against 0). Writing names' errors were also
+unstable: only 5 orders were held in both runs, and 19 changed.
+
+**5. Why the second test saw more "whose" errors (exploratory, a lead only).** There, other tables' notes were taken
+by Decisions in 18, picking options in 8 and writing names in 40 of 226. Of those 226 notes, 86 said "on this ticket"
+("Someone on this ticket is allergic to wheat."), wording this test's authors were not allowed to use. Decisions took
+12 of those 86 (14%) and 6 of the other 140 (4%); writing names took 20 of 86 and 20 of 140; picking options 4 and 4.
+A note filed under another table that says "this ticket" may mislead Decisions in particular. The second test's
+orders were also busier (more messages around the note). Neither was tested here.
+
+**6. People were not misled by any place.** Blind reviewers read all 2,030 messages exactly as the answer key,
+including every ticket note naming its table only at the top. So the misses are the AI's, not a sign that the notes
+were unclear.
+
+**7. Picking options and writing names were nearly repeatable.** A repeat run with a fresh cache: picking options
+read 18 of 22,176 answers differently and changed 4 of 1,008 outcomes (safe food held in 1 order, then 5, one of them
+from the failed request below); writing names read 19 answers differently and changed 19 outcomes (17 held, then 12).
+Neither missed an allergy in either run. Decisions was not repeated: in the first October 19 test it gave identical
+answers twice.
+
+**Run notes.** One picking-options request in the repeat run returned an answer that was not one of the options
+(another table's ticket note, "The kid can't have any milk."); as always, its answers fell back to "unclear", which
+counts as taking another table's note and stands. No other request failed. The budget record holds one request that
+was reserved but never settled (about $0.0014), counted in full. Analysis code: `defuse/allergy/where_report.py`
+(pre-registered, unchanged after the run) and `defuse/allergy/where_explore.py` (exploratory, added after the
+results; protocol §11.8 change 3).
 
 ## Just ask the guest? (second new test, October 19)
 
@@ -547,7 +733,11 @@ new test fixed 0.9 in advance and scored the first hybrid on fresh data.
 - **One fixed question, sent by code.** The question always named the food in the staff member's plain word. A
   question written by an AI, or asked about the wrong food, was not tested.
 - **Single mentions.** On October 12, 72 of 183 allergies were stated once and all were read; the claim that every
-  allergy was repeated was wrong. Both October 19 tests stated every allergy once.
+  allergy was repeated was wrong. All three October 19 tests stated every allergy once.
+- **Clean one-sentence notes, two per order.** In the third test every note was one short sentence about one person
+  and one food, and each order held only its own note and one other table's. Real reservation notes mix allergies with
+  seating, birthdays and times, often in shorthand, and real orders carry more chatter, so both errors could be more
+  or less common there. The second test's busier orders produced more "whose" errors.
 - **"Same sender" is the same role, not the same person.** The code sees "server" or "host", not which server.
 - **No recall.** The simulation decides every dish again at each check and keeps no record of dishes already sent, so
   an allergy that arrives late only stops later sends.
@@ -555,42 +745,47 @@ new test fixed 0.9 in advance and scored the first hybrid on fresh data.
   October 12, and the replies fixed 17 before any decision.
 - **Speed was measured, not used.** No decision waited on a slow reading.
 - **The video's orders were chosen by a fixed rule**, not for their outcome: the first test order of October 12, the
-  first "staff wrongly correct it" order of the first October 19 test, and the first "staff casually say it's fine,
-  rightly" order of the second whose guest answers "yeah, no".
+  first "staff wrongly correct it" order of the first October 19 test, the first "staff casually say it's fine,
+  rightly" order of the second whose guest answers "yeah, no", and the first note of the third ("the kid is allergic
+  to peanuts, be careful"), fixed before any result. That note turned out to be one Decisions missed as a host
+  reservation note.
 
 ## What to test next (ranked)
 
-The $4.00 budget has $0.232 left, so each of these needs a new approval. Ranked by what the results so far point to,
-and how plainly the answer would read.
+The second $4.00 approval has $2.413 left, enough for one more test about the size of the last three ($1.59 to $2.15
+each). Ranked by what the results so far point to, and how plainly the answer would read. Whatever comes next should
+keep the hybrid (Decisions, unsure answers re-read by picking options) as a pre-registered system: it has caught every
+reservation note Decisions missed in three tests.
 
-1. **Where allergies hide, and whose they are.** Two reading errors have now shown up in every test. Decisions misses
-   allergies written in a host-stand reservation note (6 of 41, 4 of 79, then 9 of 50; 0 of 190 other notes this
-   time), and asking the guest cannot catch an allergy that was never recorded. And every reader sometimes takes
-   another table's note as this order's, the main cause of needless holds that remain under "ask the guest". A test
-   built around where allergies are written (reservation notes, app fields, saved profiles) and whose they are, with
-   both weaknesses pre-registered as the hypotheses, would settle them. Decisions and the hybrid alone keep it cheap
-   (about $0.45 for 2,000 messages).
-2. **Answers about someone else.** The only guest answers the AIs got dangerously wrong named another person ("Not
+1. **Answers about someone else.** The only guest answers the AIs got dangerously wrong named another person ("Not
    me, but my aunt is eating with us and she's allergic to dairy"): writing names read 6 of 24 as "fine". A test of
    answers about other people at the table (children, plus-ones, "my wife is the one") would show whether this is a
    weakness of writing names alone, and whether a second question ("Is that person eating from this order?") fixes
    it.
-3. **When the guest is slow, gone or unsure.** Here every guest answered within 6 minutes. Answers that come late,
-   never, or say "not sure, let me check with my sister" would show the real price of asking, and whether "unsure" is
-   read as unsure. Part of it (later answers) can be computed for free from these readings; answers that never come or
-   hedge need new messages.
+2. **Words that point at the wrong order.** In the third test, with clean notes, Decisions never took another table's
+   note as this order's. In the second, it took 12 of 86 other tables' notes that said "on this ticket", against 6 of
+   140 that did not (counted after the results). The same notes with and without "this ticket", "here" or "tonight",
+   filed under another table, would settle whether those words are the trigger, and whether writing names' extra
+   errors on tickets that name their table only at the top (13 against 4, then 10 against 0) are real. Decisions and
+   the hybrid alone keep it cheap.
+3. **When the guest is slow, gone or unsure.** In the second test every guest answered within 6 minutes. Answers that
+   come late, never, or say "not sure, let me check with my sister" would show the real price of asking, and whether
+   "unsure" is read as unsure. Part of it (later answers) can be computed for free from saved readings; answers that
+   never come or hedge need new messages.
 4. **A late allergy after a dish has gone out.** The most dangerous real case is the plate already at the table. Score
    whether a system flags a sent dish for recall when an allergy arrives late.
 5. **Kitchen changes tonight.** Ingredient swaps ("out of the usual pesto, using the cashew one"), a shared grill, a
    new sauce. Here recipes never change, so the model never has to read what is in the food.
-6. **Ambiguous messages, asked several times.** Writing names read 96 of 2,043 messages differently on a second run,
-   changing the outcome of 28 orders under "ask the guest"; picking options changed 26 messages and 3 orders. Asking 3
-   or 5 times and taking the majority, or treating disagreement as "unclear", may be a cheap fix; it needs fresh
-   messages.
-7. **Shorthand and other languages.** Real tickets say "NF", "GF", "no nuts x2" or "sin mariscos"; every message here
-   was a full English sentence.
-8. **Speed under pressure.** Decisions was 4 to 5 times faster than the ordinary API, but nothing in the simulation
-   waited for a reading. A service where dishes leave on time with whatever is known would show what speed is worth.
+6. **Real reservation notes, shorthand and other languages.** Real tickets say "NF", "GF", "no nuts x2" or "sin
+   mariscos", and real booking systems export notes like "RES 7:30 x4 - bday, kid PN allergy". Every message so far
+   was a full English sentence, and the third test showed that Decisions' reading depends on such small framing.
+7. **Ambiguous messages, asked several times.** In the second test writing names read 96 of 2,043 messages
+   differently on a second run, changing the outcome of 28 orders; in the third, with clean notes, 19 answers and 19
+   orders. Asking 3 or 5 times and taking the majority, or treating disagreement as "unclear", may be a cheap fix; it
+   needs fresh messages.
+8. **Speed under pressure.** Decisions and the hybrid were about 3 to 5 times faster than the ordinary API, but
+   nothing in the simulation waited for a reading. A service where dishes leave on time with whatever is known would
+   show what speed is worth.
 9. **Real people.** Restaurant staff writing or checking a sample of messages is the strongest test of realism, and the
    most expensive.
 
@@ -604,8 +799,13 @@ October 19, from the fresh $4.00 approval for this work: **$3.768** in all, **$0
   run $1.014, the repeat run of the two ordinary API systems $0.591 (from the saved results), plus $0.0016 kept for one
   request the budget record reserved but never settled. The pre-registered projection was about $1.62.
 
+October 19, from a second $4.00 approval for the third test: **$1.587**, **$2.413 left**.
+- "Where allergies hide, and whose they are": $1.587 (10,131 requests): smoke tests $0.007, the test run $0.998, the
+  repeat run of picking options and writing names $0.581, plus about $0.0014 kept for one request the budget record
+  reserved but never settled. The pre-registered projection was about $1.60.
+
 The hybrids needed no requests of their own. October 12: about $1.14. The account's total across this repository's
-history is about $7.32.
+history is about $8.91.
 
 ## Reproduce
 
@@ -621,7 +821,11 @@ python -m defuse.allergy.confirm_run             # "Just ask the guest?": smoke 
 python -m defuse.allergy.confirm_report data/allergy confirm_test     # pre-registered analysis (and ... confirm_test -r2)
 python -m defuse.allergy.confirm_explore data/allergy                 # exploratory causes (and ... data/allergy -r2)
 python -m defuse.allergy.charts data/allergy confirm                   # "Just ask the guest?" chart
-python -m defuse.allergy.render <October 12 root> <cancel-test root> docs/allergy-pass.mp4 <ask-the-guest root>
+python -m defuse.allergy.where_run               # "Where allergies hide": smoke tests, projection, test run, repeat (live)
+python -m defuse.allergy.where_report data/allergy where_test         # pre-registered analysis (and ... where_test -r2)
+python -m defuse.allergy.where_explore data/allergy                   # exploratory breakdowns (and ... data/allergy -r2)
+python -m defuse.allergy.charts data/allergy where                     # "Where allergies hide" chart
+python -m defuse.allergy.render <October 12 root> <cancel-test root> docs/allergy-pass.mp4 <ask-the-guest root> <where root>
 ```
 
 Offline from the evidence archives: see [evidence/README.md](evidence/README.md).

@@ -621,3 +621,11 @@ two systems cost in the test run plus 15%.
    showing one note in all seven places, and a results card), passed to the renderer as a fifth argument. The note
    shown is chosen by a fixed rule, not by any result: the first test clause (C001), as Table 12's own allergy and as
    Table 9's. No test, measure, order or message changed.
+3. **Exploratory analysis and video line, after the results.** Added after the paid run's results were seen, and
+   labelled exploratory wherever reported: `defuse/allergy/where_explore.py`, which lists what each reader answered on
+   the notes it got wrong, Decisions' misses at host reservation notes by form, its probability for "avoid" in each
+   place, and, when the second test's runs (§10) are under the same folder, how often each reader took another
+   table's note there that said "this ticket" (86 of those 226 notes did; §11's notes never do). The video's results
+   card gained a line for the hybrid, and its lines were moved closer together to fit. `where_report.py` (§11.6) was
+   not changed after the run; the primary results are its output on the test run with no tag, and the repeat run's
+   with `-r2`. No test, measure, order or message changed.

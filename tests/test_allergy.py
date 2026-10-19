@@ -410,6 +410,10 @@ def test_where_report_offline(stub, tmp_path):
     assert (tmp_path / 'where.png').stat().st_size > 10000
     assert render.where_card(tmp_path / 'where_dev-report.json').size == (render.W, render.H)
     assert render.where_places_card('where_dev').size == (render.W, render.H)
+    from defuse.allergy import where_explore                  # the exploratory breakdowns read the same files
+    ex = where_explore.explore(tmp_path, 'where_dev')
+    assert sum(ex['decisions']['missed_read_as'].values()) == 7 and (tmp_path / 'where_dev-explore.json').exists()
+    assert 'second_test_other_table_notes' not in ex
 
 
 def test_where_run_offline(stub, tmp_path, monkeypatch):

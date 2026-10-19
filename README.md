@@ -10,6 +10,38 @@ Messages about one order arrive from the server, the guest, the delivery app, th
 the model answers 11 questions per message; code applies US allergen rules (21 U.S.C. 321(qq), FDA guidance 2025),
 the recipes and what is in the fryer oil, and decides every 5 minutes whether each dish may be sent.
 
+### October 19, third test: where allergies hide, and whose they are
+
+Does it matter where an allergy is written down, and can the AI tell whose allergy it is? Blind authors wrote 144
+short allergy notes ("the kid is allergic to peanuts, be careful"). Code put each one in seven places (the server's
+ticket, with the table named only at the top or in the text too; the host stand, plain or as a "Reservation note";
+the manager, plain or as a "Reservation note"; kitchen chat), once as the order's own allergy and once as another
+table's: 1,008 fresh orders, pre-registered. No earlier study doing this was found
+([prior-work search](docs/prior-work-where-2026-10-19.md)).
+
+![Where allergies hide](docs/allergy-where.png)
+
+| 1,008 orders | Own allergy missed (allergen sent) | Another table's taken as this one's (safe food held) | Cost per 1,000 messages | Median time |
+|---|---:|---:|---:|---:|
+| Perfect reading (answer key) | 0 | 0 | | |
+| Decisions | 35, all host-stand reservation notes | 0 | $0.207 | 0.53 s |
+| Ordinary API, picking options | 0 | 1 | $0.181 | 2.88 s |
+| Ordinary API, writing food names | 0 | 17, all server tickets | **$0.107** | 1.88 s |
+| Decisions, unsure answers re-read by picking options | **0** | **0** | $0.221 | 0.55 s |
+
+- **Decisions' blind spot is one kind of note.** It missed 35 of 144 allergies written as a host-stand reservation
+  note, and none of the same 144 notes anywhere else: not from the manager with the same "Reservation note for"
+  words, not at the host stand without them. Every miss read "not mentioned", so the allergen went out.
+- **The fix already in this repository works.** Decisions was unsure about all 35 (probability below 0.9), so
+  re-reading its unsure answers with picking options got every answer of all 2,016 messages right, at Decisions'
+  speed.
+- **"Whose allergy" errors were rare, and only on server tickets.** Writing names took 17 other tables' ticket notes as
+  this order's (13 with the table named only at the top, 4 with it in the text); the pre-registered test of that
+  difference was not significant after correction (p = 0.15). Decisions took none of 1,008, though it took 18 of 226
+  in the second test, whose notes often said "someone on this ticket".
+- **Careful reviewers read all 2,030 messages exactly as the answer key**, so the errors are the AIs', not unclear
+  text.
+
 ### October 19, second test: just ask the guest?
 
 The first October 19 test (below) found that each simple rule fails one way: if anyone may cancel an allergy, a staff
@@ -72,8 +104,9 @@ applied by code to the same AI readings. No earlier study of this question was f
 
 ![Allergy Pass results](docs/allergy-final.png)
 
-Video: [an October 12 order replayed, its results, then one order of each October 19 test under each rule, and their
-results](docs/allergy-pass.mp4) (3 min 41 s, captions in the matching .srt).
+Video: [an October 12 order replayed, its results, then one order of the first two October 19 tests under each rule,
+one note of the third in all seven places, and their results](docs/allergy-pass.mp4) (4 min 13 s, captions in the
+matching .srt).
 
 | 2,087 messages, 3,987 dish checks | Decisions | Ordinary API, picking options | Ordinary API, writing food names |
 |---|---:|---:|---:|
@@ -158,7 +191,8 @@ the numbers above. Every step is in [LAUNCH_RESULTS.md](LAUNCH_RESULTS.md).
 
 Limits: simulations with AI-written messages; unsafe decisions are rare, so safety differences are less certain than
 accuracy differences. Details in each results file. Cost: about $1.14 (Allergy Pass, October 12), $3.77 (Allergy Pass,
-both October 19 tests, of a $4.00 approval) and $2.06 (Launch Window) in API calls, counted conservatively.
+the first two October 19 tests, of a $4.00 approval), $1.59 (the third, of a second $4.00 approval) and $2.06 (Launch
+Window) in API calls, counted conservatively.
 
 ## Repository
 
@@ -191,6 +225,7 @@ mkdir -p /tmp/ev && for f in evidence/*.tar.gz; do tar -xzf $f -C /tmp/ev; done
 python -m defuse.allergy.report /tmp/ev/data/allergy && python -m defuse.allergy.charts /tmp/ev/data/allergy
 python -m defuse.allergy.cancel_report /tmp/ev/data/allergy cancel_test && python -m defuse.allergy.charts /tmp/ev/data/allergy cancel
 python -m defuse.allergy.confirm_report /tmp/ev/data/allergy confirm_test && python -m defuse.allergy.charts /tmp/ev/data/allergy confirm
+python -m defuse.allergy.where_report /tmp/ev/data/allergy where_test && python -m defuse.allergy.charts /tmp/ev/data/allergy where
 python -m defuse.launch.confirm /tmp/ev/data/launch && python -m defuse.launch.charts /tmp/ev/data/launch
 ```
 

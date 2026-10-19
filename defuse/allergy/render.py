@@ -484,8 +484,8 @@ def where_card(report_path):
                 d.rounded_rectangle((cx - 50, y + 2, cx + 50, y + 38), 10, fill=bg)
                 d.text((cx, y + 20), str(v), font=font(18, 'SemiBold'), fill=fg, anchor='mm')
     for k, line in enumerate(where_lines(R)):
-        d.text((64, 614 + k * 28), line, font=font(17), fill=INK if k == 0 else MUTED)
-    d.text((64, 694), 'Pre-registered; blind authors and reviewers. Research simulation, not food-safety advice.',
+        d.text((64, 604 + k * 26), line, font=font(17), fill=INK if k == 0 else MUTED)
+    d.text((64, 698), 'Pre-registered; blind authors and reviewers. Research simulation, not food-safety advice.',
            font=font(14), fill=FAINT)
     return img
 
@@ -494,8 +494,13 @@ def where_lines(R):
     """What the readings did to the orders, in plain words, from the report."""
     names = [('decisions', 'Decisions'), ('responses-options', 'picking options'), ('responses-names', 'writing names')]
     rd = lambda key: ', '.join(f"{R['readers'][s]['orders'][key]['k']} ({lab})" for s, lab in names)
-    return [f"Orders where the allergen was sent: {rd('allergen_sent')} of {R['orders']:,}.",
-            f"Orders where safe food was held or questioned: {rd('safe_food_held')} of {R['orders']:,}."]
+    out = [f"Orders where the allergen was sent: {rd('allergen_sent')} of {R['orders']:,}.",
+           f"Orders where safe food was held or questioned: {rd('safe_food_held')} of {R['orders']:,}."]
+    if 'hybrid' in R['readers']:                      # §11.8 change 3: the hybrid's line, added after the results
+        h = R['readers']['hybrid']['orders']
+        out.append(f"Decisions with its unsure answers re-read by picking options: allergen sent in "
+                   f"{h['allergen_sent']['k']}, safe food held in {h['safe_food_held']['k']}.")
+    return out
 
 
 def where_part(root, sub):
