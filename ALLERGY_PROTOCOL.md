@@ -441,4 +441,13 @@ plus 15%.
 
 ### 10.8 Changes after this pre-registration
 
-None yet.
+1. **Review outcome (§10.4), before any request.** Eight blind reviewers answered all 11 questions for all 2,043 test
+   messages and agreed with the answer key on every answer, including all 240 guests' answers, except CORRECTION on
+   99 of the 120 casual staff messages (83 answered `yes`, 16 `unclear`, 21 agreed with `no`). A fresh second reviewer
+   answered `yes` on all 99, and agreed with the key on every other answer. As §10.4 requires, these messages stay with
+   their key and no message or order is dropped or listed as disputed: CORRECTION plays no part in `confirm` or
+   `guest_only`. It does decide `anyone`: read as the reviewers mostly read it, `anyone` would lift the allergy in all
+   120 casual orders, sending the allergen in 120 of the 120 "yes" orders instead of 60 and holding safe food in none of
+   the "no" orders instead of 60. That is reported beside the `anyone` results as a finding about the casual wording
+   (on the first October 19 test, reviewers mostly said `unclear` to the same wording). Answers in
+   `defuse/allergy/bank/confirm_review_blind.json`.

@@ -1,6 +1,6 @@
 """The §10 paid run, step by step as pre-registered (ALLERGY_PROTOCOL.md §10.5 and §10.7).
 
-    python -m defuse.budget approve --total-usd 1.85 --attempt-requests 12000 --confirm
+    python -m defuse.budget approve --total-usd 1.85 --attempt-requests 14000 --confirm
     OPENAI_API_KEY="$OPENAL_API_KEY" python -m defuse.allergy.confirm_run
 
 1. Smoke tests on the 4 development orders (all systems).
