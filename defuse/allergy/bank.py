@@ -3,12 +3,14 @@
 Authors see only headers and spec lines. Reviewers see only headers, texts and the questions. Neither sees answers."""
 import json
 from pathlib import Path
-from defuse.allergy import sim, rules
+from defuse.allergy import sim, rules, cancel
 
 BANK = Path(__file__).resolve().parent / 'bank'
 SPLITS = {'dev': [1001, 1002], 'hard_dev': [1101, 1102],
-          'test': list(range(2001, 2061)), 'hard_test': list(range(2101, 2161))}
+          'test': list(range(2001, 2061)), 'hard_test': list(range(2101, 2161)),
+          'cancel_dev': cancel.DEV_SEEDS, 'cancel_test': cancel.TEST_SEEDS}       # §9: who can cancel an allergy
 HARD = {'hard_dev', 'hard_test'}
+CANCEL = {'cancel_dev', 'cancel_test'}
 
 
 def header(sc, msg):
@@ -20,7 +22,12 @@ def build(splits=None):
     for split, seeds in SPLITS.items():
         if splits and split not in splits:
             continue
-        (BANK / f'{split}.json').write_text(json.dumps([sim.scenario(s, split, split in HARD) for s in seeds], indent=1))
+        if split in CANCEL:
+            arm = cancel.arm_of()
+            plans = [cancel.scenario(s, split, arm[s]) for s in seeds]
+        else:
+            plans = [sim.scenario(s, split, split in HARD) for s in seeds]
+        (BANK / f'{split}.json').write_text(json.dumps(plans, indent=1))
 
 
 def load(split):
@@ -34,16 +41,17 @@ def load(split):
     excluded = BANK / 'excluded.json'
     ex = json.loads(excluded.read_text()) if excluded.exists() else {}
     dropped = set(ex.get('messages', []))
+    data = [sc for sc in data if sc['id'] not in set(ex.get('scenarios', []))]      # §9.4: whole orders
     for sc in data:
         sc['messages'] = [m for m in sc['messages'] if m['id'] not in dropped]
     return data
 
 
 def authoring_packet(split, seeds, path):
-    data = {sc['id']: sc for sc in json.loads((BANK / f'{split}.json').read_text())}
+    data = {sc['seed']: sc for sc in json.loads((BANK / f'{split}.json').read_text())}
     packet = []
     for seed in seeds:
-        sc = data[f'A{seed}']
+        sc = data[seed]
         packet.append({'scenario': sc['id'], 'order': sc['target'], 'messages': [
             {'id': m['id'], 'header': header(sc, m), 'must_convey': sim.resolve_spec(sc, m)} for m in sc['messages']]})
     Path(path).write_text(json.dumps(packet, indent=1, ensure_ascii=False))
@@ -57,9 +65,9 @@ def review_packet(split, seeds, path):
              'questions': [{'name': n, 'instructions': i, 'options': [{'value': v, 'meaning': d} for v, d in o]}
                            for n, i, o in rules.questions()]}
     items = []
-    by_id = {sc['id']: sc for sc in load(split)}
+    by_seed = {sc['seed']: sc for sc in load(split)}
     for seed in seeds:
-        sc = by_id[f'A{seed}']
+        sc = by_seed[seed]
         for m in sc['messages']:
             items.append({'id': m['id'], 'order': sc['target'], 'header': header(sc, m), 'text': m['text']})
     Path(path).write_text(json.dumps({'guide': guide, 'messages': items}, indent=1, ensure_ascii=False))

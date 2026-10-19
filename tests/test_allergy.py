@@ -106,3 +106,100 @@ def test_saved_scenarios_compute_truth():
         for sc in bank.load(split):
             for t in rules.POLLS:
                 sim.true_decisions(sc, t)
+
+
+def test_exploratory_replay_matches_runner(stub, tmp_path):
+    from defuse.allergy import exploratory
+    runner.run('test', runner.SYSTEMS, tmp_path, endpoint=stub['url'], limit=2)
+    scs, runs = exploratory.load_all(tmp_path)
+    assert set(scs) == {'A2001', 'A2002'}
+    for s, by in runs.items():
+        for sid, r in by.items():
+            got = exploratory.replay(scs[sid], {m: e['answers'] for m, e in r['extractions'].items()},
+                                     exploratory.overrides(r), r['key'], exploratory.overrides(r, 'correct'))
+            assert got == [(p['S'][d], p['J'][d], p['T'][d]) for p in r['polls'] for d in scs[sid]['dishes']]
+    single = exploratory.single_mention(scs, runs)
+    assert single['oracle']['false_clears'] == 0 and single['oracle']['missed_sole_mention'] == 0
+    h = exploratory.hybrid(scs, runs, 0.0, 'options')     # nothing below 0: Decisions alone
+    assert h['messages_sent_on'] == 0 and h['false_clears'] == runner.score(list(runs['decisions'].values()))['false_clears']
+
+
+def test_cancel_rules():
+    def status(*msgs, rule):
+        ms = [{'id': f'm{i}', 'minute': i, 'source': src} for i, (src, _) in enumerate(msgs)]
+        return rules.restrictions(ms, {f'm{i}': a for i, (_, a) in enumerate(msgs)}, [], 99, rule)['MILK']
+    guest_avoid, fix = ('GUEST', blank(MILK='avoid')), blank(MILK='ok', CORRECTION='yes')
+    for rule, server_fix, guest_fix in (('anyone', 'none', 'none'), ('guest_only', 'avoid', 'none'),
+                                        ('same_sender', 'avoid', 'none')):
+        assert status(guest_avoid, ('SERVER', fix), rule=rule) == server_fix
+        assert status(guest_avoid, ('GUEST', fix), rule=rule) == guest_fix
+    assert status(('SERVER', blank(MILK='avoid')), ('SERVER', fix), rule='same_sender') == 'none'
+    assert status(('SERVER', blank(MILK='unclear')), ('KITCHEN', blank(MILK='ok')), rule='guest_only') == 'unclear'
+    assert status(('SERVER', blank(MILK='unclear')), ('KITCHEN', blank(MILK='ok')), rule='anyone') == 'none'
+
+
+def test_cancel_plans():
+    from collections import Counter
+    from defuse.allergy import cancel
+    arm = cancel.arm_of()
+    assert Counter(arm[s] for s in cancel.TEST_SEEDS) == Counter(cancel.ARMS)
+    for seed in cancel.DEV_SEEDS + cancel.TEST_SEEDS:
+        sc = cancel.scenario(seed, 'x', arm[seed])
+        x = sc['allergen']
+        assert sum('mention' in m['tags'] for m in sc['messages']) == 1
+        assert [m['id'] for m in sc['messages'] if m['answers'][x] == 'avoid'] == \
+               [m['id'] for m in sc['messages'] if 'mention' in m['tags']]
+        assert any(x in rules.dish_allergens(d, rules.FRYER_DEFAULT) for d in sc['dishes'])
+        assert (x in sc['restricted']) == (sc['arm'] in ('control', 'staff_wrong_correction', 'staff_soft'))
+        lift = [m for m in sc['messages'] if 'lift' in m['tags']]
+        assert len(lift) == (sc['arm'] != 'control')
+        if sc['arm'] == 'staff_fixes_own':
+            assert lift[0]['source'] == sc['mention_source']
+
+
+def test_cancel_report_offline(stub, tmp_path):
+    import json
+    from defuse.allergy import cancel, cancel_report, bank
+    arm = cancel.arm_of()
+    scs = [cancel.scenario(s, 'cancel_dev', arm[s]) for s in cancel.DEV_SEEDS]
+    for sc in scs:
+        for m in sc['messages']:
+            m['text'] = ' '.join(m['spec'])
+    ex = runner.make_extractors(tmp_path, endpoint=stub['url'])
+    (tmp_path / 'cancel_dev').mkdir()
+    for s in runner.SYSTEMS:
+        res = [runner.run_scenario(sc, s, ex) for sc in scs]
+        (tmp_path / 'cancel_dev' / f'{s}.json').write_text(json.dumps({'results': res}))
+    out = cancel_report.analyse(tmp_path, 'cancel_dev')
+    oracle = out['readers']['oracle']['rules']
+    assert oracle['anyone']['by_arm']['staff_wrong_correction']['unsafe'] == 1
+    assert oracle['guest_only']['all']['unsafe'] == 0
+    assert oracle['guest_only']['by_arm']['staff_fixes_own']['needless'] == 1
+    assert 'hybrid' in out['readers'] and set(out['tests']) == {'reading_changes_outcome', 'rules_by_arm_descriptive', 'mention_missed', 'soft_read_as_correction', 'hybrid'}
+    from defuse.allergy import charts, render                 # the chart, the video card and a truth-mode frame draw
+    charts.cancel(tmp_path, tmp_path / 'cancel.png', 'cancel_dev')
+    assert (tmp_path / 'cancel.png').stat().st_size > 10000
+    assert render.cancel_card(tmp_path / 'cancel_dev-report.json').size == (render.W, render.H)
+    sc = next(s for s in bank.load('cancel_dev') if s['arm'] == 'staff_wrong_correction')
+    run = json.loads((tmp_path / 'cancel_dev' / 'oracle.json').read_text())['results']
+    run = next(r for r in run if r['scenario'] == sc['id'])
+    assert render.system_state(sc, run, 60, 'anyone')[0] != render.system_state(sc, run, 60, 'guest_only')[0]
+    assert render.frame(sc, [(lab, run, rule) for rule, lab in render.RULE_LABELS], None, 60, [[0, 0]] * 3, True).size == (render.W, render.H)
+
+
+def test_cancel_run_offline(stub, tmp_path, monkeypatch):
+    from defuse.allergy import cancel_run, bank
+    from defuse.budget import Budget
+    load = bank.load
+    monkeypatch.setattr(bank, 'load', lambda split: load(split)[:2])      # two orders per split keeps this quick
+    monkeypatch.chdir(tmp_path)
+    Budget().approve(4.00, attempt_requests=20000, confirm=True)
+    monkeypatch.setattr(cancel_run, 'ROOT', tmp_path / 'data' / 'allergy')
+    monkeypatch.setattr(cancel_run, 'ENDPOINT', stub['url'])
+    cancel_run.main()
+    for tag in ('', '-r2'):
+        assert (tmp_path / 'data' / 'allergy' / 'cancel_test' / f'decisions{tag}.json').exists()
+    from defuse.allergy import cancel_report                  # §9.6 (f): the stub answers the same way twice
+    rep = cancel_report.repeat(tmp_path / 'data' / 'allergy', 'cancel_test')
+    assert rep['decisions']['answers_changed']['k'] == 0 and rep['decisions']['messages_changed']['n'] == sum(
+        len(sc['messages']) for sc in bank.load('cancel_test'))

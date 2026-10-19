@@ -1,0 +1,5 @@
+budget {"accounted_usd": "0", "remaining_usd": "4.00"}
+smoke: $0.0163 for 33 messages; errors {'decisions': 0, 'responses-options': 0, 'responses-names': 0}; projected one run $1.060
+test run errors {'decisions': 0, 'responses-options': 0, 'responses-names': 0} cost so far 1.0819051
+repeat run errors {'decisions': 0, 'responses-options': 0, 'responses-names': 1}
+final budget {"accounted_usd": "2.1461399", "remaining_usd": "1.8538601", "requests": 13047}

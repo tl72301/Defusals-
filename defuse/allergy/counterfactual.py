@@ -5,7 +5,7 @@ from defuse.allergy import rules, bank
 from defuse.allergy.report import load
 
 
-def trusting(messages, answers, overrides, t):
+def trusting(messages, answers, overrides, t, rule=None):
     status = {a: 'none' for a in rules.ALLERGENS}
     for _, a in rules.effective_answers(messages, answers, overrides, t):
         for x in rules.ALLERGENS:

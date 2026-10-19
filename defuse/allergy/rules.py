@@ -103,23 +103,38 @@ def effective_answers(messages, answers, overrides, t):
     return [(m, eff[m['id']]) for m in order]
 
 
-def restrictions(messages, answers, overrides, t):
+CUSTOMER = {'GUEST', 'APP'}           # the guest's own side: their texts and their delivery-app notes
+RULES = {'anyone': 'any clear correction cancels an allergy (the October 12 rule)',
+         'guest_only': 'anyone can add an allergy; only the guest can take one away',
+         'same_sender': 'only the guest, or whoever first stated the allergy, can take it away'}
+
+
+def restrictions(messages, answers, overrides, t, rule='anyone'):
     """Each allergen's status for the order at time t: 'avoid', 'unclear' or 'none'.
 
     Statements are applied in time order. 'avoid' always applies. 'unclear' applies unless the allergen is already to be
     avoided. 'ok' clears an 'unclear', but lifts an 'avoid' only in a message that explicitly corrects an earlier one
-    (CORRECTION = yes): an unexplained reversal is not trusted."""
+    (CORRECTION = yes): an unexplained reversal is not trusted.
+
+    rule (ALLERGY_PROTOCOL.md §9) decides whose 'ok' counts at all, using the sender code knows from the message header:
+    'anyone' (the original rule), 'guest_only' (only the guest's side) or 'same_sender' (the guest's side, or the sender
+    who first stated that allergen). Messages need a 'source' for the last two."""
     status = {a: 'none' for a in ALLERGENS}
-    for _, a in effective_answers(messages, answers, overrides, t):
+    first = {}
+    for m, a in effective_answers(messages, answers, overrides, t):
         correction = a.get('CORRECTION') == 'yes'
+        src = m.get('source')
         for x in ALLERGENS:
             v = a.get(x, 'not_mentioned')
+            if v in ('avoid', 'unclear') and status[x] == 'none':
+                first[x] = src
             if v == 'avoid':
                 status[x] = 'avoid'
             elif v == 'unclear' and status[x] != 'avoid':
                 status[x] = 'unclear'
             elif v == 'ok' and (status[x] != 'avoid' or correction):
-                status[x] = 'none'
+                if rule == 'anyone' or src in CUSTOMER or (rule == 'same_sender' and src == first.get(x)):
+                    status[x] = 'none'
     return status
 
 
@@ -159,8 +174,8 @@ def decide(dish, status, oil, oil_unknown):
     return SEND
 
 
-def decisions(dishes, messages, answers, overrides, t):
-    status = restrictions(messages, answers, overrides, t)
+def decisions(dishes, messages, answers, overrides, t, rule='anyone'):
+    status = restrictions(messages, answers, overrides, t, rule)
     oil, unknown = fryer(messages, answers, overrides, t)
     return {d: decide(d, status, oil, unknown) for d in dishes}, status, sorted(oil), unknown
 

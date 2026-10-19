@@ -134,3 +134,155 @@ key, otherwise it is dropped (listed in `defuse/allergy/bank/excluded.json`). Sc
 3. **One post-hoc check, after the results (not pre-registered).** No system sent an unsafe dish, so I measured how much
    of that came from the code's rule that an unexplained "it's fine" never lifts a restriction: the same readings were
    replayed with a rule that trusts every "it's fine" (`defuse/allergy/counterfactual.py`). Reported as exploratory.
+4. **Exploratory reanalysis, October 19 (not pre-registered).** Four independent reviews of the design, and a free
+   replay of the archived readings: accuracy on answers where something was said, outcomes per order, errors per
+   trap, Decisions-first hybrid policies, single-mention replays and how much the rule leans on the correction
+   question (`defuse/allergy/exploratory.py`). It reuses the test set, so it is reported as exploratory and motivates
+   §9 rather than confirming anything.
+
+## 9. Who can cancel an allergy? Pre-registration of October 19, 2026
+
+Committed before any message text for this test existed, after the reanalysis in §8 change 4 and a search for similar
+published work. Everything not stated here is as in §1 to §7: the same menu, definitions, 11 questions, prompts,
+systems, clarification rule and delay, and pass checks. Code: `defuse/allergy/cancel.py` (plans),
+`rules.restrictions(..., rule)` (the rules), `defuse/allergy/cancel_report.py` (this analysis).
+
+**Prior work.** A search on October 19 (44 queries across GitHub, arXiv, blogs and portfolios; report in
+[docs/prior-work-2026-10-19.md](docs/prior-work-2026-10-19.md)) found no study of who may cancel a stated allergy, and
+none comparing cancel rules on fixed model readings. Nearest: OrderBench (single restaurant-order messages, code-free
+scoring of unsafe acceptances), Risky-Bench (an injected "ignore the allergy flag" attack on a delivery agent), a study
+of an allergy mentioned once surviving memory compression, and untested 0.9-probability fallbacks offered for the
+Decisions API.
+
+### 9.1 Question
+
+When an allergy has been stated once and someone later says that food is fine, which rule keeps people safe at the
+lowest cost, and does the reading model change the answer? The October 12 test could not say: every allergy was
+repeated, every false reassurance was worded plainly, and the code let any message worded as a correction cancel an
+allergy, whoever sent it.
+
+### 9.2 Three rules, applied by code to the same readings
+
+| Rule | When an "it's fine" (`ok`) counts |
+|---|---|
+| `anyone` (the October 12 rule) | from any sender; it lifts an `avoid` only with CORRECTION `yes` |
+| `guest_only` | only from the guest's own side (their texts and their delivery-app notes); same correction condition |
+| `same_sender` (secondary) | from the guest's side, or from the sender who first stated that allergy |
+
+Under `guest_only` and `same_sender` a staff `ok` also no longer clears an `unclear`. The sender is the message header's
+source, which code knows; the model is not asked about it.
+
+### 9.3 Orders
+
+300 test orders (seeds 3101–3400) and 5 development orders (3001–3005, one per arm, smoke tests only). One allergen per
+order, stated in exactly one message: the order note (about half), a guest text, or a host or manager note. Each order
+has 3 or 4 dishes, one or two of which contain that allergen. Distractors: two other orders' allergies, a relative who
+is not eating (half the orders), kitchen chatter, a routine note about this order, and fryer news (40%). Arms, assigned
+by a fixed shuffle:
+
+| Arm | Orders | What happens between minute 12 and 35 | Truth | Answer key for that message |
+|---|---:|---|---|---|
+| control | 60 | nothing more about the allergen | allergy | – |
+| guest_takes_back | 40 | the guest explicitly takes back their own mistaken allergy | no allergy | `ok`, CORRECTION `yes` |
+| staff_fixes_own | 40 | the staff member who wrote the allergy explicitly corrects it | no allergy | `ok`, CORRECTION `yes` |
+| staff_wrong_correction | 40 | a staff member explicitly "corrects" it, wrongly (half the time the same sender) | allergy | `ok`, CORRECTION `yes` |
+| staff_soft | 120 | a staff member casually says it is fine ("actually…", "turns out…"), banned from correction words | allergy | `ok`, CORRECTION `no` |
+
+staff_fixes_own and staff_wrong_correction use identical "must convey" lines, so the text cannot tell them apart. With
+the answer key's readings the rules give, by construction: `anyone` sends the allergen in all 40 wrong corrections;
+`guest_only` sends none and holds the dish needlessly in all 40 staff self-fixes; `same_sender` sends it in the wrong
+corrections that came from the original sender. What the test measures is whether real readings change that picture:
+a missed single mention (unsafe under every rule), a casual reassurance read as a correction (unsafe under `anyone`), or
+a genuine take-back misread (a needless hold under every rule).
+
+### 9.4 Messages
+
+As in §5: separate blind author agents write each message from its plan; separate blind reviewers answer the 11
+questions from the text alone; a disagreement goes to a fresh second reviewer and the message is dropped unless that
+reviewer agrees with the key. If review drops more than 15% of an arm's cancel messages, that arm is reported with the
+drop rate as a finding (its wording is ambiguous to careful readers too). Dropped single mentions or cancel messages
+drop their whole order, because the order then tests nothing.
+
+### 9.5 Systems and runs
+
+The three model systems of §6, unchanged, plus the parser and the answer key. One more policy, scored from the saved
+answers at no extra cost: **hybrid** = Decisions first; any answer whose top probability is below **0.9** (the Launch
+Window cut, fixed here before any data) is replaced by the ordinary API's (picking options) answer to the same
+question. The hybrid's cost counts the second reading for every message that needed one; its time adds that reading's
+time.
+
+Two runs: the full test set once, then a repeat of all three model systems with a separate cache (`--tag -r2`) to
+measure run-to-run change. The first run is the result; the repeat is reported beside it.
+
+### 9.6 Analysis (pre-registered)
+
+Outcomes per order, against the hidden truth, at the pass checks from the cancel message's minute on (every check in
+control orders): **unsafe** = any dish sent that the truth says hold or ask; **needless stop** = any dish held or sent
+back to ask that the truth says send.
+
+- **Primary.** For each model system, `anyone` against `guest_only` on its own readings, paired by order: orders unsafe
+  and orders with a needless stop, exact two-sided McNemar, Holm over the 6 tests, α = 0.05. Expected direction:
+  `guest_only` fewer unsafe orders and more needless stops.
+- **Secondary.** (a) Single mentions read as neither `avoid` nor `unclear` (missed), by system and by where it was
+  stated; pairwise exact McNemar, Holm over 3. (b) staff_soft cancel messages read as CORRECTION `yes`, by system;
+  same test. (c) Hybrid against Decisions and against picking options on the answers whose key is not
+  `not_mentioned`, paired; Holm over 2; plus cost per 1,000 messages and median and 90th-percentile time. (d) Each
+  arm's outcomes under all three rules, and the parser and answer key as references. (e) Factual accuracy, accuracy
+  where something was said, messages with every answer right. (f) Answers that changed between the two runs.
+- Every rate with its denominator and a Wilson 95% interval.
+
+### 9.7 Budget
+
+A fresh approval of **$4.00** for this work, separate from the about $3.55 spent before, set in `defuse/budget.py`;
+every paid request goes through it. Request sizes project about $1.20 per full run of the three systems on about 2,145
+messages, clarifications included, plus about $0.02 for the smoke tests. If the smoke tests project more than $1.80 per
+run, the repeat run is dropped; if they project more than $3.50 for one run, staff_soft orders are removed from the end
+of the seed list until one run fits under $3.50. The gate refuses any request that would pass the cap.
+
+### 9.8 Changes after this pre-registration
+
+Amendments 1 to 7 were made on October 19 after an independent read-only review of §9 (which saw no plan answers or
+message text), while the authors were writing; before I or any reviewer had read a message text and before any request.
+
+1. **Primary changed.** With perfect reading the rule-against-rule comparison is settled by the arm design (§9.3: 40
+   to 0 both ways), so it cannot fail. Primary is now what §9.1 asks: for each model system and rule (`anyone`,
+   `guest_only`), the orders whose outcome (unsafe, needless stop) differs from the answer key's under the same rule;
+   pairwise between the three systems, exact McNemar, Holm over the 6 tests. The rule-against-rule tests become
+   descriptive.
+2. **Disputed cancel messages are kept.** A careful reader may call a staff "actually, it's fine" a correction, and
+   dropping such messages would remove exactly the cases staff_soft is about. A cancel message whose reviewers
+   disagree with the key stays in the test with its plan-defined key and is listed as disputed; results are reported
+   with and without the orders that contain one, and the reviewers' own CORRECTION `yes` rate per arm is reported as a
+   finding. Other messages follow §5 (a dropped single mention drops its order).
+3. **No pooled winner.** Rules are compared per arm. The arm sizes are a design choice, so a pooled count of unsafe
+   orders against needless stops would only reflect them.
+4. **Nulls.** If a measure is 0 against 0 (likely for missed single mentions: all 72 single-mention allergies on
+   October 12 were read), it is reported as "none seen" with its upper bound (0 of 300 is at most 1.3%), not as equal.
+5. **"Same sender" means the same role** (server, host, manager, kitchen, guest side): code knows the role, not the
+   person.
+6. **Checks before the cancel message are not scored in the four cancel arms.** A missed single mention still shows
+   from the cancel minute on.
+7. **The hybrid's assumed replies are counted.** Where the run that gave an `unclear` never asked, the reply is assumed
+   read correctly; that count is printed beside the hybrid's results.
+8. **Review outcome (§9.4 as amended).** Eight blind reviewers answered all 11 questions for all 2,145 test messages and
+   agreed with the answer key on every answer of the 2,025 messages outside staff_soft. On all 120 staff_soft cancel
+   messages they disagreed on CORRECTION only: 75 `unclear`, 45 `yes`, none `no`. A fresh second reviewer answered
+   `unclear` on all 120. As amendment 2 requires, they stay in the test as disputed, with the plan's key; no message or
+   order is dropped. Under every rule `no` and `unclear` keep the allergy and only `yes` can lift it, so this dispute
+   changes no justified decision. Answers in `defuse/allergy/bank/cancel_review_blind.json`.
+9. **Run driver.** `python -m defuse.allergy.cancel_run` performs §9.5 and §9.7 in order (smoke tests, projection,
+   test run, repeat run if allowed); it adds no new rule.
+10. **Descriptive additions to the report, made while the paid run was in progress and before any of its results were
+    read.** For the chart and the video card, `cancel_report.py` also lists each reader's full CORRECTION answers (yes,
+    no, unclear) on each arm's cancel messages, and the blind reviewers' answers on the same messages as a reference.
+    No test, outcome or rule changed.
+11. **Analysis fixes after the run (October 19, after the results were first printed).** Three bugs in
+    `cancel_report.py`, none changing a test, outcome or rule: (a) the report without disputed orders computed accuracy
+    and cost over all 300 orders instead of the 180 it kept (its outcome tests were already right); (b) the repeat-run
+    report looked for answer-key and parser files with the repeat tag, which do not exist, so its primary tests were
+    missing; it now uses the single answer key and parser; (c) §9.6 (f), answers that changed between the two runs, was
+    pre-registered but not yet coded; it is now (`repeat()`, written to `cancel_test-r2-repeat.json`).
+12. **Run outcome.** Smoke tests projected $1.06 per run, so the repeat run went ahead. One request failed (writing
+    names, repeat run, one message: an unusable answer); its fallback stands as its answer, as for every system. The
+    budget record holds one Decisions reservation that was never settled and matches no saved result; it is counted at
+    its full reserved cost ($0.0015) in the reported total.
