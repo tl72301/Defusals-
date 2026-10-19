@@ -264,3 +264,11 @@ message text), while the authors were writing; before I or any reviewer had read
    from the cancel minute on.
 7. **The hybrid's assumed replies are counted.** Where the run that gave an `unclear` never asked, the reply is assumed
    read correctly; that count is printed beside the hybrid's results.
+8. **Review outcome (§9.4 as amended).** Eight blind reviewers answered all 11 questions for all 2,145 test messages and
+   agreed with the answer key on every answer of the 2,025 messages outside staff_soft. On all 120 staff_soft cancel
+   messages they disagreed on CORRECTION only: 75 `unclear`, 45 `yes`, none `no`. A fresh second reviewer answered
+   `unclear` on all 120. As amendment 2 requires, they stay in the test as disputed, with the plan's key; no message or
+   order is dropped. Under every rule `no` and `unclear` keep the allergy and only `yes` can lift it, so this dispute
+   changes no justified decision. Answers in `defuse/allergy/bank/cancel_review_blind.json`.
+9. **Run driver.** `python -m defuse.allergy.cancel_run` performs §9.5 and §9.7 in order (smoke tests, projection,
+   test run, repeat run if allowed); it adds no new rule.

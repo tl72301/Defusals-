@@ -176,3 +176,17 @@ def test_cancel_report_offline(stub, tmp_path):
     assert oracle['guest_only']['all']['unsafe'] == 0
     assert oracle['guest_only']['by_arm']['staff_fixes_own']['needless'] == 1
     assert 'hybrid' in out['readers'] and set(out['tests']) == {'reading_changes_outcome', 'rules_by_arm_descriptive', 'mention_missed', 'soft_read_as_correction', 'hybrid'}
+
+
+def test_cancel_run_offline(stub, tmp_path, monkeypatch):
+    from defuse.allergy import cancel_run, bank
+    from defuse.budget import Budget
+    load = bank.load
+    monkeypatch.setattr(bank, 'load', lambda split: load(split)[:2])      # two orders per split keeps this quick
+    monkeypatch.chdir(tmp_path)
+    Budget().approve(4.00, attempt_requests=20000, confirm=True)
+    monkeypatch.setattr(cancel_run, 'ROOT', tmp_path / 'data' / 'allergy')
+    monkeypatch.setattr(cancel_run, 'ENDPOINT', stub['url'])
+    cancel_run.main()
+    for tag in ('', '-r2'):
+        assert (tmp_path / 'data' / 'allergy' / 'cancel_test' / f'decisions{tag}.json').exists()
