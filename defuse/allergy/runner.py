@@ -15,12 +15,13 @@ LABEL = {'oracle': 'Answer key', 'parser': 'Keyword parser', 'decisions': 'Decis
          'responses-options': 'Ordinary API, choosing options', 'responses-names': 'Ordinary API, writing food names'}
 
 
-def make_extractors(root, endpoint=None, budget=None):
+def make_extractors(root, endpoint=None, budget=None, tag=''):
+    """tag gives a repeat run its own cache, so every request is sent again (ALLERGY_PROTOCOL.md §9.5)."""
     rurl = endpoint and endpoint.replace('decisions', 'responses')
     return {'parser': ParserExtractor(),
-            'decisions': DecisionsExtractor(root, endpoint=endpoint, budget=budget),
-            'responses-options': ResponsesExtractor(root, 'none', endpoint=rurl, budget=budget),
-            'responses-names': NamesResponsesExtractor(root, 'none', endpoint=rurl, budget=budget)}
+            'decisions': DecisionsExtractor(root, endpoint=endpoint, budget=budget, tag=tag),
+            'responses-options': ResponsesExtractor(root, 'none', endpoint=rurl, budget=budget, tag=tag),
+            'responses-names': NamesResponsesExtractor(root, 'none', endpoint=rurl, budget=budget, tag=tag)}
 
 
 def run_scenario(sc, system, extractors):
@@ -72,18 +73,18 @@ def prefetch(scenarios, systems, extractors, workers=6):
         list(pool.map(lambda j: j[0](j[1]['target'], bank.header(j[1], j[2]), j[2]['text']), jobs))
 
 
-def run(split, systems, root='data/allergy', endpoint=None, budget=None, workers=6, limit=None):
+def run(split, systems, root='data/allergy', endpoint=None, budget=None, workers=6, limit=None, tag=''):
     root = Path(root)
     out = root / split
     out.mkdir(parents=True, exist_ok=True)
-    extractors = make_extractors(root, endpoint, budget)
+    extractors = make_extractors(root, endpoint, budget, tag)
     scenarios = bank.load(split)[:limit] if limit else bank.load(split)
     prefetch(scenarios, systems, extractors, workers)
     summary = {}
     for system in systems:
         started = time.time()
         results = [run_scenario(sc, system, extractors) for sc in scenarios]
-        (out / f'{system}.json').write_text(json.dumps({'system': system, 'split': split, 'seconds': round(time.time() - started, 1),
+        (out / f'{system}{tag}.json').write_text(json.dumps({'system': system, 'split': split, 'seconds': round(time.time() - started, 1),
                                                          'results': results}, ensure_ascii=False))
         summary[system] = score(results)
     return summary

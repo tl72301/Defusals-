@@ -13,12 +13,13 @@ def main(argv=None):
     r.add_argument('--root', default='data/allergy')
     r.add_argument('--limit', type=int, help='first N scenarios only (smoke tests)')
     r.add_argument('--endpoint')
+    r.add_argument('--tag', default='', help='repeat run: its own cache and result files, e.g. -r2')
     sub.add_parser('build')
     a = p.parse_args(argv)
     if a.cmd == 'build':
         bank.build()
     else:
-        for s, v in runner.run(a.split, a.systems, a.root, a.endpoint, limit=a.limit).items():
+        for s, v in runner.run(a.split, a.systems, a.root, a.endpoint, limit=a.limit, tag=a.tag).items():
             print(s, json.dumps(v))
 
 

@@ -1,0 +1,1069 @@
+[
+ {
+  "id": "C3001",
+  "seed": 3001,
+  "split": "cancel_dev",
+  "hard": true,
+  "profile": "control",
+  "arm": "control",
+  "start": [
+   18,
+   30
+  ],
+  "target": "delivery order #4493",
+  "delivery": true,
+  "dishes": [
+   "Fish and chips",
+   "Caesar salad",
+   "Pesto pasta",
+   "Lobster roll"
+  ],
+  "allergen": "FISH",
+  "restricted": {
+   "FISH": 0
+  },
+  "fryer_events": [],
+  "traps": [
+   "control"
+  ],
+  "lift_minute": null,
+  "mention": "order",
+  "mention_source": "APP",
+  "messages": [
+   {
+    "minute": 0,
+    "source": "APP",
+    "label": "Delivery app, order note for delivery order #4493",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "avoid",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "delivery order #4493 has just placed their order (do not name the dishes)",
+     "the customer can't have any salmon (use the word \"salmon\")"
+    ],
+    "tags": [
+     "hard_word",
+     "mention",
+     "order"
+    ],
+    "true": {
+     "FISH": "avoid"
+    },
+    "id": "C3001-01"
+   },
+   {
+    "minute": 12,
+    "source": "GUEST",
+    "label": "Customer, app chat for delivery order #4493",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "asks how long until the mains are ready (no allergy or fryer information)"
+    ],
+    "tags": [
+     "order_chatter"
+    ],
+    "true": {},
+    "id": "C3001-02"
+   },
+   {
+    "minute": 19,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "the guest at Table 11 can't have any prawns (use the word \"prawns\") (this is about Table 11, not delivery order #4493; do not mention delivery order #4493)"
+    ],
+    "tags": [
+     "other_table"
+    ],
+    "true": {},
+    "id": "C3001-03"
+   },
+   {
+    "minute": 25,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "the customer on order #4204 must avoid fish (use the word \"fish\") (this is about order #4204, not delivery order #4493; do not mention delivery order #4493)"
+    ],
+    "tags": [
+     "other_table"
+    ],
+    "true": {},
+    "id": "C3001-04"
+   },
+   {
+    "minute": 32,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "routine kitchen chatter with no allergy or fryer information: someone restock the to-go boxes"
+    ],
+    "tags": [
+     "chatter"
+    ],
+    "true": {},
+    "id": "C3001-05"
+   },
+   {
+    "minute": 33,
+    "source": "GUEST",
+    "label": "Customer, app chat for delivery order #4493",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "my brother must avoid eggs (use the word \"eggs\"), but my brother is not eating with us tonight and is not eating anything from this order (say so clearly)"
+    ],
+    "tags": [
+     "scope"
+    ],
+    "true": {},
+    "id": "C3001-06"
+   }
+  ]
+ },
+ {
+  "id": "C3002",
+  "seed": 3002,
+  "split": "cancel_dev",
+  "hard": true,
+  "profile": "guest_takes_back",
+  "arm": "guest_takes_back",
+  "start": [
+   19,
+   50
+  ],
+  "target": "Table 22",
+  "delivery": false,
+  "dishes": [
+   "Peanut noodles",
+   "Garden salad with tahini dressing",
+   "Steak frites",
+   "Tofu rice bowl"
+  ],
+  "allergen": "SOY",
+  "restricted": {},
+  "fryer_events": [
+   [
+    39,
+    "fresh"
+   ]
+  ],
+  "traps": [
+   "guest_takes_back"
+  ],
+  "lift_minute": 20,
+  "mention": "order",
+  "mention_source": "SERVER",
+  "messages": [
+   {
+    "minute": 0,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 22",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "avoid",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "Table 22 has just placed their order (do not name the dishes)",
+     "the guest at Table 22 can't have any soy (use the word \"soy\")"
+    ],
+    "tags": [
+     "mention",
+     "order",
+     "plain_word"
+    ],
+    "true": {
+     "SOY": "ok"
+    },
+    "id": "C3002-01"
+   },
+   {
+    "minute": 20,
+    "source": "GUEST",
+    "label": "Guest at Table 22, text to the restaurant",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "ok",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "yes"
+    },
+    "spec": [
+     "this explicitly takes back what was said earlier about soy (say so plainly, e.g. \"scratch that\", \"ignore what I said\" or \"my mistake\"): nobody eating this order is allergic to soy; soy is fine for Table 22 after all"
+    ],
+    "tags": [
+     "guest_takes_back",
+     "lift"
+    ],
+    "true": {
+     "SOY": "ok"
+    },
+    "id": "C3002-02"
+   },
+   {
+    "minute": 37,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 22",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "says they would like the check with dessert (no allergy or fryer information)"
+    ],
+    "tags": [
+     "order_chatter"
+    ],
+    "true": {},
+    "id": "C3002-03"
+   },
+   {
+    "minute": 39,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "fresh",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "fresh oil just went into the fries fryer; nothing else has been fried in it"
+    ],
+    "tags": [
+     "fryer"
+    ],
+    "true": {
+     "FRYER": "fresh"
+    },
+    "id": "C3002-04"
+   },
+   {
+    "minute": 42,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "routine kitchen chatter with no allergy or fryer information: we are out of the mango sorbet tonight"
+    ],
+    "tags": [
+     "chatter"
+    ],
+    "true": {},
+    "id": "C3002-05"
+   },
+   {
+    "minute": 49,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "the guest at Table 13 must avoid edamame (use the word \"edamame\") (this is about Table 13, not Table 22; do not mention Table 22)"
+    ],
+    "tags": [
+     "other_table"
+    ],
+    "true": {},
+    "id": "C3002-06"
+   },
+   {
+    "minute": 54,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 12",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "one diner must avoid hazelnuts (use the word \"hazelnuts\") (this note is attached to another ticket, named in the header; do not mention any other table)"
+    ],
+    "tags": [
+     "other_table",
+     "other_ticket"
+    ],
+    "true": {},
+    "id": "C3002-07"
+   }
+  ]
+ },
+ {
+  "id": "C3003",
+  "seed": 3003,
+  "split": "cancel_dev",
+  "hard": true,
+  "profile": "staff_fixes_own",
+  "arm": "staff_fixes_own",
+  "start": [
+   18,
+   30
+  ],
+  "target": "Table 17",
+  "delivery": false,
+  "dishes": [
+   "Vegetable curry with coconut milk",
+   "Lobster roll",
+   "Grilled salmon with rice",
+   "Pesto pasta"
+  ],
+  "allergen": "SHELLFISH",
+  "restricted": {},
+  "fryer_events": [],
+  "traps": [
+   "staff_fixes_own"
+  ],
+  "lift_minute": 24,
+  "mention": "note",
+  "mention_source": "HOST",
+  "messages": [
+   {
+    "minute": 0,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 17",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "Table 17 has just placed their order (do not name the dishes)",
+     "say nothing about allergies"
+    ],
+    "tags": [
+     "order"
+    ],
+    "true": {},
+    "id": "C3003-01"
+   },
+   {
+    "minute": 7,
+    "source": "HOST",
+    "label": "Host stand",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "avoid",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "reservation note for Table 17: the guest at Table 17 is allergic to crayfish (use the word \"crayfish\")"
+    ],
+    "tags": [
+     "hard_word",
+     "host",
+     "mention"
+    ],
+    "true": {
+     "SHELLFISH": "ok"
+    },
+    "id": "C3003-02"
+   },
+   {
+    "minute": 24,
+    "source": "HOST",
+    "label": "Host stand",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "ok",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "yes"
+    },
+    "spec": [
+     "this explicitly corrects an earlier note about Table 17 (say so plainly, e.g. \"correction\" or \"scratch that\"): shellfish is fine for Table 17 after all (do not give a reason)"
+    ],
+    "tags": [
+     "lift",
+     "staff_fixes_own"
+    ],
+    "true": {
+     "SHELLFISH": "ok"
+    },
+    "id": "C3003-03"
+   },
+   {
+    "minute": 27,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 26",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "the guest has a edamame allergy (use the word \"edamame\") (this note is attached to another ticket, named in the header; do not mention any other table)"
+    ],
+    "tags": [
+     "other_table",
+     "other_ticket"
+    ],
+    "true": {},
+    "id": "C3003-04"
+   },
+   {
+    "minute": 33,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 12",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "the guest is allergic to cod (use the word \"cod\") (this note is attached to another ticket, named in the header; do not mention any other table)"
+    ],
+    "tags": [
+     "other_table",
+     "other_ticket"
+    ],
+    "true": {},
+    "id": "C3003-05"
+   },
+   {
+    "minute": 38,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "routine kitchen chatter with no allergy or fryer information: the grill station is backed up about five minutes"
+    ],
+    "tags": [
+     "chatter"
+    ],
+    "true": {},
+    "id": "C3003-06"
+   },
+   {
+    "minute": 47,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 17",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "asks how long until the mains are ready (no allergy or fryer information)"
+    ],
+    "tags": [
+     "order_chatter"
+    ],
+    "true": {},
+    "id": "C3003-07"
+   }
+  ]
+ },
+ {
+  "id": "C3004",
+  "seed": 3004,
+  "split": "cancel_dev",
+  "hard": true,
+  "profile": "staff_wrong_correction",
+  "arm": "staff_wrong_correction",
+  "start": [
+   17,
+   20
+  ],
+  "target": "Table 6",
+  "delivery": false,
+  "dishes": [
+   "Brownie sundae",
+   "Shrimp tacos",
+   "Pesto pasta",
+   "Lobster roll"
+  ],
+  "allergen": "SHELLFISH",
+  "restricted": {
+   "SHELLFISH": 0
+  },
+  "fryer_events": [],
+  "traps": [
+   "staff_wrong_correction"
+  ],
+  "lift_minute": 23,
+  "mention": "order",
+  "mention_source": "SERVER",
+  "messages": [
+   {
+    "minute": 0,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 6",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "avoid",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "Table 6 has just placed their order (do not name the dishes)",
+     "the kid at Table 6 can't have any prawns (use the word \"prawns\")"
+    ],
+    "tags": [
+     "hard_word",
+     "mention",
+     "order"
+    ],
+    "true": {
+     "SHELLFISH": "avoid"
+    },
+    "id": "C3004-01"
+   },
+   {
+    "minute": 1,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "routine kitchen chatter with no allergy or fryer information: someone restock the to-go boxes"
+    ],
+    "tags": [
+     "chatter"
+    ],
+    "true": {},
+    "id": "C3004-02"
+   },
+   {
+    "minute": 13,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "the guest at Table 24 must avoid feta (use the word \"feta\") (this is about Table 24, not Table 6; do not mention Table 6)"
+    ],
+    "tags": [
+     "other_table"
+    ],
+    "true": {},
+    "id": "C3004-03"
+   },
+   {
+    "minute": 16,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "the guest at Table 10 has a peanuts allergy (use the word \"peanuts\") (this is about Table 10, not Table 6; do not mention Table 6)"
+    ],
+    "tags": [
+     "other_table"
+    ],
+    "true": {},
+    "id": "C3004-04"
+   },
+   {
+    "minute": 23,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 6",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "ok",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "yes"
+    },
+    "spec": [
+     "this explicitly corrects an earlier note about Table 6 (say so plainly, e.g. \"correction\" or \"scratch that\"): shrimp is fine for Table 6 after all (do not give a reason)"
+    ],
+    "tags": [
+     "lift",
+     "staff_wrong_correction"
+    ],
+    "true": {
+     "SHELLFISH": "avoid"
+    },
+    "id": "C3004-05"
+   },
+   {
+    "minute": 55,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 6",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "says they would like the check with dessert (no allergy or fryer information)"
+    ],
+    "tags": [
+     "order_chatter"
+    ],
+    "true": {},
+    "id": "C3004-06"
+   }
+  ]
+ },
+ {
+  "id": "C3005",
+  "seed": 3005,
+  "split": "cancel_dev",
+  "hard": true,
+  "profile": "staff_soft",
+  "arm": "staff_soft",
+  "start": [
+   19,
+   20
+  ],
+  "target": "Table 10",
+  "delivery": false,
+  "dishes": [
+   "Caesar salad",
+   "Garden salad with tahini dressing",
+   "Grilled chicken and fries",
+   "Lobster roll"
+  ],
+  "allergen": "SESAME",
+  "restricted": {
+   "SESAME": 0
+  },
+  "fryer_events": [],
+  "traps": [
+   "staff_soft"
+  ],
+  "lift_minute": 27,
+  "mention": "guest",
+  "mention_source": "GUEST",
+  "messages": [
+   {
+    "minute": 0,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 10",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "Table 10 has just placed their order (do not name the dishes)",
+     "say nothing about allergies"
+    ],
+    "tags": [
+     "order"
+    ],
+    "true": {},
+    "id": "C3005-01"
+   },
+   {
+    "minute": 8,
+    "source": "GUEST",
+    "label": "Guest at Table 10, text to the restaurant",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "avoid",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "one of us has a sesame allergy (use the word \"sesame\")"
+    ],
+    "tags": [
+     "guest",
+     "mention",
+     "plain_word"
+    ],
+    "true": {
+     "SESAME": "avoid"
+    },
+    "id": "C3005-02"
+   },
+   {
+    "minute": 16,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 16",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "someone on this ticket must avoid farro (use the word \"farro\") (this note is attached to another ticket, named in the header; do not mention any other table)"
+    ],
+    "tags": [
+     "other_table",
+     "other_ticket"
+    ],
+    "true": {},
+    "id": "C3005-03"
+   },
+   {
+    "minute": 27,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "the guest at Table 13 can't have any sesame (use the word \"sesame\") (this is about Table 13, not Table 10; do not mention Table 10)"
+    ],
+    "tags": [
+     "other_table"
+    ],
+    "true": {},
+    "id": "C3005-04"
+   },
+   {
+    "minute": 27,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 10",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "asks for extra napkins and water for the table (no allergy or fryer information)"
+    ],
+    "tags": [
+     "order_chatter"
+    ],
+    "true": {},
+    "id": "C3005-05"
+   },
+   {
+    "minute": 27,
+    "source": "SERVER",
+    "label": "Server, ticket note for Table 10",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "ok",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "sesame is fine for Table 10 (say it casually, starting with \"actually\" or \"turns out\"; do NOT say it corrects, replaces or withdraws anything, and do NOT use the words \"correction\", \"scratch that\", \"ignore\", \"disregard\", \"mistake\", \"wrong\", \"earlier\", \"before\", \"instead\" or \"after all\")"
+    ],
+    "tags": [
+     "lift",
+     "staff_soft"
+    ],
+    "true": {
+     "SESAME": "avoid"
+    },
+    "id": "C3005-06"
+   },
+   {
+    "minute": 32,
+    "source": "KITCHEN",
+    "label": "Kitchen chat",
+    "answers": {
+     "PEANUT": "not_mentioned",
+     "TREE_NUT": "not_mentioned",
+     "MILK": "not_mentioned",
+     "EGG": "not_mentioned",
+     "WHEAT": "not_mentioned",
+     "SOY": "not_mentioned",
+     "SESAME": "not_mentioned",
+     "FISH": "not_mentioned",
+     "SHELLFISH": "not_mentioned",
+     "FRYER": "not_mentioned",
+     "CORRECTION": "no"
+    },
+    "spec": [
+     "routine kitchen chatter with no allergy or fryer information: firing two burgers for Table 13"
+    ],
+    "tags": [
+     "chatter"
+    ],
+    "true": {},
+    "id": "C3005-07"
+   }
+  ]
+ }
+]
