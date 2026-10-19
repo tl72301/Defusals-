@@ -296,6 +296,15 @@ def test_confirm_report_offline(stub, tmp_path):
                                                                 'confirm_keeps_gains', 'hybrid'}
     assert sum(out['readers']['decisions']['reply_readings'][k].get('not_mentioned', 0) for k in
                out['readers']['decisions']['reply_readings']) == 4           # the stub answers the first option
+    from defuse.allergy import charts, render                 # the chart, the video card and a truth-mode frame draw
+    charts.confirm(tmp_path, tmp_path / 'confirm.png', 'confirm_dev')
+    assert (tmp_path / 'confirm.png').stat().st_size > 10000
+    assert render.confirm_card(tmp_path / 'confirm_dev-report.json').size == (render.W, render.H)
+    sc = next(s for s in scs if s['arm'] == 'explicit_right')
+    run = next(r for r in json.loads((tmp_path / 'confirm_dev' / 'oracle.json').read_text())['results'] if r['scenario'] == sc['id'])
+    assert render.system_state(sc, run, 60, 'confirm')[0] != render.system_state(sc, run, 60, 'guest_only')[0]
+    assert render.frame(sc, [(lab, run, rule) for rule, lab in render.CONFIRM_LABELS], None, 60, [[0, 0]] * 3, True,
+                        extra=[render.question_message(sc)]).size == (render.W, render.H)
 
 
 def test_confirm_run_offline(stub, tmp_path, monkeypatch):

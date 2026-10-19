@@ -451,3 +451,9 @@ plus 15%.
    the "no" orders instead of 60. That is reported beside the `anyone` results as a finding about the casual wording
    (on the first October 19 test, reviewers mostly said `unclear` to the same wording). Answers in
    `defuse/allergy/bank/confirm_review_blind.json`.
+2. **Chart and video (descriptive), before any result.** Added before the paid run returned anything: a chart
+   (`python -m defuse.allergy.charts <root> confirm`), a results card at the end of the video, and a third video part
+   that replays one order. The order is chosen by a fixed rule, not by its outcome: the first `casual_right` test
+   order (lowest seed) whose guest answers in the "yeah, no" style, read by Decisions under the three rules against
+   the truth. If Decisions never asks about it, the replay shows no question and no answer. No test, outcome, rule,
+   order or message changed.

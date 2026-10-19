@@ -1,8 +1,9 @@
 """Replay video, kept simple: the latest messages on the left; on the right, for each dish on the order, what each
 system would do (send / hold / ask) next to the correct call; at the bottom, unsafe sends so far. A second part replays
-one "Who can cancel an allergy?" order with one column per cancel rule, against the truth.
+one "Who can cancel an allergy?" order with one column per cancel rule, against the truth, and a third one "Just ask
+the guest?" order the same way.
 
-    python -m defuse.allergy.render <October 12 data root> <October 19 data root> docs/allergy-pass.mp4
+    python -m defuse.allergy.render <October 12 data root> <October 19 data root> docs/allergy-pass.mp4 [<confirm root>]
 
 A research simulation; every frame says it is not food-safety advice."""
 import json
@@ -49,12 +50,12 @@ def to_min(sec):
     return x / BEFORE if x <= first * BEFORE else first + (x - first * BEFORE) / DURING
 
 
-def system_state(sc, run, t, rule='anyone'):
+def system_state(sc, run, t, rule='anyone', log=None):
     """A system's decisions at minute t, rebuilt from its answers and the replies it received, under one cancel rule."""
-    msgs = [{'id': m['id'], 'minute': m['minute'], 'source': m['source']} for m in sc['messages']]
+    msgs = [{k: m[k] for k in ('id', 'minute', 'source', 'reply_to', 'about') if k in m} for m in sc['messages']]
     answers = {mid: e['answers'] for mid, e in run['extractions'].items()}
     over = sorted((c['minute'] + rules.CLARIFY_DELAY, c['message'], c['question'], c['answer']) for c in run['clarifications'])
-    return rules.decisions(sc['dishes'], msgs, answers, over, t, rule)
+    return rules.decisions(sc['dishes'], msgs, answers, over, t, rule, log)
 
 
 def true_state(sc, t):
@@ -71,8 +72,9 @@ def pill(d, x, y, decision, w=96, h=40, mistake=None):
     d.text((x + 38, y + h / 2), WORD[decision], font=font(18, 'SemiBold'), fill=fg, anchor='lm')
 
 
-def frame(sc, runs, key_run, t, tally, truth=False, kicker='ALLERGY PASS'):
-    """runs: (label, run) or (label, run, cancel rule). truth: compare with the hidden truth, not the answer key."""
+def frame(sc, runs, key_run, t, tally, truth=False, kicker='ALLERGY PASS', extra=()):
+    """runs: (label, run) or (label, run, cancel rule). truth: compare with the hidden truth, not the answer key.
+    extra: messages shown in the list but not read by anyone (the code's question to the guest)."""
     img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
     # header
     d.text((32, 22), kicker, font=font(15, 'SemiBold'), fill=MUTED)
@@ -85,11 +87,18 @@ def frame(sc, runs, key_run, t, tally, truth=False, kicker='ALLERGY PASS'):
     d.rounded_rectangle((24, 96, 604, 600), 14, fill=CARD, outline=LINE)
     d.text((44, 110), 'Latest messages', font=font(16, 'SemiBold'), fill=MUTED)
     y = 142
-    shown = [m for m in sc['messages'] if m['minute'] <= t][-3:][::-1]
+    shown = sorted([m for m in list(sc['messages']) + list(extra) if m['minute'] <= t],
+                   key=lambda m: (m['minute'], 'reply_to' in m))[-3:][::-1]
     for i, m in enumerate(shown):
         ink = INK if i == 0 else MUTED
-        d.text((44, y), f'{rules.clock(sc["start"], m["minute"])}  ·  {m["label"]}', font=font(14, 'SemiBold'), fill=FAINT if i else MUTED)
-        y += 22
+        head, f14 = f'{rules.clock(sc["start"], m["minute"])}  ·  {m["label"]}', font(14, 'SemiBold')
+        while head:                                         # long headers (a guest's reply) wrap inside the panel
+            words = head.split(' ')
+            k = len(words)
+            while k > 1 and d.textlength(' '.join(words[:k]), font=f14) > 540:
+                k -= 1
+            d.text((44, y), ' '.join(words[:k]), font=f14, fill=FAINT if i else MUTED)
+            head = ' '.join(words[k:]); y += 22
         for line in textwrap.wrap(m['text'], 47)[:4]:
             d.text((44, y), line, font=font(20), fill=ink); y += 27
         y += 16
@@ -252,7 +261,60 @@ def cancel_lines(R):
     return out
 
 
-def replay_part(sc, runs, key_run, truth=False, kicker='ALLERGY PASS'):
+def confirm_card(report_path):
+    """Results card for "Just ask the guest?": each situation under each rule with perfect reading, then what the
+    real readings changed."""
+    R = json.loads(Path(report_path).read_text())
+    K = R['readers']['oracle']['rules']
+    arms = [('explicit_right', 'Staff correct a wrong note', 'nobody allergic'),
+            ('explicit_wrong', 'Staff wrongly "correct" it', 'someone allergic'),
+            ('casual_right', 'Staff say "actually, it\'s fine", rightly', 'nobody allergic'),
+            ('casual_wrong', 'Staff say "actually, it\'s fine", wrongly', 'someone allergic')]
+    cols = [('anyone', 'Anyone'), ('guest_only', 'Only the guest'), ('confirm', 'Ask the guest')]
+    img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
+    d.text((64, 40), 'Just ask the guest?', font=font(38, 'SemiBold'), fill=INK)
+    d.text((64, 90), f'{R["orders"]} new orders. Staff say an allergy is fine. With perfect reading, each rule gives:',
+           font=font(20), fill=MUTED)
+    d.rounded_rectangle((40, 130, W - 40, 470), 16, fill=CARD, outline=LINE)
+    x0, cw = 560, 220
+    for i, (_, lab) in enumerate(cols):
+        d.text((x0 + i * cw + cw / 2, 150), lab, font=font(18, 'SemiBold'), fill=MUTED, anchor='ma')
+    for j, (arm, name, truth) in enumerate(arms):
+        y = 190 + j * 68
+        d.line((64, y, W - 64, y), fill=LINE)
+        d.text((76, y + 22), name, font=font(20, 'SemiBold'), fill=INK, anchor='lm')
+        d.text((76, y + 48), f"{K['anyone']['by_arm'][arm]['orders']} orders · {truth}", font=font(15), fill=MUTED, anchor='lm')
+        for i, (rule, _) in enumerate(cols):
+            v = K[rule]['by_arm'][arm]
+            text = ' · '.join(([f"{v['unsafe']} sent unsafe"] if v['unsafe'] else []) +
+                              ([f"{v['needless']} held needlessly"] if v['needless'] else [])) or 'all right'
+            fg, bg = COLOR[rules.HOLD] if v['unsafe'] else COLOR[rules.ASK] if v['needless'] else COLOR[rules.SEND]
+            cx = x0 + i * cw + cw / 2
+            d.rounded_rectangle((cx - 100, y + 10, cx + 100, y + 58), 12, fill=bg)
+            d.text((cx, y + 34), text, font=font(17, 'SemiBold'), fill=fg, anchor='mm')
+    for k, line in enumerate(confirm_lines(R)):
+        d.text((64, 490 + k * 32), line, font=font(18), fill=INK if k == 0 else MUTED)
+    d.text((64, 690), 'Pre-registered; blind authors and reviewers. Research simulation, not food-safety advice.',
+           font=font(15), fill=FAINT)
+    return img
+
+
+def confirm_lines(R):
+    """What the real readings changed under "ask the guest", in plain words, from the report."""
+    names = [('decisions', 'Decisions'), ('responses-options', 'picking options'), ('responses-names', 'writing names')]
+    rd = lambda key: ', '.join(f"{R['readers'][s]['rules']['confirm'][key]['k']} ({lab})" for s, lab in names)
+    K = R['readers']['oracle']['rules']['confirm']
+    wait = sum(K['by_arm'][a].get('waited', 0) for a in ('explicit_right', 'casual_right'))
+    misread = ', '.join(f"{R['readers'][s]['reply_misread']['k']} ({lab})" for s, lab in names)
+    return [f"With real AI reading and \"ask the guest\", the allergen went out in {rd('unsafe_of_wrong')} of "
+            f"{K['unsafe_of_wrong']['n']} orders.",
+            f"Safe food stayed held after the guest's answer in {rd('needless_of_right')} of {K['needless_of_right']['n']}.",
+            f"Guests' answers read wrongly: {misread} of {R['orders']}.",
+            f"The price of asking: with perfect reading, safe food waited one check (5 minutes) in {wait} of "
+            f"{K['needless_of_right']['n']} orders."]
+
+
+def replay_part(sc, runs, key_run, truth=False, kicker='ALLERGY PASS', extra=()):
     """Frames (bytes) and caption cues for one order, from minute 0 to the end of service."""
     tally = [[0, 0] for _ in runs]
     last, n = None, int((to_sec(rules.MINUTES) - INTRO) * FPS)
@@ -272,12 +334,12 @@ def replay_part(sc, runs, key_run, truth=False, kicker='ALLERGY PASS'):
                         p = run['polls'][k]
                     tally[s][0] += sum(p['S'][dish] == rules.SEND and p['J'][dish] != rules.SEND for dish in p['S'])
                     tally[s][1] += sum(p['S'][dish] != rules.SEND and p['J'][dish] == rules.SEND for dish in p['S'])
-            last = (minute, frame(sc, runs, key_run, minute, tally, truth, kicker).tobytes())
+            last = (minute, frame(sc, runs, key_run, minute, tally, truth, kicker, extra).tobytes())
         yield last[1]
 
 
 def render(target, parts):
-    """parts: ('card', image, seconds, caption) or ('replay', scenario, runs, key_run, truth, kicker, caption)."""
+    """parts: ('card', image, seconds, caption) or ('replay', scenario, runs, key_run, truth, kicker, caption[, extra])."""
     target = Path(target)
     cmd = [ffmpeg_binary(), '-hide_banner', '-loglevel', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}',
            '-r', str(FPS), '-i', '-', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '22', '-pix_fmt', 'yuv420p',
@@ -293,14 +355,15 @@ def render(target, parts):
             cues.append((clock_s, clock_s + seconds, caption))
             clock_s += seconds
             continue
-        _, sc, runs, key_run, truth, kicker, caption = part
+        _, sc, runs, key_run, truth, kicker, caption, *extra = part
+        extra = extra[0] if extra else ()
         start = clock_s - INTRO                     # to_sec() counts from the end of an intro card
         frames = 0
-        for raw in replay_part(sc, runs, key_run, truth, kicker):
+        for raw in replay_part(sc, runs, key_run, truth, kicker, extra):
             proc.stdin.write(raw); frames += 1
         if caption:
             cues.append((clock_s, clock_s + 3, caption))
-        for m in sc['messages']:
+        for m in list(sc['messages']) + list(extra):
             a = start + to_sec(m['minute'])
             cues.append((a, a + 3, f'{rules.clock(sc["start"], m["minute"])}, {m["label"]}: {m["text"]}'))
         clock_s += frames / FPS
@@ -316,13 +379,46 @@ def render(target, parts):
 SYSTEM_LABELS = [('decisions', 'Decisions'), ('responses-options', 'Ordinary API\npicks options'),
                  ('responses-names', 'Ordinary API\nwrites names')]
 RULE_LABELS = [('anyone', 'Anyone can\ncancel'), ('guest_only', 'Only the\nguest'), ('same_sender', 'Guest, or who\nwrote it')]
+CONFIRM_LABELS = [('anyone', 'Anyone can\ncancel'), ('guest_only', 'Only the\nguest'), ('confirm', 'Ask the\nguest')]
+
+
+def question_message(sc):
+    """The code's question to the guest, for display only: sent at the staff message's minute under "ask the guest"."""
+    lift = next(m for m in sc['messages'] if 'lift' in m['tags'])
+    return {'id': lift['id'] + '-q', 'minute': lift['minute'], 'source': 'CODE',
+            'label': 'The system, text to the guest (only under "ask the guest")', 'text': sc['question']}
+
+
+def confirm_part(root, sub):
+    """Part 3: the first casual_right test order whose guest answers in the "polarity" style ("yeah, no ..."), read by
+    Decisions under the three rules against the truth (chosen by this fixed rule before any result, §10.8), then the
+    results card."""
+    scs = bank.load('confirm_test')
+    c = next(s for s in sorted(scs, key=lambda s: s['seed']) if s['arm'] == 'casual_right' and s['style'] == 'polarity')
+    dec = runs_by_id(root, 'confirm_test', 'decisions')[c['id']]
+    extra = [question_message(c)]
+    log = {}
+    system_state(c, dec, rules.MINUTES, 'confirm', log)
+    if not log['asked']:                              # Decisions never asked: no question, so no answer to show
+        c, extra = {**c, 'messages': [m for m in c['messages'] if 'reply_to' not in m]}, []
+    title = ['Just ask the guest?', 'A second new test: 240 orders. Staff say a recorded allergy is fine.',
+             'A new rule: the system texts the guest "Does anyone need to avoid it?"',
+             'and only the guest\'s answer can cancel the allergy.']
+    R = json.loads((Path(root) / 'confirm_test-report.json').read_text())
+    return [('card', title_card(title, sub), INTRO, ' '.join(title)),
+            ('replay', c, [(lab, dec, rule) for rule, lab in CONFIRM_LABELS], None, True,
+             'JUST ASK THE GUEST? · READ BY DECISIONS',
+             'One order: staff wrote down an allergy by mistake, then say casually that it is fine. Only the third rule '
+             'asks the guest; the last column is the truth.', extra),
+            ('card', confirm_card(Path(root) / 'confirm_test-report.json'), OUTRO + 4,
+             'The results for each situation and rule, and what real AI reading changed. ' + ' '.join(confirm_lines(R)))]
 
 
 def runs_by_id(root, split, system):
     return {r['scenario']: r for r in json.loads((Path(root) / split / f'{system}.json').read_text())['results']}
 
 
-def main(root12, root19, target):
+def main(root12, root19, target, root_confirm=None):
     """The October 12 replay (scenario A2001, the first test order) and results card, then the first
     staff_wrong_correction test order of October 19, read by Decisions, under each cancel rule, and its results card."""
     sc = {s['id']: s for s in bank.load('test')}['A2001']
@@ -352,8 +448,10 @@ def main(root12, root19, target):
              ('card', cancel_card(Path(root19) / 'cancel_test-report.json'), OUTRO + 4,
               'The results for each situation and rule, and what real AI reading changed. ' + ' '.join(cancel_lines(
                   json.loads((Path(root19) / 'cancel_test-report.json').read_text()))))]
+    if root_confirm:
+        parts += confirm_part(root_confirm, sub)
     return render(target, parts)
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:4])
+    main(*sys.argv[1:5])
