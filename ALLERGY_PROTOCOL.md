@@ -272,3 +272,7 @@ message text), while the authors were writing; before I or any reviewer had read
    changes no justified decision. Answers in `defuse/allergy/bank/cancel_review_blind.json`.
 9. **Run driver.** `python -m defuse.allergy.cancel_run` performs §9.5 and §9.7 in order (smoke tests, projection,
    test run, repeat run if allowed); it adds no new rule.
+10. **Descriptive additions to the report, made while the paid run was in progress and before any of its results were
+    read.** For the chart and the video card, `cancel_report.py` also lists each reader's full CORRECTION answers (yes,
+    no, unclear) on each arm's cancel messages, and the blind reviewers' answers on the same messages as a reference.
+    No test, outcome or rule changed.

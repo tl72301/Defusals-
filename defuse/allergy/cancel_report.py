@@ -5,7 +5,7 @@ control arm): an order is unsafe if any dish was sent that the truth says hold o
 dish was held or sent back to ask that the truth says send. Every reader's answers go through all three rules."""
 import json
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 from defuse.allergy import rules, cancel, bank
 from defuse.allergy.report import load
@@ -83,6 +83,17 @@ def paired(xs, ys):
     return [a, b, mcnemar(a, b)]
 
 
+def reviewers(split=SPLIT):
+    """The blind reviewers' CORRECTION answers on each arm's cancel messages (§9.8 amendment 8), as a reference."""
+    p = bank.BANK / 'cancel_review_blind.json'
+    if not p.exists() or split != SPLIT:
+        return {}
+    arm = {m['id']: sc['arm'] for sc in bank.load(split) for m in sc['messages'] if 'lift' in m['tags']}
+    rv = json.loads(p.read_text())
+    return {who: {a: dict(Counter(r['answers']['CORRECTION'] for r in rows if arm.get(r['id']) == a))
+                  for a in cancel.ARMS if a != 'control'} for who, rows in rv.items()}
+
+
 def disputed():
     """Cancel messages a reviewer disputed but kept (§9.8 amendment 2), from bank/excluded.json."""
     p = bank.BANK / 'excluded.json'
@@ -127,6 +138,8 @@ def analyse(root='data/allergy', split=SPLIT, tag='', undisputed_only=False):
                                                 sum(y == a for y in arms)) for a in cancel.ARMS if a != 'control'}
             v['lift_read_ok_by_arm'] = {a: ci(sum(x.get('lift_read') == 'ok' for x, y in zip(rd, arms) if y == a),
                                               sum(y == a for y in arms)) for a in cancel.ARMS if a != 'control'}
+            v['correction_answers_by_arm'] = {a: dict(Counter(x['lift_correction'] for x, y in zip(rd, arms) if y == a))
+                                              for a in cancel.ARMS if a != 'control'}
             v['accuracy'] = accuracy(by)
             if s == 'hybrid':
                 hs = [by[i]['hybrid'] for i in ids]
@@ -167,6 +180,7 @@ def analyse(root='data/allergy', split=SPLIT, tag='', undisputed_only=False):
                 desc[f'{s}, {arm}: anyone vs guest_only, orders {k}'] = paired(
                     [res[s]['anyone'][i][k] for i in sel], [res[s]['guest_only'][i][k] for i in sel])
     out['tests']['rules_by_arm_descriptive'] = desc
+    out['reviewers_correction_by_arm'] = reviewers(split)
     # Families 2 and 3: the readers, on the single mention missed and on staff_soft read as a correction; Holm over 3.
     for name, pick in (('mention_missed', lambda sc, x: x['mention_read'] not in ('avoid', 'unclear')),
                        ('soft_read_as_correction', lambda sc, x: sc['arm'] == 'staff_soft' and x.get('lift_correction') == 'yes')):

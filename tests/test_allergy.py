@@ -176,6 +176,15 @@ def test_cancel_report_offline(stub, tmp_path):
     assert oracle['guest_only']['all']['unsafe'] == 0
     assert oracle['guest_only']['by_arm']['staff_fixes_own']['needless'] == 1
     assert 'hybrid' in out['readers'] and set(out['tests']) == {'reading_changes_outcome', 'rules_by_arm_descriptive', 'mention_missed', 'soft_read_as_correction', 'hybrid'}
+    from defuse.allergy import charts, render                 # the chart, the video card and a truth-mode frame draw
+    charts.cancel(tmp_path, tmp_path / 'cancel.png', 'cancel_dev')
+    assert (tmp_path / 'cancel.png').stat().st_size > 10000
+    assert render.cancel_card(tmp_path / 'cancel_dev-report.json').size == (render.W, render.H)
+    sc = next(s for s in bank.load('cancel_dev') if s['arm'] == 'staff_wrong_correction')
+    run = json.loads((tmp_path / 'cancel_dev' / 'oracle.json').read_text())['results']
+    run = next(r for r in run if r['scenario'] == sc['id'])
+    assert render.system_state(sc, run, 60, 'anyone')[0] != render.system_state(sc, run, 60, 'guest_only')[0]
+    assert render.frame(sc, [(lab, run, rule) for rule, lab in render.RULE_LABELS], None, 60, [[0, 0]] * 3, True).size == (render.W, render.H)
 
 
 def test_cancel_run_offline(stub, tmp_path, monkeypatch):
