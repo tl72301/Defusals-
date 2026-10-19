@@ -1,7 +1,8 @@
 """Exploratory, after the §11 results (ALLERGY_PROTOCOL.md §11.8 change 3): what each reader answered on the notes it
-got wrong, Decisions' probabilities on host reservation notes, and its misses by wording; and, when the second test's
-runs (§10) are under the same root, how often each reader took another table's note there that said "this ticket".
-Not pre-registered; no test.
+got wrong, Decisions' probabilities on host reservation notes, and its misses by wording; and, when the earlier tests'
+runs (§9, §10) are under the same root, how often each reader took another table's note in the second test that said
+"this ticket", and Decisions' misses of allergy notes in both earlier tests by writer and by whether the note said
+"reservation" (§11.8 changes 3 and 4). Not pre-registered; no test.
 
     python -m defuse.allergy.where_explore <root> [tag]      # writes {split}{tag}-explore.json next to the report"""
 import json
@@ -11,6 +12,7 @@ from pathlib import Path
 from statistics import median
 from defuse.allergy import bank, rules, where
 from defuse.allergy.where_report import SPLIT, role, answers, a_missed, b_taken, FLAGGED
+from defuse.allergy import confirm_report
 from defuse.allergy.confirm_report import runs_for
 from defuse.allergy.cancel_report import ci
 
@@ -49,8 +51,12 @@ def explore(root='data/allergy', split=SPLIT, tag=''):
                 probs[sc['a_place']].append((e.get('probs') or {}).get(sc['allergen'], {}).get('avoid', 0.0))
             v['avoid_probability_by_place'] = {pl: {'median': median(x), 'min': min(x), 'below_0.9': ci(sum(y < 0.9 for y in x), len(x))}
                                                for pl, x in probs.items()}
+            v['host_reservation_calls'] = close_calls(scs, runs[s], missed)
     if (Path(root) / 'confirm_test').exists():
         res['second_test_other_table_notes'] = this_ticket(root, 'confirm_test', tag)
+    earlier = {sp: allergy_notes(root, sp) for sp in ('cancel_test', 'confirm_test') if (Path(root) / sp / 'decisions.json').exists()}
+    if earlier:
+        res['earlier_tests_decisions_allergy_notes'] = earlier
     path = Path(root) / f'{split}{tag}-explore.json'
     path.write_text(json.dumps(res, indent=1, ensure_ascii=False))
     return res
@@ -77,6 +83,48 @@ def this_ticket(root, split='confirm_test', tag=''):
                 n[k][1] += 1
         out[s] = {k: ci(*v) for k, v in sorted(n.items())}
     return out
+
+
+def close_calls(scs, rd, missed):
+    """How close Decisions' calls were on host reservation notes (§11.8 change 4): the winning probability on its
+    misses, the notes it caught with "avoid" below 0.6, and, for the clauses it missed there, the lowest "avoid" the same
+    words got in any other place; also how sure it was that another table's note said nothing, by place."""
+    def p(i, r):
+        m = role(scs[i], r)
+        x = scs[i]['allergen'] if r == 'A' else scs[i]['other_allergen']
+        return (rd[i]['extractions'][m['id']].get('probs') or {}).get(x, {})
+    hr = [i for i in scs if scs[i]['a_place'] == 'host_reservation']
+    gone = {scs[i]['a_clause'] for i in hr if i in missed}
+    elsewhere = [p(i, 'A').get('avoid', 0.0) for i in scs if scs[i]['a_clause'] in gone and scs[i]['a_place'] != 'host_reservation']
+    nm_b = defaultdict(list)
+    for i in scs:
+        nm_b[scs[i]['b_place']].append(p(i, 'B').get('not_mentioned', 0.0))
+    caught = [p(i, 'A').get('avoid', 0.0) for i in hr if i not in missed]
+    return {'missed_not_mentioned_probability': {'min': min((p(i, 'A').get('not_mentioned', 0.0) for i in missed), default=None),
+                                                 'max': max((p(i, 'A').get('not_mentioned', 0.0) for i in missed), default=None)},
+            'caught_with_avoid_below_0.6': ci(sum(x < 0.6 for x in caught), len(caught)),
+            'missed_clauses_avoid_elsewhere': {'min': min(elsewhere, default=None),
+                                               'below_0.9': ci(sum(x < 0.9 for x in elsewhere), len(elsewhere))},
+            'other_table_not_mentioned_by_place': {pl: {'median': median(x), 'min': min(x)} for pl, x in nm_b.items()}}
+
+
+def allergy_notes(root, split):
+    """Decisions on the earlier tests' allergy notes (tag `mention`), by writer (header) and by whether the note says
+    "reservation": notes it read as neither avoid nor unclear, of all."""
+    scs = {sc['id']: sc for sc in bank.load(split)}
+    rd = {r['scenario']: r for r in confirm_report.load(Path(root), split, 'decisions')}
+    texts = json.loads((bank.BANK / f'{split}_texts.json').read_text())
+    n = defaultdict(lambda: [0, 0])
+    for i, sc in scs.items():
+        for m in sc['messages']:
+            if 'mention' not in m['tags']:
+                continue
+            writer = 'guest' if m['label'].startswith('Guest at') else m['label'].split(',')[0]
+            says = 'reservation' in str(texts.get(m['id'], m.get('text'))).lower()
+            k = f"{writer}, {'says' if says else 'does not say'} \"reservation\""
+            n[k][0] += rd[i]['extractions'][m['id']]['answers'][sc['allergen']] not in FLAGGED
+            n[k][1] += 1
+    return {k: ci(*v) for k, v in sorted(n.items())}
 
 
 if __name__ == '__main__':

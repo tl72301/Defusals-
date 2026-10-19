@@ -629,3 +629,10 @@ two systems cost in the test run plus 15%.
    card gained a line for the hybrid, and its lines were moved closer together to fit. `where_report.py` (§11.6) was
    not changed after the run; the primary results are its output on the test run with no tag, and the repeat run's
    with `-r2`. No test, measure, order or message changed.
+4. **Why Decisions misses host reservation notes (exploratory), after Thomas asked.** `where_explore.py` gained two
+   breakdowns, both descriptive: how close Decisions' calls were on host reservation notes (the winning probability on
+   its misses, the near misses it got right, the same words' "avoid" probability in the other places, and how sure it
+   was that another table's note said nothing, by place), and, when the earlier tests' runs (§9, §10) are under the
+   same folder, its misses of their allergy notes by writer and by whether the note said "reservation". The results
+   doc reports them with a best guess at the cause, marked as untested, and a follow-up test is listed under what to
+   test next. No test, measure, order or message changed.

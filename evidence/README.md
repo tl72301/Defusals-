@@ -15,7 +15,7 @@ probabilities, latency, tokens, cost), the extraction cache, and the budget ledg
 | allergy-confirm-analysis-2026-10-19.tar.gz | The second test's analysis outputs: the pre-registered reports for both runs, the run-to-run comparison, and the exploratory cause lists (`confirm_explore`) |
 | allergy-where-2026-10-19.tar.gz | Allergy Pass, October 19, third test ("Where allergies hide, and whose they are"): every system on the 7 development orders and the 1,008 test orders, the repeat run of picking options and writing names (`-r2`), every extraction, and the request cache (re-runs the test offline) |
 | allergy-where-2026-10-19-run.txt | The console output of `python -m defuse.allergy.where_run`: smoke-test cost and projection, errors per system, budget before and after |
-| allergy-where-analysis-2026-10-19.tar.gz | The third test's analysis outputs: the pre-registered reports for both runs, the run-to-run comparison, and the exploratory breakdowns (`where_explore`; with the second test's archive extracted to the same folder, they also count that test's other-table notes that said "this ticket") |
+| allergy-where-analysis-2026-10-19.tar.gz | The third test's analysis outputs: the pre-registered reports for both runs, the run-to-run comparison, and the exploratory breakdowns (`where_explore`; with the earlier tests' archives extracted to the same folder, they also count the second test's other-table notes that said "this ticket" and Decisions' misses of both earlier tests' allergy notes by writer) |
 | budget-ledger-where-2026-10-19.jsonl.gz | Every budget reservation and settlement under the second $4.00 approval, for the third October 19 test |
 | budget-ledger-confirm-2026-10-19.jsonl.gz | Every budget reservation and settlement under the $1.85 approval for the second October 19 test (part of the same $4.00) |
 | budget-ledger-2026-10-19.jsonl.gz | Every budget reservation and settlement under the October 19 approval of $4.00 |
@@ -48,7 +48,7 @@ SHA-256:
 `9de24af129d827d4de2cbf2d0ea525ba847b5bc42de2f8af7473fb6a42837bb3`  evidence/allergy-pass-2026-10-12.tar.gz
 `ba2725e663b742bac15014e0b46d4b94b2ceebac7a4ef5aacb3315433924c047`  evidence/allergy-where-2026-10-19-run.txt
 `6ef1d2ec5b7b04c597031c3afe588cb5735c599994a45c99454d782103269760`  evidence/allergy-where-2026-10-19.tar.gz
-`0a500f161a1f90cd6990eafbca23cbe2b84d4197334bde6c53225d225b1b6712`  evidence/allergy-where-analysis-2026-10-19.tar.gz
+`978691b7f3dff427f1a2aa2d257186dfe9c6ecabc2e644c143cb6d0bca262c53`  evidence/allergy-where-analysis-2026-10-19.tar.gz
 `34df579e2e943d85f473ecd5863984c06a0c0212bd6d2103e7508ebb96444f6f`  evidence/budget-ledger-2026-10-07.jsonl.gz
 `ed0ee21e0f09151a35e0156b5ad6aba044f0e477c5abae84d5f4e6d6f4ee78c7`  evidence/budget-ledger-2026-10-19.jsonl.gz
 `f5334334b8d17038f3bc9154393d64d81ce59b3ad1e410398e7ca80f91eb9061`  evidence/budget-ledger-confirm-2026-10-19.jsonl.gz

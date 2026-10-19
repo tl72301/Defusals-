@@ -203,7 +203,15 @@ H2 says which part matters: the same words from the manager were never missed, a
 mentioned", so the allergy was never recorded and a dish with the allergen went out: the only unsafe sends by any AI
 in this test. The first note shown above was one of them: "Reservation note for Table 12: the kid is allergic to
 peanuts, be careful." got "not mentioned" at 0.63 and "avoid" at 0.32, while the same words got "avoid" at 0.95 to
-1.00 in the six other places. Why is not known. Counted after the results (exploratory):
+1.00 in the six other places. Why is not settled. What the saved readings show, counted after the results
+(exploratory):
+- **It was a close call, not blindness.** On its 35 misses, "not mentioned" won with only 0.48 to 0.78, and 15 of the
+  109 host reservation notes it got right won with "avoid" below 0.6. The same 35 notes got "avoid" at 0.9 or more in
+  201 of their 210 placements elsewhere (never below 0.53). Decisions saw the allergy; it was unsure whether a host's
+  reservation note counts as saying something "for this order".
+- **The same thing happened in every October 19 test.** In the first two, every allergy note Decisions missed was a
+  host-stand note that said "reservation": 4 of 30 and 9 of 31. It missed none of the 38 host-stand notes without
+  that word and none of the 441 allergy notes from anyone else (server, manager, delivery app, guest).
 - **The wording mattered.** Of the 36 host reservation notes in each form, Decisions missed 20 saying "has a …
   allergy" ("someone in the party has a tree nut allergy"), 10 saying "is allergic to …", 4 saying "must avoid …"
   (or the authors' own phrasing of it, such as "needs to stay away from soy") and 1 saying "can't have any …". By
@@ -212,7 +220,20 @@ peanuts, be careful." got "not mentioned" at 0.63 and "avoid" at 0.32, while the
   the plain name, so that difference may come from the form.
 - **Decisions was less sure about host reservation notes in general, not only the ones it missed.** Its probability for
   "avoid" there had a median of 0.81, and 89 of 144 were below 0.9. On manager reservation notes 15 of 144 were below
-  0.9 (median 0.99), and in the other five places at most 2 of 144.
+  0.9 (median 0.99), and in the other five places at most 2 of 144. It was also surest of all that another table's
+  host reservation note said nothing for this order (lowest 0.97).
+- **Not the food, the table, the length or "be careful".** Misses ranged from 1 to 6 of 16 per food, with no pattern by
+  table number, note length (8 words in the middle, missed or not) or an added "be careful" or "please flag it".
+
+**A best guess, not tested.** Each question asks what the message says "for this order", and "not mentioned" means
+"nothing said about it for this order". From the host stand, "Reservation note for Table 12" reads like a record
+copied from the booking, about the people who reserved, rather than a message about tonight's food, and Decisions
+seems torn on whether such a record counts. A fact about a person ("has a peanut allergy") leaves more room for that
+doubt than an instruction ("can't have any peanuts"). From the manager, the same words read as someone passing a
+message on during service. In a close call, "not mentioned" may also win because it is listed first among the four
+answers (an informal report says Decisions' choice is sensitive to option order); the order is the same everywhere,
+so it cannot cause the difference between places, but it may tip the close calls. A small test could check each part
+([What to test next](#what-to-test-next-ranked), item 2).
 
 **2. Re-reading Decisions' unsure answers caught all 35.** Decisions' probability for its wrong answer had a median
 of 0.62, and all 35 were below the hybrid's cut-off of 0.9, fixed in advance. The hybrid sent 163 of 2,016 messages
@@ -762,32 +783,37 @@ reservation note Decisions missed in three tests.
    answers about other people at the table (children, plus-ones, "my wife is the one") would show whether this is a
    weakness of writing names alone, and whether a second question ("Is that person eating from this order?") fixes
    it.
-2. **Words that point at the wrong order.** In the third test, with clean notes, Decisions never took another table's
+2. **Why host reservation notes trip Decisions.** Re-use the same 144 notes (already written and reviewed) at the host
+   stand and change one thing at a time: "Booking note" instead of "Reservation note"; "Reservation note for Table
+   12, seated now"; asking about "the people at Table 12" instead of "this order"; and listing "not mentioned" last
+   instead of first. A change that removes the misses points at a cause; each is also checked on other tables' notes,
+   so a fix that simply takes every note does not count. Decisions and the hybrid only: about $0.50.
+3. **Words that point at the wrong order.** In the third test, with clean notes, Decisions never took another table's
    note as this order's. In the second, it took 12 of 86 other tables' notes that said "on this ticket", against 6 of
    140 that did not (counted after the results). The same notes with and without "this ticket", "here" or "tonight",
    filed under another table, would settle whether those words are the trigger, and whether writing names' extra
    errors on tickets that name their table only at the top (13 against 4, then 10 against 0) are real. Decisions and
    the hybrid alone keep it cheap.
-3. **When the guest is slow, gone or unsure.** In the second test every guest answered within 6 minutes. Answers that
+4. **When the guest is slow, gone or unsure.** In the second test every guest answered within 6 minutes. Answers that
    come late, never, or say "not sure, let me check with my sister" would show the real price of asking, and whether
    "unsure" is read as unsure. Part of it (later answers) can be computed for free from saved readings; answers that
    never come or hedge need new messages.
-4. **A late allergy after a dish has gone out.** The most dangerous real case is the plate already at the table. Score
+5. **A late allergy after a dish has gone out.** The most dangerous real case is the plate already at the table. Score
    whether a system flags a sent dish for recall when an allergy arrives late.
-5. **Kitchen changes tonight.** Ingredient swaps ("out of the usual pesto, using the cashew one"), a shared grill, a
+6. **Kitchen changes tonight.** Ingredient swaps ("out of the usual pesto, using the cashew one"), a shared grill, a
    new sauce. Here recipes never change, so the model never has to read what is in the food.
-6. **Real reservation notes, shorthand and other languages.** Real tickets say "NF", "GF", "no nuts x2" or "sin
+7. **Real reservation notes, shorthand and other languages.** Real tickets say "NF", "GF", "no nuts x2" or "sin
    mariscos", and real booking systems export notes like "RES 7:30 x4 - bday, kid PN allergy". Every message so far
    was a full English sentence, and the third test showed that Decisions' reading depends on such small framing.
-7. **Ambiguous messages, asked several times.** In the second test writing names read 96 of 2,043 messages
+8. **Ambiguous messages, asked several times.** In the second test writing names read 96 of 2,043 messages
    differently on a second run, changing the outcome of 28 orders; in the third, with clean notes, 19 answers and 19
    orders. Asking 3 or 5 times and taking the majority, or treating disagreement as "unclear", may be a cheap fix; it
    needs fresh messages.
-8. **Speed under pressure.** Decisions and the hybrid were about 3 to 5 times faster than the ordinary API, but
+9. **Speed under pressure.** Decisions and the hybrid were about 3 to 5 times faster than the ordinary API, but
    nothing in the simulation waited for a reading. A service where dishes leave on time with whatever is known would
    show what speed is worth.
-9. **Real people.** Restaurant staff writing or checking a sample of messages is the strongest test of realism, and the
-   most expensive.
+10. **Real people.** Restaurant staff writing or checking a sample of messages is the strongest test of realism, and
+    the most expensive.
 
 ## Cost
 
