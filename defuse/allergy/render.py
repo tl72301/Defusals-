@@ -147,7 +147,8 @@ def frame(sc, runs, key_run, t, tally, truth=False, kicker='ALLERGY PASS', extra
         d.text((cx, 653), str(unsafe), font=font(30, 'SemiBold'), fill='#c93a3a' if unsafe else '#1f8a4c', anchor='rm')
         d.text((cx + 8, 653), '·', font=font(30, 'SemiBold'), fill=FAINT, anchor='lm')
         d.text((cx + 26, 653), str(held), font=font(30, 'SemiBold'), fill='#9a6a00' if held else '#1f8a4c', anchor='lm')
-        d.text((cx + 60, 653), lab.replace('\n', ' '), font=font(14), fill=MUTED, anchor='lm')
+        lx = max(cx + 60, cx + 38 + d.textlength(str(held), font=font(30, 'SemiBold')))   # clear of two-digit counts
+        d.text((lx, 653), lab.replace('\n', ' '), font=font(14), fill=MUTED, anchor='lm')
     d.text((W / 2, 706), 'Research simulation of US allergen rules. Not food-safety advice.', font=font(12), fill=FAINT, anchor='mm')
     return img
 
@@ -409,7 +410,7 @@ def confirm_part(root, sub):
             ('replay', c, [(lab, dec, rule) for rule, lab in CONFIRM_LABELS], None, True,
              'JUST ASK THE GUEST? · READ BY DECISIONS',
              'One order: staff wrote down an allergy by mistake, then say casually that it is fine. Only the third rule '
-             'asks the guest; the last column is the truth.', extra),
+             'asks the guest, and it holds the food until the answer comes; the last column is the truth.', extra),
             ('card', confirm_card(Path(root) / 'confirm_test-report.json'), OUTRO + 4,
              'The results for each situation and rule, and what real AI reading changed. ' + ' '.join(confirm_lines(R)))]
 

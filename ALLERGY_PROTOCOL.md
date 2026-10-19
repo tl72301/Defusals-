@@ -457,3 +457,9 @@ plus 15%.
    order (lowest seed) whose guest answers in the "yeah, no" style, read by Decisions under the three rules against
    the truth. If Decisions never asks about it, the replay shows no question and no answer. No test, outcome, rule,
    order or message changed.
+3. **After the results (exploratory and descriptive only).** Added `defuse/allergy/confirm_explore.py`, which lists the
+   causes found in each order whose outcome under `confirm` differs from the answer key's (the single mention read as
+   "not mentioned", the guest's answer misread, other messages misread, by kind). It is not pre-registered, has no
+   test, and is labelled exploratory wherever it is reported. In the video, the replay's caption now says that "ask
+   the guest" holds the food until the answer comes, and the running counts no longer overlap their labels when a
+   count has two digits. The pre-registered analysis (`confirm_report.py`) was not changed after the run.

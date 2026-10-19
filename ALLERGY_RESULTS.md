@@ -7,17 +7,47 @@ three ways; code applies the rules and decides, every 5 minutes, whether each di
 [ALLERGY_PROTOCOL.md](ALLERGY_PROTOCOL.md) before any message existed; later changes are logged in its §8, and the
 October 19 test in its §9.
 
-On October 19 the first results were critiqued, reanalysed for free from the saved data, and one new question was
-tested on 300 fresh orders under a new pre-registration: **who should be allowed to cancel an allergy?**
+On October 19 the first results were critiqued, reanalysed for free from the saved data, and two new questions were
+tested on fresh orders, each under its own pre-registration: **who should be allowed to cancel an allergy?** (300
+orders) and then **when staff say an allergy is fine, does it work to just ask the guest?** (240 orders).
+
+![Just ask the guest? results](docs/allergy-confirm.png)
 
 ![Who can cancel an allergy? results](docs/allergy-cancel.png)
 
 ![October 12 results](docs/allergy-final.png)
 
-Video: [one October 12 order replayed, its results, then one order of the new test under each rule, and its
-results](docs/allergy-pass.mp4) (2 min 26 s, captions in the matching .srt).
+Video: [one October 12 order replayed, its results, then one order of each new test under each rule, and their
+results](docs/allergy-pass.mp4) (3 min 41 s, captions in the matching .srt).
 
-## How the conclusions changed on October 19
+## How the conclusions changed with the second October 19 test
+
+- **The trade-off was not forced.** The first test found that each simple rule fails one way: when anyone may cancel
+  an allergy, a staff member's wrong "correction" sends the allergen; when only the guest may, a staff member who
+  fixes their own wrong note cannot, and safe food is held. Asking the guest removed both, with real AI reading and
+  not only on paper. The allergen went out in 0 (picking options), 4 (Decisions) and 6 (writing names) of 120 orders
+  where someone was allergic, against 64 to 74 when anyone could cancel. Safe food stayed held in 4, 11 and 23 of 120
+  orders where nobody was, against 115 to 120 when only the guest could cancel. Both gains are far beyond chance for
+  every reader. The price: safe food waited one 5-minute check for the answer in 65 to 70 of those 120 orders, and
+  here every guest answered within 6 minutes.
+- **Under the better rule, the reader matters again.** "The rule matters more than the reader" still holds between
+  rules. But under "ask the guest", picking options changed the outcome from perfect reading in 5 of 240 orders,
+  Decisions in 19 and writing names in 39; all three gaps are significant (the pre-registered main test), and the
+  repeat run gave the same order.
+- **"Yeah, no" was not the hard answer; "not me, my aunt" was.** No AI misread any of the 48 answers written to trip
+  them on yes and no ("yeah no, shrimp's fine for all of us"; "No peanuts please, I'm allergic"). The answers that
+  named someone else were the problem: "Not me, but my aunt is eating with us tonight and she's allergic to dairy."
+  Writing names read 6 of 24 such answers as "fine" and sent the allergen. Decisions read 6 as "not mentioned", which
+  the rule treats as no answer, so the allergy stayed: safe, by design, because only a clear "fine" cancels.
+- **Decisions' blind spot for reservation notes showed up a third time.** It read 9 of 50 host-stand reservation
+  notes as "not mentioned" and 0 of 190 other notes, which caused all 4 of its unsafe sends. Asking the guest cannot
+  help there: an allergy that was never recorded is never asked about. Three fresh tests now show the same pattern
+  (6 of 41, 4 of 79, 9 of 50). Re-reading its unsure answers with picking options caught all 9 again.
+- **What still holds safe food back is old.** Most of the remaining needless holds came from reading another table's
+  note as this order's (all 5 of picking options' differing orders), the trap seen in both earlier tests.
+- **The budget is nearly spent.** This test cost $1.622; $0.232 of the $4.00 is left, too little for another full test.
+
+## How the conclusions changed with the first October 19 test
 
 - **"The code kept everyone safe" was true, but for a narrower reason.** The rule that saved the October 12 test (an
   "it's fine" cancels an allergy only if it is worded as a correction) was only ever tested on reassurances written
@@ -44,7 +74,166 @@ results](docs/allergy-pass.mp4) (2 min 26 s, captions in the matching .srt).
 
 Ranked next tests are at the end: [What to test next](#what-to-test-next-ranked).
 
-## Who can cancel an allergy? (new test, October 19)
+## Just ask the guest? (second new test, October 19)
+
+**The question.** The first October 19 test (next section) showed that each simple rule fails one way. If anyone may
+cancel an allergy, a staff member's wrong "correction" sends the allergen; if only the guest may, a staff member who
+fixes their own wrong note cannot, and safe food is held. A careful server would do something else: ask the guest.
+Here, whenever staff say a recorded allergy is fine, code texts the guest one fixed question, **"Does anyone eating
+this order need to avoid peanuts?"**, holds the food until the answer comes, and lets only a "no" from the guest cancel
+the allergy. The test asks whether that still works when an AI reads the guest's answer, and what the waiting costs.
+A search of 60 queries across papers, GitHub, portfolios and restaurant-tech products found no study or product that
+does this ([docs/prior-work-ask-the-guest-2026-10-19.md](docs/prior-work-ask-the-guest-2026-10-19.md)); the nearest is
+a medical triage study in which a model reads yes/no replies. Pre-registered in protocol §10 before any message
+existed.
+
+**The orders.** 240 new orders (2,043 messages). In each, a staff member writes down one allergy (a server's ticket
+note, a host's reservation note or a manager's note), and later a staff member says that food is fine:
+
+| Situation (orders) | Truth | Anyone can cancel | Only the guest can cancel | Ask the guest |
+|---|---|---|---|---|
+| Staff correct a wrong note (60) | nobody allergic | all right | **60 held needlessly** | all right (37 waited) |
+| Staff wrongly "correct" it (60) | someone allergic | **60 sent unsafe** | all right | all right |
+| Staff say casually "actually, it's fine", rightly (60) | nobody allergic | **60 held needlessly** | **60 held needlessly** | all right (33 waited) |
+| Staff say casually "actually, it's fine", wrongly (60) | someone allergic | all right | all right | all right |
+
+That table is perfect reading (the answer key); it follows from the rules by design. The right and wrong staff
+messages were written from identical instructions, so no reader could tell them apart. Every order also carries the
+guest's answer, written by separate blind authors who saw only the question and what the answer had to mean, in five
+styles (24 meaning "no, nobody does" and 24 meaning "yes, someone does" in each):
+
+| Style | Meaning "no, nobody does" | Meaning "yes, someone does" |
+|---|---|---|
+| Plain | "Nope, nobody here needs to avoid sesame." | "Yes, one of us is allergic to milk." |
+| Short | "No, none of us." | "Yep, that's me." |
+| Indirect | "We eat eggs all the time without any trouble, so everyone here is fine with them." | "Fish lands me in the hospital, so please keep it completely off my plate." |
+| Someone else | "We're all fine with milk; the only one with a milk allergy is my neighbor, and she's not here or eating any of this." | "Not me, but my aunt is eating with us tonight and she's allergic to dairy." |
+| "Yeah, no" | "yeah no, shrimp's fine for all of us" | "No peanuts please, I'm allergic to them." |
+
+All examples are answers from the test. Code delivers an answer only if that reader's own readings asked the question.
+Blind reviewers agreed with the answer key on all 240 answers and on every other answer of every message, except whether
+99 casual staff remarks count as a correction (a second reviewer said yes to all 99); that question plays no part in
+"ask the guest", so no order is disputed and there is one set of results.
+
+### Results (orders with the allergen sent, of 120 where someone is allergic · orders with safe food held, of 120 where nobody is)
+
+| Reader | Anyone can cancel | Only the guest can cancel | Ask the guest |
+|---|---:|---:|---:|
+| Perfect reading (answer key) | 60 · 60 | 0 · 120 | 0 · 0 |
+| Decisions | 69 · 58 | 4 · 115 | 4 · 11 |
+| Ordinary API, picking options | 74 · 50 | 0 · 120 | **0 · 4** |
+| Ordinary API, writing food names | 64 · 70 | 0 · 120 | 6 · 23 |
+| Decisions, re-read by picking options below 0.9 | 72 · 54 | 0 · 120 | 0 · 8 |
+| Keyword parser | 58 · 63 | 0 · 119 | 0 · 83 |
+
+"Sent" = an allergen dish went out at a check from the moment staff said it was fine; "held" = a safe dish was held or
+sent back to ask, at a check when no answer to the question was pending. Waiting for the answer is counted separately.
+
+| | Decisions | Picking options | Writing names | Re-read below 0.9 | Parser |
+|---|---:|---:|---:|---:|---:|
+| Guests' answers read wrongly (of 240) | 6 | **1** | 10 | 1 | 131 |
+| ... a "yes, someone is allergic" read as "fine" (of 120) | **0** | **0** | 6 | **0** | **0** |
+| ... of the 48 "yeah, no" / "No ..., I'm allergic" answers | **0** | **0** | **0** | **0** | 9 |
+| ... of the 48 "someone else" answers | 6 | **1** | 7 | **1** | 19 |
+| Staff "it's fine" read as fine (of 240) | 240 | 240 | 240 | 240 | 240 |
+| Guest asked, under "ask the guest" (of 240) | 231 | 240 | 240 | 240 | 239 |
+| Questions sent by a misreading, with no real staff "fine" behind them | 0 | 0 | 0 | 0 | 0 |
+| Single-mention allergies read as "not mentioned" (of 240) | 9 | **0** | **0** | **0** | **0** |
+| Casual staff "it's fine" read as a correction (of 120) | **11** | 25 | **11** | 23 | 0 |
+| Answers right, 10 factual questions (of 20,430) | 99.78% | **99.96%** | 99.62% | 99.94% | 99.18% |
+| Right where something was said (of 817) | 802 | **816** | 807 | **816** | 662 |
+| Messages with every answer right (of 2,043) | 97.85% | **99.56%** | 96.23% | 99.41% | 91.87% |
+| Cost per 1,000 messages | $0.207 | $0.181 | **$0.108** | $0.231 | free |
+| Median time per message (90th percentile) | **0.43 s** (0.63) | 2.25 s (3.61) | 1.82 s (3.54) | 0.45 s (2.43) | – |
+| Repeat run: messages read differently (of 2,043) | not repeated | **26** | 96 | – | – |
+| Repeat run: guests' answers read differently (of 240) | not repeated | **0** | 7 | – | – |
+
+### What it shows
+
+**1. Asking the guest removed both failures of the simple rules, for every AI.** Of the orders where "anyone can cancel"
+sent the allergen, asking the guest stopped it in 65 of 69 (Decisions; the other 4 are its missed reservation notes,
+unsafe under every rule), 74 of 74 (picking options) and 59 of 64 (writing names, which also sent it in 1 order "anyone"
+did not). Of the orders where "only the guest can cancel" held safe food, asking the guest released it in 104 of 115
+(Decisions), 116 of 120 (picking options) and 97 of 120 (writing names), and it held none that rule released. All six of
+these pre-registered comparisons are significant (p < 10⁻¹⁵ after correction). With perfect reading the food waited one
+check (5 minutes) for the guest in 70 of the 120 orders where nobody was allergic; Decisions waited in 65 because it
+never recorded the allergy in 5 of them. No wait was longer than one check, because every planned answer came 2 to 6
+minutes after the question.
+
+**2. Under "ask the guest", picking options came closest to perfect reading.** The pre-registered main test counts
+the orders whose outcome (allergen sent, or safe food held) differs from perfect reading under this rule:
+
+| Orders whose outcome differs from perfect reading under "ask the guest" (of 240) | Test run | Repeat run |
+|---|---:|---:|
+| Decisions | 19 | (not repeated) |
+| Ordinary API, picking options | **5** | **6** |
+| Ordinary API, writing food names | 39 | 36 |
+
+Picking options differed in fewer orders than Decisions (16 orders where only Decisions differed, against 2;
+Holm-corrected p = 0.003) and than writing names (36 against 2; p < 0.001); Decisions differed in fewer than writing
+names (9 against 29; p = 0.003). On the repeat run all three gaps stayed significant (p ≤ 0.009). Why each differed
+(exploratory, from `python -m defuse.allergy.confirm_explore`; an order can have more than one cause):
+
+| Cause, test run | Decisions | Picking options | Writing names |
+|---|---:|---:|---:|
+| Allergen sent: the allergy note read as "not mentioned" | 4 | 0 | 0 |
+| Allergen sent: a guest's "yes" read as "fine" | 0 | 0 | 6 |
+| Safe food held: another table's allergy read as this order's | 9 | 5 | 24 |
+| Safe food held: fryer news misread | 6 | 0 | 4 |
+| Safe food held: a note about a friend or relative who is not eating misread | 0 | 0 | 9 |
+| Safe food held: a guest's short "no" read as "not mentioned" | 0 | 0 | 3 |
+
+**3. The answers built to trip the AIs did not; answers about someone else did.** All three AIs read all 48 "yeah, no"
+and "No ..., I'm allergic" answers correctly, and all 48 short answers apart from 3 short "no"s that writing names read
+as "not mentioned" ("Nobody here, thanks."). The "someone else" answers were the hard ones. "Not me, but my aunt is
+eating with us tonight and she's allergic to dairy": writing names read 6 of 24 such answers as "fine" and sent the
+allergen (5 on the repeat run); Decisions read 6 as "not mentioned"; picking options misread 1 ("Just my neighbor, who's
+dining with us tonight — she's allergic to sesame", also "not mentioned"). Only writing names ever read a "yes" as
+"fine" (6 of 120; 2.3% to 10.5% with 95% confidence); Decisions and picking options never did (at most 3.1%). Over all
+240 answers, picking options misread significantly fewer than writing names (1 against 10; p = 0.012); the other pairs
+did not differ significantly.
+
+**4. The rule's design absorbed most misreadings.** Only a clear "fine" from the guest cancels; "not mentioned" or
+"unclear" keeps the allergy. So Decisions' 6 misread "someone else" answers kept the allergen held, which was right
+in all 6. The same design cannot help when the allergy itself was never recorded: Decisions read 9 of 50 host-stand
+reservation notes as "not mentioned" ("Reservation note for Table 11: the kid must avoid milk", with "not mentioned"
+at probability 0.46 to 0.70), against 0 of 99 manager notes and 0 of 91 ticket notes. With no allergy on record,
+there was nothing to ask about, and 4 of those 9 orders had a diner who was truly allergic; the other 5 sent the
+food, rightly, by luck. This is the third fresh test with this pattern (6 of 41 host notes on October 12, 4 of 79
+host or manager notes in the first October 19 test).
+
+**5. "Anyone can cancel" was worse with real readers than on paper.** With perfect reading it sent the allergen in 60
+orders (every explicit wrong correction). The AIs sent it in 64 to 74, because they called some casual "actually,
+it's fine" remarks a correction (11, 25 and 11 of 120) and Decisions also missed 3 notes. The blind reviewers called
+most of those remarks corrections (amendment 1 in protocol §10.8); read their way, "anyone can cancel" would have sent
+the allergen in all 120 orders where someone was allergic. Under "ask the guest" the wording of the staff remark plays
+no part: every AI read all 240 staff remarks as "fine", so every question that should have been sent was sent,
+except in the 9 orders where Decisions had missed the allergy.
+
+**6. Re-reading Decisions' unsure answers fixed its misses but was no better than picking options alone.** The hybrid
+(Decisions, with every answer below 0.9 probability replaced by picking options' answer, fixed in advance) sent 270 of
+2,043 messages (13%) to the second reading and caught all 9 missed reservation notes. It got 14 more answers right
+than Decisions where something was said (816 against 802 of 817; p < 0.001) and exactly as many as picking options
+(816). Under "ask the guest" it sent no allergen and held safe food in 8 orders, against picking options' 4. It was
+faster than picking options (median 0.45 s against 2.25 s) and cost more than either part alone ($0.231 per 1,000
+messages).
+
+**7. Picking options read the guests the same way twice; writing names did not.** A repeat run of the two ordinary
+API systems with a fresh cache: picking options read 26 of 2,043 messages differently, none of them a guest's answer,
+and the outcome under "ask the guest" changed in 3 of 240 orders. Writing names read 96 messages differently,
+including 7 answers, and the outcome changed in 28 orders. Decisions was not repeated: in the first October 19 test it
+gave identical answers twice.
+
+**8. A keyword parser cannot run this rule.** It read 131 of 240 answers wrongly, including all 48 short answers
+("Nah, we're fine" has no food word), so under "ask the guest" it held safe food in 83 of 120 orders. It never read a
+"yes" as "fine".
+
+**Run notes.** Decisions refused one request in the test run (a ticket note for another table, "Guest must avoid
+peanuts."); its answer for peanuts fell back to "unclear" (so the system asks), which stands and is scored. No other
+request failed. Analysis code: `defuse/allergy/confirm_report.py` (pre-registered, unchanged after the run) and
+`defuse/allergy/confirm_explore.py` (exploratory, added after the results; protocol §10.8 change 3).
+
+## Who can cancel an allergy? (first new test, October 19)
 
 **The question.** A guest says they are allergic to peanuts. Later someone says peanuts are fine. Should the kitchen
 believe it? If the guest takes it back, yes. If a server fixes their own typo, probably. If a manager "corrects" it
@@ -349,48 +538,74 @@ new test fixed 0.9 in advance and scored the first hybrid on fresh data.
   restaurant staff wrote or checked any. The instructions name the traps (other tables, relatives not eating, fryer
   news), and the keyword parser was written knowing the authors' cue words; both give an advantage real messages would
   not.
-- **Rare events.** Unsafe sends by reading alone were few (0 to 4 orders under the strict rule), so differences between
-  readers on safety are less certain than on accuracy.
+- **Rare events.** Unsafe sends by reading alone were few (0 to 6 orders under the strict rules), so differences
+  between readers on safety are less certain than on accuracy.
+- **Guests always answered, fast and truthfully.** In the "ask the guest" test every guest answered 2 to 6 minutes
+  after the question, and every answer was true. Real guests may be slow, gone, or unsure about someone else at the
+  table, so the one 5-minute wait measured here is the least asking can cost. With no answer the rule keeps the
+  allergy, which is safe but holds the food.
+- **One fixed question, sent by code.** The question always named the food in the staff member's plain word. A
+  question written by an AI, or asked about the wrong food, was not tested.
 - **Single mentions.** On October 12, 72 of 183 allergies were stated once and all were read; the claim that every
-  allergy was repeated was wrong. The October 19 test stated every allergy once.
+  allergy was repeated was wrong. Both October 19 tests stated every allergy once.
 - **"Same sender" is the same role, not the same person.** The code sees "server" or "host", not which server.
 - **No recall.** The simulation decides every dish again at each check and keeps no record of dishes already sent, so
   an allergy that arrives late only stops later sends.
 - **Clarifications hide some reading errors.** Writing names asked about 30 answers it wrongly called "unclear" on
   October 12, and the replies fixed 17 before any decision.
 - **Speed was measured, not used.** No decision waited on a slow reading.
-- **The video's orders were chosen by a fixed rule**, not for their outcome: the first test order of October 12, and
-  the first "staff wrongly correct it" order of October 19.
+- **The video's orders were chosen by a fixed rule**, not for their outcome: the first test order of October 12, the
+  first "staff wrongly correct it" order of the first October 19 test, and the first "staff casually say it's fine,
+  rightly" order of the second whose guest answers "yeah, no".
 
 ## What to test next (ranked)
 
-1. **Ask the guest when staff say it is fine.** Today's trade-off is 40 wrong corrections let through against 40 staff
-   fixes held. A rule where a staff "it's fine" sends a question to the guest instead of either could remove both; the
-   test is whether it does, how often the AIs trigger the question on casual remarks, and how long the food waits.
-   It follows directly from this result and is easy to explain.
-2. **Where allergies hide: reservation notes, app fields, profiles.** Decisions has now missed host-stand reservation
-   notes twice (6 of 41, then 4 of 79) and nothing else. A test built around the places allergies get written, with
-   that weakness pre-registered as the hypothesis, would settle it; Decisions and the hybrid alone keep it cheap.
-3. **A late allergy after a dish has gone out.** The most dangerous real case is the plate already at the table. Score
+The $4.00 budget has $0.232 left, so each of these needs a new approval. Ranked by what the results so far point to,
+and how plainly the answer would read.
+
+1. **Where allergies hide, and whose they are.** Two reading errors have now shown up in every test. Decisions misses
+   allergies written in a host-stand reservation note (6 of 41, 4 of 79, then 9 of 50; 0 of 190 other notes this
+   time), and asking the guest cannot catch an allergy that was never recorded. And every reader sometimes takes
+   another table's note as this order's, the main cause of needless holds that remain under "ask the guest". A test
+   built around where allergies are written (reservation notes, app fields, saved profiles) and whose they are, with
+   both weaknesses pre-registered as the hypotheses, would settle them. Decisions and the hybrid alone keep it cheap
+   (about $0.45 for 2,000 messages).
+2. **Answers about someone else.** The only guest answers the AIs got dangerously wrong named another person ("Not
+   me, but my aunt is eating with us and she's allergic to dairy"): writing names read 6 of 24 as "fine". A test of
+   answers about other people at the table (children, plus-ones, "my wife is the one") would show whether this is a
+   weakness of writing names alone, and whether a second question ("Is that person eating from this order?") fixes
+   it.
+3. **When the guest is slow, gone or unsure.** Here every guest answered within 6 minutes. Answers that come late,
+   never, or say "not sure, let me check with my sister" would show the real price of asking, and whether "unsure" is
+   read as unsure. Part of it (later answers) can be computed for free from these readings; answers that never come or
+   hedge need new messages.
+4. **A late allergy after a dish has gone out.** The most dangerous real case is the plate already at the table. Score
    whether a system flags a sent dish for recall when an allergy arrives late.
-4. **Kitchen changes tonight.** Ingredient swaps ("out of the usual pesto, using the cashew one"), a shared grill, a
+5. **Kitchen changes tonight.** Ingredient swaps ("out of the usual pesto, using the cashew one"), a shared grill, a
    new sauce. Here recipes never change, so the model never has to read what is in the food.
-5. **Ambiguous messages, asked several times.** Picking options read 23 of 120 casual reassurances differently on a
-   second run. Asking 3 or 5 times and taking the majority, or treating disagreement as "unclear", may be a cheap fix;
-   it needs a test on fresh messages.
-6. **Shorthand and other languages.** Real tickets say "NF", "GF", "no nuts x2" or "sin mariscos"; every message here
+6. **Ambiguous messages, asked several times.** Writing names read 96 of 2,043 messages differently on a second run,
+   changing the outcome of 28 orders under "ask the guest"; picking options changed 26 messages and 3 orders. Asking 3
+   or 5 times and taking the majority, or treating disagreement as "unclear", may be a cheap fix; it needs fresh
+   messages.
+7. **Shorthand and other languages.** Real tickets say "NF", "GF", "no nuts x2" or "sin mariscos"; every message here
    was a full English sentence.
-7. **Speed under pressure.** Decisions was 4 times faster, but nothing in the simulation waited for a reading. A
-   service where dishes leave on time with whatever is known would show what speed is worth.
-8. **Real people.** Restaurant staff writing or checking a sample of messages is the strongest test of realism, and the
+8. **Speed under pressure.** Decisions was 4 to 5 times faster than the ordinary API, but nothing in the simulation
+   waited for a reading. A service where dishes leave on time with whatever is known would show what speed is worth.
+9. **Real people.** Restaurant staff writing or checking a sample of messages is the strongest test of realism, and the
    most expensive.
 
 ## Cost
 
-October 19: **$2.146** of the fresh $4.00 approval (13,047 requests): smoke tests $0.016, the test run $1.064, the repeat
-run $1.064, plus $0.0015 kept for one Decisions request the budget record reserved but never settled (no saved result
-matches it; the gate counts it in full). The hybrid needed no requests of its own. October 12: about $1.14. The
-account's total across this repository's history is about $5.70.
+October 19, from the fresh $4.00 approval for this work: **$3.768** in all, **$0.232 left**.
+- "Who can cancel an allergy?": $2.146 (13,047 requests): smoke tests $0.016, the test run $1.064, the repeat run
+  $1.064, plus $0.0015 kept for one Decisions request the budget record reserved but never settled (no saved result
+  matches it; the gate counts it in full).
+- "Just ask the guest?": $1.622 under its own gate approval of $1.85 (10,362 requests): smoke tests $0.016, the test
+  run $1.014, the repeat run of the two ordinary API systems $0.591 (from the saved results), plus $0.0016 kept for one
+  request the budget record reserved but never settled. The pre-registered projection was about $1.62.
+
+The hybrids needed no requests of their own. October 12: about $1.14. The account's total across this repository's
+history is about $7.32.
 
 ## Reproduce
 
@@ -399,10 +614,14 @@ python -m defuse.allergy run --split test        # and --split hard_test; live; 
 python -m defuse.allergy.report                  # October 12 tables (data/allergy/report.json)
 python -m defuse.allergy.exploratory             # October 19 reanalysis of the October 12 data (exploratory.json)
 python -m defuse.allergy.charts                  # October 12 chart
-python -m defuse.allergy.cancel_run              # October 19 test: smoke tests, projection, test run, repeat (live)
+python -m defuse.allergy.cancel_run              # "Who can cancel?": smoke tests, projection, test run, repeat (live)
 python -m defuse.allergy.cancel_report data/allergy cancel_test       # pre-registered analysis (and ... cancel_test -r2)
-python -m defuse.allergy.charts data/allergy cancel                    # October 19 chart
-python -m defuse.allergy.render <October 12 root> <October 19 root> docs/allergy-pass.mp4
+python -m defuse.allergy.charts data/allergy cancel                    # "Who can cancel?" chart
+python -m defuse.allergy.confirm_run             # "Just ask the guest?": smoke tests, projection, test run, repeat (live)
+python -m defuse.allergy.confirm_report data/allergy confirm_test     # pre-registered analysis (and ... confirm_test -r2)
+python -m defuse.allergy.confirm_explore data/allergy                 # exploratory causes (and ... data/allergy -r2)
+python -m defuse.allergy.charts data/allergy confirm                   # "Just ask the guest?" chart
+python -m defuse.allergy.render <October 12 root> <cancel-test root> docs/allergy-pass.mp4 <ask-the-guest root>
 ```
 
 Offline from the evidence archives: see [evidence/README.md](evidence/README.md).

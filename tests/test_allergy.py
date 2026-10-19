@@ -296,6 +296,9 @@ def test_confirm_report_offline(stub, tmp_path):
                                                                 'confirm_keeps_gains', 'hybrid'}
     assert sum(out['readers']['decisions']['reply_readings'][k].get('not_mentioned', 0) for k in
                out['readers']['decisions']['reply_readings']) == 4           # the stub answers the first option
+    from defuse.allergy import confirm_explore                # exploratory causes: every differing order has one
+    ex = confirm_explore.explore(tmp_path, 'confirm_dev')
+    assert set(ex) == {'decisions', 'responses-options', 'responses-names', 'hybrid'}
     from defuse.allergy import charts, render                 # the chart, the video card and a truth-mode frame draw
     charts.confirm(tmp_path, tmp_path / 'confirm.png', 'confirm_dev')
     assert (tmp_path / 'confirm.png').stat().st_size > 10000
