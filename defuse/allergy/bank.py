@@ -3,16 +3,18 @@
 Authors see only headers and spec lines. Reviewers see only headers, texts and the questions. Neither sees answers."""
 import json
 from pathlib import Path
-from defuse.allergy import sim, rules, cancel, confirm
+from defuse.allergy import sim, rules, cancel, confirm, where
 
 BANK = Path(__file__).resolve().parent / 'bank'
 SPLITS = {'dev': [1001, 1002], 'hard_dev': [1101, 1102],
           'test': list(range(2001, 2061)), 'hard_test': list(range(2101, 2161)),
           'cancel_dev': cancel.DEV_SEEDS, 'cancel_test': cancel.TEST_SEEDS,       # §9: who can cancel an allergy
-          'confirm_dev': confirm.DEV_SEEDS, 'confirm_test': confirm.TEST_SEEDS}   # §10: just ask the guest?
+          'confirm_dev': confirm.DEV_SEEDS, 'confirm_test': confirm.TEST_SEEDS,   # §10: just ask the guest?
+          'where_dev': where.DEV_SEEDS, 'where_test': where.TEST_SEEDS}           # §11: where allergies hide
 HARD = {'hard_dev', 'hard_test'}
 CANCEL = {'cancel_dev', 'cancel_test'}
 CONFIRM = {'confirm_dev', 'confirm_test'}
+WHERE = {'where_dev', 'where_test'}
 
 
 def header(sc, msg):
@@ -30,6 +32,8 @@ def build(splits=None):
         elif split in CONFIRM:
             arm = confirm.arm_of()
             plans = [confirm.scenario(s, split, *arm[s]) for s in seeds]
+        elif split in WHERE:
+            plans = where.plans(split)
         else:
             plans = [sim.scenario(s, split, split in HARD) for s in seeds]
         (BANK / f'{split}.json').write_text(json.dumps(plans, indent=1))
