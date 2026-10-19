@@ -116,6 +116,20 @@ def scenario(seed, split, arm):
         b.add(lift, src, b.label(src), ans, spec, ['lift', arm], {x: 'avoid' if truly else 'ok'})
 
     # Distractors: two other orders' allergies, a relative who is not eating (half), chatter, fryer news (some).
+    fryer_events = distractors(b, r, x, target, others, delivery)
+
+    msgs = sorted(b.messages, key=lambda m: (m['minute'], m['source'], m['spec'][0]))
+    for i, m in enumerate(msgs):
+        m['id'] = f'C{seed}-{i + 1:02d}'
+    return {'id': f'C{seed}', 'seed': seed, 'split': split, 'hard': b.hard, 'profile': arm, 'arm': arm,
+            'start': list(start), 'target': target, 'delivery': delivery, 'dishes': dishes, 'allergen': x,
+            'restricted': restricted, 'fryer_events': fryer_events, 'traps': [arm], 'lift_minute': lift,
+            'mention': where, 'mention_source': mention_src, 'messages': msgs}
+
+
+def distractors(b, r, x, target, others, delivery):
+    """Two other orders' allergies, a relative who is not eating (half), chatter, fryer news (some). Returns the
+    fryer events. Shared with the §10 plans (confirm.py)."""
     for k in range(2):
         m, a = r.randint(2, 56), r.choice(ALLERGENS)
         wo, other = b.word(a), others[k]
@@ -150,11 +164,4 @@ def scenario(seed, split, arm):
                 else (lambda it: f'{it} are going in the same oil as the fries tonight (the fries fryer is now shared '
                                  f'with {it})')(r.choice(lexicon.FRYER_ITEMS[kind])))
         b.add(m, 'KITCHEN', b.label('KITCHEN'), a, [line], ['fryer'], {'FRYER': kind})
-
-    msgs = sorted(b.messages, key=lambda m: (m['minute'], m['source'], m['spec'][0]))
-    for i, m in enumerate(msgs):
-        m['id'] = f'C{seed}-{i + 1:02d}'
-    return {'id': f'C{seed}', 'seed': seed, 'split': split, 'hard': b.hard, 'profile': arm, 'arm': arm,
-            'start': list(start), 'target': target, 'delivery': delivery, 'dishes': dishes, 'allergen': x,
-            'restricted': restricted, 'fryer_events': fryer_events, 'traps': [arm], 'lift_minute': lift,
-            'mention': where, 'mention_source': mention_src, 'messages': msgs}
+    return fryer_events

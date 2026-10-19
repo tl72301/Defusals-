@@ -130,3 +130,55 @@ One order: the guest is allergic, and later the manager wrongly "corrects" it. E
 00:02:10,067 --> 00:02:26,067
 The results for each situation and rule, and what real AI reading changed. With real AI reading and "only the guest", the allergen went out in 4 (Decisions), 0 (picking options), 0 (writing names) of 300 orders. Under "anyone", staff saying "actually, it's fine" was taken as a correction: Decisions 7, picking options 19, writing names 10 (of 120). Allergies said once and read as "not mentioned": Decisions 4, picking options 0, writing names 0 (of 300).
 
+34
+00:02:26,067 --> 00:02:32,067
+Just ask the guest? A second new test: 240 orders. Staff say a recorded allergy is fine. A new rule: the system texts the guest "Does anyone need to avoid it?" and only the guest's answer can cancel the allergy.
+
+35
+00:02:32,067 --> 00:02:35,067
+6:00 PM, Delivery app, order note for delivery order #4796: Delivery #4796 just came in.
+
+36
+00:02:32,067 --> 00:02:35,067
+One order: staff wrote down an allergy by mistake, then say casually that it is fine. Only the third rule asks the guest, and it holds the food until the answer comes; the last column is the truth.
+
+37
+00:02:34,067 --> 00:02:37,067
+6:08 PM, Kitchen chat: Table 20 guest is allergic to soy.
+
+38
+00:02:34,067 --> 00:02:37,067
+6:08 PM, Manager on duty: Delivery #4796: customer must avoid crayfish.
+
+39
+00:02:36,567 --> 00:02:39,567
+6:18 PM, Kitchen chat: Restock the to-go boxes, someone.
+
+40
+00:02:36,817 --> 00:02:39,817
+6:19 PM, Customer, app chat for delivery order #4796: My roommate is allergic to quail eggs, but to be clear they aren't eating with us tonight and won't touch anything from this order.
+
+41
+00:02:53,867 --> 00:02:56,867
+6:34 PM, Kitchen chat: Turns out shrimp is fine for delivery #4796.
+
+42
+00:02:53,867 --> 00:02:56,867
+6:34 PM, The system, text to the guest (only under "ask the guest"): Does anyone eating this order need to avoid shrimp?
+
+43
+00:03:01,067 --> 00:03:04,067
+6:40 PM, Customer, app chat for delivery order #4796, reply to the restaurant's question "Does anyone eating this order need to avoid shrimp?": yeah no, shrimp's fine for all of us
+
+44
+00:03:11,867 --> 00:03:14,867
+6:49 PM, Customer, app chat for delivery order #4796: Dressing on the side please!
+
+45
+00:03:16,667 --> 00:03:19,667
+6:53 PM, Kitchen chat: Table 11 guest has a peanuts allergy.
+
+46
+00:03:25,100 --> 00:03:41,100
+The results for each situation and rule, and what real AI reading changed. With real AI reading and "ask the guest", the allergen went out in 4 (Decisions), 0 (picking options), 6 (writing names) of 120 orders. Safe food stayed held after the guest's answer in 11 (Decisions), 4 (picking options), 23 (writing names) of 120. Guests' answers read wrongly: 6 (Decisions), 1 (picking options), 10 (writing names) of 240. The price of asking: with perfect reading, safe food waited one check (5 minutes) in 70 of 120 orders.
+

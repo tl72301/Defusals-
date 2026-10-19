@@ -35,7 +35,7 @@ def load_all(root):
 
 
 def msg_list(sc):
-    return [{'id': m['id'], 'minute': m['minute'], 'source': m['source']} for m in sc['messages']]
+    return [{k: m[k] for k in ('id', 'minute', 'source', 'reply_to', 'about') if k in m} for m in sc['messages']]
 
 
 def overrides(run, field='answer'):
@@ -196,7 +196,7 @@ def hybrid_order(sc, rd, ro, threshold, mode='options'):
         o['answers'][mid] = a
         for q in rules.FACTUAL:
             reviewed = mode == 'review' and q in low
-            if budget <= 0 or (rd['key'][mid][q] if reviewed else a[q]) != 'unclear':
+            if budget <= 0 or (rd['key'][mid][q] if reviewed else a[q]) != 'unclear' or 'reply_to' in m:
                 continue
             _, correct = sim.clarification(sc, m, q)
             if reviewed:                       # the reviewer says "unclear" too, so the guest is asked after the review

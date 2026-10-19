@@ -10,7 +10,36 @@ Messages about one order arrive from the server, the guest, the delivery app, th
 the model answers 11 questions per message; code applies US allergen rules (21 U.S.C. 321(qq), FDA guidance 2025),
 the recipes and what is in the fryer oil, and decides every 5 minutes whether each dish may be sent.
 
-### October 19: who can cancel an allergy?
+### October 19, second test: just ask the guest?
+
+The first October 19 test (below) found that each simple rule fails one way: if anyone may cancel an allergy, a staff
+member's wrong "correction" sends the allergen; if only the guest may, staff cannot fix their own wrong notes and safe
+food is held. So in a second pre-registered test on 240 fresh orders, whenever staff said a recorded allergy was fine,
+code texted the guest "Does anyone eating this order need to avoid peanuts?", held the food until the answer came, and
+let only the guest's "no" cancel the allergy. No earlier study or product doing this was found
+([prior-work search](docs/prior-work-ask-the-guest-2026-10-19.md)).
+
+![Just ask the guest?](docs/allergy-confirm.png)
+
+| Orders with the allergen sent (of 120 where someone is allergic) · with safe food held (of 120 where nobody is) | Anyone can cancel | Only the guest can cancel | Ask the guest |
+|---|---:|---:|---:|
+| Perfect reading (answer key) | 60 · 60 | 0 · 120 | 0 · 0 |
+| Decisions | 69 · 58 | 4 · 115 | 4 · 11 |
+| Ordinary API, picking options | 74 · 50 | 0 · 120 | **0 · 4** |
+| Ordinary API, writing food names | 64 · 70 | 0 · 120 | 6 · 23 |
+
+- **Asking the guest fixed both failures, with real AI reading.** For every reader it stopped nearly all the unsafe
+  sends of "anyone can cancel" and released nearly all the safe food "only the guest" held (all significant). The price
+  was a wait of one 5-minute check in 65 to 70 of 120 orders, with guests who all answered within 6 minutes.
+- **The AIs read "yeah, no" and "No peanuts please, I'm allergic" perfectly (48 of 48 each).** The hard answers named
+  someone else: "Not me, but my aunt is eating with us tonight and she's allergic to dairy." Writing names read 6 of
+  24 of those as "fine" and sent the allergen.
+- **Decisions missed reservation notes for the third time** (9 of 50, against 0 of 190 other notes), which caused all
+  4 of its unsafe sends: an allergy that is never recorded is never asked about.
+- **Picking options came closest to perfect reading** (5 of 240 orders differ, against 19 for Decisions and 39 for
+  writing names; significant), and read every guest's answer the same way on a repeat run.
+
+### October 19, first test: who can cancel an allergy?
 
 A guest says they are allergic to peanuts; later someone says peanuts are fine. Should the kitchen believe it? A new
 pre-registered test on 300 fresh orders, each allergy stated once, compared three rules for who may cancel an allergy,
@@ -43,8 +72,8 @@ applied by code to the same AI readings. No earlier study of this question was f
 
 ![Allergy Pass results](docs/allergy-final.png)
 
-Video: [an October 12 order replayed, its results, then an October 19 order under each rule, and its
-results](docs/allergy-pass.mp4) (2 min 26 s, captions in the matching .srt).
+Video: [an October 12 order replayed, its results, then one order of each October 19 test under each rule, and their
+results](docs/allergy-pass.mp4) (3 min 41 s, captions in the matching .srt).
 
 | 2,087 messages, 3,987 dish checks | Decisions | Ordinary API, picking options | Ordinary API, writing food names |
 |---|---:|---:|---:|
@@ -118,8 +147,9 @@ the numbers above. Every step is in [LAUNCH_RESULTS.md](LAUNCH_RESULTS.md).
   simplified subset of NASA's Artemis I weather criteria. Code applies them; the model only reads.
 - **Blind authors and reviewers.** Author agents wrote every message from fact lists without seeing answers, code or
   results; separate blind reviewers answered every question from the text alone and agreed with the answer key on all
-  22,957 (Allergy Pass) and 20,853 (Launch Window) answers. In the October 19 Allergy Pass test they agreed on every
-  message except 120 casual "actually, it's fine" remarks, which were kept and are reported both ways.
+  22,957 (Allergy Pass) and 20,853 (Launch Window) answers. In both October 19 Allergy Pass tests they agreed on every
+  message except whether casual "actually, it's fine" remarks from staff count as a correction; those were kept, and
+  their effect is reported.
 - **Scoring against the evidence.** Each decision is compared with what the evidence a system received supports, so
   lucky guesses are not credited. An answer-key system (makes no errors) and a parser frozen before any message existed
   are the baselines.
@@ -127,8 +157,8 @@ the numbers above. Every step is in [LAUNCH_RESULTS.md](LAUNCH_RESULTS.md).
   the tables recompute offline from it.
 
 Limits: simulations with AI-written messages; unsafe decisions are rare, so safety differences are less certain than
-accuracy differences. Details in each results file. Cost: about $1.14 (Allergy Pass, October 12), $2.15 (Allergy Pass,
-October 19) and $2.06 (Launch Window) in API calls, counted conservatively.
+accuracy differences. Details in each results file. Cost: about $1.14 (Allergy Pass, October 12), $3.77 (Allergy Pass,
+both October 19 tests, of a $4.00 approval) and $2.06 (Launch Window) in API calls, counted conservatively.
 
 ## Repository
 
@@ -160,6 +190,7 @@ python -m defuse.launch run --split test --systems oracle parser
 mkdir -p /tmp/ev && for f in evidence/*.tar.gz; do tar -xzf $f -C /tmp/ev; done
 python -m defuse.allergy.report /tmp/ev/data/allergy && python -m defuse.allergy.charts /tmp/ev/data/allergy
 python -m defuse.allergy.cancel_report /tmp/ev/data/allergy cancel_test && python -m defuse.allergy.charts /tmp/ev/data/allergy cancel
+python -m defuse.allergy.confirm_report /tmp/ev/data/allergy confirm_test && python -m defuse.allergy.charts /tmp/ev/data/allergy confirm
 python -m defuse.launch.confirm /tmp/ev/data/launch && python -m defuse.launch.charts /tmp/ev/data/launch
 ```
 
