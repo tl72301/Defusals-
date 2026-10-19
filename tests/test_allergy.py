@@ -203,3 +203,121 @@ def test_cancel_run_offline(stub, tmp_path, monkeypatch):
     rep = cancel_report.repeat(tmp_path / 'data' / 'allergy', 'cancel_test')
     assert rep['decisions']['answers_changed']['k'] == 0 and rep['decisions']['messages_changed']['n'] == sum(
         len(sc['messages']) for sc in bank.load('cancel_test'))
+
+
+def test_confirm_rule():
+    """§10: a staff "fine" asks the guest; only the guest's answer to that question can lift the allergy."""
+    def run(*msgs, rule='confirm', t=99):
+        ms, ans = [], {}
+        for i, (src, a, extra) in enumerate(msgs):
+            ms.append({'id': f'm{i}', 'minute': i, 'source': src, **extra}); ans[f'm{i}'] = a
+        log = {}
+        return rules.restrictions(ms, ans, [], t, rule, log)['MILK'], log['asked']
+    note = ('SERVER', blank(MILK='avoid'), {})
+    fine = ('MANAGER', blank(MILK='ok', CORRECTION='yes'), {})
+    casual = ('KITCHEN', blank(MILK='ok'), {})
+    yes = ('GUEST', blank(MILK='avoid'), {'reply_to': 'm1', 'about': 'MILK'})
+    no = ('GUEST', blank(MILK='ok'), {'reply_to': 'm1', 'about': 'MILK'})
+    unsure = ('GUEST', blank(MILK='unclear'), {'reply_to': 'm1', 'about': 'MILK'})
+    assert run(note, fine, no) == ('none', [('m1', 'MILK')])        # asked; the guest says nobody needs to avoid it
+    assert run(note, casual, no) == ('none', [('m1', 'MILK')])      # a casual "fine" asks too: no correction needed
+    assert run(note, fine, yes)[0] == 'avoid'
+    assert run(note, fine, unsure)[0] == 'avoid'
+    assert run(note, fine, no, t=1)[0] == 'avoid'                  # still waiting for the answer
+    assert run(note, ('MANAGER', blank(), {}), no) == ('avoid', [])  # never asked, so the answer never came
+    for rule in ('anyone', 'guest_only', 'same_sender'):            # the answer exists only under confirm
+        assert run(note, casual, no, rule=rule) == ('avoid', [])
+    assert run(note, fine, no, rule='anyone')[0] == 'none' and run(note, fine, no, rule='guest_only')[0] == 'avoid'
+    assert run(('SERVER', blank(), {}), fine, no) == ('none', [])   # nothing to avoid: no question
+    assert run(note, ('GUEST', blank(MILK='ok', CORRECTION='yes'), {}))[0] == 'none'   # the guest's own take-back
+    assert run(note, ('MANAGER', blank(MILK='ok', CORRECTION='yes'), {}), ('GUEST', blank(MILK='ok'), {}))[0] == 'avoid'
+    ms = [{'id': 'a', 'minute': 0, 'source': 'HOST'}, {'id': 'b', 'minute': 1, 'source': 'KITCHEN'}]   # a question with
+    log = {}                                                                                              # no planned answer
+    assert rules.restrictions(ms, {'a': blank(EGG='unclear'), 'b': blank(EGG='ok')}, [], 9, 'confirm', log)['EGG'] == 'unclear'
+    assert log['asked'] == [('b', 'EGG')]
+
+
+def test_confirm_plans():
+    from collections import Counter
+    from defuse.allergy import confirm, bank, confirm_report
+    arm = confirm.arm_of()
+    assert Counter(arm[s][0] for s in confirm.TEST_SEEDS) == Counter(confirm.ARMS)
+    assert set(Counter(arm[s] for s in confirm.TEST_SEEDS).values()) == {12}
+    assert [arm[s][0] for s in confirm.DEV_SEEDS] == list(confirm.ARMS)
+    for split in ('confirm_dev', 'confirm_test'):
+        saved = bank.load(split)
+        assert [sc['seed'] for sc in saved] == bank.SPLITS[split]
+        for sc in saved:
+            assert sc == json_round(confirm.scenario(sc['seed'], split, *arm[sc['seed']]) | {'messages': sc['messages']})
+            x, msgs = sc['allergen'], sc['messages']
+            mention, lift, reply = ([m for m in msgs if t in m['tags']] for t in ('mention', 'lift', 'reply'))
+            assert len(mention) == len(lift) == len(reply) == 1
+            mention, lift, reply = mention[0], lift[0], reply[0]
+            assert mention['source'] in ('SERVER', 'HOST', 'MANAGER') and lift['source'] in confirm.STAFF
+            assert [m['id'] for m in msgs if m['answers'][x] == 'avoid'] == [mention['id']] + \
+                   ([reply['id']] if sc['arm'].endswith('wrong') else [])
+            assert reply['reply_to'] == lift['id'] and reply['about'] == x and reply['minute'] - lift['minute'] in range(2, 7)
+            assert reply['answers'][x] == ('ok' if sc['arm'].endswith('right') else 'avoid')
+            assert (x in sc['restricted']) == sc['arm'].endswith('wrong')
+            assert sc['question'] in reply['label'] and any(x in rules.dish_allergens(d, rules.FRYER_DEFAULT)
+                                                             for d in sc['dishes'])
+            o = {rule: confirm_report.order_outcome(sc, runner.run_scenario(sc, 'oracle', {}), rule) for rule in
+                 confirm_report.RULES}
+            assert not o['confirm']['unsafe'] and not o['confirm']['needless'] and o['confirm']['asked']
+            assert o['guest_only']['needless'] == sc['arm'].endswith('right')
+            assert o['anyone']['unsafe'] == (sc['arm'] == 'explicit_wrong')
+            assert o['anyone']['needless'] == (sc['arm'] == 'casual_right')
+
+
+def json_round(x):
+    import json
+    return json.loads(json.dumps(x))
+
+
+def test_confirm_report_offline(stub, tmp_path):
+    import json
+    from defuse.allergy import confirm_report, bank
+    scs = bank.load('confirm_dev')
+    for sc in scs:
+        for m in sc['messages']:
+            m['text'] = ' '.join(m['spec'])
+    ex = runner.make_extractors(tmp_path, endpoint=stub['url'])
+    (tmp_path / 'confirm_dev').mkdir()
+    for s in runner.SYSTEMS:
+        res = [runner.run_scenario(sc, s, ex) for sc in scs]
+        (tmp_path / 'confirm_dev' / f'{s}.json').write_text(json.dumps({'results': res}))
+        reply = {m['id'] for sc in scs for m in sc['messages'] if 'reply' in m['tags']}
+        assert not any(c['message'] in reply for r in res for c in r['clarifications'])      # never asked about a reply
+    out = confirm_report.analyse(tmp_path, 'confirm_dev')
+    oracle = out['readers']['oracle']['rules']
+    assert oracle['confirm']['unsafe_of_wrong']['k'] == oracle['confirm']['needless_of_right']['k'] == 0
+    assert oracle['guest_only']['needless_of_right']['k'] == 2 and oracle['anyone']['unsafe_of_wrong']['k'] == 1
+    assert 'hybrid' in out['readers'] and set(out['tests']) == {'confirm_outcome_differs_from_key', 'reply_misread',
+                                                                'confirm_keeps_gains', 'hybrid'}
+    assert sum(out['readers']['decisions']['reply_readings'][k].get('not_mentioned', 0) for k in
+               out['readers']['decisions']['reply_readings']) == 4           # the stub answers the first option
+
+
+def test_confirm_run_offline(stub, tmp_path, monkeypatch):
+    from defuse.allergy import confirm_run, confirm_report, bank
+    from defuse.budget import Budget
+    load = bank.load
+
+    def two(split):                                       # two orders per split; the plan stands in for any missing text
+        scs = load(split)[:2]
+        for sc in scs:
+            for m in sc['messages']:
+                m['text'] = m.get('text') or ' '.join(m['spec'])
+        return scs
+    monkeypatch.setattr(bank, 'load', two)
+    monkeypatch.chdir(tmp_path)
+    Budget().approve(1.85, attempt_requests=12000, confirm=True)
+    monkeypatch.setattr(confirm_run, 'ROOT', tmp_path / 'data' / 'allergy')
+    monkeypatch.setattr(confirm_run, 'ENDPOINT', stub['url'])
+    confirm_run.main()
+    out = tmp_path / 'data' / 'allergy' / 'confirm_test'
+    assert (out / 'decisions.json').exists() and (out / 'responses-names-r2.json').exists()
+    assert not (out / 'decisions-r2.json').exists()                          # Decisions is not repeated (§10.5)
+    rep = confirm_report.repeat(tmp_path / 'data' / 'allergy', 'confirm_test')
+    assert set(rep) == set(confirm_run.REPEATED) and rep['responses-options']['answers_changed']['k'] == 0
+    assert confirm_report.analyse(tmp_path / 'data' / 'allergy', 'confirm_test', '-r2')['readers']['decisions']

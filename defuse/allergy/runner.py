@@ -26,7 +26,7 @@ def make_extractors(root, endpoint=None, budget=None, tag=''):
 
 def run_scenario(sc, system, extractors):
     target = sc['target']
-    msgs = [{'id': m['id'], 'minute': m['minute']} for m in sc['messages']]
+    msgs = [{k: m[k] for k in ('id', 'minute', 'source', 'reply_to', 'about') if k in m} for m in sc['messages']]
     full = {m['id']: m for m in sc['messages']}
     key = {m['id']: m['answers'] for m in sc['messages']}
     answers, extractions, sys_over, key_over, clar = {}, {}, [], [], []
@@ -37,8 +37,8 @@ def run_scenario(sc, system, extractors):
         res = oracle_result(msg['answers']) if system == 'oracle' else ex(target, bank.header(sc, msg), msg['text'])
         answers[m['id']] = res['answers']
         extractions[m['id']] = res
-        for q in rules.FACTUAL:                     # ask when an allergen or the fryer is unclear
-            if budget <= 0 or res['answers'].get(q) != 'unclear':
+        for q in rules.FACTUAL:                     # ask when an allergen or the fryer is unclear (never about a reply, §10)
+            if budget <= 0 or res['answers'].get(q) != 'unclear' or 'reply_to' in msg:
                 continue
             text, correct = sim.clarification(sc, msg, q)
             arrival = msg['minute'] + rules.CLARIFY_DELAY

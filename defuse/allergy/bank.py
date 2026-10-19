@@ -3,14 +3,16 @@
 Authors see only headers and spec lines. Reviewers see only headers, texts and the questions. Neither sees answers."""
 import json
 from pathlib import Path
-from defuse.allergy import sim, rules, cancel
+from defuse.allergy import sim, rules, cancel, confirm
 
 BANK = Path(__file__).resolve().parent / 'bank'
 SPLITS = {'dev': [1001, 1002], 'hard_dev': [1101, 1102],
           'test': list(range(2001, 2061)), 'hard_test': list(range(2101, 2161)),
-          'cancel_dev': cancel.DEV_SEEDS, 'cancel_test': cancel.TEST_SEEDS}       # §9: who can cancel an allergy
+          'cancel_dev': cancel.DEV_SEEDS, 'cancel_test': cancel.TEST_SEEDS,       # §9: who can cancel an allergy
+          'confirm_dev': confirm.DEV_SEEDS, 'confirm_test': confirm.TEST_SEEDS}   # §10: just ask the guest?
 HARD = {'hard_dev', 'hard_test'}
 CANCEL = {'cancel_dev', 'cancel_test'}
+CONFIRM = {'confirm_dev', 'confirm_test'}
 
 
 def header(sc, msg):
@@ -25,6 +27,9 @@ def build(splits=None):
         if split in CANCEL:
             arm = cancel.arm_of()
             plans = [cancel.scenario(s, split, arm[s]) for s in seeds]
+        elif split in CONFIRM:
+            arm = confirm.arm_of()
+            plans = [confirm.scenario(s, split, *arm[s]) for s in seeds]
         else:
             plans = [sim.scenario(s, split, split in HARD) for s in seeds]
         (BANK / f'{split}.json').write_text(json.dumps(plans, indent=1))
@@ -47,14 +52,19 @@ def load(split):
     return data
 
 
-def authoring_packet(split, seeds, path):
+def authoring_packet(split, seeds, path, replies=None):
+    """replies (§10.4): None writes every message; False leaves out the guests' answers; True writes only those, one
+    per item, so their authors never see the rest of the order."""
     data = {sc['seed']: sc for sc in json.loads((BANK / f'{split}.json').read_text())}
     packet = []
     for seed in seeds:
         sc = data[seed]
-        packet.append({'scenario': sc['id'], 'order': sc['target'], 'messages': [
-            {'id': m['id'], 'header': header(sc, m), 'must_convey': sim.resolve_spec(sc, m)} for m in sc['messages']]})
+        msgs = [{'id': m['id'], 'header': header(sc, m), 'must_convey': sim.resolve_spec(sc, m)} for m in sc['messages']
+                if replies is None or ('reply_to' in m) == replies]
+        if msgs:
+            packet.append({'scenario': sc['id'], 'order': sc['target'], 'messages': msgs})
     Path(path).write_text(json.dumps(packet, indent=1, ensure_ascii=False))
+    return sum(len(x['messages']) for x in packet)
 
 
 def review_packet(split, seeds, path):

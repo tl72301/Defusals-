@@ -286,3 +286,159 @@ message text), while the authors were writing; before I or any reviewer had read
     names, repeat run, one message: an unusable answer); its fallback stands as its answer, as for every system. The
     budget record holds one Decisions reservation that was never settled and matches no saved result; it is counted at
     its full reserved cost ($0.0015) in the reported total.
+
+## 10. Just ask the guest? Pre-registration of October 19, 2026 (second test)
+
+Committed before any message text for this test existed, after the §9 results. Everything not stated here is as in
+§1 to §7 and §9: the same menu, definitions, 11 questions, prompts, systems, clarification rule and delay, and pass
+checks. Code: `defuse/allergy/confirm.py` (plans), `rules.restrictions(..., 'confirm')` (the new rule),
+`defuse/allergy/confirm_report.py` (this analysis), `defuse/allergy/confirm_run.py` (the paid run).
+
+**Prior work.** A search on October 19 (60 queries across arXiv, ACL, medical journals, Hugging Face, GitHub, blogs,
+portfolios and restaurant-tech products; report in
+[docs/prior-work-ask-the-guest-2026-10-19.md](docs/prior-work-ask-the-guest-2026-10-19.md)) found no study, repository
+or product in which code asks the guest before a staff member can cancel an allergy, and none comparing that with other
+cancel rules on the same model readings. The parts exist separately. The closest is a symptom-triage system (Liu et al.
+2025, arXiv 2511.12439) in which a model reads synthetic yes/no replies in set styles (brief, hedged, uncertain), code
+moves on only on a confident yes or no, and a reply that opens with "No" but means yes is a known misreading; it has no
+allergy, no third party cancelling and no scope answers. Reading indirect answers to yes/no questions is studied in
+general settings (Circa, 2020; Wang et al., 2024); a benchmark sets other people's wishes against a user's stated
+allergy, but the model decides and may not ask (CURATe, 2024); restaurant ordering bots are tested on simulated allergy
+orders commercially, with no published rule comparison.
+
+### 10.1 Question
+
+§9 found that who may cancel an allergy matters more than which AI reads the messages, and that both simple rules
+fail one way: when anyone's correction counts, a staff member's wrong "correction" sends the allergen; when only the
+guest can cancel, a staff member who fixes their own wrong note cannot, and safe food is held. The obvious remedy is
+what a careful server does: when staff say a recorded allergy is fine, ask the guest. This test asks whether that
+remedy works when an AI reads the guest's answer, and what it costs in waiting.
+
+### 10.2 The rule, applied by code to the same readings
+
+`confirm`: as `guest_only` (§9.2), except that when a staff message (server, host, manager or kitchen) is read as `ok`
+for an allergen whose status is `avoid` or `unclear`, code sends the guest a fixed question, **"Does anyone eating this
+order need to avoid {food}?"**, using the plain food word of that staff message, and keeps the allergen held until the
+answer arrives. The guest's answer, read by the same system, decides: `ok` lifts the allergy, with no correction
+wording needed; `avoid`, `unclear` or `not_mentioned` keeps it. Any wording of the staff message triggers the
+question, so this rule does not depend on the correction question at all.
+
+Compared on the same readings: `anyone` (§9.2), `guest_only` (§9.2) and `confirm`.
+
+How the question works in the simulation:
+- Each order carries one planned answer from the guest, arriving 2 to 6 minutes after the staff message. Code delivers
+  it only under `confirm`, and only at a check where that system's own readings asked the question about that
+  allergen after that staff message. Every system reads every planned answer (so it can be scored), but under the
+  other rules, or when the question was not asked, it plays no part. If a reading asks the question only after a
+  clarification reply, the answer still arrives at its planned minute.
+- The question is part of the answer's header, which every system sees with the text, for example: *Guest at Table 7,
+  reply to the restaurant's question "Does anyone eating this order need to avoid peanuts?"*. Prompts and systems are
+  unchanged.
+- No clarification is ever asked about a guest's answer: an unclear answer keeps the allergy, and the reading of the
+  answer is what this test measures.
+- A question triggered by any other message or allergen (a misreading) has no planned answer: the allergen stays as
+  it was. These are counted and reported.
+
+### 10.3 Orders
+
+240 test orders (seeds 3501–3740) and 4 development orders (3401–3404, one per arm, smoke tests only). One allergen
+per order, stated in exactly one message, always by staff: the server's ticket note (about 38%), a host's reservation
+note (about 21%) or a manager's note (about 41%; every delivery order). Each order has 3 or 4 dishes, one or two of
+which contain that allergen. Distractors as in §9.3. Between minute 12 and 35 a staff member says that food is fine:
+the same role that wrote the note half the time, otherwise another staff role.
+
+| Arm | Orders | The staff message | Truth | The guest's planned answer |
+|---|---:|---|---|---|
+| explicit_right | 60 | explicitly corrects the note | nobody eating needs to avoid it | "no" (key `ok`) |
+| explicit_wrong | 60 | explicitly "corrects" the note, wrongly | someone eating is allergic | "yes" (key `avoid`) |
+| casual_right | 60 | casually says it is fine ("actually…", "turns out…"), no correction words | nobody needs to avoid it | "no" |
+| casual_wrong | 60 | the same, wrongly | someone eating is allergic | "yes" |
+
+The right and wrong arms use identical "must convey" lines for the note and the staff message (the §9.3 wording), so
+the text cannot tell them apart. Answer key for the staff message: the allergen `ok`; CORRECTION `yes` (explicit) or
+`no` (casual).
+
+**The guest's answers**, in five styles, 12 per style in every arm (24 meaning "no" and 24 meaning "yes" per style),
+assigned by a fixed shuffle. Each is meant to be clear to a careful reader who sees the question:
+
+| Style | Meaning "no, nobody does" (key `ok`) | Meaning "yes, someone does" (key `avoid`) |
+|---|---|---|
+| plain | a clear no, naming the food | a clear yes, naming the food |
+| short | two to five words, no food named ("nope, all good") | two to five words, no food named ("yep, me") |
+| indirect | no "yes", "no" or "allergic": they eat it all the time | no "yes", "no" or "allergic": it makes them seriously ill (EpiPen, hives, hospital) |
+| scope | the only one with the allergy is a relative who is not here and not eating | not them, but a relative who is eating from this order |
+| polarity | starts "yeah, no" and means no | starts "No" and means yes ("No peanuts please, …") |
+
+With the answer key's readings the rules give, by construction (checked by code on the plans before any text):
+
+| | Allergen sent (of 120 "yes" orders) | Safe food held after any answer (of 120 "no" orders) |
+|---|---:|---:|
+| `anyone` | 60 (every explicit wrong correction) | 60 (every casual right one: no correction words) |
+| `guest_only` | 0 | 120 |
+| `confirm` | 0 | 0 |
+
+`confirm` also holds food while it waits for the guest: with perfect reading, at one pass check in 70 of the 120 "no"
+orders. What the test measures is whether real readings keep `confirm`'s 0 and 0: a staff "fine" not read as `ok`
+(no question, so the food stays held), a "yes" answer read as `ok` (unsafe), a "no" answer read as anything else (held),
+a missed single mention (unsafe under every rule), and questions triggered by misreadings.
+
+### 10.4 Messages
+
+As in §5, with one change: **the guest's answers are written by separate authors** who see only the answer's header
+(with the question) and its "must convey" line, never the order's other messages, so nothing an author knows about
+the truth can leak into the staff message, and the staff message cannot shape the answer. Other messages are written
+order by order as before. Separate blind reviewers answer all 11 questions for every message from its header and text
+alone; a disagreement with the key goes to a fresh second reviewer.
+- A background message both reviewers dispute is dropped (§5). A disputed single mention drops its order.
+- Staff messages: disputes on CORRECTION are expected in the casual arms (§9.8 amendment 8) and play no part in
+  `confirm`; the message stays with its key. If both reviewers dispute the allergen's reading, the order stays and is
+  listed as disputed.
+- Guest answers: if both reviewers dispute the allergen's reading, the answer stays with its plan-defined key and is
+  listed as disputed. Results are reported with and without disputed orders. If more than 15% of one style's answers
+  of one meaning (more than 3 of 24) are disputed, that style is reported as ambiguous to careful readers too.
+  CORRECTION is not scored on guest answers.
+
+### 10.5 Systems and runs
+
+The three model systems of §6, the parser, the answer key, and the §9.5 hybrid (Decisions; below 0.9, picking
+options' answer; no extra requests). Two runs: the full test set once (the result), then a repeat of **picking options
+and writing names only**, with a separate cache (`--tag -r2`). Decisions is not repeated: on the first October 19 test
+its repeat changed 0 of 23,595 answers. The repeat's report uses Decisions' first run.
+
+### 10.6 Analysis (pre-registered)
+
+Outcomes per order against the hidden truth, at the pass checks from the staff message's minute on: **unsafe** = any
+dish sent that the truth says hold or ask; **lasting needless stop** = any dish held or sent back to ask that the truth
+says send, at a check when no answer to this order's question is pending; **waiting** = checks at which the question
+is pending (counted, not a needless stop).
+
+- **Primary.** Under `confirm`, the orders whose outcome (unsafe, lasting needless stop) differs from the answer key's
+  under `confirm`; pairwise between the three model systems, exact two-sided McNemar, Holm over 3, α = 0.05. No
+  directional prediction.
+- **Secondary.** (a) Guest answers misread (the allergen's reading differs from the key), by system, style and
+  meaning, over all 240 answers; pairwise exact McNemar, Holm over 3; "yes" answers read as `ok` reported on their own
+  with an upper bound. (b) Whether each system keeps the design's gains: `confirm` against `guest_only` on lasting
+  needless stops in the 120 "no" orders, and `confirm` against `anyone` on unsafe orders in the 120 "yes" orders,
+  paired by order, exact McNemar, Holm over the 6 (perfect reading settles both, so this tests the readings, not the
+  rules). (c) Questions asked: staff "fine" messages read as `ok`, by arm; questions triggered by misreadings.
+  (d) Waiting: checks with a pending question, by arm. (e) The hybrid against Decisions and against picking options on
+  answers where something was said, Holm over 2, with cost per 1,000 messages and median and 90th-percentile time.
+  (f) Each arm's outcomes under all three rules, the parser and answer key as references; factual accuracy, accuracy
+  where something was said, single mentions missed by where they were written. (g) Repeat run: answers and guest
+  answers read differently; orders whose outcome changed under each rule.
+- Every rate with its denominator and a Wilson 95% interval. A 0 against 0 is reported as "none seen" with its upper
+  bound (§9.8 amendment 4). No pooled winner across arms (§9.8 amendment 3).
+
+### 10.7 Budget
+
+The $4.00 approval for this work has $1.854 left after the §9 run ($2.1461 accounted, including its one unsettled
+reservation). A new gate approval of **$1.85** covers this test; every paid request goes through it. The plans hold
+2,043 test messages and 33 development messages; at §9's measured costs ($0.207, $0.181 and $0.108 per 1,000 messages,
+clarifications included) one full run projects about $1.01, the smoke tests about $0.02 and the repeat about $0.59,
+about $1.62 in all. `confirm_run.py` stops before any test request if the smoke tests project a run that does not fit
+in what is left less $0.05, and skips the repeat unless what is left covers what those two systems cost in the test run
+plus 15%.
+
+### 10.8 Changes after this pre-registration
+
+None yet.

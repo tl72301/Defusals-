@@ -106,22 +106,30 @@ def effective_answers(messages, answers, overrides, t):
 CUSTOMER = {'GUEST', 'APP'}           # the guest's own side: their texts and their delivery-app notes
 RULES = {'anyone': 'any clear correction cancels an allergy (the October 12 rule)',
          'guest_only': 'anyone can add an allergy; only the guest can take one away',
-         'same_sender': 'only the guest, or whoever first stated the allergy, can take it away'}
+         'same_sender': 'only the guest, or whoever first stated the allergy, can take it away',
+         'confirm': 'only the guest can take an allergy away; a staff "it\'s fine" makes code ask the guest first'}
 
 
-def restrictions(messages, answers, overrides, t, rule='anyone'):
+def restrictions(messages, answers, overrides, t, rule='anyone', log=None):
     """Each allergen's status for the order at time t: 'avoid', 'unclear' or 'none'.
 
     Statements are applied in time order. 'avoid' always applies. 'unclear' applies unless the allergen is already to be
     avoided. 'ok' clears an 'unclear', but lifts an 'avoid' only in a message that explicitly corrects an earlier one
     (CORRECTION = yes): an unexplained reversal is not trusted.
 
-    rule (ALLERGY_PROTOCOL.md §9) decides whose 'ok' counts at all, using the sender code knows from the message header:
-    'anyone' (the original rule), 'guest_only' (only the guest's side) or 'same_sender' (the guest's side, or the sender
-    who first stated that allergen). Messages need a 'source' for the last two."""
+    rule (ALLERGY_PROTOCOL.md §9, §10) decides whose 'ok' counts at all, using the sender code knows from the message
+    header: 'anyone' (the original rule), 'guest_only' (only the guest's side), 'same_sender' (the guest's side, or the
+    sender who first stated that allergen) or 'confirm' (as 'guest_only', but a staff 'ok' on an allergen still to be
+    avoided or unclear asks the guest instead; the guest's answer to that question lifts it if read as 'ok'). A message
+    with 'reply_to' is the guest's planned answer to the question about allergen 'about' asked after message
+    'reply_to': it exists only under 'confirm' and only if the readings asked that question. Messages need a 'source'
+    for every rule but 'anyone'. log, if a dict, receives 'asked': the (message id, allergen) questions asked."""
     status = {a: 'none' for a in ALLERGENS}
-    first = {}
+    first, asked = {}, []
     for m, a in effective_answers(messages, answers, overrides, t):
+        about = m.get('about') if 'reply_to' in m else None
+        if 'reply_to' in m and (rule != 'confirm' or (m['reply_to'], about) not in asked):
+            continue                                   # the question was never asked, so this answer never came
         correction = a.get('CORRECTION') == 'yes'
         src = m.get('source')
         for x in ALLERGENS:
@@ -132,9 +140,16 @@ def restrictions(messages, answers, overrides, t, rule='anyone'):
                 status[x] = 'avoid'
             elif v == 'unclear' and status[x] != 'avoid':
                 status[x] = 'unclear'
+            elif v == 'ok' and rule == 'confirm' and src not in CUSTOMER:
+                if status[x] != 'none':
+                    asked.append((m['id'], x))
+            elif v == 'ok' and x == about:
+                status[x] = 'none'
             elif v == 'ok' and (status[x] != 'avoid' or correction):
                 if rule == 'anyone' or src in CUSTOMER or (rule == 'same_sender' and src == first.get(x)):
                     status[x] = 'none'
+    if log is not None:
+        log['asked'] = asked
     return status
 
 
@@ -174,8 +189,8 @@ def decide(dish, status, oil, oil_unknown):
     return SEND
 
 
-def decisions(dishes, messages, answers, overrides, t, rule='anyone'):
-    status = restrictions(messages, answers, overrides, t, rule)
+def decisions(dishes, messages, answers, overrides, t, rule='anyone', log=None):
+    status = restrictions(messages, answers, overrides, t, rule, log)
     oil, unknown = fryer(messages, answers, overrides, t)
     return {d: decide(d, status, oil, unknown) for d in dishes}, status, sorted(oil), unknown
 
