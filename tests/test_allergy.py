@@ -405,6 +405,11 @@ def test_where_report_offline(stub, tmp_path):
     assert set(out['tests']) == {'H1_decisions_missed_host_reservation_vs_ticket', 'H2_decisions_missed',
                                  'H3_b_taken_ticket_vs_ticket_named', 'readers_compared', 'hybrid'}
     assert 'hybrid' in out['readers'] and len(out['tests']['readers_compared']) == 6
+    from defuse.allergy import charts, render                 # the chart and the video cards draw
+    charts.where(tmp_path, tmp_path / 'where.png', 'where_dev')
+    assert (tmp_path / 'where.png').stat().st_size > 10000
+    assert render.where_card(tmp_path / 'where_dev-report.json').size == (render.W, render.H)
+    assert render.where_places_card('where_dev').size == (render.W, render.H)
 
 
 def test_where_run_offline(stub, tmp_path, monkeypatch):

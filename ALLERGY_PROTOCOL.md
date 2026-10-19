@@ -610,4 +610,14 @@ two systems cost in the test run plus 15%.
 
 ### 11.8 Changes after this pre-registration
 
-None yet.
+1. **Messages and review (§11.4), before any request.** Four blind authors wrote the 148 clauses (144 test, 4
+   development); all passed the code check on the first try, so none went to a fresh author. Code put them into the
+   2,030 messages (`defuse/allergy/bank/where_*_clauses.json` and `where_*_texts.json`). Eight blind reviewers
+   answered all 11 questions for all 2,030 messages and agreed with the answer key on every answer, including every
+   other table's ticket note with that table named only in the header. No message went to a second reviewer, and none
+   is disputed. Answers in `defuse/allergy/bank/where_review_blind.json`.
+2. **Chart and video (descriptive), before any result.** Added before the paid run returned anything: a chart
+   (`python -m defuse.allergy.charts <root> where`) and a fourth video part (`render.where_part`: a title card, a card
+   showing one note in all seven places, and a results card), passed to the renderer as a fifth argument. The note
+   shown is chosen by a fixed rule, not by any result: the first test clause (C001), as Table 12's own allergy and as
+   Table 9's. No test, measure, order or message changed.

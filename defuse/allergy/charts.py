@@ -1,7 +1,7 @@
 """Charts for ALLERGY_RESULTS.md: the October 12 summary (accuracy, unnecessary holds and asks, cost, speed), the
 October 19 "Who can cancel an allergy?" test (outcomes per situation and rule, and how each reader took "it's fine")
-and the second October 19 test, "Just ask the guest?" (outcomes per rule, and how each reader took the guests'
-answers)."""
+the second October 19 test, "Just ask the guest?" (outcomes per rule, and how each reader took the guests'
+answers) and the third, "Where allergies hide, and whose they are" (notes missed and taken by place and reader)."""
 import json
 import sys
 from pathlib import Path
@@ -257,11 +257,98 @@ def confirm(root, out, split='confirm_test', tag=''):
     fig.savefig(out, dpi=150, facecolor=SURFACE)
 
 
+WHERE_PLACES = [('ticket', 'Ticket,\ntable at top'), ('ticket_named', 'Ticket,\ntable in text'), ('host', 'Host\nstand'),
+                ('host_reservation', 'Host:\nreservation'), ('manager', 'Manager'),
+                ('manager_reservation', 'Manager:\nreservation'), ('kitchen', 'Kitchen\nchat')]
+WHERE_HEADERS = {'ticket': 'Server, ticket note for {t}', 'ticket_named': 'Server, ticket note for {t}',
+                 'host': 'Host stand', 'host_reservation': 'Host stand', 'manager': 'Manager on duty',
+                 'manager_reservation': 'Manager on duty', 'kitchen': 'Kitchen chat'}
+
+
+def where_example(split='where_test'):
+    """The note shown as the example: the first clause of the split (a fixed rule, chosen before any result)."""
+    from defuse.allergy import bank, where as W
+    p = bank.BANK / f'{split}_clauses.json'
+    c = W.clauses(split)[0]
+    return c, json.loads(p.read_text())[c['id']] if p.exists() else c['must_convey'].split(' (use')[0] + '.'
+
+
+def where(root, out, split='where_test', tag=''):
+    """The third October 19 test: the same note in seven places; how often each reader missed this table's note and
+    took another table's note as this table's, by place; and what that did to the orders."""
+    import numpy as np
+    from defuse.allergy import where as W
+    R = json.loads((Path(root) / f'{split}{tag}-report.json').read_text())
+    readers = [r for r in READERS if r[0] in R['readers'] and r[0] != 'oracle']
+    fig = plt.figure(figsize=(16, 10.5), facecolor=SURFACE)
+    gs = fig.add_gridspec(2, 2, width_ratios=[1, 1.2], hspace=0.55, wspace=0.3)
+    # 1: one note in all seven places
+    ax = fig.add_axes([0.01, 0.55, 0.4, 0.31]); ax.set_facecolor(SURFACE); ax.axis('off')
+    ax.set_xlim(0, 1); ax.set_ylim(len(WHERE_PLACES) + 0.2, -0.9)
+    c, text = where_example(split)
+    ax.set_title('One note, seven places (here as Table 12\'s own allergy)', loc='left', fontsize=11, color=INK)
+    ax.text(0.0, -0.45, 'Header the AI sees', fontsize=9, color=MUTED); ax.text(0.4, -0.45, 'Text', fontsize=9, color=MUTED)
+    for i, (place, _) in enumerate(WHERE_PLACES):
+        ax.text(0.0, i + 0.1, WHERE_HEADERS[place].format(t='Table 12'), fontsize=9, color=INK, va='center')
+        ax.text(0.4, i + 0.1, W.compose(place, 'Table 12', text), fontsize=9, color=INK, va='center', fontweight='bold',
+                wrap=True)
+    ax.text(0.0, len(WHERE_PLACES) + 0.05, 'As another table\'s note, the table changes (e.g. Table 9) and the reader is '
+            'still asked about Table 12.', fontsize=8.5, color=MUTED, va='center')
+    # 2 and 3: missed and taken, by reader and place
+    for k, (key, title) in enumerate((('a_missed_by_place', "This table's own allergy missed\n(of {n} notes in each place)"),
+                                      ('b_taken_by_place', "Another table's allergy taken as this table's\n(of {n} notes "
+                                                           "in each place)"))):
+        ax = fig.add_subplot(gs[k, 1])
+        grid = np.array([[R['readers'][s][key][p]['k'] for p, _ in WHERE_PLACES] for s, _, _ in readers])
+        ax.imshow(grid, cmap=matplotlib.colors.LinearSegmentedColormap.from_list('w', ['#ffffff', '#c93a3a']), vmin=0,
+                  vmax=max(10, grid.max()), aspect='auto')
+        for i in range(grid.shape[0]):
+            for j in range(grid.shape[1]):
+                v = int(grid[i, j])
+                ax.text(j, i, str(v), ha='center', va='center', fontsize=10,
+                        color='white' if v >= 0.6 * max(10, grid.max()) else INK)
+        ax.set_yticks(range(len(readers)), [lab for _, lab, _ in readers], fontsize=9.5, color=INK)
+        ax.set_xticks(range(len(WHERE_PLACES)), [lab for _, lab in WHERE_PLACES], fontsize=8.5, color=INK)
+        ax.xaxis.tick_top()
+        n = R['readers'][readers[0][0]][key][WHERE_PLACES[0][0]]['n']
+        ax.set_title(title.format(n=n), loc='left', fontsize=11, color=INK, pad=34)
+        ax.tick_params(length=0)
+        for sp in ax.spines.values():
+            sp.set_visible(False)
+    # 4: what it did to the orders
+    ax = fig.add_subplot(gs[1, 0])
+    y = list(range(len(readers)))[::-1]
+    h = 0.36
+    top = max(max(R['readers'][s]['orders']['allergen_sent']['k'], R['readers'][s]['orders']['safe_food_held']['k'])
+              for s, _, _ in readers) or 1
+    for yi, (s, _, _) in zip(y, readers):
+        o = R['readers'][s]['orders']
+        for j, (key, col) in enumerate((('allergen_sent', '#c93a3a'), ('safe_food_held', '#9a6a00'))):
+            yy = yi + (0.5 - j) * h
+            ax.barh(yy, o[key]['k'], height=h * 0.9, color=col)
+            ax.text(o[key]['k'] + top * 0.02, yy, str(o[key]['k']), va='center', fontsize=9, color=INK)
+    ax.set_xlim(0, top * 1.25)
+    ax.set_yticks(y, [lab for _, lab, _ in readers], fontsize=9.5, color=INK)
+    ax.set_title(f"What it did to the orders (of {R['orders']:,})", loc='left', fontsize=11, color=INK)
+    ax.legend(handles=[matplotlib.patches.Patch(color='#c93a3a', label='allergen sent'),
+                       matplotlib.patches.Patch(color='#9a6a00', label='safe food held or questioned')],
+              loc='lower right', frameon=False, fontsize=9)
+    _style(ax)
+    fig.suptitle(f'Where allergies hide, and whose they are: {R["clauses"]} notes, each in seven places, once for this '
+                 f'table and once for another', x=0.01, y=0.975, ha='left', fontsize=14, color=INK, fontweight='bold')
+    fig.text(0.01, 0.012, 'Same model (gpt-6-luna) read three ways; code decides every dish from the readings. '
+             'Research simulation, not food-safety advice.', fontsize=9, color=MUTED)
+    fig.subplots_adjust(left=0.1, right=0.99, top=0.86, bottom=0.07)
+    fig.savefig(out, dpi=150, facecolor=SURFACE)
+
+
 if __name__ == '__main__':
     root = sys.argv[1] if len(sys.argv) > 1 else 'data/allergy'
     if len(sys.argv) > 2 and sys.argv[2] == 'cancel':           # python -m defuse.allergy.charts <root> cancel
         cancel(root, Path(root) / 'cancel.png')
     elif len(sys.argv) > 2 and sys.argv[2] == 'confirm':        # python -m defuse.allergy.charts <root> confirm
         confirm(root, Path(root) / 'confirm.png')
+    elif len(sys.argv) > 2 and sys.argv[2] == 'where':          # python -m defuse.allergy.charts <root> where
+        where(root, Path(root) / 'where.png')
     else:
         final(root, Path(root) / 'final.png')

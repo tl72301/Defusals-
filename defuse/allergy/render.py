@@ -1,9 +1,10 @@
 """Replay video, kept simple: the latest messages on the left; on the right, for each dish on the order, what each
 system would do (send / hold / ask) next to the correct call; at the bottom, unsafe sends so far. A second part replays
-one "Who can cancel an allergy?" order with one column per cancel rule, against the truth, and a third one "Just ask
-the guest?" order the same way.
+one "Who can cancel an allergy?" order with one column per cancel rule, against the truth, a third one "Just ask
+the guest?" order the same way, and a fourth shows one note in seven places and the "Where allergies hide" results.
 
-    python -m defuse.allergy.render <October 12 data root> <October 19 data root> docs/allergy-pass.mp4 [<confirm root>]
+    python -m defuse.allergy.render <October 12 data root> <October 19 data root> docs/allergy-pass.mp4 [<confirm root>
+                                    [<where root>]]
 
 A research simulation; every frame says it is not food-safety advice."""
 import json
@@ -415,11 +416,108 @@ def confirm_part(root, sub):
              'The results for each situation and rule, and what real AI reading changed. ' + ' '.join(confirm_lines(R)))]
 
 
+WHERE_PLACES = [('ticket', 'Ticket, table at top'), ('ticket_named', 'Ticket, table in text'), ('host', 'Host stand'),
+                ('host_reservation', 'Host, reservation note'), ('manager', 'Manager'),
+                ('manager_reservation', 'Manager, reservation note'), ('kitchen', 'Kitchen chat')]
+WHERE_SHORT = ['Ticket,\ntable at top', 'Ticket,\ntable in text', 'Host\nstand', 'Host:\nreservation', 'Manager',
+               'Manager:\nreservation', 'Kitchen\nchat']
+
+
+def where_places_card(split='where_test'):
+    """The first clause of the split (a fixed rule) in all seven places, as this table's note and as another's."""
+    from defuse.allergy import charts, where
+    _, text = charts.where_example(split)
+    img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
+    d.text((64, 40), 'One note, seven places', font=font(38, 'SemiBold'), fill=INK)
+    d.text((64, 90), 'Every note is placed seven ways, once for the table being asked about (Table 12) and once for '
+                     'another table (Table 9).', font=font(18), fill=MUTED)
+    d.rounded_rectangle((40, 130, W - 40, 640), 16, fill=CARD, outline=LINE)
+    d.text((64, 146), 'Where it is written', font=font(15, 'SemiBold'), fill=MUTED)
+    d.text((330, 146), "As Table 12's own allergy: AI should say avoid", font=font(15, 'SemiBold'), fill=MUTED)
+    d.text((790, 146), "As Table 9's: AI should say nothing for Table 12", font=font(15, 'SemiBold'), fill=MUTED)
+    for i, (place, lab) in enumerate(WHERE_PLACES):
+        y = 176 + i * 64
+        d.line((64, y, W - 64, y), fill=LINE)
+        d.text((64, y + 32), lab, font=font(16, 'SemiBold'), fill=INK, anchor='lm')
+        for x, t in ((330, 'Table 12'), (790, 'Table 9')):
+            head = f'Server, ticket note for {t}' if place.startswith('ticket') else \
+                {'host': 'Host stand', 'manager': 'Manager on duty', 'kitchen': 'Kitchen chat'}[place.split('_')[0]]
+            d.text((x, y + 13), head, font=font(12), fill=MUTED, anchor='lm')
+            lines, cur = [], ''
+            for word in where.compose(place, t, text).split():
+                if cur and d.textlength(cur + ' ' + word, font=font(14, 'SemiBold')) > 420:
+                    lines.append(cur); cur = word
+                else:
+                    cur = (cur + ' ' + word).strip()
+            for k, line in enumerate((lines + [cur])[:2]):
+                d.text((x, y + 31 + k * 18), line, font=font(14, 'SemiBold'), fill=INK, anchor='lm')
+    d.text((64, 660), 'Notes written once by blind authors; code puts them in every place. Reviewers read all 2,016 messages '
+                      'blind.', font=font(15), fill=FAINT)
+    return img
+
+
+def where_card(report_path):
+    """Results card for "Where allergies hide": notes missed and taken by place, for the three readers."""
+    from defuse.allergy import where
+    R = json.loads(Path(report_path).read_text())
+    names = [('decisions', 'Decisions'), ('responses-options', 'Picking options'), ('responses-names', 'Writing names')]
+    img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
+    d.text((64, 30), 'Where allergies hide, and whose they are', font=font(34, 'SemiBold'), fill=INK)
+    n = R['readers']['decisions']['a_missed_by_place'][where.PLACES[0]]['n']
+    x0, cw = 300, 128
+    for b, (key, title) in enumerate((('a_missed_by_place', f"This table's own allergy missed (of {n} in each place)"),
+                                      ('b_taken_by_place', f"Another table's allergy taken as this table's (of {n} "
+                                                           'in each place)'))):
+        top = 84 + b * 262
+        d.rounded_rectangle((40, top, W - 40, top + 246), 16, fill=CARD, outline=LINE)
+        d.text((64, top + 14), title, font=font(19, 'SemiBold'), fill=INK)
+        for j, lab in enumerate(WHERE_SHORT):
+            for k, line in enumerate(lab.split('\n')):
+                d.text((x0 + j * cw + cw / 2, top + 50 + k * 18), line, font=font(14), fill=MUTED, anchor='ma')
+        for i, (s, lab) in enumerate(names):
+            y = top + 100 + i * 46
+            d.text((64, y + 20), lab, font=font(18, 'SemiBold'), fill=INK, anchor='lm')
+            for j, p in enumerate(where.PLACES):
+                v = R['readers'][s][key][p]['k']
+                fg, bg = COLOR[rules.HOLD] if v else COLOR[rules.SEND]
+                cx = x0 + j * cw + cw / 2
+                d.rounded_rectangle((cx - 50, y + 2, cx + 50, y + 38), 10, fill=bg)
+                d.text((cx, y + 20), str(v), font=font(18, 'SemiBold'), fill=fg, anchor='mm')
+    for k, line in enumerate(where_lines(R)):
+        d.text((64, 614 + k * 28), line, font=font(17), fill=INK if k == 0 else MUTED)
+    d.text((64, 694), 'Pre-registered; blind authors and reviewers. Research simulation, not food-safety advice.',
+           font=font(14), fill=FAINT)
+    return img
+
+
+def where_lines(R):
+    """What the readings did to the orders, in plain words, from the report."""
+    names = [('decisions', 'Decisions'), ('responses-options', 'picking options'), ('responses-names', 'writing names')]
+    rd = lambda key: ', '.join(f"{R['readers'][s]['orders'][key]['k']} ({lab})" for s, lab in names)
+    return [f"Orders where the allergen was sent: {rd('allergen_sent')} of {R['orders']:,}.",
+            f"Orders where safe food was held or questioned: {rd('safe_food_held')} of {R['orders']:,}."]
+
+
+def where_part(root, sub):
+    """Part 4: what the test does, one note in seven places, then the results card."""
+    title = ['Where allergies hide, and whose they are', 'A third new test: 144 allergy notes, each put in seven places,',
+             'once for the table being asked about and once for another table.',
+             'Does the AI catch every one, and does it know whose it is?']
+    R = json.loads((Path(root) / 'where_test-report.json').read_text())
+    return [('card', title_card(title, sub), INTRO, ' '.join(title)),
+            ('card', where_places_card(), 10.0, 'One note, seven places: on the server\'s ticket (with the table only at '
+             'the top, or in the text too), at the host stand (plain or as a reservation note), from the manager (plain '
+             'or as a reservation note) and in kitchen chat.'),
+            ('card', where_card(Path(root) / 'where_test-report.json'), OUTRO + 4,
+             'How often each reader missed this table\'s allergy and took another table\'s as this table\'s, by place. '
+             + ' '.join(where_lines(R)))]
+
+
 def runs_by_id(root, split, system):
     return {r['scenario']: r for r in json.loads((Path(root) / split / f'{system}.json').read_text())['results']}
 
 
-def main(root12, root19, target, root_confirm=None):
+def main(root12, root19, target, root_confirm=None, root_where=None):
     """The October 12 replay (scenario A2001, the first test order) and results card, then the first
     staff_wrong_correction test order of October 19, read by Decisions, under each cancel rule, and its results card."""
     sc = {s['id']: s for s in bank.load('test')}['A2001']
@@ -451,8 +549,10 @@ def main(root12, root19, target, root_confirm=None):
                   json.loads((Path(root19) / 'cancel_test-report.json').read_text()))))]
     if root_confirm:
         parts += confirm_part(root_confirm, sub)
+    if root_where:
+        parts += where_part(root_where, sub)
     return render(target, parts)
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:5])
+    main(*sys.argv[1:6])
