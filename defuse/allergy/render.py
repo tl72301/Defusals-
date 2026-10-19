@@ -242,14 +242,13 @@ def cancel_card(report_path, reader='decisions'):
 def cancel_lines(R):
     """What the real readings changed, in plain words, from the report."""
     names = [('decisions', 'Decisions'), ('responses-options', 'picking options'), ('responses-names', 'writing names')]
-    n = R['arms']['staff_soft']
+    n, total = R['arms']['staff_soft'], R['orders']
+    strict = ', '.join(f"{R['readers'][s]['rules']['guest_only']['all']['unsafe']} ({lab})" for s, lab in names)
     soft = ', '.join(f"{lab} {R['readers'][s]['correction_answers_by_arm']['staff_soft'].get('yes', 0)}" for s, lab in names)
     miss = ', '.join(f"{lab} {R['readers'][s]['mention_missed_all']['k']}" for s, lab in names)
-    first = R.get('reviewers_correction_by_arm', {}).get('first', {}).get('staff_soft', {})
-    out = [f'Real AI reading: a staff "actually, it\'s fine" taken as a correction (of {n}): {soft}.',
-           f'Under "anyone" each of those lets the allergen out. Blind reviewers said yes {first.get("yes", 0)}, '
-           f'unsure {first.get("unclear", 0)}.' if first else 'Under "anyone" each of those lets the allergen out.',
-           f'Allergies said once and missed (of {R["orders"]}): {miss}.']
+    out = [f'With real AI reading and "only the guest", the allergen went out in {strict} of {total} orders.',
+           f'Under "anyone", staff saying "actually, it\'s fine" was taken as a correction: {soft} (of {n}).',
+           f'Allergies said once and read as "not mentioned": {miss} (of {total}).']
     return out
 
 

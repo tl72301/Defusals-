@@ -113,7 +113,7 @@ def cancel(root, out, split='cancel_test', tag=''):
             v = c.get(k, 0)
             if v:
                 ax.barh(yi, v, left=left, color=col, height=0.6)
-                if v >= 9:
+                if v >= 5:
                     ax.text(left + v / 2, yi, str(v), ha='center', va='center', fontsize=9, color='white')
             left += v
     ax.set_yticks(y, [lab for lab, _ in rows], fontsize=9.5, color=INK)

@@ -276,3 +276,13 @@ message text), while the authors were writing; before I or any reviewer had read
     read.** For the chart and the video card, `cancel_report.py` also lists each reader's full CORRECTION answers (yes,
     no, unclear) on each arm's cancel messages, and the blind reviewers' answers on the same messages as a reference.
     No test, outcome or rule changed.
+11. **Analysis fixes after the run (October 19, after the results were first printed).** Three bugs in
+    `cancel_report.py`, none changing a test, outcome or rule: (a) the report without disputed orders computed accuracy
+    and cost over all 300 orders instead of the 180 it kept (its outcome tests were already right); (b) the repeat-run
+    report looked for answer-key and parser files with the repeat tag, which do not exist, so its primary tests were
+    missing; it now uses the single answer key and parser; (c) §9.6 (f), answers that changed between the two runs, was
+    pre-registered but not yet coded; it is now (`repeat()`, written to `cancel_test-r2-repeat.json`).
+12. **Run outcome.** Smoke tests projected $1.06 per run, so the repeat run went ahead. One request failed (writing
+    names, repeat run, one message: an unusable answer); its fallback stands as its answer, as for every system. The
+    budget record holds one Decisions reservation that was never settled and matches no saved result; it is counted at
+    its full reserved cost ($0.0015) in the reported total.

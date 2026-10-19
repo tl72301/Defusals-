@@ -19,7 +19,8 @@ SPLIT = 'cancel_test'
 
 
 def runs_for(root, split, tag=''):
-    out = {s: {r['scenario']: r for r in (load(root, split, s + tag) or [])} for s in READERS if s != 'hybrid'}
+    out = {s: {r['scenario']: r for r in (load(root, split, s + (tag if s in MODEL else '')) or [])}   # one key, one parser
+           for s in READERS if s != 'hybrid'}
     if out.get('decisions') and out.get('responses-options'):
         out['hybrid'] = {}
         for sid, rd in out['decisions'].items():
@@ -110,6 +111,7 @@ def analyse(root='data/allergy', split=SPLIT, tag='', undisputed_only=False):
            'arms': {a: sum(SCS[i]['arm'] == a for i in ids) for a in cancel.ARMS}, 'readers': {}, 'tests': {}}
     res = {}
     for s, by in runs.items():
+        by = {i: by[i] for i in ids}
         res[s] = {rule: {i: order_outcome(SCS[i], by[i], rule) for i in ids} for rule in rules.RULES}
         v = out['readers'][s] = {'rules': {}}
         for rule in rules.RULES:
@@ -214,6 +216,29 @@ def analyse(root='data/allergy', split=SPLIT, tag='', undisputed_only=False):
     return out
 
 
+def repeat(root='data/allergy', split=SPLIT, tag='-r2'):
+    """§9.6 (f): answers that changed between the test run and the repeat run, per model system, and orders whose
+    outcome changed under each rule."""
+    global SCS
+    SCS = {sc['id']: sc for sc in bank.load(split)}
+    one, two = runs_for(root, split), runs_for(root, split, tag)
+    outcome = lambda r, rule: tuple(order_outcome(SCS[r['scenario']], r, rule)[k] for k in ('unsafe', 'needless'))
+    out = {}
+    for s in MODEL + ['hybrid']:
+        if s not in one or s not in two:
+            continue
+        changed = total = msgs = msgs_changed = 0
+        for i, r in one[s].items():
+            for mid, e in r['extractions'].items():
+                d = [e['answers'][q] != two[s][i]['extractions'][mid]['answers'][q] for q in rules.QUESTION_NAMES]
+                changed += sum(d); total += len(d); msgs += 1; msgs_changed += any(d)
+        out[s] = {'answers_changed': ci(changed, total), 'messages_changed': ci(msgs_changed, msgs),
+                  'outcome_changed': {rule: ci(sum(outcome(one[s][i], rule) != outcome(two[s][i], rule) for i in one[s]),
+                                               len(one[s])) for rule in rules.RULES}}
+    (Path(root) / f'{split}{tag}-repeat.json').write_text(json.dumps(out, indent=1))
+    return out
+
+
 def table(out):
     print(f"{out['split']}: {out['orders']} orders, {out['messages']} messages, arms {out['arms']}")
     for s, v in out['readers'].items():
@@ -247,6 +272,11 @@ if __name__ == '__main__':
     split = sys.argv[2] if len(sys.argv) > 2 else SPLIT
     tag = sys.argv[3] if len(sys.argv) > 3 else ''
     table(analyse(root, split, tag))
+    if tag:
+        for s, v in repeat(root, split, tag).items():
+            print(f"repeat {s}: answers changed {v['answers_changed']['k']}/{v['answers_changed']['n']}, messages "
+                  f"{v['messages_changed']['k']}/{v['messages_changed']['n']}, orders with a changed outcome " +
+                  ', '.join(f"{r} {x['k']}" for r, x in v['outcome_changed'].items()))
     if disputed():
         print('\n--- without orders whose messages a reviewer disputed ---')
         table(analyse(root, split, tag, undisputed_only=True))

@@ -199,3 +199,7 @@ def test_cancel_run_offline(stub, tmp_path, monkeypatch):
     cancel_run.main()
     for tag in ('', '-r2'):
         assert (tmp_path / 'data' / 'allergy' / 'cancel_test' / f'decisions{tag}.json').exists()
+    from defuse.allergy import cancel_report                  # §9.6 (f): the stub answers the same way twice
+    rep = cancel_report.repeat(tmp_path / 'data' / 'allergy', 'cancel_test')
+    assert rep['decisions']['answers_changed']['k'] == 0 and rep['decisions']['messages_changed']['n'] == sum(
+        len(sc['messages']) for sc in bank.load('cancel_test'))
