@@ -355,3 +355,21 @@ def test_short_chart_scorecard_and_story(tmp_path):
     texts = [t for *_, t in short.beats(sc, run)]
     assert sc['arm'] == 'explicit_wrong' and any('texts the guest' in t for t in texts)
     assert texts[-1].startswith('Decisions read every message correctly')
+
+
+def test_short_decided_counts_decisions_confidence_and_causes():
+    from defuse.allergy import short
+    blank_answers = {q: 'not_mentioned' for q in rules.ALLERGENS} | {'FRYER': 'not_mentioned', 'CORRECTION': 'no'}
+    sure = {q: {'x': 0.99} for q in rules.QUESTION_NAMES}
+    key = {'m1': dict(blank_answers, SESAME='avoid'), 'm2': dict(blank_answers)}
+    ext = {'m1': {'answers': dict(blank_answers), 'probs': dict(sure, SESAME={'x': 0.5}), 'latency': 0.4},   # missed, unsure
+           'm2': {'answers': dict(blank_answers, MILK='avoid'), 'probs': sure, 'latency': 0.5}}             # wrong, sure
+    scs = [{'messages': [{'id': 'm1', 'source': 'HOST', 'tags': ['mention']}, {'id': 'm2', 'source': 'SERVER', 'tags': ['other_table']}]}]
+    arm = {'asked': 1}
+    rep = {'orders': 2, 'readers': {'decisions': {'latency_p50': 0.45, 'mention_missed': {'host': {'k': 1, 'n': 1}},
+                                                  'reply_misread': {'k': 0, 'n': 1},
+                                                  'rules': {'confirm': {'by_arm': {'a': arm}, 'unsafe_of_wrong': {'k': 1}}}}}}
+    D = short.decided([{'extractions': ext, 'key': key}], scs, rep)
+    assert D['decisions'] == 22 and D['kinds']['nothing about this order'] == 1 and D['kinds']['must avoid'] == 1
+    assert D['mistakes'] == 2 and D['mistakes_unsure'] == 1 and D['sure'] == 19 and D['sure_right'] == 18
+    assert D['causes'] == {'reservation-note allergies missed': 1, "another table's note taken as this order's": 1}

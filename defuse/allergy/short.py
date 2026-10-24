@@ -1,14 +1,15 @@
-"""A plain-language chart, a Decisions scorecard and a short video (under 90 s) for "Just ask the guest?"
-(ALLERGY_PROTOCOL.md §10), made for readers who will not open the full results.
+"""Plain-language pieces for "Just ask the guest?" (ALLERGY_PROTOCOL.md §10) that put Decisions' role first, for
+readers who will not open the full results.
 
     python -m defuse.allergy.short <data root with the October 19 evidence and analysis archives unpacked> docs/
 
-The chart shows, for each rule and each way of reading, the orders where the allergen was sent and the orders where
-safe food was held. The scorecard compares Decisions with the ordinary API picking the same options, from the second
-October 19 test, plus the repeat run of the first. The video explains what Decisions does, replays one order read by
-Decisions (chosen by a fixed rule: the first test order, lowest seed, in which a staff member wrongly and explicitly
-says the allergy is fine and the guest answers in plain words), then shows the chart and the scorecard. Free: it reads
-saved runs. A research simulation; every frame says it is not food-safety advice."""
+Writes: decisions-flow.png (one real message, Decisions' 11 real answers with how sure it was, and what each rule's code
+does with them); ask-the-guest-chart.png (orders with the allergen sent and with safe food held, under each rule, for
+each way of reading); ask-the-guest.mp4 and .srt (under 90 s: that diagram, one order read by Decisions with what it
+read at each message, what Decisions decided across the test, the chart, Decisions against the ordinary API, and what
+it means). Prints the "what Decisions decided" figures. The replayed order is chosen by a fixed rule: the first test
+order (lowest seed) in which a staff member wrongly and explicitly says the allergy is fine and the guest answers in
+plain words. Free: it reads saved runs. A research simulation; every frame says it is not food-safety advice."""
 import json
 import subprocess
 import sys
@@ -124,6 +125,48 @@ def hybrid_line(R):
             f'({100 * share:.0f}% of messages) with the ordinary API caught all of them: '
             f'{hy["rules"]["confirm"]["unsafe_of_wrong"]["k"]} sent, at {hy["latency_p50"]:.2f} s a message, '
             f'for the highest cost (${hy["cost_per_1000_messages"]:.2f} per 1,000).')
+
+
+def decided(results, scenarios, report):
+    """What Decisions decided in one test: its decisions by kind, how sure it was, what its readings set off, and its
+    mistakes on the 10 factual questions by cause. results: Decisions' saved runs; scenarios: the bank orders."""
+    msgs = {m['id']: m for sc in scenarios for m in sc['messages']}
+    kinds, causes = {'nothing about this order': 0, 'must avoid': 0, 'is fine': 0, 'unclear': 0,
+                     'corrects an earlier note': 0, 'fryer-oil news': 0}, {}
+    n = right = sure = sure_right = lat_n = 0
+    lat = []
+    for r in results:
+        for mid, e in r['extractions'].items():
+            a, k, quiet = e['answers'], r['key'][mid], True
+            lat.append(e['latency'])
+            for q in rules.ALLERGENS:
+                if a[q] != 'not_mentioned':
+                    kinds[{'avoid': 'must avoid', 'ok': 'is fine', 'unclear': 'unclear'}[a[q]]] += 1; quiet = False
+            if a['FRYER'] != 'not_mentioned':
+                kinds['fryer-oil news'] += 1; quiet = False
+            if a['CORRECTION'] == 'yes':
+                kinds['corrects an earlier note'] += 1; quiet = False
+            kinds['nothing about this order'] += quiet
+            for q in rules.FACTUAL:
+                ok = a[q] == k[q]
+                p = max((e.get('probs') or {}).get(q, {'': 0.0}).values())
+                n += 1; right += ok; sure += p >= 0.9; sure_right += ok and p >= 0.9
+                if not ok:
+                    m = msgs[mid]; tags = set(m['tags'])
+                    c = ('reservation-note allergies missed' if m['source'] == 'HOST' and 'mention' in tags else
+                         "another table's note taken as this order's" if tags & {'other_table', 'other_ticket'} else
+                         'fryer news read as an allergy' if 'fryer' in tags else
+                         'guest replies naming someone else' if 'reply' in tags else 'other')
+                    causes[c] = causes.get(c, 0) + 1
+    d = report['readers']['decisions']
+    lat.sort()
+    return {'messages': sum(len(r['extractions']) for r in results), 'decisions': sum(len(r['extractions']) for r in results) * len(rules.QUESTION_NAMES),
+            'latency_p50': d['latency_p50'], 'kinds': kinds, 'factual': n, 'right': right, 'sure': sure, 'sure_right': sure_right,
+            'mistakes': n - right, 'mistakes_unsure': (n - right) - (sure - sure_right),
+            'causes': dict(sorted(causes.items(), key=lambda x: -x[1])),
+            'asked': sum(v.get('asked', 0) for v in d['rules']['confirm']['by_arm'].values()), 'should_ask': report['orders'],
+            'host_missed': d['mention_missed']['host'], 'replies_misread': d['reply_misread'],
+            'unsafe': d['rules']['confirm']['unsafe_of_wrong']['k']}
 
 
 # ---- video ----
@@ -258,7 +301,7 @@ def beats(sc, run):
             text, sec = (f'The third rule doesn\'t take it on trust: the system texts the guest and keeps the {a} dishes '
                          'on hold until they answer.'), 5.5
         elif 'mention' in tags:
-            text, sec = f'{who.capitalize()} notes a {a} allergy. Every rule holds the dishes with {a}.', 5.0
+            text, sec = f'{who.capitalize()} notes a {a} allergy. Every rule holds the dishes with {a}.', 4.5
         elif 'lift' in tags:
             text, sec = (f'Then {who} says {a} is fine. Decisions reads it exactly as written. But {who} is wrong: '
                          f'someone eating is allergic, and under the first rule the {a} dishes go out.'), 7.0
@@ -269,7 +312,7 @@ def beats(sc, run):
         elif 'scope' in tags:
             text, sec = 'A note about someone who is not eating with them. Nothing changes.', 2.5
         else:
-            text, sec = 'Routine kitchen chatter. Nothing changes.', 2.0
+            text, sec = 'Routine kitchen chatter. Nothing changes.', 1.8
         out.append((m['minute'], sec, shown, text))
     end = ((f'Decisions read every message correctly. ' if right else '') +
            f'The danger came from the rule: "anyone can cancel" trusted the mistake. Asking the guest caught it.')
@@ -286,55 +329,96 @@ def title_card(big, lines, small):
     return img
 
 
-def readers_card(sc, run):
-    """What Decisions is, the two ordinary API set-ups it is compared with, and one real Decisions answer."""
-    img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
-    d.text((64, 44), 'Who reads the messages?', font=font(40, 'SemiBold'), fill=INK)
-    d.text((64, 98), 'The same AI model, OpenAI\'s gpt-6-luna, asked three ways:', font=font(21), fill=MUTED)
-    rows = [('Decisions API', 'OpenAI\'s API for multiple-choice questions. It answers 11 per message and says how sure it is.'),
-            ('Ordinary API, picking options', 'The same questions and answers, through OpenAI\'s regular API.'),
-            ('Ordinary API, writing food names', 'It writes out the foods it sees; code sorts them into allergens.')]
-    for j, ((_, _, color), (name, line)) in enumerate(zip(READERS, rows)):
-        y = 146 + j * 66
-        d.ellipse((66, y + 8, 82, y + 24), fill=color)
-        d.text((96, y), name, font=font(22, 'SemiBold'), fill=INK)
-        d.text((96, y + 30), line, font=font(18), fill=MUTED)
+ANSWER = {'not_mentioned': 'not mentioned', 'avoid': 'must avoid', 'ok': 'fine', 'unclear': 'unclear', 'yes': 'yes',
+          'no': 'no', 'fresh': 'fresh oil', 'wheat': 'wheat', 'shellfish': 'shellfish', 'fish': 'fish'}
+RULE_RESULT = {'send': 'allergy cancelled: the dishes go out', 'hold': 'allergy stays: the dishes are held',
+               'wait': 'asks the guest; dishes held until they answer'}
+
+
+def flow_card(sc, run):
+    """One real message, start to finish: the message, Decisions' 11 answers with how sure it was, what each rule's
+    code does with them."""
     lift = next(m for m in sc['messages'] if 'lift' in m['tags'])
     e = run['extractions'][lift['id']]
-    y = 360
-    d.rounded_rectangle((64, y, W - 64, y + 224), 14, fill=CARD, outline=LINE)
-    d.text((88, y + 18), 'One real Decisions answer', font=font(15, 'SemiBold'), fill=MUTED)
-    d.text((88, y + 44), f'"{lift["text"]}"', font=font(22), fill=INK)
-    lines = []
-    for q, v in e['answers'].items():
-        p = max(e['probs'][q].values())
-        if q in rules.ALLERGENS and v != 'not_mentioned':
-            lines.append(f'{rules.NAME[q].capitalize()} for this order?  →  {"fine" if v == "ok" else v.replace("_", " ")}  ·  {100 * p:.0f}% sure')
-        elif q == 'CORRECTION':
-            lines.append(f'Does it correct an earlier note?  →  {v}  ·  {100 * p:.0f}% sure')
-    rest = sum(1 for q, v in e['answers'].items() if q != 'CORRECTION' and v == 'not_mentioned')
-    lines.append(f'The other {rest} questions  →  not mentioned  ·  answered in {e["latency"]:.2f} s')
-    for k, line in enumerate(lines):
-        d.rounded_rectangle((88, y + 90 + k * 42, W - 88, y + 124 + k * 42), 8, fill=DECISIONS_TINT)
-        d.text((104, y + 107 + k * 42), line, font=font(18, 'SemiBold' if k < len(lines) - 1 else 'Regular'), fill=INK, anchor='lm')
-    d.text((64, 612), 'In every case the AI only reads. Simple code applies the allergy rules.', font=font(22, 'SemiBold'), fill=INK)
-    d.text((W / 2, 690), NOTE, font=font(13), fill=FAINT, anchor='mm')
+    st = states(sc, run, lift['minute'])
+    img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
+    d.text((40, 28), 'What Decisions does with one message', font=font(34, 'SemiBold'), fill=INK)
+    d.text((40, 74), 'A real message from the test, with Decisions\' real answers.', font=font(19), fill=MUTED)
+    cols = [(40, 300, '1 · A message arrives'), (340, 790, '2 · Decisions answers 11 questions'),
+            (830, W - 40, '3 · Code applies the rule')]
+    for x0, x1, title in cols:
+        d.rounded_rectangle((x0, 116, x1, 620), 14, fill=CARD, outline=LINE)
+        d.text((x0 + 18, 132), title, font=font(17, 'SemiBold'), fill=MUTED)
+    for x in (300, 790):                                    # arrows between the steps
+        d.polygon([(x + 12, 360), (x + 28, 368), (x + 12, 376)], fill=FAINT)
+    # 1: the message
+    d.text((58, 172), f'{rules.clock(sc["start"], lift["minute"])} · {lift["label"].split(",")[0]}', font=font(14, 'SemiBold'), fill=MUTED)
+    y = 200
+    for line in textwrap.wrap(lift['text'], 19):
+        d.text((58, y), line, font=font(24), fill=INK); y += 34
+    a = rules.NAME[sc['allergen']]
+    d.text((58, 540), f'Earlier: a {a} allergy', font=font(14), fill=FAINT)
+    d.text((58, 560), f'was noted, and the order', font=font(14), fill=FAINT)
+    d.text((58, 580), f'has {len(allergen_dishes(sc))} dishes with {a}.', font=font(14), fill=FAINT)
+    # 2: Decisions' answers
+    y = 168
+    for q in rules.QUESTION_NAMES:
+        v, pr = e['answers'][q], (e.get('probs') or {}).get(q)
+        label = ('Fries oil?' if q == 'FRYER' else 'Corrects an earlier note?' if q == 'CORRECTION'
+                 else rules.NAME[q].capitalize() + '?')
+        news = v not in ('not_mentioned', 'no')
+        if news:
+            d.rounded_rectangle((352, y - 3, 778, y + 33), 8, fill=DECISIONS_TINT)
+        d.text((364, y + 15), label, font=font(17, 'SemiBold' if news else 'Regular'), fill=INK if news else MUTED, anchor='lm')
+        d.text((574, y + 15), ANSWER.get(v, v), font=font(17, 'SemiBold' if news else 'Regular'), fill=INK if news else MUTED, anchor='lm')
+        d.text((766, y + 15), f'{100 * max(pr.values()):.0f}%' if pr else '', font=font(15), fill=MUTED, anchor='rm')
+        y += 36
+    d.text((364, y + 10), f'Answered in {e["latency"]:.2f} s. The % is how sure it was.', font=font(14), fill=FAINT)
+    # 3: what the code does under each rule
+    y = 172
+    for rule, lab in RULES:
+        d.text((848, y), lab.replace('\n', ' '), font=font(18, 'SemiBold'), fill=INK)
+        fg, bg = COLOR[{'send': rules.SEND, 'hold': rules.HOLD, 'wait': rules.ASK}[st[rule]]]
+        d.rounded_rectangle((848, y + 30, W - 58, y + 80), 10, fill=bg)
+        for k, line in enumerate(textwrap.wrap(RULE_RESULT[st[rule]], 38)[:2]):
+            d.text((862, y + 36 + k * 21), line, font=font(16, 'SemiBold'), fill=fg)
+        y += 110
+    truth = ('someone eating is allergic, so this message is wrong' if st['truth'] != 'send'
+             else 'nobody eating is allergic, so this message is right')
+    for k, line in enumerate(textwrap.wrap('The truth: ' + truth + '.', 40)):
+        d.text((848, 520 + k * 22), line, font=font(15), fill=MUTED)
+    d.text((40, 640), 'Decisions decides what each message says. Code decides what the kitchen does.', font=font(21, 'SemiBold'), fill=INK)
+    d.text((40, 672), 'For comparison, the same model also read every message through OpenAI\'s ordinary API, two ways.',
+           font=font(16), fill=MUTED)
+    d.text((W - 40, 704), NOTE, font=font(12), fill=FAINT, anchor='rm')
     return img
 
 
-def rules_card():
+def decided_card(D):
+    """What Decisions decided across the test, as four stat tiles."""
     img = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(img)
-    d.text((64, 60), 'Three rules for that moment', font=font(40, 'SemiBold'), fill=INK)
-    d.text((64, 116), 'Code applies one of them every time a staff member says an allergy is fine.', font=font(21), fill=MUTED)
-    rows = [('Anyone can cancel the allergy', 'Risk: a staff mistake sends the allergen to an allergic guest.'),
-            ('Only the guest can cancel it', 'Risk: staff can\'t fix their own wrong notes, so safe food is held.'),
-            ('Text the guest and ask', 'The system asks the guest and holds the food until they answer.')]
-    for j, (name, line) in enumerate(rows):
-        y = 190 + j * 130
-        d.rounded_rectangle((64, y, W - 64, y + 106), 14, fill=CARD, outline=LINE)
-        d.text((96, y + 22), name, font=font(28, 'SemiBold'), fill=INK)
-        d.text((96, y + 64), line, font=font(21), fill=MUTED)
-    d.text((W / 2, 690), NOTE, font=font(13), fill=FAINT, anchor='mm')
+    d.text((64, 36), 'What Decisions decided in this test', font=font(36, 'SemiBold'), fill=INK)
+    k = D['kinds']
+    d.text((64, 84), (f'{D["messages"]:,} messages: {k["nothing about this order"]:,} with nothing for that order; '
+                      f'{k["must avoid"]} "must avoid", {k["is fine"]} "fine", {k["corrects an earlier note"]} corrections, '
+                      f'{k["fryer-oil news"]} fryer news.'), font=font(18), fill=MUTED)
+    tiles = [(f'{D["decisions"]:,}', 'decisions', f'11 per message, a median {D["latency_p50"]:.2f} s per message'),
+             (f'{100 * D["sure_right"] / D["sure"]:.2f}%', 'right when it was at least 90% sure',
+              f'{100 * D["sure"] / D["factual"]:.1f}% of its answers; the unsure {100 - 100 * D["sure"] / D["factual"]:.1f}% '
+              f'held {D["mistakes_unsure"]} of its {D["mistakes"]} mistakes'),
+             (f'{D["asked"]} of {D["should_ask"]}', 'guests texted to confirm',
+              f'the {D["should_ask"] - D["asked"]} it missed were allergies in host reservation notes, which caused its '
+              f'{D["unsafe"]} unsafe sends'),
+             (f'{D["mistakes"]}', f'mistakes in {D["factual"]:,} answers', [f'{v}   {c}' for c, v in D['causes'].items()])]
+    for i, (value, label, sub) in enumerate(tiles):
+        x, y = 64 + (i % 2) * 584, 132 + (i // 2) * 262
+        d.rounded_rectangle((x, y, x + 560, y + 240), 16, fill=CARD, outline=LINE)
+        d.rounded_rectangle((x, y, x + 8, y + 240), 4, fill=READERS[0][2])
+        d.text((x + 32, y + 26), value, font=font(52, 'SemiBold'), fill=INK)
+        d.text((x + 32, y + 98), label, font=font(21, 'SemiBold'), fill=INK)
+        for j, line in enumerate((sub if isinstance(sub, list) else textwrap.wrap(sub, 46))[:4]):
+            d.text((x + 32, y + 134 + j * 25), line, font=font(17), fill=MUTED)
+    d.text((W / 2, 700), 'Second October 19 test. ' + NOTE, font=font(13), fill=FAINT, anchor='mm')
     return img
 
 
@@ -389,23 +473,26 @@ def video(root, target, chart_png):
     parts = [(title_card('Should the kitchen believe it?',
                          ['A guest says they\'re allergic. Later, a staff member says that food is fine.',
                           'An AI reads every message, and simple code decides what goes out.'],
-                         f'Allergy Pass · testing OpenAI\'s Decisions API on {R["orders"]} simulated restaurant orders'), 5.0,
+                         f'Allergy Pass · testing OpenAI\'s Decisions API on {R["orders"]} simulated restaurant orders'), 4.0,
               'Should the kitchen believe it? A guest says they\'re allergic; later a staff member says that food is '
               'fine. An AI reads every message, and simple code decides what goes out.'),
-             (readers_card(sc, run), 10.0, 'Who reads the messages: the same AI model three ways. The Decisions API answers '
-              '11 multiple-choice questions per message and says how sure it is; the ordinary API picks from the same '
-              'options, or writes out the foods it sees.'),
-             (rules_card(), 7.0, 'Three rules: anyone can cancel the allergy; only the guest can cancel it; or text the '
-              'guest and ask, holding the food until they answer.')]
+             (flow_card(sc, run), 11.0, 'What Decisions does with one message: it answers 11 multiple-choice questions '
+              'and says how sure it is of each answer; code applies the rule. For comparison, the same model also read every '
+              'message through OpenAI\'s ordinary API.'),
+             ]
     for minute, sec, shown, text in beats(sc, run):
         parts.append((story_frame(sc, run, minute, states(sc, run, minute), shown, text), sec,
                       f'{rules.clock(sc["start"], minute)}. {text}'))
+    D = decided(json.loads((Path(root) / 'confirm_test' / f'{REPLAY}.json').read_text())['results'], bank.load('confirm_test'), R)
     chart_img = Image.open(chart_png).convert('RGB').resize((W, H), Image.LANCZOS)
-    parts += [(chart_img, 10.0, 'The results over all orders, for each rule and each way of reading: allergen sent to an '
+    parts += [(decided_card(D), 11.0, f'What Decisions decided in this test: {D["decisions"]:,} decisions about '
+               f'{D["messages"]:,} messages. {100 * D["sure_right"] / D["sure"]:.2f}% right when it was at least 90% sure; '
+               f'{D["asked"]} of {D["should_ask"]} guests texted; {D["mistakes"]} mistakes in {D["factual"]:,} answers.'),
+              (chart_img, 8.0, 'The results over all orders, for each rule and each way of reading: allergen sent to an '
                'allergic guest, and safe food held back.'),
-              (scorecard_card(R, repeat), 11.0, 'Decisions against the ordinary API picking the same options. '
+              (scorecard_card(R, repeat), 10.0, 'Decisions against the ordinary API picking the same options. '
                + hybrid_line(R)),
-              (closing_card(), 5.5, 'What it means: the rule mattered more than which way the AI read. Decisions was the '
+              (closing_card(), 5.0, 'What it means: the rule mattered more than which way the AI read. Decisions was the '
                'fastest, gave the same answers when run twice and says when it is unsure; the ordinary API, picking the '
                'same options, was the most accurate.')]
     cmd = [ffmpeg_binary(), '-hide_banner', '-loglevel', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}',
@@ -429,5 +516,10 @@ def video(root, target, chart_png):
 if __name__ == '__main__':
     root, out = Path(sys.argv[1]), Path(sys.argv[2])
     png = chart(root / 'confirm_test-report.json', out / 'ask-the-guest-chart.png')
+    sc = example(bank.load('confirm_test'))
+    flow_card(sc, runs_by_id(root, 'confirm_test', REPLAY)[sc['id']]).save(out / 'decisions-flow.png')
+    R = json.loads((root / 'confirm_test-report.json').read_text())
+    print(json.dumps(decided(json.loads((root / 'confirm_test' / f'{REPLAY}.json').read_text())['results'],
+                             bank.load('confirm_test'), R), indent=1))
     seconds = video(root, out / 'ask-the-guest.mp4', png)
     print(f'{png}; {out / "ask-the-guest.mp4"} ({seconds:.0f} s)')

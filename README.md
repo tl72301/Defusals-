@@ -15,8 +15,29 @@ biggest finding, though, was about the rules around the AI: if anyone can cancel
 Having the system text the guest to confirm fixed both, whichever way the AI read, at the cost of about a five-minute
 wait in about half the orders where nobody was allergic. It is a research simulation, not food-safety advice.
 
-**Decisions vs the ordinary API** (same model, same questions and answer options; second October 19 test, 2,043
-messages, except where noted)
+## What Decisions did
+
+![What Decisions does with one message](docs/decisions-flow.png)
+
+Decisions decides what each message says; code decides what the kitchen does. In the latest test (the second October
+19 test, 2,043 messages):
+
+- **What it decided.** 22,473 decisions, 11 per message, in a median 0.43 s per message. For 1,223 messages it decided
+  there was nothing about the order (kitchen chatter, other tables). It decided 373 times that an allergen must be
+  avoided, 360 times that one was fine, 131 times that a message corrected an earlier note, and 97 times that something
+  changed in the fryer oil.
+- **How sure it was.** 98.9% of its answers came with at least 90% confidence, and 99.97% of those were right (20,192
+  of 20,198). The 1.1% it was unsure about held 38 of its 44 mistakes.
+- **What its decisions set off.** Under "text the guest", its readings sent 231 of the 240 texts that were needed, and
+  it read 234 of the 240 guests' replies right. The 6 others named someone else ("Not me, but my aunt is eating with us
+  and she's allergic to dairy") and were read as "not mentioned", which leaves the allergy in place.
+- **Where it went wrong.** 44 mistakes in 20,430 answers: another table's note taken as this order's (18), fish or
+  shrimp going into the fryer read as an allergy (11), allergies in host reservation notes missed (9), and those 6
+  replies. Only the 9 missed reservation notes mattered for safety: an allergy that is never recorded is never asked
+  about, and they caused all 4 of its unsafe sends. The same blind spot showed up in all three tests.
+
+**Decisions vs the ordinary API** (same model, same questions and answer options; second October 19 test, except where
+noted)
 
 | | Decisions | Ordinary API, picking the same options |
 |---|---:|---:|
@@ -27,16 +48,19 @@ messages, except where noted)
 | Cost per 1,000 messages | $0.207 | **$0.181** |
 | Orders where the allergen was sent, when texting the guest (of 120 with an allergy) | 4 | **0** |
 
-Decisions' 4 came from allergies written only in host reservation notes, which it read as "not mentioned" (9 of 50
-here; the same blind spot showed up in all three tests). Re-reading only its unsure answers (below 90% sure, 13% of
-messages) with the ordinary API caught all of them and sent no allergen, at about Decisions' speed (0.45 s a message)
-but the highest cost ($0.231 per 1,000).
+Re-reading only Decisions' unsure answers (below 90% sure, 13% of messages) with the ordinary API caught all 9 missed
+reservation notes and sent no allergen, at about Decisions' speed (0.45 s a message) but the highest cost ($0.231 per
+1,000).
+
+## What the experiment found
 
 ![Texting the guest fixed both problems, whichever way the AI read](docs/ask-the-guest-chart.png)
 
-Short video: [what Decisions does, one order it read, and the results](docs/ask-the-guest.mp4) (89 s, captions in the
-matching .srt). The order is the first test order in which staff wrongly say an allergy is fine and the guest answers
-in plain words.
+Short video: [what Decisions does, one order it read, what it decided, and the results](docs/ask-the-guest.mp4) (89 s,
+captions in the matching .srt). The order is the first test order in which staff wrongly say an allergy is fine and the
+guest answers in plain words.
+
+## Both experiments in detail
 
 Two pre-registered experiments ask the same question: can a language model read messy human messages reliably enough
 for code to apply safety rules, and does OpenAI's Decisions API (`gpt-6-luna`, which picks one option per question)
@@ -229,7 +253,7 @@ mkdir -p /tmp/ev && for f in evidence/*.tar.gz; do tar -xzf $f -C /tmp/ev; done
 python -m defuse.allergy.report /tmp/ev/data/allergy && python -m defuse.allergy.charts /tmp/ev/data/allergy
 python -m defuse.allergy.cancel_report /tmp/ev/data/allergy cancel_test && python -m defuse.allergy.charts /tmp/ev/data/allergy cancel
 python -m defuse.allergy.confirm_report /tmp/ev/data/allergy confirm_test && python -m defuse.allergy.charts /tmp/ev/data/allergy confirm
-python -m defuse.allergy.short /tmp/ev/data/allergy /tmp/ev       # the plain-language chart and the 89 s video
+python -m defuse.allergy.short /tmp/ev/data/allergy /tmp/ev       # the Decisions diagram and figures, the chart and the 89 s video
 python -m defuse.launch.confirm /tmp/ev/data/launch && python -m defuse.launch.charts /tmp/ev/data/launch
 ```
 
