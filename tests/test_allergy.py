@@ -1,4 +1,5 @@
 """Allergy Pass: protocol engine, lexicon, generator invariants and an offline run of every system."""
+import json
 import pytest
 from defuse.allergy import rules, sim, lexicon, parser, runner
 from defuse.allergy.models import names_to_answers
@@ -333,3 +334,15 @@ def test_confirm_run_offline(stub, tmp_path, monkeypatch):
     rep = confirm_report.repeat(tmp_path / 'data' / 'allergy', 'confirm_test')
     assert set(rep) == set(confirm_run.REPEATED) and rep['responses-options']['answers_changed']['k'] == 0
     assert confirm_report.analyse(tmp_path / 'data' / 'allergy', 'confirm_test', '-r2')['readers']['decisions']
+
+
+def test_short_chart_and_story(tmp_path):
+    from defuse.allergy import short, bank
+    cell = lambda k: {'k': k, 'n': 120}
+    rr = {r: {'unsafe_of_wrong': cell(i), 'needless_of_right': cell(10 * i)} for i, (r, _) in enumerate(short.RULES)}
+    report = {'orders': 240, 'readers': {s: {'rules': rr} for s in [short.READER] + [s for s, _ in short.OTHERS]}}
+    (tmp_path / 'r.json').write_text(json.dumps(report))
+    assert short.chart(tmp_path / 'r.json', tmp_path / 'c.png', dpi=50).exists()
+    sc = short.example(bank.load('confirm_test'))
+    texts = [t for *_, t in short.beats(sc)]
+    assert sc['arm'] == 'explicit_wrong' and any('texts the guest' in t for t in texts) and any('answers' in t for t in texts)

@@ -1,0 +1,56 @@
+1
+00:00:00,000 --> 00:00:06,000
+Should the kitchen believe it? A guest says they're allergic; later a staff member says that food is fine. An AI reads every message, and simple code decides what goes out.
+
+2
+00:00:06,000 --> 00:00:16,000
+Three rules: anyone can cancel the allergy; only the guest can cancel it; or text the guest and ask, holding the food until they answer.
+
+3
+00:00:16,000 --> 00:00:21,500
+7:40 PM. The server notes a sesame allergy. Every rule holds the dishes with sesame.
+
+4
+00:00:21,500 --> 00:00:24,000
+7:51 PM. Routine kitchen chatter. Nothing changes.
+
+5
+00:00:24,000 --> 00:00:26,500
+7:55 PM. Routine kitchen chatter. Nothing changes.
+
+6
+00:00:26,500 --> 00:00:29,500
+8:02 PM. A note about another table. Nothing changes for Table 7.
+
+7
+00:00:29,500 --> 00:00:36,500
+8:05 PM. Then the server says sesame is fine. That's a mistake: someone eating is allergic. Under the first rule, the sesame dishes would go out now.
+
+8
+00:00:36,500 --> 00:00:42,500
+8:05 PM. The third rule doesn't believe it yet: the system texts the guest and keeps the sesame dishes on hold until they answer.
+
+9
+00:00:42,500 --> 00:00:45,500
+8:08 PM. A note about another table. Nothing changes for Table 7.
+
+10
+00:00:45,500 --> 00:00:51,500
+8:11 PM. The guest answers: yes, someone is allergic. The dishes stay on hold.
+
+11
+00:00:51,500 --> 00:00:55,000
+8:17 PM. A note about someone who is not eating with them. Nothing changes.
+
+12
+00:00:55,000 --> 00:01:02,000
+8:17 PM. Anyone can cancel: the sesame went out to an allergic guest. Only the guest, or asking the guest: kept safe. The difference between those two shows when staff are right; that's in the results.
+
+13
+00:01:02,000 --> 00:01:15,000
+The results over all orders: allergen sent to an allergic guest, and safe food held back, under each rule.
+
+14
+00:01:15,000 --> 00:01:24,000
+What it means: the rule mattered more than the AI's reading, and asking the guest fixed both problems, at the price of a short wait. A simulation; every guest replied within 6 minutes.
+

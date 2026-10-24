@@ -1,5 +1,22 @@
 # OpenAI Decisions vs the ordinary API, on messy real-world messages
 
+**In plain English.** When a restaurant guest has a food allergy, the information passes through many hands (the
+guest, servers, the host, the kitchen), and people make mistakes. I tested whether an AI can read those messages well
+enough for simple code to decide which dishes are safe to send, using thousands of realistic simulated messages written
+and checked by separate AI agents, with each test's plan written down before it ran. The AI read very accurately (99.7%
+to 99.96% of the facts right in the first test, depending on how it was asked), but the bigger finding was about the
+rules, not the reading. If anyone can cancel an allergy, one staff member's mistaken "it's fine" sends the allergen to
+an allergic guest; if only the guest can, safe food is held whenever staff fix their own wrong notes. Having the system
+text the guest to confirm, and hold the food until they answer, fixed both: with the most accurate way of reading, no
+allergen was sent, and safe food was held in 4 of 120 orders instead of 120, at the cost of about a five-minute wait in
+70 of the 120 orders where nobody was allergic. It is a research simulation, not food-safety advice, and every
+simulated guest replied within six minutes.
+
+![Texting the guest fixed both problems](docs/ask-the-guest-chart.png)
+
+Short video: [one order replayed, then the results](docs/ask-the-guest.mp4) (84 s, captions in the matching .srt). The
+order is the first test order in which staff wrongly say an allergy is fine and the guest answers in plain words.
+
 Two pre-registered experiments ask the same question: can a language model read messy human messages reliably enough
 for code to apply safety rules, and does OpenAI's Decisions API (`gpt-6-luna`, which picks one option per question)
 do it better than the same model through the ordinary Responses API? Both are research simulations, not safety advice.
@@ -191,6 +208,7 @@ mkdir -p /tmp/ev && for f in evidence/*.tar.gz; do tar -xzf $f -C /tmp/ev; done
 python -m defuse.allergy.report /tmp/ev/data/allergy && python -m defuse.allergy.charts /tmp/ev/data/allergy
 python -m defuse.allergy.cancel_report /tmp/ev/data/allergy cancel_test && python -m defuse.allergy.charts /tmp/ev/data/allergy cancel
 python -m defuse.allergy.confirm_report /tmp/ev/data/allergy confirm_test && python -m defuse.allergy.charts /tmp/ev/data/allergy confirm
+python -m defuse.allergy.short /tmp/ev/data/allergy /tmp/ev       # the plain-language chart and the 84 s video
 python -m defuse.launch.confirm /tmp/ev/data/launch && python -m defuse.launch.charts /tmp/ev/data/launch
 ```
 
