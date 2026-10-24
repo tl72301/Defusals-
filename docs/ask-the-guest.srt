@@ -1,56 +1,64 @@
 1
-00:00:00,000 --> 00:00:06,000
+00:00:00,000 --> 00:00:05,000
 Should the kitchen believe it? A guest says they're allergic; later a staff member says that food is fine. An AI reads every message, and simple code decides what goes out.
 
 2
-00:00:06,000 --> 00:00:16,000
-Three rules: anyone can cancel the allergy; only the guest can cancel it; or text the guest and ask, holding the food until they answer.
+00:00:05,000 --> 00:00:15,000
+Who reads the messages: the same AI model three ways. The Decisions API answers 11 multiple-choice questions per message and says how sure it is; the ordinary API picks from the same options, or writes out the foods it sees.
 
 3
-00:00:16,000 --> 00:00:21,500
-7:40 PM. The server notes a sesame allergy. Every rule holds the dishes with sesame.
+00:00:15,000 --> 00:00:22,000
+Three rules: anyone can cancel the allergy; only the guest can cancel it; or text the guest and ask, holding the food until they answer.
 
 4
-00:00:21,500 --> 00:00:24,000
-7:51 PM. Routine kitchen chatter. Nothing changes.
+00:00:22,000 --> 00:00:27,000
+7:40 PM. The server notes a sesame allergy. Every rule holds the dishes with sesame.
 
 5
-00:00:24,000 --> 00:00:26,500
-7:55 PM. Routine kitchen chatter. Nothing changes.
+00:00:27,000 --> 00:00:29,000
+7:51 PM. Routine kitchen chatter. Nothing changes.
 
 6
-00:00:26,500 --> 00:00:29,500
-8:02 PM. A note about another table. Nothing changes for Table 7.
+00:00:29,000 --> 00:00:31,000
+7:55 PM. Routine kitchen chatter. Nothing changes.
 
 7
-00:00:29,500 --> 00:00:36,500
-8:05 PM. Then the server says sesame is fine. That's a mistake: someone eating is allergic. Under the first rule, the sesame dishes would go out now.
+00:00:31,000 --> 00:00:33,500
+8:02 PM. A note about another table. Decisions sees nothing for Table 7.
 
 8
-00:00:36,500 --> 00:00:42,500
-8:05 PM. The third rule doesn't believe it yet: the system texts the guest and keeps the sesame dishes on hold until they answer.
+00:00:33,500 --> 00:00:40,500
+8:05 PM. Then the server says sesame is fine. Decisions reads it exactly as written. But the server is wrong: someone eating is allergic, and under the first rule the sesame dishes go out.
 
 9
-00:00:42,500 --> 00:00:45,500
-8:08 PM. A note about another table. Nothing changes for Table 7.
+00:00:40,500 --> 00:00:46,000
+8:05 PM. The third rule doesn't take it on trust: the system texts the guest and keeps the sesame dishes on hold until they answer.
 
 10
-00:00:45,500 --> 00:00:51,500
-8:11 PM. The guest answers: yes, someone is allergic. The dishes stay on hold.
+00:00:46,000 --> 00:00:48,500
+8:08 PM. A note about another table. Decisions sees nothing for Table 7.
 
 11
-00:00:51,500 --> 00:00:55,000
-8:17 PM. A note about someone who is not eating with them. Nothing changes.
+00:00:48,500 --> 00:00:54,000
+8:11 PM. The guest answers yes. Decisions reads it as "sesame must be avoided", so the dishes stay on hold.
 
 12
-00:00:55,000 --> 00:01:02,000
-8:17 PM. Anyone can cancel: the sesame went out to an allergic guest. Only the guest, or asking the guest: kept safe. The difference between those two shows when staff are right; that's in the results.
+00:00:54,000 --> 00:00:56,500
+8:17 PM. A note about someone who is not eating with them. Nothing changes.
 
 13
-00:01:02,000 --> 00:01:15,000
-The results over all orders: allergen sent to an allergic guest, and safe food held back, under each rule.
+00:00:56,500 --> 00:01:02,500
+8:17 PM. Decisions read every message correctly. The danger came from the rule: "anyone can cancel" trusted the mistake. Asking the guest caught it.
 
 14
-00:01:15,000 --> 00:01:24,000
-What it means: the rule mattered more than the AI's reading, and asking the guest fixed both problems, at the price of a short wait. A simulation; every guest replied within 6 minutes.
+00:01:02,500 --> 00:01:12,500
+The results over all orders, for each rule and each way of reading: allergen sent to an allergic guest, and safe food held back.
+
+15
+00:01:12,500 --> 00:01:23,500
+Decisions against the ordinary API picking the same options. Decisions' 4 unsafe sends came from allergies in host reservation notes it read as "not mentioned" (9 of 50). Re-reading only its unsure answers (13% of messages) with the ordinary API caught all of them: 0 sent, at 0.45 s a message, for the highest cost ($0.23 per 1,000).
+
+16
+00:01:23,500 --> 00:01:29,000
+What it means: the rule mattered more than which way the AI read. Decisions was the fastest, gave the same answers when run twice and says when it is unsure; the ordinary API, picking the same options, was the most accurate.
 

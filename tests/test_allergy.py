@@ -336,13 +336,22 @@ def test_confirm_run_offline(stub, tmp_path, monkeypatch):
     assert confirm_report.analyse(tmp_path / 'data' / 'allergy', 'confirm_test', '-r2')['readers']['decisions']
 
 
-def test_short_chart_and_story(tmp_path):
+def test_short_chart_scorecard_and_story(tmp_path):
     from defuse.allergy import short, bank
-    cell = lambda k: {'k': k, 'n': 120}
-    rr = {r: {'unsafe_of_wrong': cell(i), 'needless_of_right': cell(10 * i)} for i, (r, _) in enumerate(short.RULES)}
-    report = {'orders': 240, 'readers': {s: {'rules': rr} for s in [short.READER] + [s for s, _ in short.OTHERS]}}
+    cell = lambda k, n=120: {'k': k, 'n': n, 'rate': k / n}
+    reader = lambda i: {'rules': {r: {'unsafe_of_wrong': cell(i), 'needless_of_right': cell(10 * i)} for r, _ in short.RULES},
+                        'latency_p50': 0.4 + i, 'accuracy': {'factual': cell(990 + i, 1000)}, 'cost_per_1000_messages': 0.2 - i / 100,
+                        'mention_missed': {'host': cell(i, 50)}, 'messages_sent_to_second_reading': 10, 'latency_p90': 1.0}
+    names = ['oracle', 'hybrid'] + [s for s, *_ in short.READERS]
+    report = {'orders': 240, 'messages': 100, 'readers': {s: reader(i) for i, s in enumerate(names)}}
     (tmp_path / 'r.json').write_text(json.dumps(report))
     assert short.chart(tmp_path / 'r.json', tmp_path / 'c.png', dpi=50).exists()
+    repeat = {s: {'messages_changed': cell(k, 2145)} for s, k in [('decisions', 0), ('responses-options', 29)]}
+    rows = short.scorecard(report, repeat)
+    assert [r[0] for r in rows][2].startswith('Messages read differently') and rows[2][1:] == ('0', '29', 1)
     sc = short.example(bank.load('confirm_test'))
-    texts = [t for *_, t in short.beats(sc)]
-    assert sc['arm'] == 'explicit_wrong' and any('texts the guest' in t for t in texts) and any('answers' in t for t in texts)
+    run = {'extractions': {m['id']: {'answers': m['answers']} for m in sc['messages']},
+           'key': {m['id']: m['answers'] for m in sc['messages']}}
+    texts = [t for *_, t in short.beats(sc, run)]
+    assert sc['arm'] == 'explicit_wrong' and any('texts the guest' in t for t in texts)
+    assert texts[-1].startswith('Decisions read every message correctly')

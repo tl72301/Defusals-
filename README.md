@@ -1,21 +1,42 @@
 # OpenAI Decisions vs the ordinary API, on messy real-world messages
 
-**In plain English.** When a restaurant guest has a food allergy, the information passes through many hands (the
-guest, servers, the host, the kitchen), and people make mistakes. I tested whether an AI can read those messages well
-enough for simple code to decide which dishes are safe to send, using thousands of realistic simulated messages written
-and checked by separate AI agents, with each test's plan written down before it ran. The AI read very accurately (99.7%
-to 99.96% of the facts right in the first test, depending on how it was asked), but the bigger finding was about the
-rules, not the reading. If anyone can cancel an allergy, one staff member's mistaken "it's fine" sends the allergen to
-an allergic guest; if only the guest can, safe food is held whenever staff fix their own wrong notes. Having the system
-text the guest to confirm, and hold the food until they answer, fixed both: with the most accurate way of reading, no
-allergen was sent, and safe food was held in 4 of 120 orders instead of 120, at the cost of about a five-minute wait in
-70 of the 120 orders where nobody was allergic. It is a research simulation, not food-safety advice, and every
-simulated guest replied within six minutes.
+**In plain English.** OpenAI's Decisions API is built for multiple-choice judgments: you give it a piece of text and
+a set of questions with fixed answers, and it picks one answer per question and says how sure it is. This project tests
+it on a safety-critical version of that job. A restaurant passes allergy information through many hands (the guest,
+servers, the host, the kitchen), and people make mistakes. The AI reads each message and answers 11 multiple-choice
+questions about it (one for each of the nine major allergens, one about the fryer oil, and "does this correct an
+earlier note?"); simple code then uses the answers to decide whether each dish may go out. I compared Decisions with
+the same AI model through OpenAI's ordinary API, on thousands of realistic simulated messages written and checked by
+separate AI agents, with each test's plan written down before it ran. Decisions was 4 to 5 times faster, gave exactly
+the same answers when run twice and flagged most of its own mistakes as unsure; the ordinary API, picking from the same
+answers, was slightly more accurate, and Decisions kept missing allergies written in host reservation notes. The
+biggest finding, though, was about the rules around the AI: if anyone can cancel an allergy, one staff member's mistaken
+"it's fine" sends the allergen; if only the guest can, safe food is held whenever staff fix their own wrong notes.
+Having the system text the guest to confirm fixed both, whichever way the AI read, at the cost of about a five-minute
+wait in about half the orders where nobody was allergic. It is a research simulation, not food-safety advice.
 
-![Texting the guest fixed both problems](docs/ask-the-guest-chart.png)
+**Decisions vs the ordinary API** (same model, same questions and answer options; second October 19 test, 2,043
+messages, except where noted)
 
-Short video: [one order replayed, then the results](docs/ask-the-guest.mp4) (84 s, captions in the matching .srt). The
-order is the first test order in which staff wrongly say an allergy is fine and the guest answers in plain words.
+| | Decisions | Ordinary API, picking the same options |
+|---|---:|---:|
+| Time to read one message (median) | **0.43 s** | 2.25 s |
+| Answers right | 99.78% | **99.96%** |
+| Messages read differently on a second identical run (first October 19 test, of 2,145) | **0** | 29 |
+| Says how sure it is | **Yes** | No |
+| Cost per 1,000 messages | $0.207 | **$0.181** |
+| Orders where the allergen was sent, when texting the guest (of 120 with an allergy) | 4 | **0** |
+
+Decisions' 4 came from allergies written only in host reservation notes, which it read as "not mentioned" (9 of 50
+here; the same blind spot showed up in all three tests). Re-reading only its unsure answers (below 90% sure, 13% of
+messages) with the ordinary API caught all of them and sent no allergen, at about Decisions' speed (0.45 s a message)
+but the highest cost ($0.231 per 1,000).
+
+![Texting the guest fixed both problems, whichever way the AI read](docs/ask-the-guest-chart.png)
+
+Short video: [what Decisions does, one order it read, and the results](docs/ask-the-guest.mp4) (89 s, captions in the
+matching .srt). The order is the first test order in which staff wrongly say an allergy is fine and the guest answers
+in plain words.
 
 Two pre-registered experiments ask the same question: can a language model read messy human messages reliably enough
 for code to apply safety rules, and does OpenAI's Decisions API (`gpt-6-luna`, which picks one option per question)
@@ -208,7 +229,7 @@ mkdir -p /tmp/ev && for f in evidence/*.tar.gz; do tar -xzf $f -C /tmp/ev; done
 python -m defuse.allergy.report /tmp/ev/data/allergy && python -m defuse.allergy.charts /tmp/ev/data/allergy
 python -m defuse.allergy.cancel_report /tmp/ev/data/allergy cancel_test && python -m defuse.allergy.charts /tmp/ev/data/allergy cancel
 python -m defuse.allergy.confirm_report /tmp/ev/data/allergy confirm_test && python -m defuse.allergy.charts /tmp/ev/data/allergy confirm
-python -m defuse.allergy.short /tmp/ev/data/allergy /tmp/ev       # the plain-language chart and the 84 s video
+python -m defuse.allergy.short /tmp/ev/data/allergy /tmp/ev       # the plain-language chart and the 89 s video
 python -m defuse.launch.confirm /tmp/ev/data/launch && python -m defuse.launch.charts /tmp/ev/data/launch
 ```
 
